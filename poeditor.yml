@@ -1,0 +1,7 @@
+api_key: 92608e07a31e98a6b8cb8b53555c919b
+project_id: 99649
+type: apple_strings
+tags: [ios]
+
+languages: [en, ko]
+path: Dribbblr/Resources/{LANGUAGE}.lproj/Localizable.strings
