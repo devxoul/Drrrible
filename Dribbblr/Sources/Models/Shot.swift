@@ -13,6 +13,7 @@ struct Shot: ModelType {
   var id: Int
   var title: String
   var text: String?
+  var user: User
 
   var images: (hidpi: URL?, normal: URL, teaser: URL)
   var imageWidth: Int
@@ -29,6 +30,7 @@ struct Shot: ModelType {
     self.id = try map.value("id")
     self.title = try map.value("title")
     self.text = try? map.value("description")
+    self.user = try map.value("user")
 
     self.images = (
       hidpi: try? map.value("image.hidpi", using: URLTransform()),
