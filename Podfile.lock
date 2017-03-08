@@ -10,10 +10,17 @@ PODS:
   - Moya/Core (8.0.2):
     - Alamofire (~> 4.1)
     - Result (~> 3.0)
+  - Moya/RxSwift (8.0.2):
+    - Moya/Core
+    - RxSwift (~> 3.0)
   - MoyaSugar (0.4.0):
     - MoyaSugar/Core (= 0.4.0)
   - MoyaSugar/Core (0.4.0):
     - Moya (>= 8.0.0)
+  - MoyaSugar/RxSwift (0.4.0):
+    - Moya/RxSwift (>= 8.0.0)
+    - MoyaSugar/Core
+    - RxSwift (>= 3.0.0)
   - ObjectMapper (2.2.5)
   - Result (3.2.0)
   - ReusableKit (1.1.0)
@@ -45,7 +52,9 @@ DEPENDENCIES:
   - CocoaLumberjack/Swift
   - ManualLayout
   - Moya
+  - Moya/RxSwift
   - MoyaSugar
+  - MoyaSugar/RxSwift
   - ObjectMapper
   - ReusableKit
   - RxCocoa
@@ -84,6 +93,6 @@ SPEC CHECKSUMS:
   UITextView+Placeholder: 77680995fcdd07c3f52ec92fe1150874a2ac89ff
   URLNavigator: 269e73ee727a7cabfa8e510a312bac3884325cc3
 
-PODFILE CHECKSUM: 64f365ea2618fba4bf97a7ce53ad17434120a9dc
+PODFILE CHECKSUM: f4c9154caa5055bc0b46a57197cfbe69c34691b7
 
 COCOAPODS: 1.2.0

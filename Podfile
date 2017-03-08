@@ -6,7 +6,9 @@ target 'Dribbblr' do
   # Networking
   pod 'Alamofire'
   pod 'Moya'
+  pod 'Moya/RxSwift'
   pod 'MoyaSugar'
+  pod 'MoyaSugar/RxSwift'
 
   # Model
   pod 'ObjectMapper'
