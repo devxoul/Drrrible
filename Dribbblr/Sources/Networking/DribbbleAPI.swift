@@ -10,6 +10,7 @@ import Moya
 import MoyaSugar
 
 enum DribbbleAPI {
+  case me
   case shots
 }
 
@@ -21,6 +22,9 @@ extension DribbbleAPI: SugarTargetType {
 
   var route: Route {
     switch self {
+    case .me:
+      return .get("/user")
+
     case .shots:
       return .get("/shots")
     }
