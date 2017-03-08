@@ -13,6 +13,7 @@
 		031EB0671E6FFDE3004D6349 /* Shot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EB0661E6FFDE3004D6349 /* Shot.swift */; };
 		031EB0691E7000C1004D6349 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EB0681E7000C1004D6349 /* User.swift */; };
 		031EB06B1E7001FF004D6349 /* DribbbleAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EB06A1E7001FF004D6349 /* DribbbleAPI.swift */; };
+		031EB0721E7005B4004D6349 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EB0711E7005B4004D6349 /* Logger.swift */; };
 		03DF94EC1E6EA76A00E31665 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03DF94E11E6EA76A00E31665 /* Assets.xcassets */; };
 		03DF94ED1E6EA76A00E31665 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03DF94E21E6EA76A00E31665 /* LaunchScreen.storyboard */; };
 		03DF94EF1E6EA76A00E31665 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DF94E71E6EA76A00E31665 /* AppDelegate.swift */; };
@@ -44,6 +45,7 @@
 		031EB0661E6FFDE3004D6349 /* Shot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shot.swift; sourceTree = "<group>"; };
 		031EB0681E7000C1004D6349 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		031EB06A1E7001FF004D6349 /* DribbbleAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DribbbleAPI.swift; sourceTree = "<group>"; };
+		031EB0711E7005B4004D6349 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		03DF94CA1E6EA54D00E31665 /* Dribbblr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dribbblr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		03DF94E11E6EA76A00E31665 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		03DF94E31E6EA76A00E31665 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -85,6 +87,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		031EB0701E7005B4004D6349 /* Logging */ = {
+			isa = PBXGroup;
+			children = (
+				031EB0711E7005B4004D6349 /* Logger.swift */,
+			);
+			path = Logging;
+			sourceTree = "<group>";
+		};
 		03DF94C11E6EA54D00E31665 = {
 			isa = PBXGroup;
 			children = (
@@ -132,6 +142,7 @@
 				03DF94F81E6EA80A00E31665 /* Models */,
 				03DF94FB1E6EA80A00E31665 /* Sections */,
 				03DF94FA1E6EA80A00E31665 /* Rx */,
+				031EB0701E7005B4004D6349 /* Logging */,
 				03DF94FD1E6EA80A00E31665 /* Utils */,
 				03DF94FE1E6EA80A00E31665 /* ViewControllers */,
 				03DF95001E6EA80A00E31665 /* Views */,
@@ -376,6 +387,7 @@
 				03DF951F1E6EB7E200E31665 /* LoginViewModel.swift in Sources */,
 				031EB0671E6FFDE3004D6349 /* Shot.swift in Sources */,
 				031EB05B1E6FEFE7004D6349 /* AuthService.swift in Sources */,
+				031EB0721E7005B4004D6349 /* Logger.swift in Sources */,
 				03DF95151E6EAB8E00E31665 /* UICollectionView+ScrollToBottom.swift in Sources */,
 				03DF95091E6EAB5000E31665 /* ModelType.swift in Sources */,
 				03DF951B1E6EB51700E31665 /* SplashViewController.swift in Sources */,

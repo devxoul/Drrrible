@@ -23,6 +23,9 @@ target 'Dribbblr' do
   pod 'SnapKit'
   pod 'ManualLayout'
 
+  # Logging
+  pod 'CocoaLumberjack/Swift'
+
   # Misc.
   pod 'Then'
   pod 'ReusableKit'
