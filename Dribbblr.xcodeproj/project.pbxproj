@@ -11,6 +11,7 @@
 		031EB05B1E6FEFE7004D6349 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EB05A1E6FEFE7004D6349 /* AuthService.swift */; };
 		031EB0631E6FF7A9004D6349 /* AccessToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EB0621E6FF7A9004D6349 /* AccessToken.swift */; };
 		031EB0671E6FFDE3004D6349 /* Shot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EB0661E6FFDE3004D6349 /* Shot.swift */; };
+		031EB0691E7000C1004D6349 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EB0681E7000C1004D6349 /* User.swift */; };
 		03DF94EC1E6EA76A00E31665 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03DF94E11E6EA76A00E31665 /* Assets.xcassets */; };
 		03DF94ED1E6EA76A00E31665 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03DF94E21E6EA76A00E31665 /* LaunchScreen.storyboard */; };
 		03DF94EF1E6EA76A00E31665 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DF94E71E6EA76A00E31665 /* AppDelegate.swift */; };
@@ -40,6 +41,7 @@
 		031EB05A1E6FEFE7004D6349 /* AuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		031EB0621E6FF7A9004D6349 /* AccessToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccessToken.swift; sourceTree = "<group>"; };
 		031EB0661E6FFDE3004D6349 /* Shot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shot.swift; sourceTree = "<group>"; };
+		031EB0681E7000C1004D6349 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		03DF94CA1E6EA54D00E31665 /* Dribbblr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dribbblr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		03DF94E11E6EA76A00E31665 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		03DF94E31E6EA76A00E31665 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -149,6 +151,7 @@
 				03DF95081E6EAB5000E31665 /* ModelType.swift */,
 				031EB0621E6FF7A9004D6349 /* AccessToken.swift */,
 				031EB0661E6FFDE3004D6349 /* Shot.swift */,
+				031EB0681E7000C1004D6349 /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -383,6 +386,7 @@
 				03DF950B1E6EAB7900E31665 /* BaseViewController.swift in Sources */,
 				03DF95191E6EB2D800E31665 /* LoginViewController.swift in Sources */,
 				03DF94EF1E6EA76A00E31665 /* AppDelegate.swift in Sources */,
+				031EB0691E7000C1004D6349 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
