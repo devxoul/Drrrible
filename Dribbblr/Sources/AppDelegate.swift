@@ -16,11 +16,24 @@ import SwiftyColor
 import SwiftyImage
 import Then
 import UITextView_Placeholder
+import URLNavigator
 
 @UIApplicationMain
 final class AppDelegate: UIResponder, UIApplicationDelegate {
 
+  // MARK: Properties
+
+  class var shared: AppDelegate {
+    return UIApplication.shared.delegate as! AppDelegate
+  }
+
+
+  // MARK: UI
+
   var window: UIWindow?
+
+
+  // MARK: UIApplicationDelegate
 
   func application(
     _ application: UIApplication,
@@ -30,10 +43,42 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     window.backgroundColor = .white
     window.makeKeyAndVisible()
 
-    window.rootViewController = UIViewController()
+    let serviceProvider: ServiceProviderType = ServiceProvider()
+    URLNavigationMap.initialize(provider: serviceProvider)
+
+    let splashViewModel = SplashViewModel(provider: serviceProvider)
+    let splashViewController = SplashViewController(viewModel: splashViewModel)
+    window.rootViewController = splashViewController
 
     self.window = window
     return true
+  }
+
+  func application(
+    _ app: UIApplication,
+    open url: URL,
+    options: [UIApplicationOpenURLOptionsKey : Any] = [:]
+  ) -> Bool {
+    if Navigator.open(url) {
+      return true
+    }
+    if Navigator.present(url, wrap: true) != nil {
+      return true
+    }
+    return false
+  }
+
+
+  // MARK: Presenting
+
+  func presentLoginScreen(viewModel: LoginViewModelType) {
+    let viewController = LoginViewController(viewModel: viewModel)
+    self.window?.rootViewController = viewController
+  }
+
+  func presentMainScreen(viewModel: ShotsViewModelType) {
+    let viewController = ShotsViewController(viewModel: viewModel)
+    self.window?.rootViewController = viewController
   }
 
 }

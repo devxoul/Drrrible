@@ -26,6 +26,9 @@ PODS:
     - RxCocoa
     - RxSwift
   - RxSwift (3.2.0)
+  - RxSwiftUtilities (1.0.1):
+    - RxCocoa (~> 3.0)
+    - RxSwift (~> 3.0)
   - SnapKit (3.2.0)
   - SwiftyColor (1.0.0)
   - SwiftyImage (1.0.0)
@@ -46,6 +49,7 @@ DEPENDENCIES:
   - RxKeyboard
   - RxOptional
   - RxSwift
+  - RxSwiftUtilities
   - SnapKit
   - SwiftyColor
   - SwiftyImage
@@ -67,6 +71,7 @@ SPEC CHECKSUMS:
   RxKeyboard: 4046ecd1884a3bf0dacb823bd2ac8b00482d29ff
   RxOptional: b97b59183af80d1e729ac9e51d09a10be668d6a8
   RxSwift: 46574f70d416b7923c237195939cc488a7fbf3a0
+  RxSwiftUtilities: 57e77c17b885931c37aa038f114f14fd1f478ac2
   SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
   SwiftyColor: 7fa09db14051bc5d7f539e1c4576665975225992
   SwiftyImage: 79090f8b96057b3e91064de172936b97855086e6
@@ -74,6 +79,6 @@ SPEC CHECKSUMS:
   UITextView+Placeholder: 77680995fcdd07c3f52ec92fe1150874a2ac89ff
   URLNavigator: 269e73ee727a7cabfa8e510a312bac3884325cc3
 
-PODFILE CHECKSUM: dd5baa56976957d7a4230f754b47e78e3d830f47
+PODFILE CHECKSUM: a9675c3ef7ad6d7f828c08debbb01cf32758a959
 
 COCOAPODS: 1.2.0
