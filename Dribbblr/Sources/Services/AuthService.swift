@@ -10,15 +10,16 @@ import SafariServices
 import URLNavigator
 
 import Alamofire
+import KeychainAccess
 import RxSwift
 
 protocol AuthServiceType {
-  var accessToken: AccessToken? { get }
+  var currentAccessToken: AccessToken? { get }
 
   /// Start OAuth authorization process.
   ///
   /// - returns: An Observable of `AccessToken` instance.
-  func authorize() -> Observable<AccessToken>
+  func authorize() -> Observable<Void>
 
   /// Call this method when redirected from OAuth process to request access token.
   ///
@@ -28,15 +29,22 @@ protocol AuthServiceType {
 
 final class AuthService: BaseService, AuthServiceType {
 
+  fileprivate let keychain = Keychain(service: "kr.xoul.dribbblr")
   fileprivate let clientID = "130182af71afe5247b857ef622bd344ca5f1c6144c8fa33c932628ac31c5ad78"
   fileprivate let clientSecret = "cb9e01074d67c87f5369cc40571e989d26a4c8a1891c126998b243b784ff5c79"
 
   fileprivate var currentViewController: UIViewController?
   fileprivate let callbackSubject = PublishSubject<String>()
 
-  private(set) var accessToken: AccessToken?
+  private(set) var currentAccessToken: AccessToken?
 
-  func authorize() -> Observable<AccessToken> {
+  override init(provider: ServiceProviderType) {
+    super.init(provider: provider)
+    self.currentAccessToken = self.loadAccessToken()
+    log.debug("currentAccessToken exists: \(self.currentAccessToken != nil)")
+  }
+
+  func authorize() -> Observable<Void> {
     let url = URL(string: "https://dribbble.com/oauth/authorize?client_id=\(self.clientID)")!
 
     // Default animation of presenting SFSafariViewController is similar to 'push' animation
@@ -48,7 +56,13 @@ final class AuthService: BaseService, AuthServiceType {
     Navigator.present(navigationController)
     self.currentViewController = navigationController
 
-    return self.callbackSubject.flatMap(self.accessToken)
+    return self.callbackSubject
+      .flatMap(self.accessToken)
+      .do(onNext: { [weak self] accessToken in
+        try self?.saveAccessToken(accessToken)
+        self?.currentAccessToken = accessToken
+      })
+      .map { _ in Void() }
   }
 
   func callback(code: String) {
@@ -64,7 +78,7 @@ final class AuthService: BaseService, AuthServiceType {
       "client_secret": self.clientSecret,
       "code": code,
     ]
-    return Observable.create { [weak self] observer in
+    return Observable.create { observer in
       let request = Alamofire
         .request(urlString, method: .post, parameters: parameters)
         .responseString { response in
@@ -72,7 +86,6 @@ final class AuthService: BaseService, AuthServiceType {
           case .success(let jsonString):
             do {
               let accessToken = try AccessToken(JSONString: jsonString)
-              self?.accessToken = accessToken
               observer.onNext(accessToken)
               observer.onCompleted()
             } catch let error {
@@ -87,6 +100,20 @@ final class AuthService: BaseService, AuthServiceType {
         request.cancel()
       }
     }
+  }
+
+  fileprivate func saveAccessToken(_ accessToken: AccessToken) throws {
+    try self.keychain.set(accessToken.accessToken, key: "access_token")
+    try self.keychain.set(accessToken.tokenType, key: "token_type")
+    try self.keychain.set(accessToken.scope, key: "scope")
+  }
+
+  fileprivate func loadAccessToken() -> AccessToken? {
+    guard let accessToken = self.keychain["access_token"],
+      let tokenType = self.keychain["token_type"],
+      let scope = self.keychain["scope"]
+    else { return nil }
+    return AccessToken(accessToken: accessToken, tokenType: tokenType, scope: scope)
   }
 
 }

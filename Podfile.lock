@@ -4,6 +4,7 @@ PODS:
   - CocoaLumberjack/Default (3.1.0)
   - CocoaLumberjack/Swift (3.1.0):
     - CocoaLumberjack/Default
+  - KeychainAccess (3.0.1)
   - ManualLayout (1.3.0)
   - Moya (8.0.2):
     - Moya/Core (= 8.0.2)
@@ -50,6 +51,7 @@ DEPENDENCIES:
   - Alamofire
   - CGFloatLiteral
   - CocoaLumberjack/Swift
+  - KeychainAccess
   - ManualLayout
   - Moya
   - Moya/RxSwift
@@ -74,6 +76,7 @@ SPEC CHECKSUMS:
   Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
   CGFloatLiteral: faba125ab2bb8fa90142c414f876b83099c26f25
   CocoaLumberjack: 8311463ddf9ee86a06ef92a071dd656c89244500
+  KeychainAccess: 017ea25e313a49eda10bb19b0bb0760fb1edfe1a
   ManualLayout: 68ac8cfa6b5f656f7a9fadec3730208b95986880
   Moya: 47f61da5b634aa71f676431b64ee0f81e976296d
   MoyaSugar: 302175740302bed7309b9483c4a3321631eab753
@@ -93,6 +96,6 @@ SPEC CHECKSUMS:
   UITextView+Placeholder: 77680995fcdd07c3f52ec92fe1150874a2ac89ff
   URLNavigator: 269e73ee727a7cabfa8e510a312bac3884325cc3
 
-PODFILE CHECKSUM: f4c9154caa5055bc0b46a57197cfbe69c34691b7
+PODFILE CHECKSUM: 9f5238a1f0b2011adbe25a5c6ba415a81a766aef
 
 COCOAPODS: 1.2.0

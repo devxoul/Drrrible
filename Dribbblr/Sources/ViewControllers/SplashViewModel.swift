@@ -43,9 +43,19 @@ final class SplashViewModel: SplashViewModelType {
   // MARK: Initializing
 
   init(provider: ServiceProviderType) {
-    self.presentLoginScreen = self.viewDidAppear
-      .map { LoginViewModel(provider: provider) }
-    self.presentMainScreen = .never()
+    let isAuthenticated = self.viewDidAppear
+      .flatMap { provider.userService.fetchMe() }
+      .map { true }
+      .catchError { _ in .just(false) }
+      .shareReplay(1)
+
+    self.presentLoginScreen = isAuthenticated
+      .filter { !$0 }
+      .map { _ in LoginViewModel(provider: provider) }
+
+    self.presentMainScreen = isAuthenticated
+      .filter { $0 }
+      .map { _ in ShotsViewModel(provider: provider) }
   }
 
 }
