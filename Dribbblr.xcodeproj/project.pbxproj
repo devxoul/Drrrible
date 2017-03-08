@@ -15,6 +15,7 @@
 		031EB06B1E7001FF004D6349 /* DribbbleAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EB06A1E7001FF004D6349 /* DribbbleAPI.swift */; };
 		031EB0721E7005B4004D6349 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EB0711E7005B4004D6349 /* Logger.swift */; };
 		031EB0741E7006BD004D6349 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EB0731E7006BD004D6349 /* Networking.swift */; };
+		031EB0821E70624D004D6349 /* AuthPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EB0811E70624D004D6349 /* AuthPlugin.swift */; };
 		03DF94EC1E6EA76A00E31665 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03DF94E11E6EA76A00E31665 /* Assets.xcassets */; };
 		03DF94ED1E6EA76A00E31665 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03DF94E21E6EA76A00E31665 /* LaunchScreen.storyboard */; };
 		03DF94EF1E6EA76A00E31665 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DF94E71E6EA76A00E31665 /* AppDelegate.swift */; };
@@ -48,6 +49,7 @@
 		031EB06A1E7001FF004D6349 /* DribbbleAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DribbbleAPI.swift; sourceTree = "<group>"; };
 		031EB0711E7005B4004D6349 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		031EB0731E7006BD004D6349 /* Networking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
+		031EB0811E70624D004D6349 /* AuthPlugin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthPlugin.swift; sourceTree = "<group>"; };
 		03DF94CA1E6EA54D00E31665 /* Dribbblr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dribbblr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		03DF94E11E6EA76A00E31665 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		03DF94E31E6EA76A00E31665 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -95,6 +97,14 @@
 				031EB0711E7005B4004D6349 /* Logger.swift */,
 			);
 			path = Logging;
+			sourceTree = "<group>";
+		};
+		031EB0801E706248004D6349 /* Plugins */ = {
+			isa = PBXGroup;
+			children = (
+				031EB0811E70624D004D6349 /* AuthPlugin.swift */,
+			);
+			path = Plugins;
 			sourceTree = "<group>";
 		};
 		03DF94C11E6EA54D00E31665 = {
@@ -176,6 +186,7 @@
 			children = (
 				031EB0731E7006BD004D6349 /* Networking.swift */,
 				031EB06A1E7001FF004D6349 /* DribbbleAPI.swift */,
+				031EB0801E706248004D6349 /* Plugins */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -385,6 +396,7 @@
 				03DF95131E6EAB8E00E31665 /* String+Localized.swift in Sources */,
 				031EB0591E6FED65004D6349 /* URLNavigationMap.swift in Sources */,
 				031EB0741E7006BD004D6349 /* Networking.swift in Sources */,
+				031EB0821E70624D004D6349 /* AuthPlugin.swift in Sources */,
 				03DF95061E6EAADE00E31665 /* BaseService.swift in Sources */,
 				03DF95211E6EB80700E31665 /* ShotsViewController.swift in Sources */,
 				03DF95141E6EAB8E00E31665 /* UICollectionView+CellWidth.swift in Sources */,

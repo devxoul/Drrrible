@@ -12,15 +12,14 @@ import RxSwift
 
 final class Networking<Target: SugarTargetType>: RxMoyaSugarProvider<Target> {
 
-  init() {
+  init(plugins: [PluginType] = []) {
     let configuration = URLSessionConfiguration.default
     configuration.httpAdditionalHeaders = Manager.defaultHTTPHeaders
     configuration.timeoutIntervalForRequest = 10
 
     let manager = Manager(configuration: configuration)
     manager.startRequestsImmediately = false
-
-    super.init(manager: manager)
+    super.init(manager: manager, plugins: plugins)
   }
 
   @available(*, unavailable)

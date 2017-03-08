@@ -13,7 +13,7 @@ protocol ServiceProviderType: class {
 }
 
 final class ServiceProvider: ServiceProviderType {
-  let networking = Networking<DribbbleAPI>()
+  lazy var networking: Networking<DribbbleAPI> = .init(plugins: [AuthPlugin(provider: self)])
   lazy var authService: AuthServiceType = AuthService(provider: self)
   lazy var userService: UserServiceType = UserService(provider: self)
 }
