@@ -29,17 +29,21 @@ protocol AuthServiceType {
 
 final class AuthService: BaseService, AuthServiceType {
 
-  fileprivate let keychain = Keychain(service: "kr.xoul.dribbblr")
-  fileprivate let clientID = "130182af71afe5247b857ef622bd344ca5f1c6144c8fa33c932628ac31c5ad78"
-  fileprivate let clientSecret = "cb9e01074d67c87f5369cc40571e989d26a4c8a1891c126998b243b784ff5c79"
+  fileprivate let clientID = ProcessInfo.processInfo.environment["OAUTH_CLIENT_ID"] ?? ""
+  fileprivate let clientSecret = ProcessInfo.processInfo.environment["OAUTH_CLIENT_SECRET"] ?? ""
 
   fileprivate var currentViewController: UIViewController?
   fileprivate let callbackSubject = PublishSubject<String>()
 
+  fileprivate let keychain = Keychain(service: "kr.xoul.dribbblr")
   private(set) var currentAccessToken: AccessToken?
 
   override init(provider: ServiceProviderType) {
     super.init(provider: provider)
+
+    assert(!self.clientID.isEmpty, "Set environment variable 'OAUTH_CLIENT_ID'")
+    assert(!self.clientSecret.isEmpty, "Set environment variable 'OAUTH_CLIENT_SECRET'")
+
     self.currentAccessToken = self.loadAccessToken()
     log.debug("currentAccessToken exists: \(self.currentAccessToken != nil)")
   }
