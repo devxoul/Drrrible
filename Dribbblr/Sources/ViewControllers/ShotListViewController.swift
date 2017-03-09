@@ -17,6 +17,8 @@ final class ShotListViewController: BaseViewController {
 
   fileprivate struct Reusable {
     static let shotTileCell = ReusableCell<ShotTileCell>()
+    static let activityIndicatorView = ReusableView<CollectionActivityIndicatorView>()
+    static let emptyView = ReusableView<UICollectionReusableView>()
   }
 
   fileprivate struct Constant {
@@ -43,6 +45,8 @@ final class ShotListViewController: BaseViewController {
   ).then {
     $0.backgroundColor = .clear
     $0.register(Reusable.shotTileCell)
+    $0.register(Reusable.activityIndicatorView, kind: UICollectionElementKindSectionFooter)
+    $0.register(Reusable.emptyView, kind: "empty")
   }
 
 
@@ -85,6 +89,12 @@ final class ShotListViewController: BaseViewController {
         cell.configure(cellModel: cellModel)
         return cell
       }
+    }
+    self.dataSource.supplementaryViewFactory = { dataSource, collectionView, kind, indexPath in
+      if kind == UICollectionElementKindSectionFooter {
+        return collectionView.dequeue(Reusable.activityIndicatorView, kind: kind, for: indexPath)
+      }
+      return collectionView.dequeue(Reusable.emptyView, kind: "empty", for: indexPath)
     }
 
     // Input
@@ -168,6 +178,14 @@ extension ShotListViewController: UICollectionViewDelegateFlowLayout {
       let cellWidth = (sectionWidth - Metric.shotTileSectionItemSpacing) / columnCount
       return ShotTileCell.size(width: cellWidth, cellModel: cellModel)
     }
+  }
+
+  func collectionView(
+    _ collectionView: UICollectionView,
+    layout collectionViewLayout: UICollectionViewLayout,
+    referenceSizeForFooterInSection section: Int
+  ) -> CGSize {
+    return CGSize(width: collectionView.width, height: 44)
   }
 
 }

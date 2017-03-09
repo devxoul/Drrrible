@@ -27,6 +27,7 @@
 		035D06961E71C84700AFF030 /* RxOperators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035D06951E71C84700AFF030 /* RxOperators.swift */; };
 		035D069A1E71DC3000AFF030 /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035D06991E71DC3000AFF030 /* List.swift */; };
 		038B68F71E71ED90006B44F9 /* Paging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038B68F61E71ED90006B44F9 /* Paging.swift */; };
+		038B68F91E71F338006B44F9 /* CollectionActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038B68F81E71F338006B44F9 /* CollectionActivityIndicatorView.swift */; };
 		03DF94EC1E6EA76A00E31665 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03DF94E11E6EA76A00E31665 /* Assets.xcassets */; };
 		03DF94ED1E6EA76A00E31665 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03DF94E21E6EA76A00E31665 /* LaunchScreen.storyboard */; };
 		03DF94EF1E6EA76A00E31665 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DF94E71E6EA76A00E31665 /* AppDelegate.swift */; };
@@ -72,6 +73,7 @@
 		035D06951E71C84700AFF030 /* RxOperators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxOperators.swift; sourceTree = "<group>"; };
 		035D06991E71DC3000AFF030 /* List.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
 		038B68F61E71ED90006B44F9 /* Paging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Paging.swift; sourceTree = "<group>"; };
+		038B68F81E71F338006B44F9 /* CollectionActivityIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionActivityIndicatorView.swift; sourceTree = "<group>"; };
 		03DF94CA1E6EA54D00E31665 /* Dribbblr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dribbblr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		03DF94E11E6EA76A00E31665 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		03DF94E31E6EA76A00E31665 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -288,6 +290,7 @@
 				03DF95161E6EABA800E31665 /* BaseCollectionViewCell.swift */,
 				035D068B1E71A40000AFF030 /* ShotTileCell.swift */,
 				035D068D1E71A48000AFF030 /* ShotCellModel.swift */,
+				038B68F81E71F338006B44F9 /* CollectionActivityIndicatorView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -453,6 +456,7 @@
 				031EB0671E6FFDE3004D6349 /* Shot.swift in Sources */,
 				031EB05B1E6FEFE7004D6349 /* AuthService.swift in Sources */,
 				035D068E1E71A48000AFF030 /* ShotCellModel.swift in Sources */,
+				038B68F91E71F338006B44F9 /* CollectionActivityIndicatorView.swift in Sources */,
 				031EB0721E7005B4004D6349 /* Logger.swift in Sources */,
 				03DF95151E6EAB8E00E31665 /* UIScrollView+ScrollToBottom.swift in Sources */,
 				035D06941E71C00400AFF030 /* Observable+ActivityIndicator.swift in Sources */,

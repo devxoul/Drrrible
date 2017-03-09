@@ -68,7 +68,7 @@ final class ShotListViewModel: ShotListViewModelType {
       .shareReplay(1)
 
     let didLoadMoreShots = self.collectionViewDidReachBottom
-      .withLatestFrom(nextURL.asObservable().debug("nextURL"))
+      .withLatestFrom(nextURL.asObservable())
       .filterNil()
       .filter(!isRefreshing)
       .filter(!isLoading)
