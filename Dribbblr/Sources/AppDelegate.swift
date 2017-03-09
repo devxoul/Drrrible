@@ -53,6 +53,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     window.rootViewController = splashViewController
 
     self.window = window
+    self.configureAppearance()
     return true
   }
 
@@ -68,6 +69,16 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
       return true
     }
     return false
+  }
+
+
+  // MARK: Appearance
+
+  private func configureAppearance() {
+    let navigationBarBackgroundImage = UIImage.resizable().color(.db_barBackground).image
+    UINavigationBar.appearance().setBackgroundImage(navigationBarBackgroundImage, for: .default)
+    UINavigationBar.appearance().shadowImage = UIImage()
+    UINavigationBar.appearance().barStyle = .black
   }
 
 

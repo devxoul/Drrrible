@@ -54,6 +54,7 @@ final class ShotListViewController: BaseViewController {
 
   init(viewModel: ShotListViewModelType) {
     super.init()
+    self.title = "Shots"
     self.configure(viewModel: viewModel)
   }
   
@@ -66,7 +67,7 @@ final class ShotListViewController: BaseViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    self.view.backgroundColor = .white
+    self.view.backgroundColor = .db_background
     self.view.addSubview(self.collectionView)
     self.collectionView.addSubview(self.refreshControl)
   }
@@ -138,8 +139,9 @@ extension ShotListViewController: UICollectionViewDelegateFlowLayout {
   ) -> UIEdgeInsets {
     switch self.dataSource[section] {
     case .shotTile:
+      let topBottom = Metric.shotTileSectionItemSpacing
       let leftRight = Metric.shotTileSectionInsetLeftRight
-      return UIEdgeInsets(top: 0, left: leftRight, bottom: 0, right: leftRight)
+      return UIEdgeInsets(top: topBottom, left: leftRight, bottom: topBottom, right: leftRight)
     }
   }
 

@@ -10,8 +10,23 @@ import UIKit
 
 final class ShotTileCell: BaseCollectionViewCell {
 
+  // MARK: Constants
+
+  fileprivate struct Metric {
+    static let imageViewMargin = 6.f
+  }
+
+
   // MARK: UI
 
+  fileprivate let cardView = UIImageView().then {
+    $0.image = UIImage.resizable()
+      .border(color: .db_border)
+      .border(width: 1 / UIScreen.main.scale)
+      .corner(radius: 2)
+      .color(.white)
+      .image
+  }
   fileprivate let imageView = UIImageView().then {
     $0.contentMode = .scaleAspectFill
     $0.clipsToBounds = true
@@ -22,8 +37,8 @@ final class ShotTileCell: BaseCollectionViewCell {
 
   override init(frame: CGRect) {
     super.init(frame: frame)
-    self.backgroundColor = .white
-    self.contentView.addSubview(self.imageView)
+    self.contentView.addSubview(self.cardView)
+    self.cardView.addSubview(self.imageView)
   }
 
 
@@ -45,7 +60,11 @@ final class ShotTileCell: BaseCollectionViewCell {
 
   override func layoutSubviews() {
     super.layoutSubviews()
-    self.imageView.frame = self.contentView.bounds
+    self.cardView.frame = self.contentView.bounds
+    self.imageView.top = Metric.imageViewMargin
+    self.imageView.left = Metric.imageViewMargin
+    self.imageView.width = self.cardView.width - Metric.imageViewMargin * 2
+    self.imageView.height = self.cardView.height - Metric.imageViewMargin * 2
   }
 
 }
