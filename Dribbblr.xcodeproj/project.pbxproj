@@ -157,11 +157,11 @@
 				03DF94F91E6EA80A00E31665 /* Networking */,
 				03DF94F81E6EA80A00E31665 /* Models */,
 				03DF94FB1E6EA80A00E31665 /* Sections */,
+				03DF94FE1E6EA80A00E31665 /* ViewControllers */,
+				03DF95001E6EA80A00E31665 /* Views */,
 				03DF94FA1E6EA80A00E31665 /* Rx */,
 				031EB0701E7005B4004D6349 /* Logging */,
 				03DF94FD1E6EA80A00E31665 /* Utils */,
-				03DF94FE1E6EA80A00E31665 /* ViewControllers */,
-				03DF95001E6EA80A00E31665 /* Views */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
