@@ -15,7 +15,7 @@ struct Shot: ModelType {
   var text: String?
   var user: User
 
-  var images: (hidpi: URL?, normal: URL, teaser: URL)
+  var imageURLs: (hidpi: URL?, normal: URL, teaser: URL)
   var imageWidth: Int
   var imageHeight: Int
   var isAnimatedImage: Bool
@@ -32,10 +32,10 @@ struct Shot: ModelType {
     self.text = try? map.value("description")
     self.user = try map.value("user")
 
-    self.images = (
-      hidpi: try? map.value("image.hidpi", using: URLTransform()),
-      normal: try map.value("image.normal", using: URLTransform()),
-      teaser: try map.value("image.teaser", using: URLTransform())
+    self.imageURLs = (
+      hidpi: try? map.value("images.hidpi", using: URLTransform()),
+      normal: try map.value("images.normal", using: URLTransform()),
+      teaser: try map.value("images.teaser", using: URLTransform())
     )
     self.imageWidth = try map.value("width")
     self.imageHeight = try map.value("height")

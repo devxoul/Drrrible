@@ -10,7 +10,7 @@ import UIKit
 
 extension UICollectionView {
 
-  func cellWidth(forSectionAt section: Int) -> CGFloat {
+  func sectionWidth(at section: Int) -> CGFloat {
     var width = self.width
     width -= self.contentInset.left
     width -= self.contentInset.right

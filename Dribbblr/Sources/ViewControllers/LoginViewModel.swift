@@ -21,7 +21,7 @@ protocol LoginViewModelInput {
 
 protocol LoginViewModelOutput {
   var loginButtonEnabled: Driver<Bool> { get }
-  var presentMainScreen: Observable<ShotsViewModelType> { get }
+  var presentMainScreen: Observable<ShotListViewModelType> { get }
 }
 
 
@@ -38,7 +38,7 @@ final class LoginViewModel: LoginViewModelType {
   // MARK: Output
 
   let loginButtonEnabled: Driver<Bool>
-  let presentMainScreen: Observable<ShotsViewModelType>
+  let presentMainScreen: Observable<ShotListViewModelType>
 
 
   // MARK: Initializing
@@ -50,7 +50,7 @@ final class LoginViewModel: LoginViewModelType {
     self.presentMainScreen = self.loginButtonDidTap
       .flatMap { provider.authService.authorize().trackActivity(isLoading) }
       .flatMap { provider.userService.fetchMe() }
-      .map { ShotsViewModel(provider: provider) }
+      .map { ShotListViewModel(provider: provider) }
   }
 
 }

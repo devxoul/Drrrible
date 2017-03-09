@@ -9,6 +9,9 @@ target 'Dribbblr' do
   pod 'Moya/RxSwift'
   pod 'MoyaSugar'
   pod 'MoyaSugar/RxSwift'
+  pod 'WebLinking', :git => 'https://github.com/kylef/WebLinking.swift',
+                    :commit => 'fddbacc30deab8afe12ce1d3b78bd27c593a0c29'
+  pod 'Kingfisher'
 
   # Model
   pod 'ObjectMapper'

@@ -9,6 +9,7 @@
 import UIKit
 
 import CGFloatLiteral
+import Kingfisher
 import ManualLayout
 import RxOptional
 import SnapKit
@@ -17,6 +18,7 @@ import SwiftyImage
 import Then
 import UITextView_Placeholder
 import URLNavigator
+import WebLinking
 
 @UIApplicationMain
 final class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -76,9 +78,10 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     self.window?.rootViewController = viewController
   }
 
-  func presentMainScreen(viewModel: ShotsViewModelType) {
-    let viewController = ShotsViewController(viewModel: viewModel)
-    self.window?.rootViewController = viewController
+  func presentMainScreen(viewModel: ShotListViewModelType) {
+    let viewController = ShotListViewController(viewModel: viewModel)
+    let navigationController = UINavigationController(rootViewController: viewController)
+    self.window?.rootViewController = navigationController
   }
 
 }
