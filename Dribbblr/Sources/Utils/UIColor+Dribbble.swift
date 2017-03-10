@@ -10,10 +10,11 @@ import UIKit
 
 extension UIColor {
 
-  class var db_barBackground: UIColor { return 0x333333.color }
-  class var db_black: UIColor { return 0x444444.color }
+  class var db_charcoal: UIColor { return 0x333333.color }
+  class var db_pink: UIColor { return 0xEA4C89.color }
+  class var db_darkPink: UIColor { return 0xDF3E7B.color }
+
   class var db_background: UIColor { return 0xF4F4F4.color }
   class var db_border: UIColor { return 0xE5E5E5.color }
-  class var db_primary: UIColor { return 0xEA4C89.color }
 
 }
