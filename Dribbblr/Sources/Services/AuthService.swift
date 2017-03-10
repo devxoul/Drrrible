@@ -25,6 +25,8 @@ protocol AuthServiceType {
   ///
   /// - parameter code: `code` from redirected url.
   func callback(code: String)
+
+  func logout()
 }
 
 final class AuthService: BaseService, AuthServiceType {
@@ -75,6 +77,11 @@ final class AuthService: BaseService, AuthServiceType {
     self.currentViewController = nil
   }
 
+  func logout() {
+    self.currentAccessToken = nil
+    self.deleteAccessToken()
+  }
+
   fileprivate func accessToken(code: String) -> Observable<AccessToken> {
     let urlString = "https://dribbble.com/oauth/token"
     let parameters: Parameters = [
@@ -118,6 +125,12 @@ final class AuthService: BaseService, AuthServiceType {
       let scope = self.keychain["scope"]
     else { return nil }
     return AccessToken(accessToken: accessToken, tokenType: tokenType, scope: scope)
+  }
+
+  fileprivate func deleteAccessToken() {
+    try? self.keychain.remove("access_token")
+    try? self.keychain.remove("token_type")
+    try? self.keychain.remove("scope")
   }
 
 }
