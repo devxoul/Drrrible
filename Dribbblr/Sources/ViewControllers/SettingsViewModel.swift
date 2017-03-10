@@ -9,24 +9,35 @@
 import RxCocoa
 import RxSwift
 
-protocol SettingsViewModelType {
+enum LogoutAlertActionItem {
+  case logout
+  case cancel
+}
+
+protocol SettingsViewModelType: class {
   // Input
-  var tableViewDidSelectItem: PublishSubject<IndexPath> { get }
+  var tableViewDidSelectItem: PublishSubject<SettingsViewSectionItem> { get }
+  var logoutAlertDidSelectActionItem: PublishSubject<LogoutAlertActionItem> { get }
 
   // Output
   var tableViewSections: Driver<[SettingsViewSection]> { get }
+  var presentLogoutAlert: Observable<[LogoutAlertActionItem]> { get }
+  var presentLoginScreen: Observable<LoginViewModelType> { get }
 }
 
 final class SettingsViewModel: SettingsViewModelType {
 
   // MARK: Input
 
-  let tableViewDidSelectItem: PublishSubject<IndexPath> = .init()
+  let tableViewDidSelectItem: PublishSubject<SettingsViewSectionItem> = .init()
+  var logoutAlertDidSelectActionItem: PublishSubject<LogoutAlertActionItem> = .init()
 
 
   // MARK: Output
 
   let tableViewSections: Driver<[SettingsViewSection]>
+  let presentLogoutAlert: Observable<[LogoutAlertActionItem]>
+  let presentLoginScreen: Observable<LoginViewModelType>
 
 
   // MARK: Initializing
@@ -41,6 +52,20 @@ final class SettingsViewModel: SettingsViewModelType {
     self.tableViewSections = Observable
       .combineLatest(sections) { $0 }
       .asDriver(onErrorJustReturn: [])
+
+    self.presentLogoutAlert = self.tableViewDidSelectItem
+      .filter { sectionItem -> Bool in
+        if case .logout = sectionItem {
+          return true
+        } else {
+          return false
+        }
+      }
+      .map { _ in [.logout, .cancel] }
+
+    self.presentLoginScreen = self.logoutAlertDidSelectActionItem
+      .do(onNext: { _ in provider.authService.logout() })
+      .map { _ in LoginViewModel(provider: provider) }
   }
 
 
@@ -50,8 +75,8 @@ final class SettingsViewModel: SettingsViewModelType {
     provider: ServiceProviderType
   ) -> Observable<SettingsViewSection> {
     let sectionItems: [SettingsViewSectionItem] = [
-      .item(SettingItemCellModel(text: "App Version".localized, detailText: "0.0.0")),
-      .item(SettingItemCellModel(text: "Open Source License".localized, detailText: nil)),
+      .version(SettingItemCellModel(text: "App Version".localized, detailText: "0.0.0")),
+      .openSource(SettingItemCellModel(text: "Open Source License".localized, detailText: nil)),
     ]
     return .just(.about(sectionItems))
   }
@@ -61,7 +86,7 @@ final class SettingsViewModel: SettingsViewModelType {
   ) -> Observable<SettingsViewSection> {
     let logoutSectionItem: Observable<SettingsViewSectionItem> = provider.userService.currentUser
       .map { user -> SettingsViewSectionItem in
-        .item(SettingItemCellModel(text: "Logout".localized, detailText: user?.name))
+        .logout(SettingItemCellModel(text: "Logout".localized, detailText: user?.name))
       }
     return logoutSectionItem
       .map { sectionItem in [sectionItem] }

@@ -37,6 +37,8 @@
 		038B69091E72A67F006B44F9 /* SettingItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038B69081E72A67F006B44F9 /* SettingItemCell.swift */; };
 		038B690B1E72A68B006B44F9 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038B690A1E72A68B006B44F9 /* BaseTableViewCell.swift */; };
 		038B690D1E72A752006B44F9 /* SettingItemCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038B690C1E72A752006B44F9 /* SettingItemCellModel.swift */; };
+		038B690F1E73153E006B44F9 /* UITableView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038B690E1E73153E006B44F9 /* UITableView+Rx.swift */; };
+		038B69111E7318FE006B44F9 /* UICollectionView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038B69101E7318FE006B44F9 /* UICollectionView+Rx.swift */; };
 		03DF94EC1E6EA76A00E31665 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03DF94E11E6EA76A00E31665 /* Assets.xcassets */; };
 		03DF94ED1E6EA76A00E31665 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03DF94E21E6EA76A00E31665 /* LaunchScreen.storyboard */; };
 		03DF94EF1E6EA76A00E31665 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DF94E71E6EA76A00E31665 /* AppDelegate.swift */; };
@@ -92,6 +94,8 @@
 		038B69081E72A67F006B44F9 /* SettingItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingItemCell.swift; sourceTree = "<group>"; };
 		038B690A1E72A68B006B44F9 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
 		038B690C1E72A752006B44F9 /* SettingItemCellModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingItemCellModel.swift; sourceTree = "<group>"; };
+		038B690E1E73153E006B44F9 /* UITableView+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Rx.swift"; sourceTree = "<group>"; };
+		038B69101E7318FE006B44F9 /* UICollectionView+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Rx.swift"; sourceTree = "<group>"; };
 		03DF94CA1E6EA54D00E31665 /* Dribbblr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dribbblr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		03DF94E11E6EA76A00E31665 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		03DF94E31E6EA76A00E31665 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -249,6 +253,8 @@
 				031EB0771E700912004D6349 /* ObjectMapper+Rx.swift */,
 				03DF95021E6EAACF00E31665 /* UIViewController+Rx.swift */,
 				035D06911E71BBD700AFF030 /* UIScrollView+Rx.swift */,
+				038B690E1E73153E006B44F9 /* UITableView+Rx.swift */,
+				038B69101E7318FE006B44F9 /* UICollectionView+Rx.swift */,
 				035D06931E71C00400AFF030 /* Observable+ActivityIndicator.swift */,
 				035D06951E71C84700AFF030 /* RxOperators.swift */,
 			);
@@ -465,6 +471,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				03DF951D1E6EB56C00E31665 /* SplashViewModel.swift in Sources */,
+				038B690F1E73153E006B44F9 /* UITableView+Rx.swift in Sources */,
 				031EB0781E700912004D6349 /* ObjectMapper+Rx.swift in Sources */,
 				035D068C1E71A40000AFF030 /* ShotTileCell.swift in Sources */,
 				03DF95131E6EAB8E00E31665 /* String+Localized.swift in Sources */,
@@ -505,6 +512,7 @@
 				038B69011E72A3BC006B44F9 /* MainTabBarViewModel.swift in Sources */,
 				03DF95111E6EAB8E00E31665 /* Snap.swift in Sources */,
 				03DF95231E6EB80B00E31665 /* ShotListViewModel.swift in Sources */,
+				038B69111E7318FE006B44F9 /* UICollectionView+Rx.swift in Sources */,
 				03DF950B1E6EAB7900E31665 /* BaseViewController.swift in Sources */,
 				038B690B1E72A68B006B44F9 /* BaseTableViewCell.swift in Sources */,
 				031EB06B1E7001FF004D6349 /* DribbbleAPI.swift in Sources */,

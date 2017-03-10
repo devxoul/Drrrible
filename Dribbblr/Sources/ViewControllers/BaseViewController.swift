@@ -12,6 +12,13 @@ import RxSwift
 
 class BaseViewController: UIViewController {
 
+  // MARK: Properties
+
+  lazy private(set) var className: String = {
+    return type(of: self).description().components(separatedBy: ".").last ?? ""
+  }()
+
+
   // MARK: Initializing
 
   init() {
@@ -20,6 +27,10 @@ class BaseViewController: UIViewController {
 
   required convenience init?(coder aDecoder: NSCoder) {
     self.init()
+  }
+
+  deinit {
+    log.verbose("DEINIT: \(self.className)")
   }
 
 
