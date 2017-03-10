@@ -41,6 +41,8 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     _ application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?
   ) -> Bool {
+    self.configureAppearance()
+
     let window = UIWindow(frame: UIScreen.main.bounds)
     window.backgroundColor = .white
     window.makeKeyAndVisible()
@@ -53,7 +55,6 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     window.rootViewController = splashViewController
 
     self.window = window
-    self.configureAppearance()
     return true
   }
 
