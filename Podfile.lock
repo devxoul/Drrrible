@@ -37,6 +37,9 @@ PODS:
   - RxOptional (3.1.3):
     - RxCocoa
     - RxSwift
+  - RxReusable (0.2.0):
+    - RxCocoa (>= 3.0)
+    - RxSwift (>= 3.0)
   - RxSwift (3.2.0)
   - RxSwiftUtilities (1.0.1):
     - RxCocoa (~> 3.0)
@@ -48,6 +51,7 @@ PODS:
   - UITextView+Placeholder (1.2.0)
   - URLNavigator (1.1.2)
   - WebLinking (1.1.0)
+  - Yet (0.2.0)
 
 DEPENDENCIES:
   - Alamofire
@@ -66,6 +70,7 @@ DEPENDENCIES:
   - RxDataSources
   - RxKeyboard
   - RxOptional
+  - RxReusable
   - RxSwift
   - RxSwiftUtilities
   - SnapKit
@@ -75,6 +80,7 @@ DEPENDENCIES:
   - UITextView+Placeholder
   - URLNavigator
   - WebLinking (from `https://github.com/kylef/WebLinking.swift`, commit `fddbacc30deab8afe12ce1d3b78bd27c593a0c29`)
+  - Yet
 
 EXTERNAL SOURCES:
   WebLinking:
@@ -102,6 +108,7 @@ SPEC CHECKSUMS:
   RxDataSources: a021a0e944ba5f7991259829d973afdbfa719c0b
   RxKeyboard: 4046ecd1884a3bf0dacb823bd2ac8b00482d29ff
   RxOptional: b97b59183af80d1e729ac9e51d09a10be668d6a8
+  RxReusable: 4b34517649a2f476286a866133d2c0cf3dcbf44f
   RxSwift: 46574f70d416b7923c237195939cc488a7fbf3a0
   RxSwiftUtilities: 57e77c17b885931c37aa038f114f14fd1f478ac2
   SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
@@ -111,7 +118,8 @@ SPEC CHECKSUMS:
   UITextView+Placeholder: 77680995fcdd07c3f52ec92fe1150874a2ac89ff
   URLNavigator: 269e73ee727a7cabfa8e510a312bac3884325cc3
   WebLinking: 3f71787c14a225148e8be29fe6e7c98597cbc459
+  Yet: 3800f578e45d8a25798724ed5b878123de64f597
 
-PODFILE CHECKSUM: 3d8f15196800d0c50cf51e112aa9296d4adbd69b
+PODFILE CHECKSUM: 5349080c7aa37283f32a24015b30beac92372776
 
 COCOAPODS: 1.2.0

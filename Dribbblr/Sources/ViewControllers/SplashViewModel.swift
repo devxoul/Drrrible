@@ -20,7 +20,7 @@ protocol SplashViewModelInput {
 
 protocol SplashViewModelOutput {
   var presentLoginScreen: Observable<LoginViewModelType> { get }
-  var presentMainScreen: Observable<ShotListViewModelType> { get }
+  var presentMainScreen: Observable<MainTabBarViewModelType> { get }
 }
 
 
@@ -37,7 +37,7 @@ final class SplashViewModel: SplashViewModelType {
   // MARK: Output
 
   let presentLoginScreen: Observable<LoginViewModelType>
-  let presentMainScreen: Observable<ShotListViewModelType>
+  let presentMainScreen: Observable<MainTabBarViewModelType>
 
 
   // MARK: Initializing
@@ -55,7 +55,7 @@ final class SplashViewModel: SplashViewModelType {
 
     self.presentMainScreen = isAuthenticated
       .filter { $0 }
-      .map { _ in ShotListViewModel(provider: provider) }
+      .map { _ in MainTabBarViewModel(provider: provider) }
   }
 
 }

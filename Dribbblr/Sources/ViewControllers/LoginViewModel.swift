@@ -17,7 +17,7 @@ protocol LoginViewModelType {
   // Output
   var loginButtonIsHidden: Driver<Bool> { get }
   var activityIndicatorViewIsAnimating: Driver<Bool> { get }
-  var presentMainScreen: Observable<ShotListViewModelType> { get }
+  var presentMainScreen: Observable<MainTabBarViewModelType> { get }
 }
 
 final class LoginViewModel: LoginViewModelType {
@@ -31,7 +31,7 @@ final class LoginViewModel: LoginViewModelType {
 
   let loginButtonIsHidden: Driver<Bool>
   let activityIndicatorViewIsAnimating: Driver<Bool>
-  let presentMainScreen: Observable<ShotListViewModelType>
+  let presentMainScreen: Observable<MainTabBarViewModelType>
 
 
   // MARK: Initializing
@@ -45,7 +45,7 @@ final class LoginViewModel: LoginViewModelType {
     self.presentMainScreen = self.loginButtonDidTap
       .flatMap { provider.authService.authorize().trackActivity(isLoading) }
       .flatMap { provider.userService.fetchMe() }
-      .map { ShotListViewModel(provider: provider) }
+      .map { MainTabBarViewModel(provider: provider) }
   }
 
 }

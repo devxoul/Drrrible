@@ -55,6 +55,8 @@ final class ShotListViewController: BaseViewController {
   init(viewModel: ShotListViewModelType) {
     super.init()
     self.title = "Shots"
+    self.tabBarItem.image = UIImage(named: "tab-shots")
+    self.tabBarItem.selectedImage = UIImage(named: "tab-shots-selected")
     self.configure(viewModel: viewModel)
   }
   

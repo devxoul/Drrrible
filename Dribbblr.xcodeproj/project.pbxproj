@@ -29,6 +29,14 @@
 		038B68F71E71ED90006B44F9 /* Paging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038B68F61E71ED90006B44F9 /* Paging.swift */; };
 		038B68F91E71F338006B44F9 /* CollectionActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038B68F81E71F338006B44F9 /* CollectionActivityIndicatorView.swift */; };
 		038B68FB1E71F5D8006B44F9 /* UIColor+Dribbble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038B68FA1E71F5D8006B44F9 /* UIColor+Dribbble.swift */; };
+		038B68FF1E72A399006B44F9 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038B68FE1E72A399006B44F9 /* MainTabBarController.swift */; };
+		038B69011E72A3BC006B44F9 /* MainTabBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038B69001E72A3BC006B44F9 /* MainTabBarViewModel.swift */; };
+		038B69031E72A466006B44F9 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038B69021E72A466006B44F9 /* SettingsViewController.swift */; };
+		038B69051E72A46D006B44F9 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038B69041E72A46D006B44F9 /* SettingsViewModel.swift */; };
+		038B69071E72A4CA006B44F9 /* SettingsViewSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038B69061E72A4CA006B44F9 /* SettingsViewSection.swift */; };
+		038B69091E72A67F006B44F9 /* SettingItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038B69081E72A67F006B44F9 /* SettingItemCell.swift */; };
+		038B690B1E72A68B006B44F9 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038B690A1E72A68B006B44F9 /* BaseTableViewCell.swift */; };
+		038B690D1E72A752006B44F9 /* SettingItemCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038B690C1E72A752006B44F9 /* SettingItemCellModel.swift */; };
 		03DF94EC1E6EA76A00E31665 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03DF94E11E6EA76A00E31665 /* Assets.xcassets */; };
 		03DF94ED1E6EA76A00E31665 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03DF94E21E6EA76A00E31665 /* LaunchScreen.storyboard */; };
 		03DF94EF1E6EA76A00E31665 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DF94E71E6EA76A00E31665 /* AppDelegate.swift */; };
@@ -76,6 +84,14 @@
 		038B68F61E71ED90006B44F9 /* Paging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Paging.swift; sourceTree = "<group>"; };
 		038B68F81E71F338006B44F9 /* CollectionActivityIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionActivityIndicatorView.swift; sourceTree = "<group>"; };
 		038B68FA1E71F5D8006B44F9 /* UIColor+Dribbble.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Dribbble.swift"; sourceTree = "<group>"; };
+		038B68FE1E72A399006B44F9 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		038B69001E72A3BC006B44F9 /* MainTabBarViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarViewModel.swift; sourceTree = "<group>"; };
+		038B69021E72A466006B44F9 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		038B69041E72A46D006B44F9 /* SettingsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		038B69061E72A4CA006B44F9 /* SettingsViewSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewSection.swift; sourceTree = "<group>"; };
+		038B69081E72A67F006B44F9 /* SettingItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingItemCell.swift; sourceTree = "<group>"; };
+		038B690A1E72A68B006B44F9 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
+		038B690C1E72A752006B44F9 /* SettingItemCellModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingItemCellModel.swift; sourceTree = "<group>"; };
 		03DF94CA1E6EA54D00E31665 /* Dribbblr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dribbblr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		03DF94E11E6EA76A00E31665 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		03DF94E31E6EA76A00E31665 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -243,6 +259,7 @@
 			isa = PBXGroup;
 			children = (
 				035D068F1E71AD6100AFF030 /* ShotListViewSection.swift */,
+				038B69061E72A4CA006B44F9 /* SettingsViewSection.swift */,
 			);
 			path = Sections;
 			sourceTree = "<group>";
@@ -281,8 +298,12 @@
 				03DF951C1E6EB56C00E31665 /* SplashViewModel.swift */,
 				03DF95181E6EB2D800E31665 /* LoginViewController.swift */,
 				03DF951E1E6EB7E200E31665 /* LoginViewModel.swift */,
+				038B68FE1E72A399006B44F9 /* MainTabBarController.swift */,
+				038B69001E72A3BC006B44F9 /* MainTabBarViewModel.swift */,
 				03DF95201E6EB80700E31665 /* ShotListViewController.swift */,
 				03DF95221E6EB80B00E31665 /* ShotListViewModel.swift */,
+				038B69021E72A466006B44F9 /* SettingsViewController.swift */,
+				038B69041E72A46D006B44F9 /* SettingsViewModel.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -291,9 +312,12 @@
 			isa = PBXGroup;
 			children = (
 				03DF95161E6EABA800E31665 /* BaseCollectionViewCell.swift */,
+				038B690A1E72A68B006B44F9 /* BaseTableViewCell.swift */,
+				038B68F81E71F338006B44F9 /* CollectionActivityIndicatorView.swift */,
 				035D068B1E71A40000AFF030 /* ShotTileCell.swift */,
 				035D068D1E71A48000AFF030 /* ShotCellModel.swift */,
-				038B68F81E71F338006B44F9 /* CollectionActivityIndicatorView.swift */,
+				038B69081E72A67F006B44F9 /* SettingItemCell.swift */,
+				038B690C1E72A752006B44F9 /* SettingItemCellModel.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -445,11 +469,13 @@
 				035D068C1E71A40000AFF030 /* ShotTileCell.swift in Sources */,
 				03DF95131E6EAB8E00E31665 /* String+Localized.swift in Sources */,
 				035D068A1E71A1F800AFF030 /* ShotService.swift in Sources */,
+				038B69091E72A67F006B44F9 /* SettingItemCell.swift in Sources */,
 				031EB0761E700814004D6349 /* UserService.swift in Sources */,
 				035D06901E71AD6100AFF030 /* ShotListViewSection.swift in Sources */,
 				031EB0591E6FED65004D6349 /* URLNavigationMap.swift in Sources */,
 				031EB0741E7006BD004D6349 /* Networking.swift in Sources */,
 				035D06921E71BBD700AFF030 /* UIScrollView+Rx.swift in Sources */,
+				038B69071E72A4CA006B44F9 /* SettingsViewSection.swift in Sources */,
 				031EB0821E70624D004D6349 /* AuthPlugin.swift in Sources */,
 				03DF95061E6EAADE00E31665 /* BaseService.swift in Sources */,
 				03DF95211E6EB80700E31665 /* ShotListViewController.swift in Sources */,
@@ -457,8 +483,10 @@
 				03DF95141E6EAB8E00E31665 /* UICollectionView+CellWidth.swift in Sources */,
 				03DF951F1E6EB7E200E31665 /* LoginViewModel.swift in Sources */,
 				038B68F71E71ED90006B44F9 /* Paging.swift in Sources */,
+				038B690D1E72A752006B44F9 /* SettingItemCellModel.swift in Sources */,
 				031EB0671E6FFDE3004D6349 /* Shot.swift in Sources */,
 				031EB05B1E6FEFE7004D6349 /* AuthService.swift in Sources */,
+				038B69051E72A46D006B44F9 /* SettingsViewModel.swift in Sources */,
 				035D068E1E71A48000AFF030 /* ShotCellModel.swift in Sources */,
 				038B68F91E71F338006B44F9 /* CollectionActivityIndicatorView.swift in Sources */,
 				031EB0721E7005B4004D6349 /* Logger.swift in Sources */,
@@ -471,10 +499,14 @@
 				03DF95121E6EAB8E00E31665 /* String+BoundingRect.swift in Sources */,
 				03DF95071E6EAADE00E31665 /* ServiceProvider.swift in Sources */,
 				031EB0631E6FF7A9004D6349 /* AccessToken.swift in Sources */,
+				038B68FF1E72A399006B44F9 /* MainTabBarController.swift in Sources */,
 				03DF95031E6EAACF00E31665 /* UIViewController+Rx.swift in Sources */,
+				038B69031E72A466006B44F9 /* SettingsViewController.swift in Sources */,
+				038B69011E72A3BC006B44F9 /* MainTabBarViewModel.swift in Sources */,
 				03DF95111E6EAB8E00E31665 /* Snap.swift in Sources */,
 				03DF95231E6EB80B00E31665 /* ShotListViewModel.swift in Sources */,
 				03DF950B1E6EAB7900E31665 /* BaseViewController.swift in Sources */,
+				038B690B1E72A68B006B44F9 /* BaseTableViewCell.swift in Sources */,
 				031EB06B1E7001FF004D6349 /* DribbbleAPI.swift in Sources */,
 				03DF95191E6EB2D800E31665 /* LoginViewController.swift in Sources */,
 				03DF94EF1E6EA76A00E31665 /* AppDelegate.swift in Sources */,

@@ -23,6 +23,7 @@ target 'Dribbblr' do
   pod 'RxOptional'
   pod 'RxKeyboard'
   pod 'RxSwiftUtilities'
+  pod 'RxReusable'
 
   # UI
   pod 'SnapKit'
@@ -40,5 +41,6 @@ target 'Dribbblr' do
   pod 'UITextView+Placeholder'
   pod 'URLNavigator'
   pod 'KeychainAccess'
+  pod 'Yet'
 
 end

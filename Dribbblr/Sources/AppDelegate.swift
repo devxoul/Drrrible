@@ -12,6 +12,7 @@ import CGFloatLiteral
 import Kingfisher
 import ManualLayout
 import RxOptional
+import RxReusable
 import SnapKit
 import SwiftyColor
 import SwiftyImage
@@ -19,6 +20,7 @@ import Then
 import UITextView_Placeholder
 import URLNavigator
 import WebLinking
+import Yet
 
 @UIApplicationMain
 final class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -90,10 +92,9 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     self.window?.rootViewController = viewController
   }
 
-  func presentMainScreen(viewModel: ShotListViewModelType) {
-    let viewController = ShotListViewController(viewModel: viewModel)
-    let navigationController = UINavigationController(rootViewController: viewController)
-    self.window?.rootViewController = navigationController
+  func presentMainScreen(viewModel: MainTabBarViewModelType) {
+    let mainTabBarController = MainTabBarController(viewModel: viewModel)
+    self.window?.rootViewController = mainTabBarController
   }
 
 }
