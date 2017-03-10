@@ -350,6 +350,7 @@
 				TargetAttributes = {
 					03DF94C91E6EA54D00E31665 = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = N2C267LBVY;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -603,7 +604,7 @@
 			baseConfigurationReference = F8CA7BC3B51ABD25FDC74FF4 /* Pods-Dribbblr.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = N2C267LBVY;
 				INFOPLIST_FILE = "$(SRCROOT)/Dribbblr/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = kr.xoul.Dribbblr;
@@ -617,7 +618,7 @@
 			baseConfigurationReference = 065198C07E63DA46C469D55E /* Pods-Dribbblr.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = N2C267LBVY;
 				INFOPLIST_FILE = "$(SRCROOT)/Dribbblr/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = kr.xoul.Dribbblr;
