@@ -42,5 +42,6 @@ target 'Dribbblr' do
   pod 'URLNavigator'
   pod 'KeychainAccess'
   pod 'Yet'
+  pod 'Carte'
 
 end

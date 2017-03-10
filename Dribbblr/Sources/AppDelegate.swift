@@ -82,6 +82,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     UINavigationBar.appearance().setBackgroundImage(navigationBarBackgroundImage, for: .default)
     UINavigationBar.appearance().shadowImage = UIImage()
     UINavigationBar.appearance().barStyle = .black
+    UINavigationBar.appearance().tintColor = .db_slate
   }
 
 

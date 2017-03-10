@@ -355,7 +355,9 @@
 				D7B696ECA7B72544DA711BD4 /* [CP] Check Pods Manifest.lock */,
 				03DF94C61E6EA54D00E31665 /* Sources */,
 				03DF94C71E6EA54D00E31665 /* Frameworks */,
+				038B69121E7321E7006B44F9 /* Carte Pre */,
 				03DF94C81E6EA54D00E31665 /* Resources */,
+				0364963B1E73220600C79C1E /* Carte Post */,
 				22D88F27EEA1488FE0A33A70 /* [CP] Embed Pods Frameworks */,
 				CAC506AC26A6FC4184CFBCC7 /* [CP] Copy Pods Resources */,
 			);
@@ -418,6 +420,34 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		0364963B1E73220600C79C1E /* Carte Post */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Carte Post";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "ruby ${SRCROOT}/Pods/Carte/Carte/carte.rb post";
+		};
+		038B69121E7321E7006B44F9 /* Carte Pre */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Carte Pre";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "ruby ${SRCROOT}/Pods/Carte/Carte/carte.rb pre";
+		};
 		22D88F27EEA1488FE0A33A70 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

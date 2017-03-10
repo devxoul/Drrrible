@@ -11,6 +11,7 @@ import UIKit
 extension UIColor {
 
   class var db_charcoal: UIColor { return 0x333333.color }
+  class var db_slate: UIColor { return 0x9DA3A5.color }
   class var db_pink: UIColor { return 0xEA4C89.color }
   class var db_darkPink: UIColor { return 0xDF3E7B.color }
 

@@ -23,6 +23,7 @@ class BaseViewController: UIViewController {
 
   init() {
     super.init(nibName: nil, bundle: nil)
+//    self.navigationItem.back
   }
 
   required convenience init?(coder aDecoder: NSCoder) {

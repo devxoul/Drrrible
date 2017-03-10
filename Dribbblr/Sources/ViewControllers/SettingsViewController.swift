@@ -8,6 +8,7 @@
 
 import UIKit
 
+import Carte
 import ReusableKit
 import RxDataSources
 
@@ -87,6 +88,12 @@ final class SettingsViewController: BaseViewController {
     // Output
     viewModel.tableViewSections
       .drive(self.tableView.rx.items(dataSource: self.dataSource))
+      .addDisposableTo(self.disposeBag)
+
+    viewModel.presentCarteViewController
+      .subscribe(onNext: { [weak self] in
+        self?.navigationController?.pushViewController(CarteViewController(), animated: true)
+      })
       .addDisposableTo(self.disposeBag)
 
     viewModel.presentLogoutAlert
