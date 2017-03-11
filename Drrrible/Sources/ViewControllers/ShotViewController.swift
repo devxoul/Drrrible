@@ -32,6 +32,7 @@ final class ShotViewController: BaseViewController {
 
   // MARK: UI
 
+  fileprivate let refreshControl = UIRefreshControl()
   fileprivate let collectionView = UICollectionView(
     frame: .zero,
     collectionViewLayout: UICollectionViewFlowLayout()
@@ -63,6 +64,7 @@ final class ShotViewController: BaseViewController {
     super.viewDidLoad()
     self.view.backgroundColor = .db_background
     self.view.addSubview(self.collectionView)
+    self.collectionView.addSubview(self.refreshControl)
   }
 
   override func setupConstraints() {
@@ -100,7 +102,15 @@ final class ShotViewController: BaseViewController {
       .bindTo(viewModel.viewDidLoad)
       .addDisposableTo(self.disposeBag)
 
+    self.refreshControl.rx.controlEvent(.valueChanged)
+      .bindTo(viewModel.refreshControlDidChangeValue)
+      .addDisposableTo(self.disposeBag)
+
     // Output
+    viewModel.refreshControlIsRefreshing
+      .drive(self.refreshControl.rx.isRefreshing)
+      .addDisposableTo(self.disposeBag)
+
     viewModel.collectionViewSections
       .drive(self.collectionView.rx.items(dataSource: self.dataSource))
       .addDisposableTo(self.disposeBag)
