@@ -1,6 +1,6 @@
 platform :ios, '9.0'
 
-target 'Dribbblr' do
+target 'Drrrible' do
   use_frameworks!
 
   # Networking

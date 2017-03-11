@@ -4,4 +4,4 @@ type: apple_strings
 tags: [ios]
 
 languages: [en, ko]
-path: Dribbblr/Resources/{LANGUAGE}.lproj/Localizable.strings
+path: Drrrible/Resources/{LANGUAGE}.lproj/Localizable.strings
