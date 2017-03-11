@@ -8,6 +8,8 @@
 
 import UIKit
 
+import URLNavigator
+
 final class ShotTileCell: BaseCollectionViewCell {
 
   // MARK: Constants
@@ -45,7 +47,19 @@ final class ShotTileCell: BaseCollectionViewCell {
   // MARK: Configuring
 
   func configure(cellModel: ShotCellModelType) {
+    // Input
+    self.cardView.rx.tapGesture()
+      .mapVoid()
+      .bindTo(cellModel.backgroundDidTap)
+      .addDisposableTo(self.disposeBag)
+
+    // Output
     self.imageView.kf.setImage(with: cellModel.imageViewURL, placeholder: nil)
+    cellModel.presentShotViewController
+      .subscribe(onNext: { viewModel in
+        Navigator.push(ShotViewController(viewModel: viewModel))
+      })
+      .addDisposableTo(self.disposeBag)
   }
 
 

@@ -10,7 +10,7 @@ import UIKit
 
 extension String {
 
-  func boundingRect(with size: CGSize, attributes: [String: AnyObject]) -> CGRect {
+  func boundingRect(with size: CGSize, attributes: [String: Any]) -> CGRect {
     let options: NSStringDrawingOptions = [.usesLineFragmentOrigin, .usesFontLeading]
     let rect = self.boundingRect(with: size, options: options, attributes: attributes, context: nil)
     return snap(rect)

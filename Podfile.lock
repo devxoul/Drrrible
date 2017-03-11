@@ -32,6 +32,9 @@ PODS:
   - RxDataSources (1.0.3):
     - RxCocoa (~> 3.0)
     - RxSwift (~> 3.0)
+  - RxGesture (1.0.0):
+    - RxCocoa (~> 3.0)
+    - RxSwift (~> 3.0)
   - RxKeyboard (0.4.1):
     - RxCocoa (>= 3.0)
     - RxSwift (>= 3.0)
@@ -49,6 +52,7 @@ PODS:
   - SwiftyColor (1.0.0)
   - SwiftyImage (1.0.0)
   - Then (2.1.0)
+  - TTTAttributedLabel (2.0.0)
   - UITextView+Placeholder (1.2.0)
   - URLNavigator (1.1.2)
   - WebLinking (1.1.0)
@@ -70,6 +74,7 @@ DEPENDENCIES:
   - ReusableKit
   - RxCocoa
   - RxDataSources
+  - RxGesture
   - RxKeyboard
   - RxOptional
   - RxReusable
@@ -79,6 +84,7 @@ DEPENDENCIES:
   - SwiftyColor
   - SwiftyImage
   - Then
+  - TTTAttributedLabel
   - UITextView+Placeholder
   - URLNavigator
   - WebLinking (from `https://github.com/kylef/WebLinking.swift`, commit `fddbacc30deab8afe12ce1d3b78bd27c593a0c29`)
@@ -109,6 +115,7 @@ SPEC CHECKSUMS:
   ReusableKit: 89e743a120bab0d95848bff27e481833c2768905
   RxCocoa: ccdf43101a70407097a29082f648ba1676075b30
   RxDataSources: a021a0e944ba5f7991259829d973afdbfa719c0b
+  RxGesture: df17ca8be513640294c544b3165875e91de665ec
   RxKeyboard: 4046ecd1884a3bf0dacb823bd2ac8b00482d29ff
   RxOptional: b97b59183af80d1e729ac9e51d09a10be668d6a8
   RxReusable: 4b34517649a2f476286a866133d2c0cf3dcbf44f
@@ -118,11 +125,12 @@ SPEC CHECKSUMS:
   SwiftyColor: 7fa09db14051bc5d7f539e1c4576665975225992
   SwiftyImage: 79090f8b96057b3e91064de172936b97855086e6
   Then: 8496793c8fcac95482b943909b440724c7d8d82c
+  TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
   UITextView+Placeholder: 77680995fcdd07c3f52ec92fe1150874a2ac89ff
   URLNavigator: 269e73ee727a7cabfa8e510a312bac3884325cc3
   WebLinking: 3f71787c14a225148e8be29fe6e7c98597cbc459
   Yet: 3800f578e45d8a25798724ed5b878123de64f597
 
-PODFILE CHECKSUM: 49627deb9814ad7b7e8595d059ff980a6f7cdcc7
+PODFILE CHECKSUM: e249766afb826b8f0acacc736f2eb2e069eebb5a
 
 COCOAPODS: 1.2.0

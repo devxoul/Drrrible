@@ -13,6 +13,7 @@ enum DribbbleAPI {
   case url(URL)
   case me
   case shots
+  case shot(id: Int)
 }
 
 extension DribbbleAPI: SugarTargetType {
@@ -40,6 +41,9 @@ extension DribbbleAPI: SugarTargetType {
 
     case .shots:
       return .get("/shots")
+
+    case let .shot(id):
+      return .get("/shots/\(id)")
     }
   }
 

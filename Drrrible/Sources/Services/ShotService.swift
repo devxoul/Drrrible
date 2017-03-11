@@ -10,6 +10,7 @@ import RxSwift
 
 protocol ShotServiceType {
   func shots(paging: Paging) -> Observable<List<Shot>>
+  func shot(id: Int) -> Observable<Shot>
 }
 
 final class ShotService: BaseService, ShotServiceType {
@@ -21,6 +22,10 @@ final class ShotService: BaseService, ShotServiceType {
     case .next(let url): api = .url(url)
     }
     return self.provider.networking.request(api).map(List<Shot>.self)
+  }
+
+  func shot(id: Int) -> Observable<Shot> {
+    return self.provider.networking.request(.shot(id: id)).map(Shot.self)
   }
 
 }

@@ -24,10 +24,12 @@ target 'Drrrible' do
   pod 'RxKeyboard'
   pod 'RxSwiftUtilities'
   pod 'RxReusable'
+  pod 'RxGesture'
 
   # UI
   pod 'SnapKit'
   pod 'ManualLayout'
+  pod 'TTTAttributedLabel'
 
   # Logging
   pod 'CocoaLumberjack/Swift'
