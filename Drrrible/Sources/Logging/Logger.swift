@@ -1,6 +1,6 @@
 //
 //  Logger.swift
-//  Dribbblr
+//  Drrrible
 //
 //  Created by Suyeol Jeon on 08/03/2017.
 //  Copyright © 2016 Suyeol Jeon Inc. All rights reserved.
