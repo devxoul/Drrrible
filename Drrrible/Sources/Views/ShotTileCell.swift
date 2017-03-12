@@ -56,6 +56,7 @@ final class ShotTileCell: BaseCollectionViewCell {
     // Output
     self.imageView.kf.setImage(with: cellModel.imageViewURL, placeholder: nil)
     cellModel.presentShotViewController
+      .whileDisplaying(self)
       .subscribe(onNext: { viewModel in
         Navigator.push(ShotViewController(viewModel: viewModel))
       })
