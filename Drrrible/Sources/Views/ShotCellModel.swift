@@ -15,7 +15,7 @@ protocol ShotCellModelType {
 
   // Output
   var imageViewURL: URL { get }
-  var presentShotViewController: Observable<ShotViewModelType> { get }
+  var presentShotViewController: Observable<ShotViewReactorType> { get }
 }
 
 final class ShotCellModel: ShotCellModelType {
@@ -28,7 +28,7 @@ final class ShotCellModel: ShotCellModelType {
   // MARK: Output
 
   let imageViewURL: URL
-  let presentShotViewController: Observable<ShotViewModelType>
+  let presentShotViewController: Observable<ShotViewReactorType>
 
 
   // MARK: Initializing
@@ -36,7 +36,7 @@ final class ShotCellModel: ShotCellModelType {
   init(provider: ServiceProviderType, shot: Shot) {
     self.imageViewURL = shot.imageURLs.teaser
     self.presentShotViewController = self.backgroundDidTap
-      .map { ShotViewModel(provider: provider, shotID: shot.id, shot: shot) }
+      .map { ShotViewReactor(provider: provider, shotID: shot.id, shot: shot) }
   }
 
 }

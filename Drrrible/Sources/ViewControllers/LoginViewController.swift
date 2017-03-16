@@ -53,9 +53,9 @@ final class LoginViewController: BaseViewController {
 
   // MARK: Initializing
 
-  init(viewModel: LoginViewModelType) {
+  init(reactor: LoginViewReactorType) {
     super.init()
-    self.configure(viewModel: viewModel)
+    self.configure(reactor: reactor)
   }
   
   required convenience init?(coder aDecoder: NSCoder) {
@@ -87,22 +87,22 @@ final class LoginViewController: BaseViewController {
 
   // MARK: Configuring
 
-  private func configure(viewModel: LoginViewModelType) {
+  private func configure(reactor: LoginViewReactorType) {
     // Input
     self.loginButton.rx.tap
-      .bindTo(viewModel.loginButtonDidTap)
+      .bindTo(reactor.loginButtonDidTap)
       .addDisposableTo(self.disposeBag)
 
     // Output
-    viewModel.loginButtonIsHidden
+    reactor.loginButtonIsHidden
       .drive(self.loginButton.rx.isHidden)
       .addDisposableTo(self.disposeBag)
 
-    viewModel.activityIndicatorViewIsAnimating
+    reactor.activityIndicatorViewIsAnimating
       .drive(self.activityIndicatorView.rx.isAnimating)
       .addDisposableTo(self.disposeBag)
 
-    viewModel.presentMainScreen
+    reactor.presentMainScreen
       .subscribe(onNext: AppDelegate.shared.presentMainScreen)
       .addDisposableTo(self.disposeBag)
   }

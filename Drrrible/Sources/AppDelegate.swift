@@ -53,8 +53,8 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     let serviceProvider: ServiceProviderType = ServiceProvider()
     URLNavigationMap.initialize(provider: serviceProvider)
 
-    let splashViewModel = SplashViewModel(provider: serviceProvider)
-    let splashViewController = SplashViewController(viewModel: splashViewModel)
+    let splashViewReactor = SplashViewReactor(provider: serviceProvider)
+    let splashViewController = SplashViewController(reactor: splashViewReactor)
     window.rootViewController = splashViewController
 
     self.window = window
@@ -89,13 +89,13 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
 
   // MARK: Presenting
 
-  func presentLoginScreen(viewModel: LoginViewModelType) {
-    let viewController = LoginViewController(viewModel: viewModel)
+  func presentLoginScreen(reactor: LoginViewReactorType) {
+    let viewController = LoginViewController(reactor: reactor)
     self.window?.rootViewController = viewController
   }
 
-  func presentMainScreen(viewModel: MainTabBarViewModelType) {
-    let mainTabBarController = MainTabBarController(viewModel: viewModel)
+  func presentMainScreen(reactor: MainTabBarViewReactorType) {
+    let mainTabBarController = MainTabBarController(reactor: reactor)
     self.window?.rootViewController = mainTabBarController
   }
 

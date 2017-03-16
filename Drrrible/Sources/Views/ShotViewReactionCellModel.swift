@@ -9,18 +9,18 @@
 import RxSwift
 
 protocol ShotViewReactionCellModelType: class {
-  var likeButtonViewModel: ShotViewReactionButtonViewModelType { get }
-  var commentButtonViewModel: ShotViewReactionButtonViewModelType { get }
+  var likeButtonViewReactor: ShotViewReactionButtonViewReactorType { get }
+  var commentButtonViewReactor: ShotViewReactionButtonViewReactorType { get }
 }
 
 final class ShotViewReactionCellModel: ShotViewReactionCellModelType {
 
-  let likeButtonViewModel: ShotViewReactionButtonViewModelType
-  let commentButtonViewModel: ShotViewReactionButtonViewModelType
+  let likeButtonViewReactor: ShotViewReactionButtonViewReactorType
+  let commentButtonViewReactor: ShotViewReactionButtonViewReactorType
 
   init(provider: ServiceProviderType, shot: Shot) {
-    self.likeButtonViewModel = ShotViewReactionLikeButtonViewModel(provider: provider, shot: shot)
-    self.commentButtonViewModel = ShotViewReactionCommentButtonViewModel(provider: provider, shot: shot)
+    self.likeButtonViewReactor = ShotViewReactionLikeButtonViewReactor(provider: provider, shot: shot)
+    self.commentButtonViewReactor = ShotViewReactionCommentButtonViewReactor(provider: provider, shot: shot)
   }
 
 }

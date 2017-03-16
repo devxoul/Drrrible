@@ -1,5 +1,5 @@
 //
-//  LoginViewModel.swift
+//  LoginViewReactor.swift
 //  Drrrible
 //
 //  Created by Suyeol Jeon on 07/03/2017.
@@ -10,17 +10,17 @@ import RxCocoa
 import RxSwift
 import RxSwiftUtilities
 
-protocol LoginViewModelType {
+protocol LoginViewReactorType {
   // Input
   var loginButtonDidTap: PublishSubject<Void> { get }
 
   // Output
   var loginButtonIsHidden: Driver<Bool> { get }
   var activityIndicatorViewIsAnimating: Driver<Bool> { get }
-  var presentMainScreen: Observable<MainTabBarViewModelType> { get }
+  var presentMainScreen: Observable<MainTabBarViewReactorType> { get }
 }
 
-final class LoginViewModel: LoginViewModelType {
+final class LoginViewReactor: LoginViewReactorType {
 
   // MARK: Input
 
@@ -31,7 +31,7 @@ final class LoginViewModel: LoginViewModelType {
 
   let loginButtonIsHidden: Driver<Bool>
   let activityIndicatorViewIsAnimating: Driver<Bool>
-  let presentMainScreen: Observable<MainTabBarViewModelType>
+  let presentMainScreen: Observable<MainTabBarViewReactorType>
 
 
   // MARK: Initializing
@@ -45,7 +45,7 @@ final class LoginViewModel: LoginViewModelType {
     self.presentMainScreen = self.loginButtonDidTap
       .flatMap { provider.authService.authorize().trackActivity(isLoading) }
       .flatMap { provider.userService.fetchMe() }
-      .map { MainTabBarViewModel(provider: provider) }
+      .map { MainTabBarViewReactor(provider: provider) }
   }
 
 }

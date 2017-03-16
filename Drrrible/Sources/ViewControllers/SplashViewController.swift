@@ -17,10 +17,10 @@ final class SplashViewController: BaseViewController {
 
   // MARK: Initializing
 
-  init(viewModel: SplashViewModelType) {
+  init(reactor: SplashViewReactorType) {
     super.init()
-    self.configure(input: viewModel)
-    self.configure(output: viewModel)
+    self.configure(input: reactor)
+    self.configure(output: reactor)
   }
   
   required convenience init?(coder aDecoder: NSCoder) {
@@ -45,23 +45,23 @@ final class SplashViewController: BaseViewController {
 
   // MARK: Configuring
 
-  private func configure(input: SplashViewModelInput) {
+  private func configure(input: SplashViewReactorInput) {
     self.rx.viewDidAppear
       .map { _ in Void() }
       .bindTo(input.viewDidAppear)
       .addDisposableTo(self.disposeBag)
   }
 
-  private func configure(output: SplashViewModelOutput) {
+  private func configure(output: SplashViewReactorOutput) {
     output.presentLoginScreen
-      .subscribe(onNext: { viewModel in
-        AppDelegate.shared.presentLoginScreen(viewModel: viewModel)
+      .subscribe(onNext: { reactor in
+        AppDelegate.shared.presentLoginScreen(reactor: reactor)
       })
       .addDisposableTo(self.disposeBag)
 
     output.presentMainScreen
-      .subscribe(onNext: { viewModel in
-        AppDelegate.shared.presentMainScreen(viewModel: viewModel)
+      .subscribe(onNext: { reactor in
+        AppDelegate.shared.presentMainScreen(reactor: reactor)
       })
       .addDisposableTo(self.disposeBag)
   }

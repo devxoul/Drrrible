@@ -1,5 +1,5 @@
 //
-//  ShotViewReactionCommentButtonViewModel.swift
+//  ShotViewReactionCommentButtonViewReactor.swift
 //  Drrrible
 //
 //  Created by Suyeol Jeon on 12/03/2017.
@@ -8,7 +8,7 @@
 
 import RxSwift
 
-final class ShotViewReactionCommentButtonViewModel: ShotViewReactionButtonViewModelType {
+final class ShotViewReactionCommentButtonViewReactor: ShotViewReactionButtonViewReactorType {
 
   // MARK: Input
 

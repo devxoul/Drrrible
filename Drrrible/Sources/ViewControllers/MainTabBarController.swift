@@ -20,9 +20,9 @@ final class MainTabBarController: UITabBarController {
 
   // MARK: Initializing
 
-  init(viewModel: MainTabBarViewModelType) {
+  init(reactor: MainTabBarViewReactorType) {
     super.init(nibName: nil, bundle: nil)
-    self.configure(viewModel: viewModel)
+    self.configure(reactor: reactor)
   }
   
   required init?(coder aDecoder: NSCoder) {
@@ -32,15 +32,15 @@ final class MainTabBarController: UITabBarController {
 
   // MARK: Configuring
 
-  private func configure(viewModel: MainTabBarViewModelType) {
+  private func configure(reactor: MainTabBarViewReactorType) {
     // Output
 
-    let shotListNavigationController: Driver<UINavigationController> = viewModel.shotListViewModel
-      .map { ShotListViewController(viewModel: $0) }
+    let shotListNavigationController: Driver<UINavigationController> = reactor.shotListViewReactor
+      .map { ShotListViewController(reactor: $0) }
       .map { UINavigationController(rootViewController: $0) }
 
-    let settingsNavigationController: Driver<UINavigationController> = viewModel.settingsViewModel
-      .map { SettingsViewController(viewModel: $0) }
+    let settingsNavigationController: Driver<UINavigationController> = reactor.settingsViewReactor
+      .map { SettingsViewController(reactor: $0) }
       .map { UINavigationController(rootViewController: $0) }
 
     let navigationControllers: [Driver<UINavigationController>] = [

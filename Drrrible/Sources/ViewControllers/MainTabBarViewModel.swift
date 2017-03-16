@@ -1,5 +1,5 @@
 //
-//  MainTabBarViewModel.swift
+//  MainTabBarViewReactor.swift
 //  Drrrible
 //
 //  Created by Suyeol Jeon on 10/03/2017.
@@ -9,25 +9,25 @@
 import RxCocoa
 import RxSwift
 
-protocol MainTabBarViewModelType {
+protocol MainTabBarViewReactorType {
   // Output
-  var shotListViewModel: Driver<ShotListViewModelType> { get }
-  var settingsViewModel: Driver<SettingsViewModelType> { get }
+  var shotListViewReactor: Driver<ShotListViewReactorType> { get }
+  var settingsViewReactor: Driver<SettingsViewReactorType> { get }
 }
 
-final class MainTabBarViewModel: MainTabBarViewModelType {
+final class MainTabBarViewReactor: MainTabBarViewReactorType {
 
   // MARK: Output
 
-  let shotListViewModel: Driver<ShotListViewModelType>
-  let settingsViewModel: Driver<SettingsViewModelType>
+  let shotListViewReactor: Driver<ShotListViewReactorType>
+  let settingsViewReactor: Driver<SettingsViewReactorType>
 
 
   // MARK: Initializing
 
   init(provider: ServiceProviderType) {
-    self.shotListViewModel = .just(ShotListViewModel(provider: provider))
-    self.settingsViewModel = .just(SettingsViewModel(provider: provider))
+    self.shotListViewReactor = .just(ShotListViewReactor(provider: provider))
+    self.settingsViewReactor = .just(SettingsViewReactor(provider: provider))
   }
 
 }

@@ -52,12 +52,12 @@ final class ShotListViewController: BaseViewController {
 
   // MARK: Initializing
 
-  init(viewModel: ShotListViewModelType) {
+  init(reactor: ShotListViewReactorType) {
     super.init()
     self.title = "Shots"
     self.tabBarItem.image = UIImage(named: "tab-shots")
     self.tabBarItem.selectedImage = UIImage(named: "tab-shots-selected")
-    self.configure(viewModel: viewModel)
+    self.configure(reactor: reactor)
   }
   
   required convenience init?(coder aDecoder: NSCoder) {
@@ -83,7 +83,7 @@ final class ShotListViewController: BaseViewController {
 
   // MARK: Configuring
 
-  private func configure(viewModel: ShotListViewModelType) {
+  private func configure(reactor: ShotListViewReactorType) {
     self.collectionView.rx.setDelegate(self).addDisposableTo(self.disposeBag)
     self.dataSource.configureCell = { dataSource, collectionView, indexPath, sectionItem in
       switch sectionItem {
@@ -102,27 +102,27 @@ final class ShotListViewController: BaseViewController {
 
     // Input
     self.rx.viewDidLoad
-      .bindTo(viewModel.viewDidLoad)
+      .bindTo(reactor.viewDidLoad)
       .addDisposableTo(self.disposeBag)
 
     self.rx.deallocated
-      .bindTo(viewModel.viewDidLoad)
+      .bindTo(reactor.viewDidLoad)
       .addDisposableTo(self.disposeBag)
 
     self.refreshControl.rx.controlEvent(.valueChanged)
-      .bindTo(viewModel.refreshControlDidChangeValue)
+      .bindTo(reactor.refreshControlDidChangeValue)
       .addDisposableTo(self.disposeBag)
 
     self.collectionView.rx.isReachedBottom
-      .bindTo(viewModel.collectionViewDidReachBottom)
+      .bindTo(reactor.collectionViewDidReachBottom)
       .addDisposableTo(self.disposeBag)
 
     // Output
-    viewModel.refreshControlIsRefreshing
+    reactor.refreshControlIsRefreshing
       .drive(self.refreshControl.rx.isRefreshing)
       .addDisposableTo(self.disposeBag)
 
-    viewModel.collectionViewSections
+    reactor.collectionViewSections
       .drive(self.collectionView.rx.items(dataSource: self.dataSource))
       .addDisposableTo(self.disposeBag)
   }

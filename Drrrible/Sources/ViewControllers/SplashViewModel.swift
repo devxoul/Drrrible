@@ -1,5 +1,5 @@
 //
-//  SplashViewModel.swift
+//  SplashViewReactor.swift
 //  Drrrible
 //
 //  Created by Suyeol Jeon on 07/03/2017.
@@ -11,23 +11,23 @@ import RxSwift
 
 // MARK: - Input
 
-protocol SplashViewModelInput {
+protocol SplashViewReactorInput {
   var viewDidAppear: PublishSubject<Void> { get }
 }
 
 
 // MARK: - Output
 
-protocol SplashViewModelOutput {
-  var presentLoginScreen: Observable<LoginViewModelType> { get }
-  var presentMainScreen: Observable<MainTabBarViewModelType> { get }
+protocol SplashViewReactorOutput {
+  var presentLoginScreen: Observable<LoginViewReactorType> { get }
+  var presentMainScreen: Observable<MainTabBarViewReactorType> { get }
 }
 
 
-// MARK: - ViewModel
+// MARK: - ViewReactor
 
-typealias SplashViewModelType = SplashViewModelInput & SplashViewModelOutput
-final class SplashViewModel: SplashViewModelType {
+typealias SplashViewReactorType = SplashViewReactorInput & SplashViewReactorOutput
+final class SplashViewReactor: SplashViewReactorType {
 
   // MARK: Input
 
@@ -36,8 +36,8 @@ final class SplashViewModel: SplashViewModelType {
 
   // MARK: Output
 
-  let presentLoginScreen: Observable<LoginViewModelType>
-  let presentMainScreen: Observable<MainTabBarViewModelType>
+  let presentLoginScreen: Observable<LoginViewReactorType>
+  let presentMainScreen: Observable<MainTabBarViewReactorType>
 
 
   // MARK: Initializing
@@ -51,11 +51,11 @@ final class SplashViewModel: SplashViewModelType {
 
     self.presentLoginScreen = isAuthenticated
       .filter { !$0 }
-      .map { _ in LoginViewModel(provider: provider) }
+      .map { _ in LoginViewReactor(provider: provider) }
 
     self.presentMainScreen = isAuthenticated
       .filter { $0 }
-      .map { _ in MainTabBarViewModel(provider: provider) }
+      .map { _ in MainTabBarViewReactor(provider: provider) }
   }
 
 }

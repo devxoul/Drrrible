@@ -1,5 +1,5 @@
 //
-//  ShotViewModel.swift
+//  ShotViewReactor.swift
 //  Drrrible
 //
 //  Created by Suyeol Jeon on 12/03/2017.
@@ -10,7 +10,7 @@ import RxCocoa
 import RxSwift
 import RxSwiftUtilities
 
-protocol ShotViewModelType {
+protocol ShotViewReactorType {
   // Input
   var viewDidLoad: PublishSubject<Void> { get }
   var viewDidDeallocate: PublishSubject<Void> { get }
@@ -21,7 +21,7 @@ protocol ShotViewModelType {
   var collectionViewSections: Driver<[ShotViewSection]> { get }
 }
 
-final class ShotViewModel: ShotViewModelType {
+final class ShotViewReactor: ShotViewReactorType {
 
   // MARK: Input
 

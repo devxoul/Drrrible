@@ -57,8 +57,8 @@ final class ShotTileCell: BaseCollectionViewCell {
     self.imageView.kf.setImage(with: cellModel.imageViewURL, placeholder: nil)
     cellModel.presentShotViewController
       .whileDisplaying(self)
-      .subscribe(onNext: { viewModel in
-        Navigator.push(ShotViewController(viewModel: viewModel))
+      .subscribe(onNext: { reactor in
+        Navigator.push(ShotViewController(reactor: reactor))
       })
       .addDisposableTo(self.disposeBag)
   }

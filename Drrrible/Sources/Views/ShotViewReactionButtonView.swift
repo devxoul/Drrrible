@@ -50,20 +50,20 @@ final class ShotViewReactionButtonView: UIView, RxReusableType {
 
   // MARK: Configure
 
-  func configure(viewModel: ShotViewReactionButtonViewModelType) {
+  func configure(reactor: ShotViewReactionButtonViewReactorType) {
     // Input
     self.button.rx.tap
-      .bindTo(viewModel.buttonDidTap)
+      .bindTo(reactor.buttonDidTap)
       .addDisposableTo(self.disposeBag)
 
     self.rx.deallocated
-      .bindTo(viewModel.didDeallocate)
+      .bindTo(reactor.didDeallocate)
       .addDisposableTo(self.disposeBag)
 
     // Output
-    self.button.isSelected = viewModel.isButtonSelected
-    self.button.isUserInteractionEnabled = viewModel.isButtonUserInteractionEnabled
-    self.label.text = viewModel.labelText
+    self.button.isSelected = reactor.isButtonSelected
+    self.button.isUserInteractionEnabled = reactor.isButtonUserInteractionEnabled
+    self.label.text = reactor.labelText
 
     self.setNeedsLayout()
   }

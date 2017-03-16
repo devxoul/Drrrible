@@ -35,12 +35,12 @@ final class SettingsViewController: BaseViewController {
 
   // MARK: Initializing
 
-  init(viewModel: SettingsViewModelType) {
+  init(reactor: SettingsViewReactorType) {
     super.init()
     self.title = "Settings".localized
     self.tabBarItem.image = UIImage(named: "tab-settings")
     self.tabBarItem.selectedImage = UIImage(named: "tab-settings-selected")
-    self.configure(viewModel: viewModel)
+    self.configure(reactor: reactor)
   }
   
   required convenience init?(coder aDecoder: NSCoder) {
@@ -64,7 +64,7 @@ final class SettingsViewController: BaseViewController {
 
   // MARK: Configuring
 
-  private func configure(viewModel: SettingsViewModelType) {
+  private func configure(reactor: SettingsViewReactorType) {
     self.dataSource.configureCell = { dataSource, tableView, indexPath, sectionItem in
       let cell = tableView.dequeue(Reusable.cell, for: indexPath)
       switch sectionItem {
@@ -82,21 +82,21 @@ final class SettingsViewController: BaseViewController {
 
     // Input
     self.tableView.rx.itemSelected(dataSource: self.dataSource)
-      .bindTo(viewModel.tableViewDidSelectItem)
+      .bindTo(reactor.tableViewDidSelectItem)
       .addDisposableTo(self.disposeBag)
 
     // Output
-    viewModel.tableViewSections
+    reactor.tableViewSections
       .drive(self.tableView.rx.items(dataSource: self.dataSource))
       .addDisposableTo(self.disposeBag)
 
-    viewModel.presentCarteViewController
+    reactor.presentCarteViewController
       .subscribe(onNext: { [weak self] in
         self?.navigationController?.pushViewController(CarteViewController(), animated: true)
       })
       .addDisposableTo(self.disposeBag)
 
-    viewModel.presentLogoutAlert
+    reactor.presentLogoutAlert
       .subscribe(onNext: { [weak self] actionItems in
         guard let `self` = self else { return }
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
@@ -114,7 +114,7 @@ final class SettingsViewController: BaseViewController {
               style = .cancel
             }
             return UIAlertAction(title: title, style: style) { _ in
-              viewModel.logoutAlertDidSelectActionItem.onNext(actionItem)
+              reactor.logoutAlertDidSelectActionItem.onNext(actionItem)
             }
           }
           .forEach(actionSheet.addAction)
@@ -122,9 +122,9 @@ final class SettingsViewController: BaseViewController {
       })
       .addDisposableTo(self.disposeBag)
 
-    viewModel.presentLoginScreen
-      .subscribe(onNext: { viewModel in
-        AppDelegate.shared.presentLoginScreen(viewModel: viewModel)
+    reactor.presentLoginScreen
+      .subscribe(onNext: { reactor in
+        AppDelegate.shared.presentLoginScreen(reactor: reactor)
       })
       .addDisposableTo(self.disposeBag)
 

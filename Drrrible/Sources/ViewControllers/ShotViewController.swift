@@ -49,10 +49,10 @@ final class ShotViewController: BaseViewController {
 
   // MARK: Initializing
 
-  init(viewModel: ShotViewModelType) {
+  init(reactor: ShotViewReactorType) {
     super.init()
     self.title = "Shot"
-    self.configure(viewModel: viewModel)
+    self.configure(reactor: reactor)
   }
   
   required convenience init?(coder aDecoder: NSCoder) {
@@ -78,7 +78,7 @@ final class ShotViewController: BaseViewController {
 
   // MARK: Configuring
 
-  private func configure(viewModel: ShotViewModelType) {
+  private func configure(reactor: ShotViewReactorType) {
     self.collectionView.rx.setDelegate(self).addDisposableTo(self.disposeBag)
     self.dataSource.configureCell = { dataSource, collectionView, indexPath, sectionItem in
       switch sectionItem {
@@ -106,23 +106,23 @@ final class ShotViewController: BaseViewController {
 
     // Input
     self.rx.viewDidLoad
-      .bindTo(viewModel.viewDidLoad)
+      .bindTo(reactor.viewDidLoad)
       .addDisposableTo(self.disposeBag)
 
     self.rx.deallocated
-      .bindTo(viewModel.viewDidDeallocate)
+      .bindTo(reactor.viewDidDeallocate)
       .addDisposableTo(self.disposeBag)
 
     self.refreshControl.rx.controlEvent(.valueChanged)
-      .bindTo(viewModel.refreshControlDidChangeValue)
+      .bindTo(reactor.refreshControlDidChangeValue)
       .addDisposableTo(self.disposeBag)
 
     // Output
-    viewModel.refreshControlIsRefreshing
+    reactor.refreshControlIsRefreshing
       .drive(self.refreshControl.rx.isRefreshing)
       .addDisposableTo(self.disposeBag)
 
-    viewModel.collectionViewSections
+    reactor.collectionViewSections
       .drive(self.collectionView.rx.items(dataSource: self.dataSource))
       .addDisposableTo(self.disposeBag)
   }

@@ -1,6 +1,6 @@
 # Drrrible
 
-Unofficial Dribbble iOS application using [RxMVVM](https://github.com/devxoul/RxMVVM) architecture.
+Unofficial Dribbble iOS application using [The Reactive Architecture](https://github.com/devxoul/TheReactiveArchitecture).
 
 
 ## License

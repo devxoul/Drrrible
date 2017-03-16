@@ -1,5 +1,5 @@
 //
-//  SettingsViewModel.swift
+//  SettingsViewReactor.swift
 //  Drrrible
 //
 //  Created by Suyeol Jeon on 10/03/2017.
@@ -14,7 +14,7 @@ enum LogoutAlertActionItem {
   case cancel
 }
 
-protocol SettingsViewModelType: class {
+protocol SettingsViewReactorType: class {
   // Input
   var tableViewDidSelectItem: PublishSubject<SettingsViewSectionItem> { get }
   var logoutAlertDidSelectActionItem: PublishSubject<LogoutAlertActionItem> { get }
@@ -23,10 +23,10 @@ protocol SettingsViewModelType: class {
   var tableViewSections: Driver<[SettingsViewSection]> { get }
   var presentCarteViewController: Observable<Void> { get }
   var presentLogoutAlert: Observable<[LogoutAlertActionItem]> { get }
-  var presentLoginScreen: Observable<LoginViewModelType> { get }
+  var presentLoginScreen: Observable<LoginViewReactorType> { get }
 }
 
-final class SettingsViewModel: SettingsViewModelType {
+final class SettingsViewReactor: SettingsViewReactorType {
 
   // MARK: Input
 
@@ -39,13 +39,13 @@ final class SettingsViewModel: SettingsViewModelType {
   let tableViewSections: Driver<[SettingsViewSection]>
   let presentCarteViewController: Observable<Void>
   let presentLogoutAlert: Observable<[LogoutAlertActionItem]>
-  let presentLoginScreen: Observable<LoginViewModelType>
+  let presentLoginScreen: Observable<LoginViewReactorType>
 
 
   // MARK: Initializing
 
   init(provider: ServiceProviderType) {
-    let cls = SettingsViewModel.self
+    let cls = SettingsViewReactor.self
 
     let sections = [
       cls.aboutSection(provider: provider),
@@ -78,7 +78,7 @@ final class SettingsViewModel: SettingsViewModelType {
     self.presentLoginScreen = self.logoutAlertDidSelectActionItem
       .filter { $0 == .logout }
       .do(onNext: { _ in provider.authService.logout() })
-      .map { _ in LoginViewModel(provider: provider) }
+      .map { _ in LoginViewReactor(provider: provider) }
   }
 
 

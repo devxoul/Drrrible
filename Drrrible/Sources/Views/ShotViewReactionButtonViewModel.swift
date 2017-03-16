@@ -1,5 +1,5 @@
 //
-//  ShotViewReactionButtonViewModel.swift
+//  ShotViewReactionButtonViewReactor.swift
 //  Drrrible
 //
 //  Created by Suyeol Jeon on 12/03/2017.
@@ -12,7 +12,7 @@ enum ShotReactionType {
   case like
 }
 
-protocol ShotViewReactionButtonViewModelType {
+protocol ShotViewReactionButtonViewReactorType {
   // Input
   var didDeallocate: PublishSubject<Void> { get }
   var buttonDidTap: PublishSubject<Void> { get }
