@@ -19,6 +19,7 @@ final class ShotViewController: BaseViewController {
     static let imageCell = ReusableCell<ShotViewImageCell>()
     static let titleCell = ReusableCell<ShotViewTitleCell>()
     static let textCell = ReusableCell<ShotViewTextCell>()
+    static let reactionCell = ReusableCell<ShotViewReactionCell>()
   }
 
   fileprivate struct Metric {
@@ -42,6 +43,7 @@ final class ShotViewController: BaseViewController {
     $0.register(Reusable.imageCell)
     $0.register(Reusable.titleCell)
     $0.register(Reusable.textCell)
+    $0.register(Reusable.reactionCell)
   }
 
 
@@ -94,12 +96,21 @@ final class ShotViewController: BaseViewController {
         let cell = collectionView.dequeue(Reusable.textCell, for: indexPath)
         cell.configure(cellModel: cellModel)
         return cell
+
+      case .reaction(let cellModel):
+        let cell = collectionView.dequeue(Reusable.reactionCell, for: indexPath)
+        cell.configure(cellModel: cellModel)
+        return cell
       }
     }
 
     // Input
     self.rx.viewDidLoad
       .bindTo(viewModel.viewDidLoad)
+      .addDisposableTo(self.disposeBag)
+
+    self.rx.deallocated
+      .bindTo(viewModel.viewDidDeallocate)
       .addDisposableTo(self.disposeBag)
 
     self.refreshControl.rx.controlEvent(.valueChanged)
@@ -147,6 +158,9 @@ extension ShotViewController: UICollectionViewDelegateFlowLayout {
 
     case .text(let cellModel):
       return ShotViewTextCell.size(width: sectionWidth, cellModel: cellModel)
+
+    case .reaction(let cellModel):
+      return ShotViewReactionCell.size(width: sectionWidth, cellModel: cellModel)
     }
   }
 

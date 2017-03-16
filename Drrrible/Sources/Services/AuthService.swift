@@ -47,7 +47,12 @@ final class AuthService: BaseService, AuthServiceType {
   }
 
   func authorize() -> Observable<Void> {
-    let url = URL(string: "https://dribbble.com/oauth/authorize?client_id=\(self.clientID)")!
+    let parameters: [String: String] = [
+      "client_id": self.clientID,
+      "scope": "public+write+comment+upload",
+    ]
+    let parameterString = parameters.map { "\($0)=\($1)" }.joined(separator: "&")
+    let url = URL(string: "https://dribbble.com/oauth/authorize?\(parameterString)")!
 
     // Default animation of presenting SFSafariViewController is similar to 'push' animation
     // (from right to left). To use 'modal' animation (from bottom to top), we have to wrap

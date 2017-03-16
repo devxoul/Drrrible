@@ -10,6 +10,14 @@ import ObjectMapper
 
 struct Shot: ModelType {
 
+  enum Event {
+    case create(Shot)
+    case update(Shot)
+    case delete(id: Int)
+    case like(id: Int)
+    case unlike(id: Int)
+  }
+
   var id: Int
   var title: String
   var text: String?
@@ -25,6 +33,8 @@ struct Shot: ModelType {
   var commentCount: Int
 
   var createdAt: Date
+
+  var isLiked: Bool?
 
   init(map: Map) throws {
     self.id = try map.value("id")
@@ -47,5 +57,4 @@ struct Shot: ModelType {
 
     self.createdAt = try map.value("created_at", using: ISO8601DateTransform())
   }
-
 }

@@ -30,6 +30,14 @@
 		0365BB8C1E747D91009BA3F8 /* ShotViewTextCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0365BB8B1E747D91009BA3F8 /* ShotViewTextCellModel.swift */; };
 		0365BB8E1E748246009BA3F8 /* NSAttributedString+HTMLString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0365BB8D1E748246009BA3F8 /* NSAttributedString+HTMLString.swift */; };
 		0365BB901E74846F009BA3F8 /* NSAttributedString+BoundingRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0365BB8F1E74846F009BA3F8 /* NSAttributedString+BoundingRect.swift */; };
+		0365BB921E753F5B009BA3F8 /* ShotViewReactionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0365BB911E753F5B009BA3F8 /* ShotViewReactionCell.swift */; };
+		0365BB941E753F5E009BA3F8 /* ShotViewReactionCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0365BB931E753F5E009BA3F8 /* ShotViewReactionCellModel.swift */; };
+		0365BB961E754424009BA3F8 /* ExclusiveGestureRecognizerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0365BB951E754424009BA3F8 /* ExclusiveGestureRecognizerDelegate.swift */; };
+		0365BB981E754D9E009BA3F8 /* ShotViewReactionButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0365BB971E754D9E009BA3F8 /* ShotViewReactionButtonView.swift */; };
+		0365BB9A1E754E72009BA3F8 /* ShotViewReactionButtonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0365BB991E754E72009BA3F8 /* ShotViewReactionButtonViewModel.swift */; };
+		0365BB9C1E755309009BA3F8 /* ShotViewReactionLikeButtonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0365BB9B1E755309009BA3F8 /* ShotViewReactionLikeButtonViewModel.swift */; };
+		0365BB9E1E755320009BA3F8 /* ShotViewReactionCommentButtonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0365BB9D1E755320009BA3F8 /* ShotViewReactionCommentButtonViewModel.swift */; };
+		0365BBA01E758BB4009BA3F8 /* ModelStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0365BB9F1E758BB4009BA3F8 /* ModelStream.swift */; };
 		0377C5531E745BC200EE4576 /* ShotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0377C5521E745BC200EE4576 /* ShotViewController.swift */; };
 		0377C5551E745BF000EE4576 /* ShotViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0377C5541E745BF000EE4576 /* ShotViewModel.swift */; };
 		0377C5571E745CDB00EE4576 /* ShotViewSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0377C5561E745CDB00EE4576 /* ShotViewSection.swift */; };
@@ -101,6 +109,14 @@
 		0365BB8B1E747D91009BA3F8 /* ShotViewTextCellModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShotViewTextCellModel.swift; sourceTree = "<group>"; };
 		0365BB8D1E748246009BA3F8 /* NSAttributedString+HTMLString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+HTMLString.swift"; sourceTree = "<group>"; };
 		0365BB8F1E74846F009BA3F8 /* NSAttributedString+BoundingRect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+BoundingRect.swift"; sourceTree = "<group>"; };
+		0365BB911E753F5B009BA3F8 /* ShotViewReactionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShotViewReactionCell.swift; sourceTree = "<group>"; };
+		0365BB931E753F5E009BA3F8 /* ShotViewReactionCellModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShotViewReactionCellModel.swift; sourceTree = "<group>"; };
+		0365BB951E754424009BA3F8 /* ExclusiveGestureRecognizerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExclusiveGestureRecognizerDelegate.swift; sourceTree = "<group>"; };
+		0365BB971E754D9E009BA3F8 /* ShotViewReactionButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShotViewReactionButtonView.swift; sourceTree = "<group>"; };
+		0365BB991E754E72009BA3F8 /* ShotViewReactionButtonViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShotViewReactionButtonViewModel.swift; sourceTree = "<group>"; };
+		0365BB9B1E755309009BA3F8 /* ShotViewReactionLikeButtonViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShotViewReactionLikeButtonViewModel.swift; sourceTree = "<group>"; };
+		0365BB9D1E755320009BA3F8 /* ShotViewReactionCommentButtonViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShotViewReactionCommentButtonViewModel.swift; sourceTree = "<group>"; };
+		0365BB9F1E758BB4009BA3F8 /* ModelStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelStream.swift; sourceTree = "<group>"; };
 		0377C5521E745BC200EE4576 /* ShotViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShotViewController.swift; sourceTree = "<group>"; };
 		0377C5541E745BF000EE4576 /* ShotViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShotViewModel.swift; sourceTree = "<group>"; };
 		0377C5561E745CDB00EE4576 /* ShotViewSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShotViewSection.swift; sourceTree = "<group>"; };
@@ -258,6 +274,7 @@
 			isa = PBXGroup;
 			children = (
 				03DF95081E6EAB5000E31665 /* ModelType.swift */,
+				0365BB9F1E758BB4009BA3F8 /* ModelStream.swift */,
 				035D06991E71DC3000AFF030 /* List.swift */,
 				031EB0621E6FF7A9004D6349 /* AccessToken.swift */,
 				031EB0661E6FFDE3004D6349 /* Shot.swift */,
@@ -325,6 +342,7 @@
 				031EB0581E6FED65004D6349 /* URLNavigationMap.swift */,
 				038B68FA1E71F5D8006B44F9 /* UIColor+Dribbble.swift */,
 				0377C5621E746E5200EE4576 /* UIEdgeInsets+Init.swift */,
+				0365BB951E754424009BA3F8 /* ExclusiveGestureRecognizerDelegate.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -364,6 +382,12 @@
 				0377C5601E746B5C00EE4576 /* ShotViewTitleCellModel.swift */,
 				0365BB891E747D22009BA3F8 /* ShotViewTextCell.swift */,
 				0365BB8B1E747D91009BA3F8 /* ShotViewTextCellModel.swift */,
+				0365BB911E753F5B009BA3F8 /* ShotViewReactionCell.swift */,
+				0365BB931E753F5E009BA3F8 /* ShotViewReactionCellModel.swift */,
+				0365BB971E754D9E009BA3F8 /* ShotViewReactionButtonView.swift */,
+				0365BB991E754E72009BA3F8 /* ShotViewReactionButtonViewModel.swift */,
+				0365BB9B1E755309009BA3F8 /* ShotViewReactionLikeButtonViewModel.swift */,
+				0365BB9D1E755320009BA3F8 /* ShotViewReactionCommentButtonViewModel.swift */,
 				038B69081E72A67F006B44F9 /* SettingItemCell.swift */,
 				038B690C1E72A752006B44F9 /* SettingItemCellModel.swift */,
 			);
@@ -549,6 +573,8 @@
 				031EB0781E700912004D6349 /* ObjectMapper+Rx.swift in Sources */,
 				0377C5571E745CDB00EE4576 /* ShotViewSection.swift in Sources */,
 				035D068C1E71A40000AFF030 /* ShotTileCell.swift in Sources */,
+				0365BB9A1E754E72009BA3F8 /* ShotViewReactionButtonViewModel.swift in Sources */,
+				0365BB9C1E755309009BA3F8 /* ShotViewReactionLikeButtonViewModel.swift in Sources */,
 				0377C5591E745D8300EE4576 /* ShotViewImageCell.swift in Sources */,
 				03DF95131E6EAB8E00E31665 /* String+Localized.swift in Sources */,
 				035D068A1E71A1F800AFF030 /* ShotService.swift in Sources */,
@@ -570,14 +596,17 @@
 				0365BB8A1E747D22009BA3F8 /* ShotViewTextCell.swift in Sources */,
 				038B690D1E72A752006B44F9 /* SettingItemCellModel.swift in Sources */,
 				031EB0671E6FFDE3004D6349 /* Shot.swift in Sources */,
+				0365BBA01E758BB4009BA3F8 /* ModelStream.swift in Sources */,
 				031EB05B1E6FEFE7004D6349 /* AuthService.swift in Sources */,
 				038B69051E72A46D006B44F9 /* SettingsViewModel.swift in Sources */,
 				035D068E1E71A48000AFF030 /* ShotCellModel.swift in Sources */,
+				0365BB941E753F5E009BA3F8 /* ShotViewReactionCellModel.swift in Sources */,
 				038B68F91E71F338006B44F9 /* CollectionActivityIndicatorView.swift in Sources */,
 				031EB0721E7005B4004D6349 /* Logger.swift in Sources */,
 				0377C5531E745BC200EE4576 /* ShotViewController.swift in Sources */,
 				0365BB901E74846F009BA3F8 /* NSAttributedString+BoundingRect.swift in Sources */,
 				03DF95151E6EAB8E00E31665 /* UIScrollView+ScrollToBottom.swift in Sources */,
+				0365BB921E753F5B009BA3F8 /* ShotViewReactionCell.swift in Sources */,
 				038B68FB1E71F5D8006B44F9 /* UIColor+Dribbble.swift in Sources */,
 				035D06941E71C00400AFF030 /* Observable+ActivityIndicator.swift in Sources */,
 				03DF95091E6EAB5000E31665 /* ModelType.swift in Sources */,
@@ -595,7 +624,10 @@
 				038B69031E72A466006B44F9 /* SettingsViewController.swift in Sources */,
 				0365BB8E1E748246009BA3F8 /* NSAttributedString+HTMLString.swift in Sources */,
 				038B69011E72A3BC006B44F9 /* MainTabBarViewModel.swift in Sources */,
+				0365BB9E1E755320009BA3F8 /* ShotViewReactionCommentButtonViewModel.swift in Sources */,
 				03DF95111E6EAB8E00E31665 /* Snap.swift in Sources */,
+				0365BB961E754424009BA3F8 /* ExclusiveGestureRecognizerDelegate.swift in Sources */,
+				0365BB981E754D9E009BA3F8 /* ShotViewReactionButtonView.swift in Sources */,
 				03DF95231E6EB80B00E31665 /* ShotListViewModel.swift in Sources */,
 				038B69111E7318FE006B44F9 /* UICollectionView+Rx.swift in Sources */,
 				03DF950B1E6EAB7900E31665 /* BaseViewController.swift in Sources */,

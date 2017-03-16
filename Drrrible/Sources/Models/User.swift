@@ -10,6 +10,9 @@ import ObjectMapper
 
 struct User: ModelType {
 
+  enum Event {
+  }
+
   var id: Int
   var name: String
   var avatarURL: URL?

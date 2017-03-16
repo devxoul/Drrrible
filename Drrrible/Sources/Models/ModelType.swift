@@ -10,4 +10,5 @@ import ObjectMapper
 import Then
 
 protocol ModelType: ImmutableMappable, Then {
+  associatedtype Event
 }

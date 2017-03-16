@@ -41,7 +41,7 @@ PODS:
   - RxOptional (3.1.3):
     - RxCocoa
     - RxSwift
-  - RxReusable (0.2.0):
+  - RxReusable (0.3.0):
     - RxCocoa (>= 3.0)
     - RxSwift (>= 3.0)
   - RxSwift (3.2.0)
@@ -118,7 +118,7 @@ SPEC CHECKSUMS:
   RxGesture: df17ca8be513640294c544b3165875e91de665ec
   RxKeyboard: 4046ecd1884a3bf0dacb823bd2ac8b00482d29ff
   RxOptional: b97b59183af80d1e729ac9e51d09a10be668d6a8
-  RxReusable: 4b34517649a2f476286a866133d2c0cf3dcbf44f
+  RxReusable: b7b9a0d5844733d0815b48de0011ffeef8f11aab
   RxSwift: 46574f70d416b7923c237195939cc488a7fbf3a0
   RxSwiftUtilities: 57e77c17b885931c37aa038f114f14fd1f478ac2
   SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7

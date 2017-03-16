@@ -48,7 +48,7 @@ final class ShotTileCell: BaseCollectionViewCell {
 
   func configure(cellModel: ShotCellModelType) {
     // Input
-    self.cardView.rx.tapGesture()
+    self.cardView.rx.tapGesture() { $0.delegate = ExclusiveGestureRecognizerDelegate.shared }
       .mapVoid()
       .bindTo(cellModel.backgroundDidTap)
       .addDisposableTo(self.disposeBag)

@@ -23,10 +23,6 @@ final class ShotViewTextCell: BaseCollectionViewCell {
 
   // MARK: UI
 
-  override class var layerClass: AnyClass {
-    return BorderedLayer.self
-  }
-
   fileprivate let label = TTTAttributedLabel(frame: .zero).then {
     $0.numberOfLines = 0
     $0.linkAttributes = [NSForegroundColorAttributeName: UIColor.db_linkBlue]
@@ -39,7 +35,6 @@ final class ShotViewTextCell: BaseCollectionViewCell {
   override init(frame: CGRect) {
     super.init(frame: frame)
     self.backgroundColor = .white
-    self.borderedLayer?.borders = [.bottom]
     self.contentView.addSubview(self.label)
   }
 

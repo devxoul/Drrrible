@@ -12,8 +12,12 @@ import MoyaSugar
 enum DribbbleAPI {
   case url(URL)
   case me
+
   case shots
   case shot(id: Int)
+  case isLikedShot(id: Int)
+  case likeShot(id: Int)
+  case unlikeShot(id: Int)
 }
 
 extension DribbbleAPI: SugarTargetType {
@@ -44,6 +48,15 @@ extension DribbbleAPI: SugarTargetType {
 
     case let .shot(id):
       return .get("/shots/\(id)")
+
+    case let .isLikedShot(id):
+      return .get("/shots/\(id)/like")
+
+    case let .likeShot(id):
+      return .post("/shots/\(id)/like")
+
+    case let .unlikeShot(id):
+      return .delete("/shots/\(id)/like")
     }
   }
 
