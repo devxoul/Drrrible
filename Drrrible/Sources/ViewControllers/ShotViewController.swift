@@ -45,6 +45,7 @@ final class ShotViewController: BaseViewController {
     $0.register(Reusable.textCell)
     $0.register(Reusable.reactionCell)
   }
+  fileprivate let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
 
 
   // MARK: Initializing
@@ -65,13 +66,18 @@ final class ShotViewController: BaseViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     self.view.backgroundColor = .db_background
-    self.view.addSubview(self.collectionView)
+
     self.collectionView.addSubview(self.refreshControl)
+    self.view.addSubview(self.collectionView)
+    self.view.addSubview(self.activityIndicatorView)
   }
 
   override func setupConstraints() {
     self.collectionView.snp.makeConstraints { make in
       make.edges.equalToSuperview()
+    }
+    self.activityIndicatorView.snp.makeConstraints { make in
+      make.center.equalToSuperview()
     }
   }
 
@@ -120,6 +126,14 @@ final class ShotViewController: BaseViewController {
     // Output
     reactor.refreshControlIsRefreshing
       .drive(self.refreshControl.rx.isRefreshing)
+      .addDisposableTo(self.disposeBag)
+
+    reactor.activityIndicatorViewIsAnimating
+      .drive(self.activityIndicatorView.rx.isAnimating)
+      .addDisposableTo(self.disposeBag)
+
+    reactor.collectionViewIsHidden
+      .drive(self.collectionView.rx.isHidden)
       .addDisposableTo(self.disposeBag)
 
     reactor.collectionViewSections
