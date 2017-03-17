@@ -21,6 +21,7 @@ protocol SettingsViewReactorType: class {
 
   // Output
   var tableViewSections: Driver<[SettingsViewSection]> { get }
+  var presentWebViewController: Observable<URL> { get }
   var presentCarteViewController: Observable<Void> { get }
   var presentLogoutAlert: Observable<[LogoutAlertActionItem]> { get }
   var presentLoginScreen: Observable<LoginViewReactorType> { get }
@@ -37,6 +38,7 @@ final class SettingsViewReactor: SettingsViewReactorType {
   // MARK: Output
 
   let tableViewSections: Driver<[SettingsViewSection]>
+  let presentWebViewController: Observable<URL>
   let presentCarteViewController: Observable<Void>
   let presentLogoutAlert: Observable<[LogoutAlertActionItem]>
   let presentLoginScreen: Observable<LoginViewReactorType>
@@ -54,6 +56,16 @@ final class SettingsViewReactor: SettingsViewReactorType {
     self.tableViewSections = Observable
       .combineLatest(sections) { $0 }
       .asDriver(onErrorJustReturn: [])
+
+    self.presentWebViewController = self.tableViewDidSelectItem
+      .filter { sectionItem -> Bool in
+        if case .icons = sectionItem {
+          return true
+        } else {
+          return false
+        }
+      }
+      .map(URL(string: "https://icons8.com")!)
 
     self.presentCarteViewController = self.tableViewDidSelectItem
       .filter { sectionItem -> Bool in
@@ -89,6 +101,7 @@ final class SettingsViewReactor: SettingsViewReactorType {
   ) -> Observable<SettingsViewSection> {
     let sectionItems: [SettingsViewSectionItem] = [
       .version(SettingItemCellReactor(text: "App Version".localized, detailText: "0.0.0")),
+      .icons(SettingItemCellReactor(text: "Icons from icons8.com".localized, detailText: nil)),
       .openSource(SettingItemCellReactor(text: "Open Source License".localized, detailText: nil)),
     ]
     return .just(.about(sectionItems))

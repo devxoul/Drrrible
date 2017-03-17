@@ -6,6 +6,7 @@
 //  Copyright © 2017 Suyeol Jeon. All rights reserved.
 //
 
+import SafariServices
 import UIKit
 
 import Carte
@@ -71,6 +72,9 @@ final class SettingsViewController: BaseViewController {
       case .version(let reactor):
         cell.configure(reactor: reactor)
 
+      case .icons(let reactor):
+        cell.configure(reactor: reactor)
+
       case .openSource(let reactor):
         cell.configure(reactor: reactor)
 
@@ -88,6 +92,14 @@ final class SettingsViewController: BaseViewController {
     // Output
     reactor.tableViewSections
       .drive(self.tableView.rx.items(dataSource: self.dataSource))
+      .addDisposableTo(self.disposeBag)
+
+    reactor.presentWebViewController
+      .subscribe(onNext: { [weak self] url in
+        guard let `self` = self else { return }
+        let viewController = SFSafariViewController(url: url)
+        self.present(viewController, animated: true, completion: nil)
+      })
       .addDisposableTo(self.disposeBag)
 
     reactor.presentCarteViewController
