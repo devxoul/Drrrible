@@ -68,14 +68,14 @@ final class SettingsViewController: BaseViewController {
     self.dataSource.configureCell = { dataSource, tableView, indexPath, sectionItem in
       let cell = tableView.dequeue(Reusable.cell, for: indexPath)
       switch sectionItem {
-      case .version(let cellModel):
-        cell.configure(cellModel: cellModel)
+      case .version(let reactor):
+        cell.configure(reactor: reactor)
 
-      case .openSource(let cellModel):
-        cell.configure(cellModel: cellModel)
+      case .openSource(let reactor):
+        cell.configure(reactor: reactor)
 
-      case .logout(let cellModel):
-        cell.configure(cellModel: cellModel)
+      case .logout(let reactor):
+        cell.configure(reactor: reactor)
       }
       return cell
     }

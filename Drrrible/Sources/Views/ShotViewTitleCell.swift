@@ -66,23 +66,23 @@ final class ShotViewTitleCell: BaseCollectionViewCell {
 
   // MARK: Configuring
 
-  func configure(cellModel: ShotViewTitleCellModelType) {
-    self.avatarView.kf.setImage(with: cellModel.avatarViewURL)
-    self.titleLabel.text = cellModel.titleLabelText
-    self.usernameLabel.text = cellModel.usernameLabelText
+  func configure(reactor: ShotViewTitleCellReactorType) {
+    self.avatarView.kf.setImage(with: reactor.avatarViewURL)
+    self.titleLabel.text = reactor.titleLabelText
+    self.usernameLabel.text = reactor.usernameLabelText
     self.setNeedsLayout()
   }
 
 
   // MARK: Size
 
-  class func size(width: CGFloat, cellModel: ShotViewTitleCellModelType) -> CGSize {
+  class func size(width: CGFloat, reactor: ShotViewTitleCellReactorType) -> CGSize {
     let titleLabelWidth = width
       - Metric.paddingLeftRight
       - Metric.avatarViewSize
       - Metric.titleLabelLeft
       - Metric.paddingLeftRight
-    let titleLabelHeight = cellModel.titleLabelText.height(
+    let titleLabelHeight = reactor.titleLabelText.height(
       thatFitsWidth: titleLabelWidth,
       font: Font.titleLabel
     )

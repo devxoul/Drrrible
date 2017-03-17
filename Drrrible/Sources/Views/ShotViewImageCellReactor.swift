@@ -1,5 +1,5 @@
 //
-//  ShotViewImageCellModel.swift
+//  ShotViewImageCellReactor.swift
 //  Drrrible
 //
 //  Created by Suyeol Jeon on 12/03/2017.
@@ -9,12 +9,12 @@
 import RxCocoa
 import RxSwift
 
-protocol ShotViewImageCellModelType {
+protocol ShotViewImageCellReactorType {
   // Output
   var imageViewURL: URL { get }
 }
 
-final class ShotViewImageCellModel: ShotViewImageCellModelType {
+final class ShotViewImageCellReactor: ShotViewImageCellReactorType {
 
   // MARK: Output
 

@@ -1,5 +1,5 @@
 //
-//  ShotViewReactionCellModel.swift
+//  ShotViewReactionCellReactor.swift
 //  Drrrible
 //
 //  Created by Suyeol Jeon on 12/03/2017.
@@ -8,12 +8,12 @@
 
 import RxSwift
 
-protocol ShotViewReactionCellModelType: class {
+protocol ShotViewReactionCellReactorType: class {
   var likeButtonViewReactor: ShotViewReactionButtonViewReactorType { get }
   var commentButtonViewReactor: ShotViewReactionButtonViewReactorType { get }
 }
 
-final class ShotViewReactionCellModel: ShotViewReactionCellModelType {
+final class ShotViewReactionCellReactor: ShotViewReactionCellReactorType {
 
   let likeButtonViewReactor: ShotViewReactionButtonViewReactorType
   let commentButtonViewReactor: ShotViewReactionButtonViewReactorType

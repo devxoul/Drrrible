@@ -1,5 +1,5 @@
 //
-//  SettingItemCellModel.swift
+//  SettingItemCellReactor.swift
 //  Drrrible
 //
 //  Created by Suyeol Jeon on 10/03/2017.
@@ -9,12 +9,12 @@
 import RxCocoa
 import RxSwift
 
-protocol SettingItemCellModelType {
+protocol SettingItemCellReactorType {
   var textLabelText: String? { get }
   var detailTextLabelText: String? { get }
 }
 
-final class SettingItemCellModel: SettingItemCellModelType {
+final class SettingItemCellReactor: SettingItemCellReactorType {
   let textLabelText: String?
   let detailTextLabelText: String?
 

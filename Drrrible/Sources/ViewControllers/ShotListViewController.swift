@@ -87,9 +87,9 @@ final class ShotListViewController: BaseViewController {
     self.collectionView.rx.setDelegate(self).addDisposableTo(self.disposeBag)
     self.dataSource.configureCell = { dataSource, collectionView, indexPath, sectionItem in
       switch sectionItem {
-      case .shotTile(let cellModel):
+      case .shotTile(let reactor):
         let cell = collectionView.dequeue(Reusable.shotTileCell, for: indexPath)
-        cell.configure(cellModel: cellModel)
+        cell.configure(reactor: reactor)
         return cell
       }
     }
@@ -177,10 +177,10 @@ extension ShotListViewController: UICollectionViewDelegateFlowLayout {
     let sectionWidth = collectionView.sectionWidth(at: indexPath.section)
     let sectionItem = self.dataSource[indexPath]
     switch sectionItem {
-    case .shotTile(let cellModel):
+    case .shotTile(let reactor):
       let columnCount = Constant.shotTileSectionColumnCount.f
       let cellWidth = (sectionWidth - Metric.shotTileSectionItemSpacing) / columnCount
-      return ShotTileCell.size(width: cellWidth, cellModel: cellModel)
+      return ShotTileCell.size(width: cellWidth, reactor: reactor)
     }
   }
 

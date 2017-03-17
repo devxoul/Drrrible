@@ -1,5 +1,5 @@
 //
-//  ShotCellModel.swift
+//  ShotCellReactor.swift
 //  Drrrible
 //
 //  Created by Suyeol Jeon on 09/03/2017.
@@ -9,7 +9,7 @@
 import RxCocoa
 import RxSwift
 
-protocol ShotCellModelType {
+protocol ShotCellReactorType {
   // Input
   var backgroundDidTap: PublishSubject<Void> { get }
 
@@ -18,7 +18,7 @@ protocol ShotCellModelType {
   var presentShotViewController: Observable<ShotViewReactorType> { get }
 }
 
-final class ShotCellModel: ShotCellModelType {
+final class ShotCellReactor: ShotCellReactorType {
 
   // MARK: Input
 

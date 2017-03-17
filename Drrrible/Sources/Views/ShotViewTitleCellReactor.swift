@@ -1,5 +1,5 @@
 //
-//  ShotViewTitleCellModel.swift
+//  ShotViewTitleCellReactor.swift
 //  Drrrible
 //
 //  Created by Suyeol Jeon on 12/03/2017.
@@ -9,14 +9,14 @@
 import RxCocoa
 import RxSwift
 
-protocol ShotViewTitleCellModelType {
+protocol ShotViewTitleCellReactorType {
   // Output
   var avatarViewURL: URL? { get }
   var titleLabelText: String { get }
   var usernameLabelText: String { get }
 }
 
-final class ShotViewTitleCellModel: ShotViewTitleCellModelType {
+final class ShotViewTitleCellReactor: ShotViewTitleCellReactorType {
 
   // MARK: Input
 

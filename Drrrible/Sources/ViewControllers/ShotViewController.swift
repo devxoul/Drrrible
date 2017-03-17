@@ -82,24 +82,24 @@ final class ShotViewController: BaseViewController {
     self.collectionView.rx.setDelegate(self).addDisposableTo(self.disposeBag)
     self.dataSource.configureCell = { dataSource, collectionView, indexPath, sectionItem in
       switch sectionItem {
-      case .image(let cellModel):
+      case .image(let reactor):
         let cell = collectionView.dequeue(Reusable.imageCell, for: indexPath)
-        cell.configure(cellModel: cellModel)
+        cell.configure(reactor: reactor)
         return cell
 
-      case .title(let cellModel):
+      case .title(let reactor):
         let cell = collectionView.dequeue(Reusable.titleCell, for: indexPath)
-        cell.configure(cellModel: cellModel)
+        cell.configure(reactor: reactor)
         return cell
 
-      case .text(let cellModel):
+      case .text(let reactor):
         let cell = collectionView.dequeue(Reusable.textCell, for: indexPath)
-        cell.configure(cellModel: cellModel)
+        cell.configure(reactor: reactor)
         return cell
 
-      case .reaction(let cellModel):
+      case .reaction(let reactor):
         let cell = collectionView.dequeue(Reusable.reactionCell, for: indexPath)
-        cell.configure(cellModel: cellModel)
+        cell.configure(reactor: reactor)
         return cell
       }
     }
@@ -150,17 +150,17 @@ extension ShotViewController: UICollectionViewDelegateFlowLayout {
     let sectionWidth = collectionView.sectionWidth(at: indexPath.section)
     let sectionItem = self.dataSource[indexPath]
     switch sectionItem {
-    case .image(let cellModel):
-      return ShotViewImageCell.size(width: sectionWidth, cellModel: cellModel)
+    case .image(let reactor):
+      return ShotViewImageCell.size(width: sectionWidth, reactor: reactor)
 
-    case .title(let cellModel):
-      return ShotViewTitleCell.size(width: sectionWidth, cellModel: cellModel)
+    case .title(let reactor):
+      return ShotViewTitleCell.size(width: sectionWidth, reactor: reactor)
 
-    case .text(let cellModel):
-      return ShotViewTextCell.size(width: sectionWidth, cellModel: cellModel)
+    case .text(let reactor):
+      return ShotViewTextCell.size(width: sectionWidth, reactor: reactor)
 
-    case .reaction(let cellModel):
-      return ShotViewReactionCell.size(width: sectionWidth, cellModel: cellModel)
+    case .reaction(let reactor):
+      return ShotViewReactionCell.size(width: sectionWidth, reactor: reactor)
     }
   }
 

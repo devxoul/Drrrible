@@ -88,8 +88,8 @@ final class SettingsViewReactor: SettingsViewReactorType {
     provider: ServiceProviderType
   ) -> Observable<SettingsViewSection> {
     let sectionItems: [SettingsViewSectionItem] = [
-      .version(SettingItemCellModel(text: "App Version".localized, detailText: "0.0.0")),
-      .openSource(SettingItemCellModel(text: "Open Source License".localized, detailText: nil)),
+      .version(SettingItemCellReactor(text: "App Version".localized, detailText: "0.0.0")),
+      .openSource(SettingItemCellReactor(text: "Open Source License".localized, detailText: nil)),
     ]
     return .just(.about(sectionItems))
   }
@@ -99,7 +99,7 @@ final class SettingsViewReactor: SettingsViewReactorType {
   ) -> Observable<SettingsViewSection> {
     let logoutSectionItem: Observable<SettingsViewSectionItem> = provider.userService.currentUser
       .map { user -> SettingsViewSectionItem in
-        .logout(SettingItemCellModel(text: "Logout".localized, detailText: user?.name))
+        .logout(SettingItemCellReactor(text: "Logout".localized, detailText: user?.name))
       }
     return logoutSectionItem
       .map { sectionItem in [sectionItem] }

@@ -1,5 +1,5 @@
 //
-//  ShotViewTextCellModel.swift
+//  ShotViewTextCellReactor.swift
 //  Drrrible
 //
 //  Created by Suyeol Jeon on 12/03/2017.
@@ -8,11 +8,11 @@
 
 import UIKit
 
-protocol ShotViewTextCellModelType {
+protocol ShotViewTextCellReactorType {
   var labelText: NSAttributedString? { get }
 }
 
-final class ShotViewTextCellModel: ShotViewTextCellModelType {
+final class ShotViewTextCellReactor: ShotViewTextCellReactorType {
   let labelText: NSAttributedString?
 
   init(provider: ServiceProviderType, shot: Shot) {

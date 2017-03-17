@@ -25,15 +25,15 @@ final class ShotViewImageCell: BaseCollectionViewCell {
 
   // MARK: Configuring
 
-  func configure(cellModel: ShotViewImageCellModelType) {
+  func configure(reactor: ShotViewImageCellReactorType) {
     // Output
-    self.imageView.kf.setImage(with: cellModel.imageViewURL)
+    self.imageView.kf.setImage(with: reactor.imageViewURL)
   }
 
 
   // MARK: Size
 
-  class func size(width: CGFloat, cellModel: ShotViewImageCellModelType) -> CGSize {
+  class func size(width: CGFloat, reactor: ShotViewImageCellReactorType) -> CGSize {
     return CGSize(width: width, height: ceil(width * 3 / 4))
   }
 

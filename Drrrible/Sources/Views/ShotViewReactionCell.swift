@@ -43,16 +43,16 @@ final class ShotViewReactionCell: BaseCollectionViewCell {
 
   // MARK: Configure
 
-  func configure(cellModel: ShotViewReactionCellModelType) {
-    self.likeButtonView.configure(reactor: cellModel.likeButtonViewReactor)
-    self.commentButtonView.configure(reactor: cellModel.commentButtonViewReactor)
+  func configure(reactor: ShotViewReactionCellReactorType) {
+    self.likeButtonView.configure(reactor: reactor.likeButtonViewReactor)
+    self.commentButtonView.configure(reactor: reactor.commentButtonViewReactor)
     self.setNeedsLayout()
   }
 
 
   // MARK: Size
 
-  class func size(width: CGFloat, cellModel: ShotViewReactionCellModelType) -> CGSize {
+  class func size(width: CGFloat, reactor: ShotViewReactionCellReactorType) -> CGSize {
     let buttonViewHeight = ShotViewReactionButtonView.height()
     let height = Metric.paddingTop + buttonViewHeight + Metric.paddingBottom
     return CGSize(width: width, height: height)

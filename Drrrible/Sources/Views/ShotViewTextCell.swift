@@ -41,16 +41,16 @@ final class ShotViewTextCell: BaseCollectionViewCell {
 
   // MARK: Configuring
 
-  func configure(cellModel: ShotViewTextCellModelType) {
-    self.label.setText(cellModel.labelText)
+  func configure(reactor: ShotViewTextCellReactorType) {
+    self.label.setText(reactor.labelText)
     self.setNeedsLayout()
   }
 
 
   // MARK: Size
 
-  class func size(width: CGFloat, cellModel: ShotViewTextCellModelType) -> CGSize {
-    guard let labelText = cellModel.labelText else { return CGSize(width: width, height: 0) }
+  class func size(width: CGFloat, reactor: ShotViewTextCellReactorType) -> CGSize {
+    guard let labelText = reactor.labelText else { return CGSize(width: width, height: 0) }
     let labelWidth = width - Metric.paddingLeftRight * 2
     let labelHeight = labelText.height(thatFitsWidth: labelWidth)
     return CGSize(width: width, height: labelHeight + Metric.paddingTop + Metric.paddingBottom)

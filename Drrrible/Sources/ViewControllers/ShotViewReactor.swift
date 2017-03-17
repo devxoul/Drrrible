@@ -107,19 +107,19 @@ final class ShotViewReactor: ShotViewReactorType {
       .bindTo(Shot.event)
 
     let shotSectionItemImage: Observable<ShotViewSectionItem> = shot
-      .map { shot in .image(ShotViewImageCellModel(provider: provider, shot: shot)) }
+      .map { shot in .image(ShotViewImageCellReactor(provider: provider, shot: shot)) }
       .shareReplay(1)
 
     let shotSectionItemTitle: Observable<ShotViewSectionItem> = shot
-      .map { shot in .title(ShotViewTitleCellModel(provider: provider, shot: shot)) }
+      .map { shot in .title(ShotViewTitleCellReactor(provider: provider, shot: shot)) }
       .shareReplay(1)
 
     let shotSectionItemText: Observable<ShotViewSectionItem> = shot
-      .map { shot in .text(ShotViewTextCellModel(provider: provider, shot: shot)) }
+      .map { shot in .text(ShotViewTextCellReactor(provider: provider, shot: shot)) }
       .shareReplay(1)
 
     let shotSectionItemReaction: Observable<ShotViewSectionItem> = shot
-      .map { shot in .reaction(ShotViewReactionCellModel(provider: provider, shot: shot)) }
+      .map { shot in .reaction(ShotViewReactionCellReactor(provider: provider, shot: shot)) }
       .shareReplay(1)
 
     let shotSectionItems = [

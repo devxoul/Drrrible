@@ -112,8 +112,8 @@ final class ShotListViewReactor: ShotListViewReactorType {
     let shotSection: Observable<[ShotListViewSection]> = shots
       .map { shots in
         let sectionItems = shots.map { shot -> ShotListViewSectionItem in
-          let cellModel = ShotCellModel(provider: provider, shot: shot)
-          return ShotListViewSectionItem.shotTile(cellModel)
+          let reactor = ShotCellReactor(provider: provider, shot: shot)
+          return ShotListViewSectionItem.shotTile(reactor)
         }
         let section = ShotListViewSection.shotTile(sectionItems)
         return [section]

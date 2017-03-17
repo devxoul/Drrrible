@@ -46,16 +46,16 @@ final class ShotTileCell: BaseCollectionViewCell {
 
   // MARK: Configuring
 
-  func configure(cellModel: ShotCellModelType) {
+  func configure(reactor: ShotCellReactorType) {
     // Input
     self.cardView.rx.tapGesture() { $0.delegate = ExclusiveGestureRecognizerDelegate.shared }
       .mapVoid()
-      .bindTo(cellModel.backgroundDidTap)
+      .bindTo(reactor.backgroundDidTap)
       .addDisposableTo(self.disposeBag)
 
     // Output
-    self.imageView.kf.setImage(with: cellModel.imageViewURL, placeholder: nil)
-    cellModel.presentShotViewController
+    self.imageView.kf.setImage(with: reactor.imageViewURL, placeholder: nil)
+    reactor.presentShotViewController
       .whileDisplaying(self)
       .subscribe(onNext: { reactor in
         Navigator.push(ShotViewController(reactor: reactor))
@@ -66,7 +66,7 @@ final class ShotTileCell: BaseCollectionViewCell {
 
   // MARK: Size
 
-  class func size(width: CGFloat, cellModel: ShotCellModelType) -> CGSize {
+  class func size(width: CGFloat, reactor: ShotCellReactorType) -> CGSize {
     return CGSize(width: width, height: ceil(width * 3 / 4))
   }
 

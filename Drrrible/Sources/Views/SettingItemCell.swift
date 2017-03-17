@@ -20,9 +20,9 @@ final class SettingItemCell: BaseTableViewViewCell {
 
   // MARK: Configuring
 
-  func configure(cellModel: SettingItemCellModelType) {
-    self.textLabel?.text = cellModel.textLabelText
-    self.detailTextLabel?.text = cellModel.detailTextLabelText
+  func configure(reactor: SettingItemCellReactorType) {
+    self.textLabel?.text = reactor.textLabelText
+    self.detailTextLabel?.text = reactor.detailTextLabelText
   }
 
 }
