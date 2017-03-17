@@ -30,6 +30,7 @@ target 'Drrrible' do
   pod 'SnapKit'
   pod 'ManualLayout'
   pod 'TTTAttributedLabel'
+  pod 'TouchAreaInsets'
 
   # Logging
   pod 'CocoaLumberjack/Swift'

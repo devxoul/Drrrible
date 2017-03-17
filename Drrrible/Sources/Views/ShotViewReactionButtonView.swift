@@ -27,7 +27,9 @@ final class ShotViewReactionButtonView: UIView, RxReusableType {
 
   // MARK: UI
 
-  fileprivate let button = UIButton()
+  fileprivate let button = UIButton().then {
+    $0.touchAreaInsets = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
+  }
   fileprivate let label = UILabel().then {
     $0.font = Font.label
   }

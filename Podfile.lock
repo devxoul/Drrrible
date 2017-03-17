@@ -52,6 +52,7 @@ PODS:
   - SwiftyColor (1.0.0)
   - SwiftyImage (1.0.0)
   - Then (2.1.0)
+  - TouchAreaInsets (1.0.0)
   - TTTAttributedLabel (2.0.0)
   - UITextView+Placeholder (1.2.0)
   - URLNavigator (1.1.2)
@@ -84,6 +85,7 @@ DEPENDENCIES:
   - SwiftyColor
   - SwiftyImage
   - Then
+  - TouchAreaInsets
   - TTTAttributedLabel
   - UITextView+Placeholder
   - URLNavigator
@@ -125,12 +127,13 @@ SPEC CHECKSUMS:
   SwiftyColor: 7fa09db14051bc5d7f539e1c4576665975225992
   SwiftyImage: 79090f8b96057b3e91064de172936b97855086e6
   Then: 8496793c8fcac95482b943909b440724c7d8d82c
+  TouchAreaInsets: 01a873de4bac294e502bd07219f82bd18866eeee
   TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
   UITextView+Placeholder: 77680995fcdd07c3f52ec92fe1150874a2ac89ff
   URLNavigator: 269e73ee727a7cabfa8e510a312bac3884325cc3
   WebLinking: 3f71787c14a225148e8be29fe6e7c98597cbc459
   Yet: 3800f578e45d8a25798724ed5b878123de64f597
 
-PODFILE CHECKSUM: e249766afb826b8f0acacc736f2eb2e069eebb5a
+PODFILE CHECKSUM: 6308f82f64ef02b83f36ad37f1ac95f8427609d9
 
 COCOAPODS: 1.2.0

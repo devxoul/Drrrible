@@ -18,6 +18,7 @@ import SnapKit
 import SwiftyColor
 import SwiftyImage
 import Then
+import TouchAreaInsets
 import UITextView_Placeholder
 import URLNavigator
 import WebLinking
