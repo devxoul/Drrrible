@@ -107,6 +107,7 @@ final class ShotListViewReactor: ShotListViewReactorType {
           return shots + newShots
         }
       }
+      .startWith([])
       .shareReplay(1)
 
     let shotSection: Observable<[ShotListViewSection]> = shots
