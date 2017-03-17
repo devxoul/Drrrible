@@ -22,6 +22,10 @@ final class ShotViewReactionCell: BaseCollectionViewCell {
 
   // MARK: UI
 
+  override class var layerClass: AnyClass {
+    return BorderedLayer.self
+  }
+
   fileprivate let likeButtonView = ShotViewReactionButtonView(
     image: UIImage(named: "icon-like"),
     selectedImage: UIImage(named: "icon-like-selected")
@@ -36,6 +40,7 @@ final class ShotViewReactionCell: BaseCollectionViewCell {
   override init(frame: CGRect) {
     super.init(frame: frame)
     self.backgroundColor = .white
+    self.borderedLayer?.borders = .bottom
     self.contentView.addSubview(self.likeButtonView)
     self.contentView.addSubview(self.commentButtonView)
   }
