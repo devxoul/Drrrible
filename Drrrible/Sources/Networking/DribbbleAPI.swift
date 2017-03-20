@@ -18,6 +18,7 @@ enum DribbbleAPI {
   case isLikedShot(id: Int)
   case likeShot(id: Int)
   case unlikeShot(id: Int)
+  case shotComments(shotID: Int)
 }
 
 extension DribbbleAPI: SugarTargetType {
@@ -57,6 +58,9 @@ extension DribbbleAPI: SugarTargetType {
 
     case let .unlikeShot(id):
       return .delete("/shots/\(id)/like")
+
+    case let .shotComments(shotID):
+      return .get("/shots/\(shotID)/comments")
     }
   }
 
