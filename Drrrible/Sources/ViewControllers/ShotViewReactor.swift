@@ -25,6 +25,14 @@ protocol ShotViewReactorType {
 
 final class ShotViewReactor: ShotViewReactorType {
 
+  // MARK: Types
+
+  fileprivate enum CommentOperation {
+    case refresh([Comment])
+    case loadMore([Comment])
+  }
+
+
   // MARK: Input
 
   let viewDidLoad: PublishSubject<Void> = .init()
@@ -42,7 +50,7 @@ final class ShotViewReactor: ShotViewReactorType {
 
   // MARK: Initializing
 
-  init(provider: ServiceProviderType, shotID: Int, shot initialShot: Shot?) {
+  init(provider: ServiceProviderType, shotID: Int, shot initialShot: Shot? = nil) {
     let optionalShot: Observable<Shot?> = Shot.event
       .scan(initialShot) { oldShot, event in
         switch event {
@@ -148,7 +156,51 @@ final class ShotViewReactor: ShotViewReactorType {
       .map { sectionItems in ShotViewSection.shot(sectionItems) }
       .shareReplay(1)
 
-    let sections = [shotSection]
+    //
+    // Comment Section
+    //
+    let commentNextURL = Variable<URL?>(nil)
+    let commentOperationRefresh = didRefreshShot
+      .flatMap { shot in
+        provider.shotService.comments(shotID: shotID)
+          .catchErrorJustReturn(List(items: []))
+      }
+      .do(onNext: { commentList in
+        commentNextURL.value = commentList.nextURL
+      })
+      .map { commentList in
+        CommentOperation.refresh(commentList.items)
+      }
+
+    let commentOperation = commentOperationRefresh
+
+    let comments: Observable<[Comment]> = commentOperation
+      .scan([]) { comments, operation in
+        switch operation {
+        case let .refresh(newComments):
+          return newComments
+
+        case let .loadMore(newComments):
+          return comments + newComments
+        }
+      }
+      .startWith([])
+
+    let commentSection: Observable<ShotViewSection> = comments
+      .map { comments in
+        let sectionItems: [ShotViewSectionItem] = comments.map { comment in
+          let reactor = ShotViewCommentCellReactor(provider: provider, comment: comment)
+          let sectionItem = ShotViewSectionItem.comment(reactor)
+          return sectionItem
+        }
+        let section = ShotViewSection.comment(sectionItems)
+        return section
+      }
+
+    //
+    // Section
+    //
+    let sections = [shotSection, commentSection]
     self.collectionViewSections = Observable<[ShotViewSection]>
       .combineLatest(sections) { $0 }
       .asDriver(onErrorJustReturn: [])

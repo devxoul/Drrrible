@@ -20,6 +20,7 @@ final class ShotViewController: BaseViewController {
     static let titleCell = ReusableCell<ShotViewTitleCell>()
     static let textCell = ReusableCell<ShotViewTextCell>()
     static let reactionCell = ReusableCell<ShotViewReactionCell>()
+    static let commentCell = ReusableCell<ShotViewCommentCell>()
   }
 
   fileprivate struct Metric {
@@ -44,6 +45,7 @@ final class ShotViewController: BaseViewController {
     $0.register(Reusable.titleCell)
     $0.register(Reusable.textCell)
     $0.register(Reusable.reactionCell)
+    $0.register(Reusable.commentCell)
   }
   fileprivate let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
 
@@ -105,6 +107,11 @@ final class ShotViewController: BaseViewController {
 
       case .reaction(let reactor):
         let cell = collectionView.dequeue(Reusable.reactionCell, for: indexPath)
+        cell.configure(reactor: reactor)
+        return cell
+
+      case .comment(let reactor):
+        let cell = collectionView.dequeue(Reusable.commentCell, for: indexPath)
         cell.configure(reactor: reactor)
         return cell
       }
@@ -175,6 +182,9 @@ extension ShotViewController: UICollectionViewDelegateFlowLayout {
 
     case .reaction(let reactor):
       return ShotViewReactionCell.size(width: sectionWidth, reactor: reactor)
+
+    case .comment(let reactor):
+      return ShotViewCommentCell.size(width: sectionWidth, reactor: reactor)
     }
   }
 

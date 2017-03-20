@@ -34,4 +34,5 @@ enum ShotViewSectionItem {
   case title(ShotViewTitleCellReactorType)
   case text(ShotViewTextCellReactorType)
   case reaction(ShotViewReactionCellReactorType)
+  case comment(ShotViewCommentCellReactorType)
 }
