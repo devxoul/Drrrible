@@ -2,7 +2,7 @@
 
 ![Swift](https://img.shields.io/badge/Swift-3.0-orange.svg)
 
-Unofficial Dribbble iOS application using [The Reactive Architecture](https://github.com/devxoul/TheReactiveArchitecture).
+Unofficial Dribbble iOS application using [The Reactive Architecture](https://github.com/devxoul/TheReactiveArchitecture). Will be available on iOS AppStore soon 😎
 
 ![drrrible](https://cloud.githubusercontent.com/assets/931655/24117104/3abac922-0dec-11e7-973b-4b80ab0cfb27.png)
 
