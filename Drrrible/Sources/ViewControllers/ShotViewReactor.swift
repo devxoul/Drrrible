@@ -193,8 +193,11 @@ final class ShotViewReactor: ShotViewReactorType {
           let sectionItem = ShotViewSectionItem.comment(reactor)
           return sectionItem
         }
-        let section = ShotViewSection.comment(sectionItems)
-        return section
+        if sectionItems.isEmpty {
+          return ShotViewSection.comment([.activityIndicator])
+        } else {
+          return ShotViewSection.comment(sectionItems)
+        }
       }
 
     //
