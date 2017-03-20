@@ -100,7 +100,10 @@ final class SettingsViewReactor: SettingsViewReactorType {
     provider: ServiceProviderType
   ) -> Observable<SettingsViewSection> {
     let sectionItems: [SettingsViewSectionItem] = [
-      .version(SettingItemCellReactor(text: "App Version".localized, detailText: "0.0.0")),
+      .version(SettingItemCellReactor(
+        text: "App Version".localized,
+        detailText: Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String
+      )),
       .icons(SettingItemCellReactor(text: "Icons from icons8.com".localized, detailText: nil)),
       .openSource(SettingItemCellReactor(text: "Open Source License".localized, detailText: nil)),
     ]
