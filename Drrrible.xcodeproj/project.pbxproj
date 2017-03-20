@@ -61,6 +61,8 @@
 		038B690F1E73153E006B44F9 /* UITableView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038B690E1E73153E006B44F9 /* UITableView+Rx.swift */; };
 		038B69111E7318FE006B44F9 /* UICollectionView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038B69101E7318FE006B44F9 /* UICollectionView+Rx.swift */; };
 		03D996D21E8051FC004773AE /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D996D11E8051FC004773AE /* Comment.swift */; };
+		03D996D41E80535B004773AE /* ShotViewCommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D996D31E80535B004773AE /* ShotViewCommentCell.swift */; };
+		03D996D61E805392004773AE /* ShotViewCommentCellReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D996D51E805392004773AE /* ShotViewCommentCellReactor.swift */; };
 		03DF94EC1E6EA76A00E31665 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03DF94E11E6EA76A00E31665 /* Assets.xcassets */; };
 		03DF94ED1E6EA76A00E31665 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03DF94E21E6EA76A00E31665 /* LaunchScreen.storyboard */; };
 		03DF94EF1E6EA76A00E31665 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DF94E71E6EA76A00E31665 /* AppDelegate.swift */; };
@@ -141,6 +143,8 @@
 		038B690E1E73153E006B44F9 /* UITableView+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Rx.swift"; sourceTree = "<group>"; };
 		038B69101E7318FE006B44F9 /* UICollectionView+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Rx.swift"; sourceTree = "<group>"; };
 		03D996D11E8051FC004773AE /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		03D996D31E80535B004773AE /* ShotViewCommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShotViewCommentCell.swift; sourceTree = "<group>"; };
+		03D996D51E805392004773AE /* ShotViewCommentCellReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShotViewCommentCellReactor.swift; sourceTree = "<group>"; };
 		03DF94CA1E6EA54D00E31665 /* Drrrible.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Drrrible.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		03DF94E11E6EA76A00E31665 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		03DF94E31E6EA76A00E31665 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -391,6 +395,8 @@
 				0365BB991E754E72009BA3F8 /* ShotViewReactionButtonViewReactor.swift */,
 				0365BB9B1E755309009BA3F8 /* ShotViewReactionLikeButtonViewReactor.swift */,
 				0365BB9D1E755320009BA3F8 /* ShotViewReactionCommentButtonViewReactor.swift */,
+				03D996D31E80535B004773AE /* ShotViewCommentCell.swift */,
+				03D996D51E805392004773AE /* ShotViewCommentCellReactor.swift */,
 				038B69081E72A67F006B44F9 /* SettingItemCell.swift */,
 				038B690C1E72A752006B44F9 /* SettingItemCellReactor.swift */,
 			);
@@ -621,8 +627,10 @@
 				0377C55F1E746ADE00EE4576 /* ShotViewTitleCell.swift in Sources */,
 				03DF95071E6EAADE00E31665 /* ServiceProvider.swift in Sources */,
 				031EB0631E6FF7A9004D6349 /* AccessToken.swift in Sources */,
+				03D996D41E80535B004773AE /* ShotViewCommentCell.swift in Sources */,
 				038B68FF1E72A399006B44F9 /* MainTabBarController.swift in Sources */,
 				03DF95031E6EAACF00E31665 /* UIViewController+Rx.swift in Sources */,
+				03D996D61E805392004773AE /* ShotViewCommentCellReactor.swift in Sources */,
 				0377C55D1E74680700EE4576 /* BorderedLayer.swift in Sources */,
 				0377C5631E746E5300EE4576 /* UIEdgeInsets+Init.swift in Sources */,
 				038B69031E72A466006B44F9 /* SettingsViewController.swift in Sources */,
