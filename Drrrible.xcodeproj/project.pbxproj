@@ -60,6 +60,7 @@
 		038B690D1E72A752006B44F9 /* SettingItemCellReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038B690C1E72A752006B44F9 /* SettingItemCellReactor.swift */; };
 		038B690F1E73153E006B44F9 /* UITableView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038B690E1E73153E006B44F9 /* UITableView+Rx.swift */; };
 		038B69111E7318FE006B44F9 /* UICollectionView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038B69101E7318FE006B44F9 /* UICollectionView+Rx.swift */; };
+		03D996D21E8051FC004773AE /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D996D11E8051FC004773AE /* Comment.swift */; };
 		03DF94EC1E6EA76A00E31665 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03DF94E11E6EA76A00E31665 /* Assets.xcassets */; };
 		03DF94ED1E6EA76A00E31665 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03DF94E21E6EA76A00E31665 /* LaunchScreen.storyboard */; };
 		03DF94EF1E6EA76A00E31665 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DF94E71E6EA76A00E31665 /* AppDelegate.swift */; };
@@ -139,6 +140,7 @@
 		038B690C1E72A752006B44F9 /* SettingItemCellReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingItemCellReactor.swift; sourceTree = "<group>"; };
 		038B690E1E73153E006B44F9 /* UITableView+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Rx.swift"; sourceTree = "<group>"; };
 		038B69101E7318FE006B44F9 /* UICollectionView+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Rx.swift"; sourceTree = "<group>"; };
+		03D996D11E8051FC004773AE /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		03DF94CA1E6EA54D00E31665 /* Drrrible.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Drrrible.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		03DF94E11E6EA76A00E31665 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		03DF94E31E6EA76A00E31665 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -278,6 +280,7 @@
 				035D06991E71DC3000AFF030 /* List.swift */,
 				031EB0621E6FF7A9004D6349 /* AccessToken.swift */,
 				031EB0661E6FFDE3004D6349 /* Shot.swift */,
+				03D996D11E8051FC004773AE /* Comment.swift */,
 				031EB0681E7000C1004D6349 /* User.swift */,
 			);
 			path = Models;
@@ -610,6 +613,7 @@
 				038B68FB1E71F5D8006B44F9 /* UIColor+Dribbble.swift in Sources */,
 				035D06941E71C00400AFF030 /* Observable+ActivityIndicator.swift in Sources */,
 				03DF95091E6EAB5000E31665 /* ModelType.swift in Sources */,
+				03D996D21E8051FC004773AE /* Comment.swift in Sources */,
 				0377C55B1E745E6D00EE4576 /* ShotViewImageCellReactor.swift in Sources */,
 				03DF951B1E6EB51700E31665 /* SplashViewController.swift in Sources */,
 				03DF95171E6EABA800E31665 /* BaseCollectionViewCell.swift in Sources */,
