@@ -1,6 +1,7 @@
 # Drrrible
 
 ![Swift](https://img.shields.io/badge/Swift-3.0-orange.svg)
+[![Build Status](https://travis-ci.org/devxoul/Drrrible.svg?branch=master)](https://travis-ci.org/devxoul/Drrrible)
 
 Unofficial Dribbble iOS application using [The Reactive Architecture](https://github.com/devxoul/TheReactiveArchitecture). Will be available on iOS AppStore soon 😎
 
