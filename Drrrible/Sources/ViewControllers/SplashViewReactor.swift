@@ -9,29 +9,20 @@
 import RxCocoa
 import RxSwift
 
-// MARK: - Input
+protocol SplashViewReactorType {
+  // Input
+  var checkIfAuthenticated: PublishSubject<Void> { get }
 
-protocol SplashViewReactorInput {
-  var viewDidAppear: PublishSubject<Void> { get }
-}
-
-
-// MARK: - Output
-
-protocol SplashViewReactorOutput {
+  // Output
   var presentLoginScreen: Observable<LoginViewReactorType> { get }
   var presentMainScreen: Observable<MainTabBarViewReactorType> { get }
 }
 
-
-// MARK: - ViewReactor
-
-typealias SplashViewReactorType = SplashViewReactorInput & SplashViewReactorOutput
 final class SplashViewReactor: SplashViewReactorType {
 
   // MARK: Input
 
-  let viewDidAppear: PublishSubject<Void> = .init()
+  let checkIfAuthenticated: PublishSubject<Void> = .init()
 
 
   // MARK: Output
@@ -43,7 +34,7 @@ final class SplashViewReactor: SplashViewReactorType {
   // MARK: Initializing
 
   init(provider: ServiceProviderType) {
-    let isAuthenticated = self.viewDidAppear
+    let isAuthenticated = self.checkIfAuthenticated
       .flatMap { provider.userService.fetchMe() }
       .map { true }
       .catchError { _ in .just(false) }

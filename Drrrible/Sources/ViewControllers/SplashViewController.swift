@@ -19,8 +19,7 @@ final class SplashViewController: BaseViewController {
 
   init(reactor: SplashViewReactorType) {
     super.init()
-    self.configure(input: reactor)
-    self.configure(output: reactor)
+    self.configure(reactor: reactor)
   }
   
   required convenience init?(coder aDecoder: NSCoder) {
@@ -45,21 +44,19 @@ final class SplashViewController: BaseViewController {
 
   // MARK: Configuring
 
-  private func configure(input: SplashViewReactorInput) {
+  private func configure(reactor: SplashViewReactorType) {
     self.rx.viewDidAppear
       .map { _ in Void() }
-      .bindTo(input.viewDidAppear)
+      .bindTo(reactor.checkIfAuthenticated)
       .addDisposableTo(self.disposeBag)
-  }
 
-  private func configure(output: SplashViewReactorOutput) {
-    output.presentLoginScreen
+    reactor.presentLoginScreen
       .subscribe(onNext: { reactor in
         AppDelegate.shared.presentLoginScreen(reactor: reactor)
       })
       .addDisposableTo(self.disposeBag)
 
-    output.presentMainScreen
+    reactor.presentMainScreen
       .subscribe(onNext: { reactor in
         AppDelegate.shared.presentMainScreen(reactor: reactor)
       })

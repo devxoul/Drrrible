@@ -18,13 +18,13 @@ import RxTest
 final class SplashViewReactorTests: XCTestCase {
 
   func testPresentLoginScreen() {
-    RxExpect("it should present login screen when failed to fetch me") { test in
+    RxExpect("it should present login screen when not authenticated") { test in
       let provider = MockServiceProvider()
       provider.userService = MockUserService(provider: provider).then {
         $0.fetchMeClosure = { Observable.error(MockError()) }
       }
       let reactor = SplashViewReactor(provider: provider)
-      test.input(reactor.viewDidAppear, [
+      test.input(reactor.checkIfAuthenticated, [
         next(100, Void()),
       ])
       test.assert(reactor.presentLoginScreen.map(true))
@@ -34,13 +34,13 @@ final class SplashViewReactorTests: XCTestCase {
   }
 
   func testPresentMainScreen() {
-    RxExpect("it should present main screen when succeeded to fetch me") { test in
+    RxExpect("it should present main screen when authenticated") { test in
       let provider = MockServiceProvider()
       provider.userService = MockUserService(provider: provider).then {
         $0.fetchMeClosure = { .just(Void()) }
       }
       let reactor = SplashViewReactor(provider: provider)
-      test.input(reactor.viewDidAppear, [
+      test.input(reactor.checkIfAuthenticated, [
         next(100, Void()),
       ])
       test.assert(reactor.presentMainScreen.map(true))
