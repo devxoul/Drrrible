@@ -17,8 +17,8 @@ import RxTest
 
 final class LoginViewReactorTests: XCTestCase {
 
-  func testLoginButtonIsHidden() {
-    RxExpect("it should make login button hidden when login button tap") { test in
+  func testIsLoading() {
+    RxExpect("is should change isLoading when start login") { test in
       // Environment
       let provider = MockServiceProvider()
       provider.authService = MockAuthService(provider: provider).then {
@@ -28,40 +28,15 @@ final class LoginViewReactorTests: XCTestCase {
         $0.fetchMeClosure = { Observable.just(Void()) }
       }
       let reactor = LoginViewReactor(provider: provider)
-
-      // Input
-      test.input(reactor.loginButtonDidTap, [next(100, Void())])
       reactor.presentMainScreen.subscribe().addDisposableTo(test.disposeBag)
 
-      // Output
-      test.assert(reactor.loginButtonIsHidden)
-        .filterNext()
-        .equal([
-          false, // initial
-          true,  // while loggin in
-          false, // finish
-        ])
-    }
-  }
-
-  func testActivityIndicatorViewIsAnimating() {
-    RxExpect("it should make activity indicator view animating when login button tap") { test in
-      // Environment
-      let provider = MockServiceProvider()
-      provider.authService = MockAuthService(provider: provider).then {
-        $0.authorizeClosure = { Observable.just(Void()) }
-      }
-      provider.userService = MockUserService(provider: provider).then {
-        $0.fetchMeClosure = { Observable.just(Void()) }
-      }
-      let reactor = LoginViewReactor(provider: provider)
-
       // Input
-      test.input(reactor.loginButtonDidTap, [next(100, Void())])
-      reactor.presentMainScreen.subscribe().addDisposableTo(test.disposeBag)
+      test.input(reactor.login, [
+        next(100, Void()),
+      ])
 
       // Output
-      test.assert(reactor.activityIndicatorViewIsAnimating)
+      test.assert(reactor.isLoading)
         .filterNext()
         .equal([false, true, false])
     }
@@ -80,7 +55,9 @@ final class LoginViewReactorTests: XCTestCase {
       let reactor = LoginViewReactor(provider: provider)
 
       // Input
-      test.input(reactor.loginButtonDidTap, [next(100, Void())])
+      test.input(reactor.login, [
+        next(100, Void()),
+      ])
 
       // Output
       test.assert(reactor.presentMainScreen)
@@ -101,7 +78,9 @@ final class LoginViewReactorTests: XCTestCase {
       let reactor = LoginViewReactor(provider: provider)
 
       // Input
-      test.input(reactor.loginButtonDidTap, [next(100, Void())])
+      test.input(reactor.login, [
+        next(100, Void()),
+      ])
 
       // Output
       test.assert(reactor.presentMainScreen)
@@ -121,7 +100,9 @@ final class LoginViewReactorTests: XCTestCase {
       let reactor = LoginViewReactor(provider: provider)
 
       // Input
-      test.input(reactor.loginButtonDidTap, [next(100, Void())])
+      test.input(reactor.login, [
+        next(100, Void()),
+      ])
 
       // Output
       test.assert(reactor.presentMainScreen)

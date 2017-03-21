@@ -90,15 +90,15 @@ final class LoginViewController: BaseViewController {
   private func configure(reactor: LoginViewReactorType) {
     // Input
     self.loginButton.rx.tap
-      .bindTo(reactor.loginButtonDidTap)
+      .bindTo(reactor.login)
       .addDisposableTo(self.disposeBag)
 
     // Output
-    reactor.loginButtonIsHidden
+    reactor.isLoading
       .drive(self.loginButton.rx.isHidden)
       .addDisposableTo(self.disposeBag)
 
-    reactor.activityIndicatorViewIsAnimating
+    reactor.isLoading
       .drive(self.activityIndicatorView.rx.isAnimating)
       .addDisposableTo(self.disposeBag)
 
