@@ -64,6 +64,13 @@
 		03D996D41E80535B004773AE /* ShotViewCommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D996D31E80535B004773AE /* ShotViewCommentCell.swift */; };
 		03D996D61E805392004773AE /* ShotViewCommentCellReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D996D51E805392004773AE /* ShotViewCommentCellReactor.swift */; };
 		03D996D81E805DB6004773AE /* CollectionActivityIndicatorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D996D71E805DB6004773AE /* CollectionActivityIndicatorCell.swift */; };
+		03D996ED1E811BAB004773AE /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 03D996EB1E811BAB004773AE /* Info.plist */; };
+		03D996FB1E811EC5004773AE /* SplashViewReactorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D996FA1E811EC5004773AE /* SplashViewReactorTests.swift */; };
+		03D997161E812691004773AE /* MockError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D9970F1E812691004773AE /* MockError.swift */; };
+		03D997171E812691004773AE /* MockAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D997111E812691004773AE /* MockAuthService.swift */; };
+		03D997181E812691004773AE /* MockServiceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D997121E812691004773AE /* MockServiceProvider.swift */; };
+		03D997191E812691004773AE /* MockShotService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D997131E812691004773AE /* MockShotService.swift */; };
+		03D9971A1E812691004773AE /* MockUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D997141E812691004773AE /* MockUserService.swift */; };
 		03DF94EC1E6EA76A00E31665 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03DF94E11E6EA76A00E31665 /* Assets.xcassets */; };
 		03DF94ED1E6EA76A00E31665 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03DF94E21E6EA76A00E31665 /* LaunchScreen.storyboard */; };
 		03DF94EF1E6EA76A00E31665 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DF94E71E6EA76A00E31665 /* AppDelegate.swift */; };
@@ -85,9 +92,21 @@
 		03DF951F1E6EB7E200E31665 /* LoginViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DF951E1E6EB7E200E31665 /* LoginViewReactor.swift */; };
 		03DF95211E6EB80700E31665 /* ShotListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DF95201E6EB80700E31665 /* ShotListViewController.swift */; };
 		03DF95231E6EB80B00E31665 /* ShotListViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DF95221E6EB80B00E31665 /* ShotListViewReactor.swift */; };
+		16C6D525CB5553C678DD0C2C /* Pods_DrrribleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8DA147D5D31668FBCF30AE0 /* Pods_DrrribleTests.framework */; };
 		6DDB34252C101AA23C62E243 /* Pods_Drrrible.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23868B34FAC632E09764E4A2 /* Pods_Drrrible.framework */; };
 		D5FDD5E79F8CD8235CDB2098 /* Pods_Drrrible.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE2B72EA560A954FCA7B57A4 /* Pods_Drrrible.framework */; };
+		FD30D1B2E538522C42D94A2A /* Pods_Drrrible_DrrribleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B6DE473ACC030C197C305CD /* Pods_Drrrible_DrrribleTests.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		03D996E31E811B97004773AE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 03DF94C21E6EA54D00E31665 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 03DF94C91E6EA54D00E31665;
+			remoteInfo = Drrrible;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		031EB0581E6FED65004D6349 /* URLNavigationMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLNavigationMap.swift; sourceTree = "<group>"; };
@@ -147,6 +166,14 @@
 		03D996D31E80535B004773AE /* ShotViewCommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShotViewCommentCell.swift; sourceTree = "<group>"; };
 		03D996D51E805392004773AE /* ShotViewCommentCellReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShotViewCommentCellReactor.swift; sourceTree = "<group>"; };
 		03D996D71E805DB6004773AE /* CollectionActivityIndicatorCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionActivityIndicatorCell.swift; sourceTree = "<group>"; };
+		03D996DE1E811B97004773AE /* DrrribleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DrrribleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		03D996EB1E811BAB004773AE /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		03D996FA1E811EC5004773AE /* SplashViewReactorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewReactorTests.swift; sourceTree = "<group>"; };
+		03D9970F1E812691004773AE /* MockError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockError.swift; sourceTree = "<group>"; };
+		03D997111E812691004773AE /* MockAuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockAuthService.swift; sourceTree = "<group>"; };
+		03D997121E812691004773AE /* MockServiceProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockServiceProvider.swift; sourceTree = "<group>"; };
+		03D997131E812691004773AE /* MockShotService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockShotService.swift; sourceTree = "<group>"; };
+		03D997141E812691004773AE /* MockUserService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockUserService.swift; sourceTree = "<group>"; };
 		03DF94CA1E6EA54D00E31665 /* Drrrible.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Drrrible.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		03DF94E11E6EA76A00E31665 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		03DF94E31E6EA76A00E31665 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -171,13 +198,28 @@
 		03DF951E1E6EB7E200E31665 /* LoginViewReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewReactor.swift; sourceTree = "<group>"; };
 		03DF95201E6EB80700E31665 /* ShotListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShotListViewController.swift; sourceTree = "<group>"; };
 		03DF95221E6EB80B00E31665 /* ShotListViewReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShotListViewReactor.swift; sourceTree = "<group>"; };
+		0DDABF930365190BD83B8D95 /* Pods-Drrrible-DrrribleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Drrrible-DrrribleTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Drrrible-DrrribleTests/Pods-Drrrible-DrrribleTests.debug.xcconfig"; sourceTree = "<group>"; };
 		23868B34FAC632E09764E4A2 /* Pods_Drrrible.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Drrrible.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		245DA1CCFC8FA1E547422133 /* Pods-Drrrible.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Drrrible.release.xcconfig"; path = "Pods/Target Support Files/Pods-Drrrible/Pods-Drrrible.release.xcconfig"; sourceTree = "<group>"; };
+		4B6DE473ACC030C197C305CD /* Pods_Drrrible_DrrribleTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Drrrible_DrrribleTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5D52274A9E04CB3BBEDA2172 /* Pods-DrrribleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrrribleTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DrrribleTests/Pods-DrrribleTests.debug.xcconfig"; sourceTree = "<group>"; };
+		7F632E300076AC7B98DA0A67 /* Pods-Drrrible-DrrribleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Drrrible-DrrribleTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Drrrible-DrrribleTests/Pods-Drrrible-DrrribleTests.release.xcconfig"; sourceTree = "<group>"; };
 		CE2B72EA560A954FCA7B57A4 /* Pods_Drrrible.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Drrrible.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1C26B69DF4A8650DD5E1E2F /* Pods-Drrrible.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Drrrible.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Drrrible/Pods-Drrrible.debug.xcconfig"; sourceTree = "<group>"; };
+		D79B5590B9DCC5274E4845E7 /* Pods-DrrribleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrrribleTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DrrribleTests/Pods-DrrribleTests.release.xcconfig"; sourceTree = "<group>"; };
+		E8DA147D5D31668FBCF30AE0 /* Pods_DrrribleTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DrrribleTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		03D996DB1E811B97004773AE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FD30D1B2E538522C42D94A2A /* Pods_Drrrible_DrrribleTests.framework in Frameworks */,
+				16C6D525CB5553C678DD0C2C /* Pods_DrrribleTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		03DF94C71E6EA54D00E31665 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -214,10 +256,73 @@
 			path = Types;
 			sourceTree = "<group>";
 		};
+		03D996DF1E811B97004773AE /* DrrribleTests */ = {
+			isa = PBXGroup;
+			children = (
+				03D996E81E811BAB004773AE /* Sources */,
+				03D996EA1E811BAB004773AE /* Supporting Files */,
+			);
+			path = DrrribleTests;
+			sourceTree = "<group>";
+		};
+		03D996E81E811BAB004773AE /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				03D9970E1E812691004773AE /* Mocks */,
+				03D996F81E811EAF004773AE /* ViewControllers */,
+				03D996F91E811EAF004773AE /* Views */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		03D996EA1E811BAB004773AE /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				03D996EB1E811BAB004773AE /* Info.plist */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		03D996F81E811EAF004773AE /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				03D996FA1E811EC5004773AE /* SplashViewReactorTests.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		03D996F91E811EAF004773AE /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		03D9970E1E812691004773AE /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				03D9970F1E812691004773AE /* MockError.swift */,
+				03D997101E812691004773AE /* Services */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
+		03D997101E812691004773AE /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				03D997111E812691004773AE /* MockAuthService.swift */,
+				03D997121E812691004773AE /* MockServiceProvider.swift */,
+				03D997131E812691004773AE /* MockShotService.swift */,
+				03D997141E812691004773AE /* MockUserService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		03DF94C11E6EA54D00E31665 = {
 			isa = PBXGroup;
 			children = (
 				03DF94DF1E6EA76A00E31665 /* Drrrible */,
+				03D996DF1E811B97004773AE /* DrrribleTests */,
 				03DF94CB1E6EA54D00E31665 /* Products */,
 				53955C0C767CCBF3D51F88B9 /* Pods */,
 				927BA4FE51A39EF3C1A224CA /* Frameworks */,
@@ -228,6 +333,7 @@
 			isa = PBXGroup;
 			children = (
 				03DF94CA1E6EA54D00E31665 /* Drrrible.app */,
+				03D996DE1E811B97004773AE /* DrrribleTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -411,6 +517,10 @@
 			children = (
 				D1C26B69DF4A8650DD5E1E2F /* Pods-Drrrible.debug.xcconfig */,
 				245DA1CCFC8FA1E547422133 /* Pods-Drrrible.release.xcconfig */,
+				0DDABF930365190BD83B8D95 /* Pods-Drrrible-DrrribleTests.debug.xcconfig */,
+				7F632E300076AC7B98DA0A67 /* Pods-Drrrible-DrrribleTests.release.xcconfig */,
+				5D52274A9E04CB3BBEDA2172 /* Pods-DrrribleTests.debug.xcconfig */,
+				D79B5590B9DCC5274E4845E7 /* Pods-DrrribleTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -420,6 +530,8 @@
 			children = (
 				23868B34FAC632E09764E4A2 /* Pods_Drrrible.framework */,
 				CE2B72EA560A954FCA7B57A4 /* Pods_Drrrible.framework */,
+				4B6DE473ACC030C197C305CD /* Pods_Drrrible_DrrribleTests.framework */,
+				E8DA147D5D31668FBCF30AE0 /* Pods_DrrribleTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -427,6 +539,27 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		03D996DD1E811B97004773AE /* DrrribleTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 03D996E71E811B97004773AE /* Build configuration list for PBXNativeTarget "DrrribleTests" */;
+			buildPhases = (
+				1894B33167F18D57B1D925CF /* [CP] Check Pods Manifest.lock */,
+				03D996DA1E811B97004773AE /* Sources */,
+				03D996DB1E811B97004773AE /* Frameworks */,
+				03D996DC1E811B97004773AE /* Resources */,
+				B01C95CE2B14068F091C60D3 /* [CP] Embed Pods Frameworks */,
+				41DAC559FE040C6434456C87 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				03D996E41E811B97004773AE /* PBXTargetDependency */,
+			);
+			name = DrrribleTests;
+			productName = DrrribleTests;
+			productReference = 03D996DE1E811B97004773AE /* DrrribleTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		03DF94C91E6EA54D00E31665 /* Drrrible */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 03DF94DC1E6EA54D00E31665 /* Build configuration list for PBXNativeTarget "Drrrible" */;
@@ -459,6 +592,11 @@
 				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Suyeol Jeon";
 				TargetAttributes = {
+					03D996DD1E811B97004773AE = {
+						CreatedOnToolsVersion = 8.2.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 03DF94C91E6EA54D00E31665;
+					};
 					03DF94C91E6EA54D00E31665 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = N2C267LBVY;
@@ -481,11 +619,20 @@
 			projectRoot = "";
 			targets = (
 				03DF94C91E6EA54D00E31665 /* Drrrible */,
+				03D996DD1E811B97004773AE /* DrrribleTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		03D996DC1E811B97004773AE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				03D996ED1E811BAB004773AE /* Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		03DF94C81E6EA54D00E31665 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -527,6 +674,21 @@
 			shellPath = /bin/sh;
 			shellScript = "ruby ${SRCROOT}/Pods/Carte/Carte/carte.rb pre";
 		};
+		1894B33167F18D57B1D925CF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		22D88F27EEA1488FE0A33A70 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -540,6 +702,36 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Drrrible/Pods-Drrrible-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		41DAC559FE040C6434456C87 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DrrribleTests/Pods-DrrribleTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B01C95CE2B14068F091C60D3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DrrribleTests/Pods-DrrribleTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		CAC506AC26A6FC4184CFBCC7 /* [CP] Copy Pods Resources */ = {
@@ -575,6 +767,19 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		03D996DA1E811B97004773AE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				03D997191E812691004773AE /* MockShotService.swift in Sources */,
+				03D997181E812691004773AE /* MockServiceProvider.swift in Sources */,
+				03D997171E812691004773AE /* MockAuthService.swift in Sources */,
+				03D9971A1E812691004773AE /* MockUserService.swift in Sources */,
+				03D997161E812691004773AE /* MockError.swift in Sources */,
+				03D996FB1E811EC5004773AE /* SplashViewReactorTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		03DF94C61E6EA54D00E31665 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -659,6 +864,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		03D996E41E811B97004773AE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 03DF94C91E6EA54D00E31665 /* Drrrible */;
+			targetProxy = 03D996E31E811B97004773AE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		03DF94E21E6EA76A00E31665 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -680,6 +893,36 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		03D996E51E811B97004773AE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5D52274A9E04CB3BBEDA2172 /* Pods-DrrribleTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = "DrrribleTests/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = kr.xoul.DrrribleTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Drrrible.app/Drrrible";
+			};
+			name = Debug;
+		};
+		03D996E61E811B97004773AE /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D79B5590B9DCC5274E4845E7 /* Pods-DrrribleTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = "DrrribleTests/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = kr.xoul.DrrribleTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Drrrible.app/Drrrible";
+			};
+			name = Release;
+		};
 		03DF94DA1E6EA54D00E31665 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -804,6 +1047,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		03D996E71E811B97004773AE /* Build configuration list for PBXNativeTarget "DrrribleTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				03D996E51E811B97004773AE /* Debug */,
+				03D996E61E811B97004773AE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		03DF94C51E6EA54D00E31665 /* Build configuration list for PBXProject "Drrrible" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

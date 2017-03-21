@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "3A10E34F5CC8BE69B3E3FDE872860E4CA640E94A",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "BE71109B72D10F8469A9384A70961A882FD9D4F0" : 9223372036854775807,
+    "3A10E34F5CC8BE69B3E3FDE872860E4CA640E94A" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "AC9A5946-00C8-4BF9-8CE2-03142EAF88B2",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "BE71109B72D10F8469A9384A70961A882FD9D4F0" : "RxTodo\/",
+    "3A10E34F5CC8BE69B3E3FDE872860E4CA640E94A" : "Drrrible\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Drrrible",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Drrrible.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/devxoul\/Drrrible.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "3A10E34F5CC8BE69B3E3FDE872860E4CA640E94A"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/devxoul\/RxTodo.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "BE71109B72D10F8469A9384A70961A882FD9D4F0"
+    }
+  ]
+}

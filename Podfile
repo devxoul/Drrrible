@@ -47,4 +47,11 @@ target 'Drrrible' do
   pod 'Yet'
   pod 'Carte'
 
+  target 'DrrribleTests' do
+    inherit! :search_paths
+
+    pod 'RxTest'
+    pod 'RxExpect'
+  end
+
 end
