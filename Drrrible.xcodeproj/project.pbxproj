@@ -64,7 +64,6 @@
 		03D996D41E80535B004773AE /* ShotViewCommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D996D31E80535B004773AE /* ShotViewCommentCell.swift */; };
 		03D996D61E805392004773AE /* ShotViewCommentCellReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D996D51E805392004773AE /* ShotViewCommentCellReactor.swift */; };
 		03D996D81E805DB6004773AE /* CollectionActivityIndicatorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D996D71E805DB6004773AE /* CollectionActivityIndicatorCell.swift */; };
-		03D996ED1E811BAB004773AE /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 03D996EB1E811BAB004773AE /* Info.plist */; };
 		03D996FB1E811EC5004773AE /* SplashViewReactorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D996FA1E811EC5004773AE /* SplashViewReactorTests.swift */; };
 		03D997161E812691004773AE /* MockError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D9970F1E812691004773AE /* MockError.swift */; };
 		03D997171E812691004773AE /* MockAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D997111E812691004773AE /* MockAuthService.swift */; };
@@ -74,6 +73,7 @@
 		03D9971C1E81278B004773AE /* LoginViewReactorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D9971B1E81278B004773AE /* LoginViewReactorTests.swift */; };
 		03D9971E1E817ACF004773AE /* ShotListViewReactorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D9971D1E817ACF004773AE /* ShotListViewReactorTests.swift */; };
 		03D997211E817C1A004773AE /* ShotFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D997201E817C1A004773AE /* ShotFixture.swift */; };
+		03D997291E819012004773AE /* ShotViewReactorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D997281E819012004773AE /* ShotViewReactorTests.swift */; };
 		03DF94EC1E6EA76A00E31665 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03DF94E11E6EA76A00E31665 /* Assets.xcassets */; };
 		03DF94ED1E6EA76A00E31665 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03DF94E21E6EA76A00E31665 /* LaunchScreen.storyboard */; };
 		03DF94EF1E6EA76A00E31665 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DF94E71E6EA76A00E31665 /* AppDelegate.swift */; };
@@ -180,6 +180,7 @@
 		03D9971B1E81278B004773AE /* LoginViewReactorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewReactorTests.swift; sourceTree = "<group>"; };
 		03D9971D1E817ACF004773AE /* ShotListViewReactorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShotListViewReactorTests.swift; sourceTree = "<group>"; };
 		03D997201E817C1A004773AE /* ShotFixture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShotFixture.swift; sourceTree = "<group>"; };
+		03D997281E819012004773AE /* ShotViewReactorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShotViewReactorTests.swift; sourceTree = "<group>"; };
 		03DF94CA1E6EA54D00E31665 /* Drrrible.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Drrrible.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		03DF94E11E6EA76A00E31665 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		03DF94E31E6EA76A00E31665 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -296,6 +297,7 @@
 				03D996FA1E811EC5004773AE /* SplashViewReactorTests.swift */,
 				03D9971B1E81278B004773AE /* LoginViewReactorTests.swift */,
 				03D9971D1E817ACF004773AE /* ShotListViewReactorTests.swift */,
+				03D997281E819012004773AE /* ShotViewReactorTests.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -646,7 +648,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				03D996ED1E811BAB004773AE /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -793,6 +794,7 @@
 				03D997181E812691004773AE /* MockServiceProvider.swift in Sources */,
 				03D997211E817C1A004773AE /* ShotFixture.swift in Sources */,
 				03D9971C1E81278B004773AE /* LoginViewReactorTests.swift in Sources */,
+				03D997291E819012004773AE /* ShotViewReactorTests.swift in Sources */,
 				03D997171E812691004773AE /* MockAuthService.swift in Sources */,
 				03D9971A1E812691004773AE /* MockUserService.swift in Sources */,
 				03D997161E812691004773AE /* MockError.swift in Sources */,

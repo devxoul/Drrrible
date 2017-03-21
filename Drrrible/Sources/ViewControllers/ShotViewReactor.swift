@@ -136,6 +136,7 @@ final class ShotViewReactor: ShotViewReactorType {
     ]
     let shotSection: Observable<ShotViewSection> = Observable<[ShotViewSectionItem]>
       .combineLatest(shotSectionItems) { $0 }
+      .startWith([])
       .map { sectionItems in ShotViewSection.shot(sectionItems) }
       .shareReplay(1)
 
