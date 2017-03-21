@@ -12,14 +12,13 @@ import RxSwiftUtilities
 
 protocol ShotListViewReactorType {
   // Input
-  var viewDidLoad: PublishSubject<Void> { get }
-  var viewDidDeallocate: PublishSubject<Void> { get }
-  var refreshControlDidChangeValue: PublishSubject<Void> { get }
-  var collectionViewDidReachBottom: PublishSubject<Void> { get }
+  var dispose: PublishSubject<Void> { get }
+  var refresh: PublishSubject<Void> { get }
+  var loadMore: PublishSubject<Void> { get }
 
   // Output
-  var refreshControlIsRefreshing: Driver<Bool> { get }
-  var collectionViewSections: Driver<[ShotListViewSection]> { get }
+  var isRefreshing: Driver<Bool> { get }
+  var sections: Driver<[ShotListViewSection]> { get }
 }
 
 final class ShotListViewReactor: ShotListViewReactorType {
@@ -34,16 +33,15 @@ final class ShotListViewReactor: ShotListViewReactorType {
 
   // MARK: Input
 
-  let viewDidLoad: PublishSubject<Void> = .init()
-  let viewDidDeallocate: PublishSubject<Void> = .init()
-  let refreshControlDidChangeValue: PublishSubject<Void> = .init()
-  let collectionViewDidReachBottom: PublishSubject<Void> = .init()
+  let dispose: PublishSubject<Void> = .init()
+  let refresh: PublishSubject<Void> = .init()
+  let loadMore: PublishSubject<Void> = .init()
 
 
   // MARK: Output
 
-  let refreshControlIsRefreshing: Driver<Bool>
-  let collectionViewSections: Driver<[ShotListViewSection]>
+  let isRefreshing: Driver<Bool>
+  let sections: Driver<[ShotListViewSection]>
 
 
   // MARK: Initializing
@@ -51,13 +49,11 @@ final class ShotListViewReactor: ShotListViewReactorType {
   init(provider: ServiceProviderType) {
     let isRefreshing = ActivityIndicator()
     let isLoading = ActivityIndicator()
-    self.refreshControlIsRefreshing = isRefreshing.asDriver()
+    self.isRefreshing = isRefreshing.asDriver()
 
     let nextURL = Variable<URL?>(nil)
 
-    let didRefreshShots = Observable
-      .of(self.viewDidLoad, self.refreshControlDidChangeValue)
-      .merge()
+    let didRefreshShots = self.refresh
       .filter(!isRefreshing)
       .filter(!isLoading)
       .flatMap {
@@ -67,7 +63,7 @@ final class ShotListViewReactor: ShotListViewReactorType {
       }
       .shareReplay(1)
 
-    let didLoadMoreShots = self.collectionViewDidReachBottom
+    let didLoadMoreShots = self.loadMore
       .withLatestFrom(nextURL.asObservable())
       .filterNil()
       .filter(!isRefreshing)
@@ -81,7 +77,7 @@ final class ShotListViewReactor: ShotListViewReactorType {
 
     _ = Observable.of(didRefreshShots, didLoadMoreShots).merge()
       .map { $0.nextURL }
-      .takeUntil(self.viewDidDeallocate)
+      .takeUntil(self.dispose)
       .bindTo(nextURL)
 
     let shotOperationRefresh: Observable<ShotOperation> = didRefreshShots
@@ -121,7 +117,7 @@ final class ShotListViewReactor: ShotListViewReactorType {
       }
       .shareReplay(1)
 
-    self.collectionViewSections = shotSection
+    self.sections = shotSection
       .asDriver(onErrorJustReturn: [])
   }
 

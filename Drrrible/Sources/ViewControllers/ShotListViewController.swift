@@ -101,28 +101,28 @@ final class ShotListViewController: BaseViewController {
     }
 
     // Input
-    self.rx.viewDidLoad
-      .bindTo(reactor.viewDidLoad)
+    self.rx.deallocated
+      .bindTo(reactor.dispose)
       .addDisposableTo(self.disposeBag)
 
-    self.rx.deallocated
-      .bindTo(reactor.viewDidLoad)
+    self.rx.viewDidLoad
+      .bindTo(reactor.refresh)
       .addDisposableTo(self.disposeBag)
 
     self.refreshControl.rx.controlEvent(.valueChanged)
-      .bindTo(reactor.refreshControlDidChangeValue)
+      .bindTo(reactor.refresh)
       .addDisposableTo(self.disposeBag)
 
     self.collectionView.rx.isReachedBottom
-      .bindTo(reactor.collectionViewDidReachBottom)
+      .bindTo(reactor.loadMore)
       .addDisposableTo(self.disposeBag)
 
     // Output
-    reactor.refreshControlIsRefreshing
+    reactor.isRefreshing
       .drive(self.refreshControl.rx.isRefreshing)
       .addDisposableTo(self.disposeBag)
 
-    reactor.collectionViewSections
+    reactor.sections
       .drive(self.collectionView.rx.items(dataSource: self.dataSource))
       .addDisposableTo(self.disposeBag)
   }
