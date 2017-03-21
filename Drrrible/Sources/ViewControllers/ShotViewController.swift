@@ -9,6 +9,7 @@
 import UIKit
 
 import ReusableKit
+import RxCocoa
 import RxDataSources
 
 final class ShotViewController: BaseViewController {
@@ -123,32 +124,33 @@ final class ShotViewController: BaseViewController {
     }
 
     // Input
-    self.rx.viewDidLoad
-      .bindTo(reactor.viewDidLoad)
+    self.rx.deallocated
+      .bindTo(reactor.dispose)
       .addDisposableTo(self.disposeBag)
 
-    self.rx.deallocated
-      .bindTo(reactor.viewDidDeallocate)
+    self.rx.viewDidLoad
+      .bindTo(reactor.refresh)
       .addDisposableTo(self.disposeBag)
 
     self.refreshControl.rx.controlEvent(.valueChanged)
-      .bindTo(reactor.refreshControlDidChangeValue)
+      .bindTo(reactor.refresh)
       .addDisposableTo(self.disposeBag)
 
     // Output
-    reactor.refreshControlIsRefreshing
-      .drive(self.refreshControl.rx.isRefreshing)
-      .addDisposableTo(self.disposeBag)
-
-    reactor.activityIndicatorViewIsAnimating
-      .drive(self.activityIndicatorView.rx.isAnimating)
-      .addDisposableTo(self.disposeBag)
-
-    reactor.collectionViewIsHidden
+    reactor.sections
+      .map { $0.isEmpty }
       .drive(self.collectionView.rx.isHidden)
       .addDisposableTo(self.disposeBag)
 
-    reactor.collectionViewSections
+    Driver.combineLatest(reactor.isRefreshing, reactor.sections.map { $0.isEmpty }) { $0 && $1 }
+      .drive(self.activityIndicatorView.rx.isAnimating)
+      .addDisposableTo(self.disposeBag)
+
+    reactor.isRefreshing
+      .drive(self.refreshControl.rx.isRefreshing)
+      .addDisposableTo(self.disposeBag)
+
+    reactor.sections
       .drive(self.collectionView.rx.items(dataSource: self.dataSource))
       .addDisposableTo(self.disposeBag)
   }

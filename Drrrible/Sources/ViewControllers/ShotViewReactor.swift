@@ -12,15 +12,12 @@ import RxSwiftUtilities
 
 protocol ShotViewReactorType {
   // Input
-  var viewDidLoad: PublishSubject<Void> { get }
-  var viewDidDeallocate: PublishSubject<Void> { get }
-  var refreshControlDidChangeValue: PublishSubject<Void> { get }
+  var dispose: PublishSubject<Void> { get }
+  var refresh: PublishSubject<Void> { get }
 
   // Output
-  var refreshControlIsRefreshing: Driver<Bool> { get }
-  var activityIndicatorViewIsAnimating: Driver<Bool> { get }
-  var collectionViewIsHidden: Driver<Bool> { get }
-  var collectionViewSections: Driver<[ShotViewSection]> { get }
+  var isRefreshing: Driver<Bool> { get }
+  var sections: Driver<[ShotViewSection]> { get }
 }
 
 final class ShotViewReactor: ShotViewReactorType {
@@ -35,23 +32,20 @@ final class ShotViewReactor: ShotViewReactorType {
 
   // MARK: Input
 
-  let viewDidLoad: PublishSubject<Void> = .init()
-  let viewDidDeallocate: PublishSubject<Void> = .init()
-  let refreshControlDidChangeValue: PublishSubject<Void> = .init()
+  let dispose: PublishSubject<Void> = .init()
+  let refresh: PublishSubject<Void> = .init()
 
 
   // MARK: Output
 
-  let refreshControlIsRefreshing: Driver<Bool>
-  let activityIndicatorViewIsAnimating: Driver<Bool>
-  let collectionViewIsHidden: Driver<Bool>
-  let collectionViewSections: Driver<[ShotViewSection]>
+  let isRefreshing: Driver<Bool>
+  let sections: Driver<[ShotViewSection]>
 
 
   // MARK: Initializing
 
   init(provider: ServiceProviderType, shotID: Int, shot initialShot: Shot? = nil) {
-    let optionalShot: Observable<Shot?> = Shot.event
+    let shot: Observable<Shot> = Shot.event
       .scan(initialShot) { oldShot, event in
         switch event {
         case let .create(newShot):
@@ -82,25 +76,14 @@ final class ShotViewReactor: ShotViewReactorType {
         }
       }
       .startWith(initialShot)
-      .shareReplay(1)
-
-    let shot = optionalShot
       .filterNil()
       .shareReplay(1)
 
     let isRefreshing = ActivityIndicator()
-    self.refreshControlIsRefreshing = isRefreshing.asDriver()
-    self.activityIndicatorViewIsAnimating = isRefreshing.asObservable()
-      .withLatestFrom(optionalShot) { ($0, $1) }
-      .map { isRefreshing, shot in
-        return isRefreshing && shot == nil
-      }
-      .asDriver(onErrorJustReturn: false)
-    self.collectionViewIsHidden = self.activityIndicatorViewIsAnimating
+    self.isRefreshing = isRefreshing.asDriver()
 
-    let didRefreshShot = Observable
-      .of(self.viewDidLoad.asObservable(), self.refreshControlDidChangeValue.asObservable())
-      .merge()
+    let didRefreshShot = self.refresh
+      .filter(!isRefreshing)
       .flatMap {
         provider.shotService.shot(id: shotID)
           .trackActivity(isRefreshing)
@@ -111,7 +94,7 @@ final class ShotViewReactor: ShotViewReactorType {
     // Refresh shot
     _ = didRefreshShot
       .map(Shot.Event.update)
-      .takeUntil(self.viewDidDeallocate)
+      .takeUntil(self.dispose)
       .bindTo(Shot.event)
 
     // Refresh isLiked
@@ -126,7 +109,7 @@ final class ShotViewReactor: ShotViewReactorType {
           }
       }
       .map(Shot.Event.update)
-      .takeUntil(self.viewDidDeallocate)
+      .takeUntil(self.dispose)
       .bindTo(Shot.event)
 
     let shotSectionItemImage: Observable<ShotViewSectionItem> = shot
@@ -204,8 +187,11 @@ final class ShotViewReactor: ShotViewReactorType {
     // Section
     //
     let sections = [shotSection, commentSection]
-    self.collectionViewSections = Observable<[ShotViewSection]>
-      .combineLatest(sections) { $0 }
+    self.sections = Observable<[ShotViewSection]>
+      .combineLatest(sections) { sections in
+        guard !sections[0].items.isEmpty else { return [] }
+        return sections
+      }
       .asDriver(onErrorJustReturn: [])
   }
 
