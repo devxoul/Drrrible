@@ -14,7 +14,7 @@ Unofficial Dribbble iOS application using [The Reactive Architecture](https://gi
 * Observing model updates across the view controllers
 * Navigating between view controllers
 * Using [ImmutableMappable](https://github.com/Hearst-DD/ObjectMapper#immutablemappable-protocol-beta)
-* Testing with [RxExpect](https://github.com/devxoul/RxExpect) (coming soon)
+* Testing with [RxExpect](https://github.com/devxoul/RxExpect)
 
 ## Requirements
 
