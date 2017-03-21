@@ -9,17 +9,17 @@
 import UIKit
 
 protocol ShotViewTextCellReactorType {
-  var labelText: NSAttributedString? { get }
+  var text: NSAttributedString? { get }
 }
 
 final class ShotViewTextCellReactor: ShotViewTextCellReactorType {
-  let labelText: NSAttributedString?
+  let text: NSAttributedString?
 
   init(provider: ServiceProviderType, shot: Shot) {
     if let text = shot.text {
-      self.labelText = try? NSAttributedString(htmlString: text)
+      self.text = try? NSAttributedString(htmlString: text)
     } else {
-      self.labelText = nil
+      self.text = nil
     }
   }
 }

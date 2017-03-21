@@ -12,23 +12,23 @@ final class ShotViewReactionCommentButtonViewReactor: ShotViewReactionButtonView
 
   // MARK: Input
 
-  let didDeallocate: PublishSubject<Void> = .init()
-  let buttonDidTap: PublishSubject<Void> = .init()
+  let dispose: PublishSubject<Void> = .init()
+  let toggleReaction: PublishSubject<Void> = .init()
 
 
   // MARK: Output
 
-  let isButtonSelected: Bool
-  let isButtonUserInteractionEnabled: Bool
-  let labelText: String
+  let isReacted: Bool
+  let canToggleReaction: Bool
+  let text: String
 
 
   // MARK: Initializing
 
   init(provider: ServiceProviderType, shot: Shot) {
-    self.isButtonSelected = false
-    self.isButtonUserInteractionEnabled = true
-    self.labelText = "\(shot.commentCount)"
+    self.isReacted = false
+    self.canToggleReaction = true
+    self.text = "\(shot.commentCount)"
   }
 
 }

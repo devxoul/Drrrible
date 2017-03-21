@@ -14,11 +14,11 @@ enum ShotReactionType {
 
 protocol ShotViewReactionButtonViewReactorType {
   // Input
-  var didDeallocate: PublishSubject<Void> { get }
-  var buttonDidTap: PublishSubject<Void> { get }
+  var dispose: PublishSubject<Void> { get }
+  var toggleReaction: PublishSubject<Void> { get }
 
   // Output
-  var isButtonSelected: Bool { get }
-  var isButtonUserInteractionEnabled: Bool { get }
-  var labelText: String { get }
+  var isReacted: Bool { get }
+  var canToggleReaction: Bool { get }
+  var text: String { get }
 }

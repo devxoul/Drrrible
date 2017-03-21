@@ -12,36 +12,36 @@ final class ShotViewReactionLikeButtonViewReactor: ShotViewReactionButtonViewRea
 
   // MARK: Input
 
-  let didDeallocate: PublishSubject<Void> = .init()
-  let buttonDidTap: PublishSubject<Void> = .init()
+  let dispose: PublishSubject<Void> = .init()
+  let toggleReaction: PublishSubject<Void> = .init()
 
 
   // MARK: Output
 
-  let isButtonSelected: Bool
-  let isButtonUserInteractionEnabled: Bool
-  let labelText: String
+  let isReacted: Bool
+  let canToggleReaction: Bool
+  let text: String
 
 
   // MARK: Initializing
 
   init(provider: ServiceProviderType, shot: Shot) {
-    self.isButtonSelected = shot.isLiked ?? false
-    self.isButtonUserInteractionEnabled = (shot.isLiked != nil)
-    self.labelText = "\(shot.likeCount)"
+    self.isReacted = shot.isLiked ?? false
+    self.canToggleReaction = (shot.isLiked != nil)
+    self.text = "\(shot.likeCount)"
 
-    _ = self.buttonDidTap
+    _ = self.toggleReaction
       .filter { shot.isLiked == false }
       .do(onNext: { Shot.event.onNext(.like(id: shot.id)) })
       .flatMap { provider.shotService.like(shotID: shot.id).ignoreErrors() }
-      .takeUntil(self.didDeallocate)
+      .takeUntil(self.dispose)
       .subscribe()
 
-    _ = self.buttonDidTap
+    _ = self.toggleReaction
       .filter { shot.isLiked == true }
       .do(onNext: { Shot.event.onNext(.unlike(id: shot.id)) })
       .flatMap { provider.shotService.like(shotID: shot.id).ignoreErrors() }
-      .takeUntil(self.didDeallocate)
+      .takeUntil(self.dispose)
       .subscribe()
   }
 

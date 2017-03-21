@@ -10,21 +10,21 @@ import RxCocoa
 import RxSwift
 
 protocol ShotViewCommentCellReactorType {
-  var avatarViewURL: URL? { get }
-  var nameLabelText: String { get }
-  var messageLabelText: NSAttributedString { get }
+  var avatarURL: URL? { get }
+  var name: String { get }
+  var message: NSAttributedString { get }
 }
 
 struct ShotViewCommentCellReactor: ShotViewCommentCellReactorType {
 
-  let avatarViewURL: URL?
-  let nameLabelText: String
-  let messageLabelText: NSAttributedString
+  let avatarURL: URL?
+  let name: String
+  let message: NSAttributedString
 
   init(provider: ServiceProviderType, comment: Comment) {
-    self.avatarViewURL = comment.user.avatarURL
-    self.nameLabelText = comment.user.name
-    self.messageLabelText = (try? NSAttributedString(htmlString: comment.body))
+    self.avatarURL = comment.user.avatarURL
+    self.name = comment.user.name
+    self.message = (try? NSAttributedString(htmlString: comment.body))
       ?? NSAttributedString(string: comment.body)
   }
 

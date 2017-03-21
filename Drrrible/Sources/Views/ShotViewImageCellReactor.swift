@@ -11,20 +11,20 @@ import RxSwift
 
 protocol ShotViewImageCellReactorType {
   // Output
-  var imageViewURL: URL { get }
+  var imageURL: URL { get }
 }
 
 final class ShotViewImageCellReactor: ShotViewImageCellReactorType {
 
   // MARK: Output
 
-  let imageViewURL: URL
+  let imageURL: URL
 
 
   // MARK: Initializing
 
   init(provider: ServiceProviderType, shot: Shot) {
-    self.imageViewURL = shot.imageURLs.hidpi ?? shot.imageURLs.normal
+    self.imageURL = shot.imageURLs.hidpi ?? shot.imageURLs.normal
   }
 
 }

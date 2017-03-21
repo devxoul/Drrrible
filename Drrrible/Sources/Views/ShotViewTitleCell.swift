@@ -67,9 +67,9 @@ final class ShotViewTitleCell: BaseCollectionViewCell {
   // MARK: Configuring
 
   func configure(reactor: ShotViewTitleCellReactorType) {
-    self.avatarView.kf.setImage(with: reactor.avatarViewURL)
-    self.titleLabel.text = reactor.titleLabelText
-    self.usernameLabel.text = reactor.usernameLabelText
+    self.avatarView.kf.setImage(with: reactor.avatarURL)
+    self.titleLabel.text = reactor.title
+    self.usernameLabel.text = reactor.username
     self.setNeedsLayout()
   }
 
@@ -82,7 +82,7 @@ final class ShotViewTitleCell: BaseCollectionViewCell {
       - Metric.avatarViewSize
       - Metric.titleLabelLeft
       - Metric.paddingLeftRight
-    let titleLabelHeight = reactor.titleLabelText.height(
+    let titleLabelHeight = reactor.title.height(
       thatFitsWidth: titleLabelWidth,
       font: Font.titleLabel
     )

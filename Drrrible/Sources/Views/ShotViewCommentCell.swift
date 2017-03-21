@@ -60,9 +60,9 @@ final class ShotViewCommentCell: BaseCollectionViewCell {
   // MARK: Configuring
 
   func configure(reactor: ShotViewCommentCellReactorType) {
-    self.avatarView.kf.setImage(with: reactor.avatarViewURL)
-    self.nameLabel.text = reactor.nameLabelText
-    self.messageLabel.setText(reactor.messageLabelText)
+    self.avatarView.kf.setImage(with: reactor.avatarURL)
+    self.nameLabel.text = reactor.name
+    self.messageLabel.setText(reactor.message)
     self.setNeedsLayout()
   }
 
@@ -79,7 +79,7 @@ final class ShotViewCommentCell: BaseCollectionViewCell {
       - Metric.avatarViewSize
       - Metric.messageLabelLeft
     height += Metric.messageLabelTop
-    height += reactor.messageLabelText.height(thatFitsWidth: messageLabelMaxWidth)
+    height += reactor.message.height(thatFitsWidth: messageLabelMaxWidth)
     height += Metric.paddingTopBottom
     return CGSize(width: width, height: height)
   }

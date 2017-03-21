@@ -11,10 +11,10 @@ import RxSwift
 
 protocol ShotCellReactorType {
   // Input
-  var backgroundDidTap: PublishSubject<Void> { get }
+  var showShot: PublishSubject<Void> { get }
 
   // Output
-  var imageViewURL: URL { get }
+  var imageURL: URL { get }
   var presentShotViewController: Observable<ShotViewReactorType> { get }
 }
 
@@ -22,20 +22,20 @@ final class ShotCellReactor: ShotCellReactorType {
 
   // MARK: Input
 
-  let backgroundDidTap: PublishSubject<Void> = .init()
+  let showShot: PublishSubject<Void> = .init()
 
 
   // MARK: Output
 
-  let imageViewURL: URL
+  let imageURL: URL
   let presentShotViewController: Observable<ShotViewReactorType>
 
 
   // MARK: Initializing
 
   init(provider: ServiceProviderType, shot: Shot) {
-    self.imageViewURL = shot.imageURLs.teaser
-    self.presentShotViewController = self.backgroundDidTap
+    self.imageURL = shot.imageURLs.teaser
+    self.presentShotViewController = self.showShot
       .map { ShotViewReactor(provider: provider, shotID: shot.id, shot: shot) }
   }
 

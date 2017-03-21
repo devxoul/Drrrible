@@ -27,7 +27,7 @@ final class ShotViewImageCell: BaseCollectionViewCell {
 
   func configure(reactor: ShotViewImageCellReactorType) {
     // Output
-    self.imageView.kf.setImage(with: reactor.imageViewURL)
+    self.imageView.kf.setImage(with: reactor.imageURL)
   }
 
 

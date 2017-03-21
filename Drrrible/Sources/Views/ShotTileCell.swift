@@ -50,11 +50,11 @@ final class ShotTileCell: BaseCollectionViewCell {
     // Input
     self.cardView.rx.tapGesture() { $0.delegate = ExclusiveGestureRecognizerDelegate.shared }
       .mapVoid()
-      .bindTo(reactor.backgroundDidTap)
+      .bindTo(reactor.showShot)
       .addDisposableTo(self.disposeBag)
 
     // Output
-    self.imageView.kf.setImage(with: reactor.imageViewURL, placeholder: nil)
+    self.imageView.kf.setImage(with: reactor.imageURL, placeholder: nil)
     reactor.presentShotViewController
       .whileDisplaying(self)
       .subscribe(onNext: { reactor in

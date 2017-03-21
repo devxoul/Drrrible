@@ -19,8 +19,14 @@ final class ShotViewReactionCellReactor: ShotViewReactionCellReactorType {
   let commentButtonViewReactor: ShotViewReactionButtonViewReactorType
 
   init(provider: ServiceProviderType, shot: Shot) {
-    self.likeButtonViewReactor = ShotViewReactionLikeButtonViewReactor(provider: provider, shot: shot)
-    self.commentButtonViewReactor = ShotViewReactionCommentButtonViewReactor(provider: provider, shot: shot)
+    self.likeButtonViewReactor = ShotViewReactionLikeButtonViewReactor(
+      provider: provider,
+      shot: shot
+    )
+    self.commentButtonViewReactor = ShotViewReactionCommentButtonViewReactor(
+      provider: provider,
+      shot: shot
+    )
   }
 
 }

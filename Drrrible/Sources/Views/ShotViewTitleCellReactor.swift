@@ -11,9 +11,9 @@ import RxSwift
 
 protocol ShotViewTitleCellReactorType {
   // Output
-  var avatarViewURL: URL? { get }
-  var titleLabelText: String { get }
-  var usernameLabelText: String { get }
+  var avatarURL: URL? { get }
+  var title: String { get }
+  var username: String { get }
 }
 
 final class ShotViewTitleCellReactor: ShotViewTitleCellReactorType {
@@ -22,17 +22,17 @@ final class ShotViewTitleCellReactor: ShotViewTitleCellReactorType {
 
   // MARK: Output
 
-  let avatarViewURL: URL?
-  let titleLabelText: String
-  let usernameLabelText: String
+  let avatarURL: URL?
+  let title: String
+  let username: String
 
 
   // MARK: Initializing
 
   init(provider: ServiceProviderType, shot: Shot) {
-    self.avatarViewURL = shot.user.avatarURL
-    self.titleLabelText = shot.title
-    self.usernameLabelText = "by \(shot.user.name)"
+    self.avatarURL = shot.user.avatarURL
+    self.title = shot.title
+    self.username = "by \(shot.user.name)"
   }
 
 }
