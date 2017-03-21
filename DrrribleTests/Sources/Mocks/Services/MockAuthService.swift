@@ -16,8 +16,9 @@ final class MockAuthService: BaseService, AuthServiceType, Then {
     return nil
   }
 
+  var authorizeClosure: () -> Observable<Void> = { return .never() }
   func authorize() -> Observable<Void> {
-    return .never()
+    return self.authorizeClosure()
   }
 
   func callback(code: String) {

@@ -32,7 +32,7 @@ PODS:
   - RxDataSources (1.0.3):
     - RxCocoa (~> 3.0)
     - RxSwift (~> 3.0)
-  - RxExpect (0.5.0):
+  - RxExpect (0.5.1):
     - RxCocoa (>= 3.0)
     - RxSwift (>= 3.0)
     - RxTest (>= 3.0)
@@ -125,7 +125,7 @@ SPEC CHECKSUMS:
   ReusableKit: 89e743a120bab0d95848bff27e481833c2768905
   RxCocoa: ccdf43101a70407097a29082f648ba1676075b30
   RxDataSources: a021a0e944ba5f7991259829d973afdbfa719c0b
-  RxExpect: c5d36dae4e8837f63972650c8798c4bc9fed63de
+  RxExpect: b5b995662f56e8efa3c15a600b187b07f0578b44
   RxGesture: df17ca8be513640294c544b3165875e91de665ec
   RxKeyboard: 4046ecd1884a3bf0dacb823bd2ac8b00482d29ff
   RxOptional: b97b59183af80d1e729ac9e51d09a10be668d6a8
