@@ -12,27 +12,33 @@ import Then
 @testable import Drrrible
 
 final class MockShotService: BaseService, ShotServiceType, Then {
+  var shotsClosure: (_ paging: Paging) -> Observable<List<Shot>> = { _ in .empty() }
   func shots(paging: Paging) -> Observable<List<Shot>> {
-    return .never()
+    return self.shotsClosure(paging)
   }
 
+  var shotClosure: (_ id: Int) -> Observable<Shot> = { _ in .empty() }
   func shot(id: Int) -> Observable<Shot> {
-    return .never()
+    return self.shotClosure(id)
   }
 
+  var isLikedClosure: (_ shotID: Int) -> Observable<Bool> = { _ in .empty() }
   func isLiked(shotID: Int) -> Observable<Bool> {
-    return .never()
+    return self.isLikedClosure(shotID)
   }
 
+  var likeClosure: (_ shotID: Int) -> Observable<Void> = { _ in .empty() }
   func like(shotID: Int) -> Observable<Void> {
-    return .never()
+    return self.likeClosure(shotID)
   }
 
+  var unlikeClosure: (_ shotID: Int) -> Observable<Void> = { _ in .empty() }
   func unlike(shotID: Int) -> Observable<Void> {
-    return .never()
+    return self.unlikeClosure(shotID)
   }
 
+  var commentsClosure: (_ shotID: Int) -> Observable<List<Comment>> = { _ in .empty() }
   func comments(shotID: Int) -> Observable<List<Comment>> {
-    return .never()
+    return self.commentsClosure(shotID)
   }
 }

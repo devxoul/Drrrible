@@ -72,6 +72,8 @@
 		03D997191E812691004773AE /* MockShotService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D997131E812691004773AE /* MockShotService.swift */; };
 		03D9971A1E812691004773AE /* MockUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D997141E812691004773AE /* MockUserService.swift */; };
 		03D9971C1E81278B004773AE /* LoginViewReactorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D9971B1E81278B004773AE /* LoginViewReactorTests.swift */; };
+		03D9971E1E817ACF004773AE /* ShotListViewReactorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D9971D1E817ACF004773AE /* ShotListViewReactorTests.swift */; };
+		03D997211E817C1A004773AE /* ShotFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D997201E817C1A004773AE /* ShotFixture.swift */; };
 		03DF94EC1E6EA76A00E31665 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03DF94E11E6EA76A00E31665 /* Assets.xcassets */; };
 		03DF94ED1E6EA76A00E31665 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03DF94E21E6EA76A00E31665 /* LaunchScreen.storyboard */; };
 		03DF94EF1E6EA76A00E31665 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DF94E71E6EA76A00E31665 /* AppDelegate.swift */; };
@@ -176,6 +178,8 @@
 		03D997131E812691004773AE /* MockShotService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockShotService.swift; sourceTree = "<group>"; };
 		03D997141E812691004773AE /* MockUserService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockUserService.swift; sourceTree = "<group>"; };
 		03D9971B1E81278B004773AE /* LoginViewReactorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewReactorTests.swift; sourceTree = "<group>"; };
+		03D9971D1E817ACF004773AE /* ShotListViewReactorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShotListViewReactorTests.swift; sourceTree = "<group>"; };
+		03D997201E817C1A004773AE /* ShotFixture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShotFixture.swift; sourceTree = "<group>"; };
 		03DF94CA1E6EA54D00E31665 /* Drrrible.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Drrrible.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		03DF94E11E6EA76A00E31665 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		03DF94E31E6EA76A00E31665 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -271,6 +275,7 @@
 			isa = PBXGroup;
 			children = (
 				03D9970E1E812691004773AE /* Mocks */,
+				03D9971F1E817C13004773AE /* Fixtures */,
 				03D996F81E811EAF004773AE /* ViewControllers */,
 				03D996F91E811EAF004773AE /* Views */,
 			);
@@ -290,6 +295,7 @@
 			children = (
 				03D996FA1E811EC5004773AE /* SplashViewReactorTests.swift */,
 				03D9971B1E81278B004773AE /* LoginViewReactorTests.swift */,
+				03D9971D1E817ACF004773AE /* ShotListViewReactorTests.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -319,6 +325,14 @@
 				03D997141E812691004773AE /* MockUserService.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		03D9971F1E817C13004773AE /* Fixtures */ = {
+			isa = PBXGroup;
+			children = (
+				03D997201E817C1A004773AE /* ShotFixture.swift */,
+			);
+			path = Fixtures;
 			sourceTree = "<group>";
 		};
 		03DF94C11E6EA54D00E31665 = {
@@ -775,7 +789,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				03D997191E812691004773AE /* MockShotService.swift in Sources */,
+				03D9971E1E817ACF004773AE /* ShotListViewReactorTests.swift in Sources */,
 				03D997181E812691004773AE /* MockServiceProvider.swift in Sources */,
+				03D997211E817C1A004773AE /* ShotFixture.swift in Sources */,
 				03D9971C1E81278B004773AE /* LoginViewReactorTests.swift in Sources */,
 				03D997171E812691004773AE /* MockAuthService.swift in Sources */,
 				03D9971A1E812691004773AE /* MockUserService.swift in Sources */,

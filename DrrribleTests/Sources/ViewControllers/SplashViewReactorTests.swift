@@ -36,9 +36,6 @@ final class SplashViewReactorTests: XCTestCase {
   func testPresentMainScreen() {
     RxExpect("it should present main screen when authenticated") { test in
       let provider = MockServiceProvider()
-      provider.userService = MockUserService(provider: provider).then {
-        $0.fetchMeClosure = { .just(Void()) }
-      }
       let reactor = SplashViewReactor(provider: provider)
       test.input(reactor.checkIfAuthenticated, [
         next(100, Void()),

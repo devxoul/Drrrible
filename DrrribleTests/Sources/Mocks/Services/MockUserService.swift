@@ -13,10 +13,10 @@ import Then
 
 final class MockUserService: BaseService, UserServiceType, Then {
   var currentUser: Observable<User?> {
-    return .never()
+    return .empty()
   }
 
-  var fetchMeClosure: () -> Observable<Void> = { return .never() }
+  var fetchMeClosure: () -> Observable<Void> = { .just(Void()) }
   func fetchMe() -> Observable<Void> {
     return self.fetchMeClosure()
   }
