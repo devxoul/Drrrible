@@ -12,6 +12,7 @@ env:
   global:
     - WORKSPACE="Drrrible.xcworkspace"
     - IOS_SDK="iphonesimulator10.2"
+    - IOS_DESTINATION="platform=iOS Simulator,name=iPhone 7,OS=10.2"
   matrix:
     - SCHEME="Drrrible"        SDK="$IOS_SDK"      ACTION="test"
 
@@ -22,4 +23,4 @@ install:
   - bundle exec pod install
 
 script:
-  - set -o pipefail && xcodebuild clean $ACTION -workspace "$WORKSPACE" -scheme "$SCHEME" -sdk "$SDK" -configuration Release CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO | xcpretty -c
+  - set -o pipefail && xcodebuild clean $ACTION -workspace "$WORKSPACE" -scheme "$SCHEME" -sdk "$SDK" -destination "$IOS_DESTINATION" -configuration Release CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO | xcpretty -c
