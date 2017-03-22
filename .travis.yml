@@ -13,7 +13,7 @@ env:
     - WORKSPACE="Drrrible.xcworkspace"
     - IOS_SDK="iphonesimulator10.2"
   matrix:
-    - SCHEME="Drrrible-iOS"        SDK="$IOS_SDK"      ACTION="test"
+    - SCHEME="Drrrible"        SDK="$IOS_SDK"      ACTION="test"
 
 install:
   - bundle install --deployment
