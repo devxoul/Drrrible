@@ -113,7 +113,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   Reactor:
-    :commit: f64d9c76753ccba3b2bc33b763def1aaddd5efb6
+    :commit: ad560a4ff9f6a3dbb55101cd6f6aed97a197624a
     :git: https://github.com/devxoul/TheReactiveArchitecture.git
   WebLinking:
     :commit: fddbacc30deab8afe12ce1d3b78bd27c593a0c29

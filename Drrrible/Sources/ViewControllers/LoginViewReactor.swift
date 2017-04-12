@@ -11,24 +11,27 @@ import RxCocoa
 import RxSwift
 import RxSwiftUtilities
 
-enum LoginViewAction {
-  case login
-}
+struct LoginViewComponents: ReactorComponents {
+  enum Action {
+    case login
+  }
 
-enum LoginViewMutation {
-  case setLoading(Bool)
-  case setNavigation(LoginViewState.Navigation)
-}
+  enum Mutation {
+    case setLoading(Bool)
+    case setNavigation(Navigation)
+  }
 
-struct LoginViewState {
+  struct State {
+    var isLoading: Bool = false
+    var navigation: Navigation?
+  }
+
   enum Navigation {
     case main(MainTabBarViewReactor)
   }
-  var isLoading: Bool = false
-  var navigation: Navigation?
 }
 
-final class LoginViewReactor: Reactor<LoginViewAction, LoginViewMutation, LoginViewState> {
+final class LoginViewReactor: Reactor<LoginViewComponents> {
 
   let provider: ServiceProviderType
 

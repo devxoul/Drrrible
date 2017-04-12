@@ -10,24 +10,26 @@ import Reactor
 import RxCocoa
 import RxSwift
 
-enum SplashViewAction {
-  case checkIfAuthenticated
-}
+struct SplashViewComponents: ReactorComponents {
+  enum Action {
+    case checkIfAuthenticated
+  }
 
-enum SplashViewMutation {
-  case setNavigation(SplashViewState.Navigation)
-}
+  enum Mutation {
+    case setNavigation(Navigation)
+  }
 
-struct SplashViewState {
+  struct State {
+    var navigation: Navigation?
+  }
+
   enum Navigation {
     case login(LoginViewReactor)
     case main(MainTabBarViewReactor)
   }
-
-  var navigation: Navigation?
 }
 
-final class SplashViewReactor: Reactor<SplashViewAction, SplashViewMutation, SplashViewState> {
+final class SplashViewReactor: Reactor<SplashViewComponents> {
 
   fileprivate let provider: ServiceProviderType
 
@@ -44,9 +46,14 @@ final class SplashViewReactor: Reactor<SplashViewAction, SplashViewMutation, Spl
     switch action {
     case .checkIfAuthenticated:
       return self.provider.userService.fetchMe()
-        .map { State.Navigation.login(LoginViewReactor(provider: self.provider)) }
-        .catchErrorJustReturn(State.Navigation.main(MainTabBarViewReactor(provider: self.provider)))
-        .map(Mutation.setNavigation)
+        .map { _ -> Mutation in
+          let reactor = LoginViewReactor(provider: self.provider)
+          return .setNavigation(.login(reactor))
+        }
+        .catchErrorJustReturn({ _ -> Mutation in
+          let reactor = MainTabBarViewReactor(provider: self.provider)
+          return .setNavigation(.main(reactor))
+        }())
     }
   }
 
