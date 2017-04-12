@@ -6,7 +6,7 @@
 //  Copyright © 2017 Suyeol Jeon. All rights reserved.
 //
 
-import Reactor
+import ReactorKit
 import RxCocoa
 import RxSwift
 import RxSwiftUtilities

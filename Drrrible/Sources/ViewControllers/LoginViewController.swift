@@ -9,7 +9,7 @@
 import SafariServices
 import UIKit
 
-import Reactor
+import ReactorKit
 
 final class LoginViewController: BaseViewController, ViewType {
 

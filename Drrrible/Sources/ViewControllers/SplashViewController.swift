@@ -8,7 +8,7 @@
 
 import UIKit
 
-import Reactor
+import ReactorKit
 
 final class SplashViewController: BaseViewController, ViewType {
 

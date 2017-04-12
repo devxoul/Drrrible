@@ -4,8 +4,8 @@ target 'Drrrible' do
   use_frameworks!
 
   # Architecture
-  pod 'Reactor', :git => 'https://github.com/devxoul/TheReactiveArchitecture.git',
-                 :branch => 'reactor'
+  pod 'ReactorKit', :git => 'https://github.com/devxoul/TheReactiveArchitecture.git',
+                    :branch => 'reactor'
 
   # Networking
   pod 'Alamofire'
