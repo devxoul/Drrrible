@@ -97,7 +97,8 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
   }
 
   func presentMainScreen(reactor: MainTabBarViewReactor) {
-    let mainTabBarController = MainTabBarController(reactor: reactor)
+    let mainTabBarController = MainTabBarController()
+    mainTabBarController.reactor = reactor
     self.window?.rootViewController = mainTabBarController
   }
 

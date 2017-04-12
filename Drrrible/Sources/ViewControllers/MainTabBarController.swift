@@ -8,47 +8,38 @@
 
 import UIKit
 
+import Reactor
 import RxCocoa
 import RxSwift
 
-final class MainTabBarController: UITabBarController {
+final class MainTabBarController: UITabBarController, ViewType {
 
   // MARK: Properties
 
-  fileprivate let disposeBag = DisposeBag()
-
-
-  // MARK: Initializing
-
-  init(reactor: MainTabBarViewReactorType) {
-    super.init(nibName: nil, bundle: nil)
-    self.configure(reactor: reactor)
-  }
-  
-  required init?(coder aDecoder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
-  }
+  var disposeBag = DisposeBag()
 
 
   // MARK: Configuring
 
-  private func configure(reactor: MainTabBarViewReactorType) {
-    // Output
-
-    let shotListNavigationController: Driver<UINavigationController> = reactor.shotListViewReactor
+  func configure(reactor: MainTabBarViewReactor) {
+    let shotListNavigationController: Observable<UINavigationController> = reactor.state
+      .map { $0.shotListViewReactor }
+      .distinctUntilChanged { $0 === $1 }
       .map { ShotListViewController(reactor: $0) }
       .map { UINavigationController(rootViewController: $0) }
 
-    let settingsNavigationController: Driver<UINavigationController> = reactor.settingsViewReactor
+    let settingsNavigationController: Observable<UINavigationController> = reactor.state
+      .map { $0.settingsViewReactor }
+      .distinctUntilChanged { $0 === $1 }
       .map { SettingsViewController(reactor: $0) }
       .map { UINavigationController(rootViewController: $0) }
 
-    let navigationControllers: [Driver<UINavigationController>] = [
+    let navigationControllers: [Observable<UINavigationController>] = [
       shotListNavigationController,
       settingsNavigationController,
     ]
-    Driver.combineLatest(navigationControllers) { $0 }
-      .drive(onNext: { [weak self] navigationControllers in
+    Observable.combineLatest(navigationControllers) { $0 }
+      .subscribe(onNext: { [weak self] navigationControllers in
         self?.viewControllers = navigationControllers
       })
       .addDisposableTo(self.disposeBag)
