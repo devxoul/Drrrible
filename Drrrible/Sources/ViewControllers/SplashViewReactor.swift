@@ -15,7 +15,7 @@ enum SplashViewAction {
 }
 
 enum SplashViewMutation {
-  case setNavigation(Navigation)
+  case setNavigation(SplashViewState.Navigation)
 }
 
 struct SplashViewState {

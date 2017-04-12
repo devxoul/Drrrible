@@ -6,42 +6,62 @@
 //  Copyright © 2017 Suyeol Jeon. All rights reserved.
 //
 
+import Reactor
 import RxCocoa
 import RxSwift
 import RxSwiftUtilities
 
-protocol LoginViewReactorType {
-  // Input
-  var login: PublishSubject<Void> { get }
-
-  // Output
-  var isLoading: Driver<Bool> { get }
-  var presentMainScreen: Observable<MainTabBarViewReactorType> { get }
+enum LoginViewAction {
+  case login
 }
 
-final class LoginViewReactor: LoginViewReactorType {
+enum LoginViewMutation {
+  case setLoading(Bool)
+  case setNavigation(LoginViewState.Navigation)
+}
 
-  // MARK: Input
+struct LoginViewState {
+  enum Navigation {
+    case main(MainTabBarViewReactor)
+  }
+  var isLoading: Bool = false
+  var navigation: Navigation?
+}
 
-  let login: PublishSubject<Void> = .init()
+final class LoginViewReactor: Reactor<LoginViewAction, LoginViewMutation, LoginViewState> {
 
-
-  // MARK: Output
-
-  let isLoading: Driver<Bool>
-  let presentMainScreen: Observable<MainTabBarViewReactorType>
-
-
-  // MARK: Initializing
+  let provider: ServiceProviderType
 
   init(provider: ServiceProviderType) {
-    let isLoading = ActivityIndicator()
-    self.isLoading = isLoading.asDriver()
-    self.presentMainScreen = self.login
-      .filter(!isLoading)
-      .flatMap { provider.authService.authorize().trackActivity(isLoading) }
-      .flatMap { provider.userService.fetchMe() }
-      .map { MainTabBarViewReactor(provider: provider) }
+    self.provider = provider
+    super.init(initialState: State())
+  }
+
+  override func mutate(action: Action) -> Observable<Mutation> {
+    switch action {
+    case .login:
+      let setLoading = Observable.just(Mutation.setLoading(true))
+      let setNavigation = self.provider.authService.authorize()
+        .flatMap { self.provider.userService.fetchMe() }
+        .map { _ -> Mutation in
+          let reactor = MainTabBarViewReactor(provider: self.provider)
+          return Mutation.setNavigation(.main(reactor))
+        }
+      return setLoading.concat(setNavigation)
+    }
+  }
+
+  override func reduce(state: State, mutation: Mutation) -> State {
+    var state = state
+    switch mutation {
+    case let .setLoading(isLoading):
+      state.isLoading = isLoading
+      return state
+
+    case let .setNavigation(navigation):
+      state.navigation = navigation
+      return state
+    }
   }
 
 }

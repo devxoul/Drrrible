@@ -9,7 +9,9 @@
 import SafariServices
 import UIKit
 
-final class LoginViewController: BaseViewController {
+import Reactor
+
+final class LoginViewController: BaseViewController, ViewType {
 
   // MARK: Constants
 
@@ -51,18 +53,6 @@ final class LoginViewController: BaseViewController {
   fileprivate let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .white)
 
 
-  // MARK: Initializing
-
-  init(reactor: LoginViewReactorType) {
-    super.init()
-    self.configure(reactor: reactor)
-  }
-  
-  required convenience init?(coder aDecoder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
-  }
-
-
   // MARK: View Life Cycle
 
   override func viewDidLoad() {
@@ -87,23 +77,30 @@ final class LoginViewController: BaseViewController {
 
   // MARK: Configuring
 
-  private func configure(reactor: LoginViewReactorType) {
+  func configure(reactor: LoginViewReactor) {
     // Input
     self.loginButton.rx.tap
-      .bindTo(reactor.login)
+      .map { Reactor.Action.login }
+      .bindTo(reactor.action)
       .addDisposableTo(self.disposeBag)
 
     // Output
-    reactor.isLoading
-      .drive(self.loginButton.rx.isHidden)
+    reactor.state.map { $0.isLoading }
+      .bindTo(self.loginButton.rx.isHidden)
       .addDisposableTo(self.disposeBag)
 
-    reactor.isLoading
-      .drive(self.activityIndicatorView.rx.isAnimating)
+    reactor.state.map { $0.isLoading }
+      .bindTo(self.activityIndicatorView.rx.isAnimating)
       .addDisposableTo(self.disposeBag)
 
-    reactor.presentMainScreen
-      .subscribe(onNext: AppDelegate.shared.presentMainScreen)
+    reactor.state.map { $0.navigation }
+      .filterNil()
+      .subscribe(onNext: { navigation in
+        switch navigation {
+        case let .main(reactor):
+          AppDelegate.shared.presentMainScreen(reactor: reactor)
+        }
+      })
       .addDisposableTo(self.disposeBag)
   }
 

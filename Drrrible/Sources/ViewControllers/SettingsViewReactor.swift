@@ -24,7 +24,7 @@ protocol SettingsViewReactorType: class {
   var presentWebViewController: Observable<URL> { get }
   var presentCarteViewController: Observable<Void> { get }
   var presentLogoutAlert: Observable<[LogoutAlertActionItem]> { get }
-  var presentLoginScreen: Observable<LoginViewReactorType> { get }
+  var presentLoginScreen: Observable<LoginViewReactor> { get }
 }
 
 final class SettingsViewReactor: SettingsViewReactorType {
@@ -41,7 +41,7 @@ final class SettingsViewReactor: SettingsViewReactorType {
   let presentWebViewController: Observable<URL>
   let presentCarteViewController: Observable<Void>
   let presentLogoutAlert: Observable<[LogoutAlertActionItem]>
-  let presentLoginScreen: Observable<LoginViewReactorType>
+  let presentLoginScreen: Observable<LoginViewReactor>
 
 
   // MARK: Initializing

@@ -90,12 +90,13 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
 
   // MARK: Presenting
 
-  func presentLoginScreen(reactor: LoginViewReactorType) {
-    let viewController = LoginViewController(reactor: reactor)
+  func presentLoginScreen(reactor: LoginViewReactor) {
+    let viewController = LoginViewController()
+    viewController.reactor = reactor
     self.window?.rootViewController = viewController
   }
 
-  func presentMainScreen(reactor: MainTabBarViewReactorType) {
+  func presentMainScreen(reactor: MainTabBarViewReactor) {
     let mainTabBarController = MainTabBarController(reactor: reactor)
     self.window?.rootViewController = mainTabBarController
   }
