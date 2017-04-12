@@ -33,7 +33,9 @@ final class ShotService: BaseService, ShotServiceType {
   }
 
   func isLiked(shotID: Int) -> Observable<Bool> {
-    return self.provider.networking.request(.isLikedShot(id: shotID)).map(true)
+    return self.provider.networking.request(.isLikedShot(id: shotID))
+      .map(true)
+      .catchErrorJustReturn(false)
   }
 
   func like(shotID: Int) -> Observable<Void> {

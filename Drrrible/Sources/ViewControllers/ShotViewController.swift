@@ -8,11 +8,12 @@
 
 import UIKit
 
+import ReactorKit
 import ReusableKit
 import RxCocoa
 import RxDataSources
 
-final class ShotViewController: BaseViewController {
+final class ShotViewController: BaseViewController, ReactorKit.ViewType {
 
   // MARK: Constants
 
@@ -50,15 +51,13 @@ final class ShotViewController: BaseViewController {
     $0.register(Reusable.commentCell)
     $0.register(Reusable.activityIndicatorCell)
   }
-  fileprivate let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
 
 
   // MARK: Initializing
 
-  init(reactor: ShotViewReactorType) {
+  override init() {
     super.init()
     self.title = "Shot"
-    self.configure(reactor: reactor)
   }
   
   required convenience init?(coder aDecoder: NSCoder) {
@@ -74,22 +73,18 @@ final class ShotViewController: BaseViewController {
 
     self.collectionView.addSubview(self.refreshControl)
     self.view.addSubview(self.collectionView)
-    self.view.addSubview(self.activityIndicatorView)
   }
 
   override func setupConstraints() {
     self.collectionView.snp.makeConstraints { make in
       make.edges.equalToSuperview()
     }
-    self.activityIndicatorView.snp.makeConstraints { make in
-      make.center.equalToSuperview()
-    }
   }
 
 
   // MARK: Configuring
 
-  private func configure(reactor: ShotViewReactorType) {
+  func configure(reactor: ShotViewReactor) {
     self.collectionView.rx.setDelegate(self).addDisposableTo(self.disposeBag)
     self.dataSource.configureCell = { dataSource, collectionView, indexPath, sectionItem in
       switch sectionItem {
@@ -124,34 +119,28 @@ final class ShotViewController: BaseViewController {
     }
 
     // Input
-    self.rx.deallocated
-      .bindTo(reactor.dispose)
-      .addDisposableTo(self.disposeBag)
-
     self.rx.viewDidLoad
-      .bindTo(reactor.refresh)
+      .map { Reactor.Action.refresh }
+      .bindTo(reactor.action)
       .addDisposableTo(self.disposeBag)
 
     self.refreshControl.rx.controlEvent(.valueChanged)
-      .bindTo(reactor.refresh)
+      .map { Reactor.Action.refresh }
+      .bindTo(reactor.action)
       .addDisposableTo(self.disposeBag)
 
     // Output
-    reactor.sections
+    reactor.state.map { $0.sections }
       .map { $0.isEmpty }
-      .drive(self.collectionView.rx.isHidden)
+      .bindTo(self.collectionView.rx.isHidden)
       .addDisposableTo(self.disposeBag)
 
-    Driver.combineLatest(reactor.isRefreshing, reactor.sections.map { $0.isEmpty }) { $0 && $1 }
-      .drive(self.activityIndicatorView.rx.isAnimating)
+    reactor.state.map { $0.isRefreshing }
+      .bindTo(self.refreshControl.rx.isRefreshing)
       .addDisposableTo(self.disposeBag)
 
-    reactor.isRefreshing
-      .drive(self.refreshControl.rx.isRefreshing)
-      .addDisposableTo(self.disposeBag)
-
-    reactor.sections
-      .drive(self.collectionView.rx.items(dataSource: self.dataSource))
+    reactor.state.map { $0.sections }
+      .bindTo(self.collectionView.rx.items(dataSource: self.dataSource))
       .addDisposableTo(self.disposeBag)
   }
 

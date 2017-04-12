@@ -40,7 +40,7 @@ final class ShotViewReactionLikeButtonViewReactor: ShotViewReactionButtonViewRea
     _ = self.toggleReaction
       .filter { shot.isLiked == true }
       .do(onNext: { Shot.event.onNext(.unlike(id: shot.id)) })
-      .flatMap { provider.shotService.like(shotID: shot.id).ignoreErrors() }
+      .flatMap { provider.shotService.unlike(shotID: shot.id).ignoreErrors() }
       .takeUntil(self.dispose)
       .subscribe()
   }

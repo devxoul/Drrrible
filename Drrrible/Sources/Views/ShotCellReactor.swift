@@ -15,7 +15,7 @@ protocol ShotCellReactorType {
 
   // Output
   var imageURL: URL { get }
-  var presentShotViewController: Observable<ShotViewReactorType> { get }
+  var presentShotViewController: Observable<ShotViewReactor> { get }
 }
 
 final class ShotCellReactor: ShotCellReactorType {
@@ -28,7 +28,7 @@ final class ShotCellReactor: ShotCellReactorType {
   // MARK: Output
 
   let imageURL: URL
-  let presentShotViewController: Observable<ShotViewReactorType>
+  let presentShotViewController: Observable<ShotViewReactor>
 
 
   // MARK: Initializing

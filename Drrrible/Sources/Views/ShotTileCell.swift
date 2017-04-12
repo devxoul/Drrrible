@@ -58,7 +58,9 @@ final class ShotTileCell: BaseCollectionViewCell {
     reactor.presentShotViewController
       .whileDisplaying(self)
       .subscribe(onNext: { reactor in
-        Navigator.push(ShotViewController(reactor: reactor))
+        let viewController = ShotViewController()
+        viewController.reactor = reactor
+        Navigator.push(viewController)
       })
       .addDisposableTo(self.disposeBag)
   }
