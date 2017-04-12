@@ -52,7 +52,7 @@ final class ShotListViewReactor: Reactor<ShotListViewComponents> {
         .map { list -> Mutation in
           return .setShots(list.items, nextURL: list.nextURL)
         }
-      return startRefreshing.concat(setShots).concat(endRefreshing)
+      return .concat([startRefreshing, setShots, endRefreshing])
 
     case .loadMore:
       guard !self.currentState.isRefreshing else { return .empty() }
@@ -64,7 +64,7 @@ final class ShotListViewReactor: Reactor<ShotListViewComponents> {
         .map { list -> Mutation in
           return .appendShots(list.items, nextURL: list.nextURL)
         }
-      return startLoading.concat(appendShots).concat(endLoading)
+      return .concat([startLoading, appendShots, endLoading])
     }
   }
 
