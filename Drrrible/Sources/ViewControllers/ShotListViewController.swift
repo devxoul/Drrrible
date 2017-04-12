@@ -8,10 +8,11 @@
 
 import UIKit
 
+import ReactorKit
 import ReusableKit
 import RxDataSources
 
-final class ShotListViewController: BaseViewController {
+final class ShotListViewController: BaseViewController, ReactorKit.ViewType {
 
   // MARK: Constants
 
@@ -52,12 +53,11 @@ final class ShotListViewController: BaseViewController {
 
   // MARK: Initializing
 
-  init(reactor: ShotListViewReactorType) {
+  override init() {
     super.init()
     self.title = "Shots"
     self.tabBarItem.image = UIImage(named: "tab-shots")
     self.tabBarItem.selectedImage = UIImage(named: "tab-shots-selected")
-    self.configure(reactor: reactor)
   }
   
   required convenience init?(coder aDecoder: NSCoder) {
@@ -83,7 +83,7 @@ final class ShotListViewController: BaseViewController {
 
   // MARK: Configuring
 
-  private func configure(reactor: ShotListViewReactorType) {
+  func configure(reactor: ShotListViewReactor) {
     self.collectionView.rx.setDelegate(self).addDisposableTo(self.disposeBag)
     self.dataSource.configureCell = { dataSource, collectionView, indexPath, sectionItem in
       switch sectionItem {
@@ -100,30 +100,30 @@ final class ShotListViewController: BaseViewController {
       return collectionView.dequeue(Reusable.emptyView, kind: "empty", for: indexPath)
     }
 
-    // Input
-    self.rx.deallocated
-      .bindTo(reactor.dispose)
-      .addDisposableTo(self.disposeBag)
-
+    // Action
     self.rx.viewDidLoad
-      .bindTo(reactor.refresh)
+      .map { Reactor.Action.refresh }
+      .bindTo(reactor.action)
       .addDisposableTo(self.disposeBag)
 
     self.refreshControl.rx.controlEvent(.valueChanged)
-      .bindTo(reactor.refresh)
+      .map { Reactor.Action.refresh }
+      .bindTo(reactor.action)
       .addDisposableTo(self.disposeBag)
 
     self.collectionView.rx.isReachedBottom
-      .bindTo(reactor.loadMore)
+      .map { Reactor.Action.loadMore }
+      .bindTo(reactor.action)
       .addDisposableTo(self.disposeBag)
 
     // Output
-    reactor.isRefreshing
-      .drive(self.refreshControl.rx.isRefreshing)
+    reactor.state.map { $0.isRefreshing }
+      .distinctUntilChanged()
+      .bindTo(self.refreshControl.rx.isRefreshing)
       .addDisposableTo(self.disposeBag)
 
-    reactor.sections
-      .drive(self.collectionView.rx.items(dataSource: self.dataSource))
+    reactor.state.map { $0.sections }
+      .bindTo(self.collectionView.rx.items(dataSource: self.dataSource))
       .addDisposableTo(self.disposeBag)
   }
 
