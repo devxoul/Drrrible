@@ -8,23 +8,16 @@
 
 import UIKit
 
-final class SplashViewController: BaseViewController {
+import Reactor
+
+final class SplashViewController: BaseViewController, ViewType {
+
+  typealias Reactor = SplashViewReactor
+
 
   // MARK: UI
 
   fileprivate let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
-
-
-  // MARK: Initializing
-
-  init(reactor: SplashViewReactorType) {
-    super.init()
-    self.configure(reactor: reactor)
-  }
-  
-  required convenience init?(coder aDecoder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
-  }
 
 
   // MARK: View Life Cycle
@@ -44,21 +37,24 @@ final class SplashViewController: BaseViewController {
 
   // MARK: Configuring
 
-  private func configure(reactor: SplashViewReactorType) {
+  func configure(reactor: Reactor) {
+    // Action
     self.rx.viewDidAppear
-      .map { _ in Void() }
-      .bindTo(reactor.checkIfAuthenticated)
+      .map { _ in Reactor.Action.checkIfAuthenticated }
+      .bindTo(reactor.action)
       .addDisposableTo(self.disposeBag)
 
-    reactor.presentLoginScreen
-      .subscribe(onNext: { reactor in
-        AppDelegate.shared.presentLoginScreen(reactor: reactor)
-      })
-      .addDisposableTo(self.disposeBag)
+    // State
+    reactor.state.map { $0.navigation }.debug()
+      .filterNil()
+      .subscribe(onNext: { navigation in
+        switch navigation {
+        case let .login(reactor):
+          AppDelegate.shared.presentLoginScreen(reactor: reactor)
 
-    reactor.presentMainScreen
-      .subscribe(onNext: { reactor in
-        AppDelegate.shared.presentMainScreen(reactor: reactor)
+        case let .main(reactor):
+          AppDelegate.shared.presentMainScreen(reactor: reactor)
+        }
       })
       .addDisposableTo(self.disposeBag)
   }

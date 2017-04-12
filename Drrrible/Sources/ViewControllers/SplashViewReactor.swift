@@ -6,47 +6,57 @@
 //  Copyright © 2017 Suyeol Jeon. All rights reserved.
 //
 
+import Reactor
 import RxCocoa
 import RxSwift
 
-protocol SplashViewReactorType {
-  // Input
-  var checkIfAuthenticated: PublishSubject<Void> { get }
-
-  // Output
-  var presentLoginScreen: Observable<LoginViewReactorType> { get }
-  var presentMainScreen: Observable<MainTabBarViewReactorType> { get }
+enum SplashViewAction {
+  case checkIfAuthenticated
 }
 
-final class SplashViewReactor: SplashViewReactorType {
+enum SplashViewMutation {
+  case setNavigation(Navigation)
+}
 
-  // MARK: Input
+struct SplashViewState {
+  enum Navigation {
+    case login(LoginViewReactor)
+    case main(MainTabBarViewReactor)
+  }
 
-  let checkIfAuthenticated: PublishSubject<Void> = .init()
+  var navigation: Navigation?
+}
 
+final class SplashViewReactor: Reactor<SplashViewAction, SplashViewMutation, SplashViewState> {
 
-  // MARK: Output
-
-  let presentLoginScreen: Observable<LoginViewReactorType>
-  let presentMainScreen: Observable<MainTabBarViewReactorType>
+  fileprivate let provider: ServiceProviderType
 
 
   // MARK: Initializing
 
   init(provider: ServiceProviderType) {
-    let isAuthenticated = self.checkIfAuthenticated
-      .flatMap { provider.userService.fetchMe() }
-      .map { true }
-      .catchError { _ in .just(false) }
-      .shareReplay(1)
+    self.provider = provider
+    let initialState = State()
+    super.init(initialState: initialState)
+  }
 
-    self.presentLoginScreen = isAuthenticated
-      .filter { !$0 }
-      .map { _ in LoginViewReactor(provider: provider) }
+  override func mutate(action: Action) -> Observable<Mutation> {
+    switch action {
+    case .checkIfAuthenticated:
+      return self.provider.userService.fetchMe()
+        .map { State.Navigation.login(LoginViewReactor(provider: self.provider)) }
+        .catchErrorJustReturn(State.Navigation.main(MainTabBarViewReactor(provider: self.provider)))
+        .map(Mutation.setNavigation)
+    }
+  }
 
-    self.presentMainScreen = isAuthenticated
-      .filter { $0 }
-      .map { _ in MainTabBarViewReactor(provider: provider) }
+  override func reduce(state: State, mutation: Mutation) -> State {
+    var state = state
+    switch mutation {
+    case let .setNavigation(navigation):
+      state.navigation = navigation
+      return state
+    }
   }
 
 }

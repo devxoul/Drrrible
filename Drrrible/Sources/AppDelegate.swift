@@ -54,8 +54,8 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     let serviceProvider: ServiceProviderType = ServiceProvider()
     URLNavigationMap.initialize(provider: serviceProvider)
 
-    let splashViewReactor = SplashViewReactor(provider: serviceProvider)
-    let splashViewController = SplashViewController(reactor: splashViewReactor)
+    let splashViewController = SplashViewController()
+    splashViewController.reactor = SplashViewReactor(provider: serviceProvider)
     window.rootViewController = splashViewController
 
     self.window = window
