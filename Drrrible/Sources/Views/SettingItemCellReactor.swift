@@ -6,20 +6,19 @@
 //  Copyright © 2017 Suyeol Jeon. All rights reserved.
 //
 
+import ReactorKit
 import RxCocoa
 import RxSwift
 
-protocol SettingItemCellReactorType {
-  var textLabelText: String? { get }
-  var detailTextLabelText: String? { get }
+struct SettingItemCellComponents: ReactorComponents {
+  struct State {
+    var text: String?
+    var detailText: String?
+  }
 }
 
-final class SettingItemCellReactor: SettingItemCellReactorType {
-  let textLabelText: String?
-  let detailTextLabelText: String?
-
+final class SettingItemCellReactor: Reactor<SettingItemCellComponents> {
   init(text: String?, detailText: String?) {
-    self.textLabelText = text
-    self.detailTextLabelText = detailText
+    super.init(initialState: State(text: text, detailText: detailText))
   }
 }

@@ -8,7 +8,9 @@
 
 import UIKit
 
-final class ShotViewTitleCell: BaseCollectionViewCell {
+import ReactorKit
+
+final class ShotViewTitleCell: BaseCollectionViewCell, ViewType {
 
   // MARK: Types
 
@@ -66,23 +68,36 @@ final class ShotViewTitleCell: BaseCollectionViewCell {
 
   // MARK: Configuring
 
-  func configure(reactor: ShotViewTitleCellReactorType) {
-    self.avatarView.kf.setImage(with: reactor.avatarURL)
-    self.titleLabel.text = reactor.title
-    self.usernameLabel.text = reactor.username
-    self.setNeedsLayout()
+  func configure(reactor: ShotViewTitleCellReactor) {
+    reactor.state.map { $0.avatarURL }
+      .subscribe(onNext: { [weak self] avatarURL in
+        self?.avatarView.kf.setImage(with: avatarURL)
+      })
+      .addDisposableTo(self.disposeBag)
+
+    reactor.state.map { $0.title }
+      .bindTo(self.titleLabel.rx.text)
+      .addDisposableTo(self.disposeBag)
+
+    reactor.state.map { $0.username }
+      .bindTo(self.usernameLabel.rx.text)
+      .addDisposableTo(self.disposeBag)
+
+    reactor.state
+      .subscribe(onNext: { [weak self] _ in self?.setNeedsLayout() })
+      .addDisposableTo(self.disposeBag)
   }
 
 
   // MARK: Size
 
-  class func size(width: CGFloat, reactor: ShotViewTitleCellReactorType) -> CGSize {
+  class func size(width: CGFloat, reactor: ShotViewTitleCellReactor) -> CGSize {
     let titleLabelWidth = width
       - Metric.paddingLeftRight
       - Metric.avatarViewSize
       - Metric.titleLabelLeft
       - Metric.paddingLeftRight
-    let titleLabelHeight = reactor.title.height(
+    let titleLabelHeight = reactor.currentState.title.height(
       thatFitsWidth: titleLabelWidth,
       font: Font.titleLabel
     )

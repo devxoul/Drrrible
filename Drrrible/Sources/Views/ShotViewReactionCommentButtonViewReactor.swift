@@ -6,29 +6,21 @@
 //  Copyright © 2017 Suyeol Jeon. All rights reserved.
 //
 
+import ReactorKit
 import RxSwift
 
-final class ShotViewReactionCommentButtonViewReactor: ShotViewReactionButtonViewReactorType {
-
-  // MARK: Input
-
-  let dispose: PublishSubject<Void> = .init()
-  let toggleReaction: PublishSubject<Void> = .init()
-
-
-  // MARK: Output
-
-  let isReacted: Bool
-  let canToggleReaction: Bool
-  let text: String
-
-
-  // MARK: Initializing
+final class ShotViewReactionCommentButtonViewReactor: ShotViewReactionButtonViewReactor {
+  fileprivate let provider: ServiceProviderType
+  fileprivate let shot: Shot
 
   init(provider: ServiceProviderType, shot: Shot) {
-    self.isReacted = false
-    self.canToggleReaction = true
-    self.text = "\(shot.commentCount)"
+    self.provider = provider
+    self.shot = shot
+    let initialState = State(
+      isReacted: false,
+      canToggleReaction: true,
+      text: "\(shot.commentCount)"
+    )
+    super.init(initialState: initialState)
   }
-
 }

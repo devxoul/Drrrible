@@ -27,5 +27,5 @@ extension ShotListViewSection: SectionModelType {
 }
 
 enum ShotListViewSectionItem {
-  case shotTile(ShotCellReactorType)
+  case shotTile(ShotCellReactor)
 }

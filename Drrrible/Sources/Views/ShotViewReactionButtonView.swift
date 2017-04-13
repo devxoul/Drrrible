@@ -8,10 +8,11 @@
 
 import UIKit
 
+import ReactorKit
 import RxReusable
 import RxSwift
 
-final class ShotViewReactionButtonView: UIView, RxReusableType {
+final class ShotViewReactionButtonView: UIView, ReactorKit.ViewType, RxReusableType {
 
   // MARK: Constants
 
@@ -52,20 +53,25 @@ final class ShotViewReactionButtonView: UIView, RxReusableType {
 
   // MARK: Configure
 
-  func configure(reactor: ShotViewReactionButtonViewReactorType) {
-    // Input
+  func configure(reactor: ShotViewReactionButtonViewReactor) {
+    // Action
     self.button.rx.tap
-      .bindTo(reactor.toggleReaction)
+      .map { Reactor.Action.toggleReaction }
+      .bindTo(reactor.action)
       .addDisposableTo(self.disposeBag)
 
-    self.rx.deallocated
-      .bindTo(reactor.dispose)
+    // State
+    reactor.state.map { $0.isReacted }
+      .bindTo(self.button.rx.isSelected)
       .addDisposableTo(self.disposeBag)
 
-    // Output
-    self.button.isSelected = reactor.isReacted
-    self.button.isUserInteractionEnabled = reactor.canToggleReaction
-    self.label.text = reactor.text
+    reactor.state.map { $0.canToggleReaction }
+      .bindTo(self.button.rx.isUserInteractionEnabled)
+      .addDisposableTo(self.disposeBag)
+
+    reactor.state.map { $0.text }
+      .bindTo(self.label.rx.text)
+      .addDisposableTo(self.disposeBag)
 
     self.setNeedsLayout()
   }

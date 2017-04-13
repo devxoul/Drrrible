@@ -6,33 +6,28 @@
 //  Copyright © 2017 Suyeol Jeon. All rights reserved.
 //
 
+import ReactorKit
 import RxCocoa
 import RxSwift
 
-protocol ShotViewTitleCellReactorType {
-  // Output
-  var avatarURL: URL? { get }
-  var title: String { get }
-  var username: String { get }
+struct ShotViewTitleCellComponents: ReactorComponents {
+  struct State {
+    var avatarURL: URL?
+    var title: String
+    var username: String
+  }
 }
 
-final class ShotViewTitleCellReactor: ShotViewTitleCellReactorType {
-
-  // MARK: Input
-
-  // MARK: Output
-
-  let avatarURL: URL?
-  let title: String
-  let username: String
-
-
-  // MARK: Initializing
+final class ShotViewTitleCellReactor: Reactor<ShotViewTitleCellComponents> {
+  fileprivate let provider: ServiceProviderType
 
   init(provider: ServiceProviderType, shot: Shot) {
-    self.avatarURL = shot.user.avatarURL
-    self.title = shot.title
-    self.username = "by \(shot.user.name)"
+    self.provider = provider
+    let initialState = State(
+      avatarURL: shot.user.avatarURL,
+      title: shot.title,
+      username: "by \(shot.user.name)"
+    )
+    super.init(initialState: initialState)
   }
-
 }

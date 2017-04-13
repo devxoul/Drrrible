@@ -8,7 +8,9 @@
 
 import UIKit
 
-final class SettingItemCell: BaseTableViewViewCell {
+import ReactorKit
+
+final class SettingItemCell: BaseTableViewViewCell, ViewType {
 
   // MARK: Initializing
 
@@ -20,9 +22,13 @@ final class SettingItemCell: BaseTableViewViewCell {
 
   // MARK: Configuring
 
-  func configure(reactor: SettingItemCellReactorType) {
-    self.textLabel?.text = reactor.textLabelText
-    self.detailTextLabel?.text = reactor.detailTextLabelText
+  func configure(reactor: SettingItemCellReactor) {
+    reactor.state
+      .subscribe(onNext: { [weak self] state in
+        self?.textLabel?.text = state.text
+        self?.detailTextLabel?.text = state.detailText
+      })
+      .addDisposableTo(self.disposeBag)
   }
 
 }

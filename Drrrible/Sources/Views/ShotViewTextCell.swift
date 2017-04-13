@@ -8,9 +8,10 @@
 
 import UIKit
 
+import ReactorKit
 import TTTAttributedLabel
 
-final class ShotViewTextCell: BaseCollectionViewCell {
+final class ShotViewTextCell: BaseCollectionViewCell, ViewType {
 
   // MARK: Constants
 
@@ -41,16 +42,20 @@ final class ShotViewTextCell: BaseCollectionViewCell {
 
   // MARK: Configuring
 
-  func configure(reactor: ShotViewTextCellReactorType) {
-    self.label.setText(reactor.text)
+  func configure(reactor: ShotViewTextCellReactor) {
+    reactor.state.map { $0.text }
+      .subscribe(onNext: { [weak self] text in
+        self?.label.setText(text)
+      })
+      .addDisposableTo(self.disposeBag)
     self.setNeedsLayout()
   }
 
 
   // MARK: Size
 
-  class func size(width: CGFloat, reactor: ShotViewTextCellReactorType) -> CGSize {
-    guard let labelText = reactor.text else { return CGSize(width: width, height: 0) }
+  class func size(width: CGFloat, reactor: ShotViewTextCellReactor) -> CGSize {
+    guard let labelText = reactor.currentState.text else { return CGSize(width: width, height: 0) }
     let labelWidth = width - Metric.paddingLeftRight * 2
     let labelHeight = labelText.height(thatFitsWidth: labelWidth)
     return CGSize(width: width, height: labelHeight + Metric.paddingTop + Metric.paddingBottom)

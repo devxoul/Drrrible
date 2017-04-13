@@ -6,43 +6,49 @@
 //  Copyright © 2017 Suyeol Jeon. All rights reserved.
 //
 
+import ReactorKit
 import RxSwift
 
-final class ShotViewReactionLikeButtonViewReactor: ShotViewReactionButtonViewReactorType {
-
-  // MARK: Input
-
-  let dispose: PublishSubject<Void> = .init()
-  let toggleReaction: PublishSubject<Void> = .init()
-
-
-  // MARK: Output
-
-  let isReacted: Bool
-  let canToggleReaction: Bool
-  let text: String
-
-
-  // MARK: Initializing
+final class ShotViewReactionLikeButtonViewReactor: ShotViewReactionButtonViewReactor {
+  fileprivate let provider: ServiceProviderType
+  fileprivate let shot: Shot
 
   init(provider: ServiceProviderType, shot: Shot) {
-    self.isReacted = shot.isLiked ?? false
-    self.canToggleReaction = (shot.isLiked != nil)
-    self.text = "\(shot.likeCount)"
-
-    _ = self.toggleReaction
-      .filter { shot.isLiked == false }
-      .do(onNext: { Shot.event.onNext(.like(id: shot.id)) })
-      .flatMap { provider.shotService.like(shotID: shot.id).ignoreErrors() }
-      .takeUntil(self.dispose)
-      .subscribe()
-
-    _ = self.toggleReaction
-      .filter { shot.isLiked == true }
-      .do(onNext: { Shot.event.onNext(.unlike(id: shot.id)) })
-      .flatMap { provider.shotService.unlike(shotID: shot.id).ignoreErrors() }
-      .takeUntil(self.dispose)
-      .subscribe()
+    self.provider = provider
+    self.shot = shot
+    let initialState = State(
+      isReacted: shot.isLiked ?? false,
+      canToggleReaction: shot.isLiked != nil,
+      text: "\(shot.likeCount)"
+    )
+    super.init(initialState: initialState)
   }
 
+  override func mutate(action: Action) -> Observable<Mutation> {
+    switch action {
+    case .toggleReaction:
+      if self.shot.isLiked == false {
+        Shot.event.onNext(.like(id: shot.id))
+        _ = self.provider.shotService.like(shotID: self.shot.id).subscribe()
+      } else if self.shot.isLiked == true {
+        Shot.event.onNext(.unlike(id: shot.id))
+        _ = self.provider.shotService.unlike(shotID: self.shot.id).subscribe()
+      }
+      return .empty()
+
+    case let .shotEvent(event):
+      switch event {
+      case let .like(id):
+        guard id == self.shot.id else { return .empty() }
+        return .just(.setReacted(true))
+
+      case let .unlike(id):
+        guard id == self.shot.id else { return .empty() }
+        return .just(.setReacted(false))
+
+      default:
+        return .empty()
+      }
+    }
+  }
 }

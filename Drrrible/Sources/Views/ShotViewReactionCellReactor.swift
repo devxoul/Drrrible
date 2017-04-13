@@ -8,15 +8,15 @@
 
 import RxSwift
 
-protocol ShotViewReactionCellReactorType: class {
-  var likeButtonViewReactor: ShotViewReactionButtonViewReactorType { get }
-  var commentButtonViewReactor: ShotViewReactionButtonViewReactorType { get }
+import ReactorKit
+
+struct ShotViewReactionComponents: ReactorComponents {
+  typealias State = Void
 }
 
-final class ShotViewReactionCellReactor: ShotViewReactionCellReactorType {
-
-  let likeButtonViewReactor: ShotViewReactionButtonViewReactorType
-  let commentButtonViewReactor: ShotViewReactionButtonViewReactorType
+final class ShotViewReactionCellReactor: Reactor<ShotViewReactionComponents> {
+  let likeButtonViewReactor: ShotViewReactionButtonViewReactor
+  let commentButtonViewReactor: ShotViewReactionButtonViewReactor
 
   init(provider: ServiceProviderType, shot: Shot) {
     self.likeButtonViewReactor = ShotViewReactionLikeButtonViewReactor(
@@ -27,6 +27,6 @@ final class ShotViewReactionCellReactor: ShotViewReactionCellReactorType {
       provider: provider,
       shot: shot
     )
+    super.init(initialState: Void())
   }
-
 }
