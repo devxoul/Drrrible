@@ -29,11 +29,12 @@ final class MainTabBarController: UITabBarController, ViewType {
         return UINavigationController(rootViewController: viewController)
       }
 
-    let settingsNavigationController: Observable<UINavigationController> = reactor.state
-      .map { $0.settingsViewReactor }
-      .distinctUntilChanged { $0 === $1 }
-      .map { SettingsViewController(reactor: $0) }
-      .map { UINavigationController(rootViewController: $0) }
+    let settingsNavigationController = reactor.state.map { $0.settingsViewReactor }
+      .map { reactor -> UINavigationController in
+        let viewController = SettingsViewController()
+        viewController.reactor = reactor
+        return UINavigationController(rootViewController: viewController)
+      }
 
     let navigationControllers: [Observable<UINavigationController>] = [
       shotListNavigationController,

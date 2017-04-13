@@ -16,7 +16,7 @@ protocol UserServiceType {
 
 final class UserService: BaseService, UserServiceType {
 
-  fileprivate let userSubject = PublishSubject<User?>()
+  fileprivate let userSubject = ReplaySubject<User?>.create(bufferSize: 1)
   lazy var currentUser: Observable<User?> = self.userSubject.asObservable()
     .startWith(nil)
     .shareReplay(1)

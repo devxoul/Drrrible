@@ -10,10 +10,11 @@ import SafariServices
 import UIKit
 
 import Carte
+import ReactorKit
 import ReusableKit
 import RxDataSources
 
-final class SettingsViewController: BaseViewController {
+final class SettingsViewController: BaseViewController, ReactorKit.ViewType {
 
   // MARK: Constants
 
@@ -36,12 +37,11 @@ final class SettingsViewController: BaseViewController {
 
   // MARK: Initializing
 
-  init(reactor: SettingsViewReactorType) {
+  override init() {
     super.init()
     self.title = "Settings".localized
     self.tabBarItem.image = UIImage(named: "tab-settings")
     self.tabBarItem.selectedImage = UIImage(named: "tab-settings-selected")
-    self.configure(reactor: reactor)
   }
   
   required convenience init?(coder aDecoder: NSCoder) {
@@ -65,7 +65,7 @@ final class SettingsViewController: BaseViewController {
 
   // MARK: Configuring
 
-  private func configure(reactor: SettingsViewReactorType) {
+  func configure(reactor: SettingsViewReactor) {
     self.dataSource.configureCell = { dataSource, tableView, indexPath, sectionItem in
       let cell = tableView.dequeue(Reusable.cell, for: indexPath)
       switch sectionItem {
@@ -84,59 +84,47 @@ final class SettingsViewController: BaseViewController {
       return cell
     }
 
-    // Input
+    // Action
     self.tableView.rx.itemSelected(dataSource: self.dataSource)
-      .bindTo(reactor.tableViewDidSelectItem)
+      .map(Reactor.Action.selectItem)
+      .bindTo(reactor.action)
       .addDisposableTo(self.disposeBag)
 
-    // Output
-    reactor.tableViewSections
-      .drive(self.tableView.rx.items(dataSource: self.dataSource))
-      .addDisposableTo(self.disposeBag)
-
-    reactor.presentWebViewController
-      .subscribe(onNext: { [weak self] url in
+    self.tableView.rx.itemSelected(dataSource: self.dataSource)
+      .subscribe(onNext: { [weak self] sectionItem in
         guard let `self` = self else { return }
-        let viewController = SFSafariViewController(url: url)
-        self.present(viewController, animated: true, completion: nil)
-      })
-      .addDisposableTo(self.disposeBag)
-
-    reactor.presentCarteViewController
-      .subscribe(onNext: { [weak self] in
-        self?.navigationController?.pushViewController(CarteViewController(), animated: true)
-      })
-      .addDisposableTo(self.disposeBag)
-
-    reactor.presentLogoutAlert
-      .subscribe(onNext: { [weak self] actionItems in
-        guard let `self` = self else { return }
+        guard case .logout = sectionItem else { return }
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        actionItems
-          .map { actionItem -> UIAlertAction in
-            let title: String
-            let style: UIAlertActionStyle
-            switch actionItem {
-            case .logout:
-              title = "Logout".localized
-              style = .destructive
-
-            case .cancel:
-              title = "Cancel".localized
-              style = .cancel
-            }
-            return UIAlertAction(title: title, style: style) { _ in
-              reactor.logoutAlertDidSelectActionItem.onNext(actionItem)
-            }
-          }
-          .forEach(actionSheet.addAction)
+        let logoutAction = UIAlertAction(title: "Logout".localized, style: .destructive) { _ in
+          reactor.action.onNext(.logout)
+        }
+        let cancelAction = UIAlertAction(title: "Cancel".localized, style: .cancel, handler: nil)
+        [logoutAction, cancelAction].forEach(actionSheet.addAction)
         self.present(actionSheet, animated: true, completion: nil)
       })
       .addDisposableTo(self.disposeBag)
 
-    reactor.presentLoginScreen
-      .subscribe(onNext: { reactor in
-        AppDelegate.shared.presentLoginScreen(reactor: reactor)
+    // State
+    reactor.state.map { $0.sections }
+      .bindTo(self.tableView.rx.items(dataSource: self.dataSource))
+      .addDisposableTo(self.disposeBag)
+
+    reactor.state.map { $0.navigation }
+      .filterNil()
+      .subscribe(onNext: { [weak self] navigation in
+        guard let `self` = self else { return }
+        switch navigation {
+        case let .webView(url):
+          let viewController = SFSafariViewController(url: url)
+          self.present(viewController, animated: true, completion: nil)
+
+        case .carteView:
+          let viewController = CarteViewController()
+          self.navigationController?.pushViewController(viewController, animated: true)
+
+        case let .loginScreen(reactor):
+          AppDelegate.shared.presentLoginScreen(reactor: reactor)
+        }
       })
       .addDisposableTo(self.disposeBag)
 
