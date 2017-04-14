@@ -11,7 +11,7 @@ import RxCocoa
 import RxSwift
 import RxSwiftUtilities
 
-struct ShotListViewComponents: ReactorComponents {
+final class ShotListViewReactor: Reactor {
   enum Action {
     case refresh
     case loadMore
@@ -30,18 +30,16 @@ struct ShotListViewComponents: ReactorComponents {
     var nextURL: URL?
     var sections: [ShotListViewSection] = [.shotTile([])]
   }
-}
-
-final class ShotListViewReactor: Reactor<ShotListViewComponents> {
 
   let provider: ServiceProviderType
+  let initialState: State
 
   init(provider: ServiceProviderType) {
     self.provider = provider
-    super.init(initialState: State())
+    self.initialState = State()
   }
 
-  override func mutate(action: Action) -> Observable<Mutation> {
+  func mutate(action: Action) -> Observable<Mutation> {
     switch action {
     case .refresh:
       guard !self.currentState.isRefreshing else { return .empty() }
@@ -68,7 +66,7 @@ final class ShotListViewReactor: Reactor<ShotListViewComponents> {
     }
   }
 
-  override func reduce(state: State, mutation: Mutation) -> State {
+  func reduce(state: State, mutation: Mutation) -> State {
     var state = state
     switch mutation {
       case let .setRefreshing(isRefreshing):

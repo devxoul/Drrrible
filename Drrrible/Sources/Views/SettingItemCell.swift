@@ -10,7 +10,7 @@ import UIKit
 
 import ReactorKit
 
-final class SettingItemCell: BaseTableViewViewCell, ViewType {
+final class SettingItemCell: BaseTableViewViewCell, View {
 
   // MARK: Initializing
 

@@ -10,21 +10,21 @@ import ReactorKit
 import RxCocoa
 import RxSwift
 
-struct MainTabBarViewComponents: ReactorComponents {
+final class MainTabBarViewReactor: Reactor {
+  typealias Action = NoAction
+
   struct State {
     var shotListViewReactor: ShotListViewReactor
     var settingsViewReactor: SettingsViewReactor
   }
-}
 
-final class MainTabBarViewReactor: Reactor<MainTabBarViewComponents> {
+  let initialState: State
 
   init(provider: ServiceProviderType) {
-    let initialState = State(
+    self.initialState = State(
       shotListViewReactor: ShotListViewReactor(provider: provider),
       settingsViewReactor: SettingsViewReactor(provider: provider)
     )
-    super.init(initialState: initialState)
   }
 
 }

@@ -12,7 +12,7 @@ import ReactorKit
 import RxCocoa
 import RxSwift
 
-final class MainTabBarController: UITabBarController, ViewType {
+final class MainTabBarController: UITabBarController, View {
 
   // MARK: Properties
 

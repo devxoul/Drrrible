@@ -10,7 +10,7 @@ import UIKit
 
 import ReactorKit
 
-final class SplashViewController: BaseViewController, ViewType {
+final class SplashViewController: BaseViewController, View {
 
   typealias Reactor = SplashViewReactor
 

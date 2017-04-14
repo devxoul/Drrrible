@@ -10,7 +10,7 @@ import UIKit
 
 import ReactorKit
 
-final class ShotViewReactionCell: BaseCollectionViewCell, ViewType {
+final class ShotViewReactionCell: BaseCollectionViewCell, View {
 
   // MARK: Constants
 

@@ -10,11 +10,10 @@ import RxSwift
 
 import ReactorKit
 
-struct ShotViewReactionComponents: ReactorComponents {
-  typealias State = Void
-}
+final class ShotViewReactionCellReactor: Reactor {
+  typealias Action = NoAction
 
-final class ShotViewReactionCellReactor: Reactor<ShotViewReactionComponents> {
+  let initialState: Void = Void()
   let likeButtonViewReactor: ShotViewReactionButtonViewReactor
   let commentButtonViewReactor: ShotViewReactionButtonViewReactor
 
@@ -27,6 +26,5 @@ final class ShotViewReactionCellReactor: Reactor<ShotViewReactionComponents> {
       provider: provider,
       shot: shot
     )
-    super.init(initialState: Void())
   }
 }

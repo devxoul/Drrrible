@@ -10,7 +10,7 @@ import ReactorKit
 import RxCocoa
 import RxSwift
 
-struct ShotCellComponents: ReactorComponents {
+final class ShotCellReactor: Reactor {
   enum Action {
     case showShot
   }
@@ -27,21 +27,18 @@ struct ShotCellComponents: ReactorComponents {
   enum Navigation {
     case shot(ShotViewReactor)
   }
-}
 
-final class ShotCellReactor: Reactor<ShotCellComponents> {
   fileprivate let provider: ServiceProviderType
   fileprivate let shot: Shot
+  let initialState: State
 
   init(provider: ServiceProviderType, shot: Shot) {
     self.provider = provider
     self.shot = shot
-
-    let initialState = State(imageURL: shot.imageURLs.teaser)
-    super.init(initialState: initialState)
+    self.initialState = State(imageURL: shot.imageURLs.teaser)
   }
 
-  override func reduce(state: State, mutation: Mutation) -> State {
+  func reduce(state: State, mutation: Mutation) -> State {
     var state = state
     switch mutation {
     case .showShot:

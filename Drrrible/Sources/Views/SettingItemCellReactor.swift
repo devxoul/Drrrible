@@ -10,15 +10,16 @@ import ReactorKit
 import RxCocoa
 import RxSwift
 
-struct SettingItemCellComponents: ReactorComponents {
+final class SettingItemCellReactor: Reactor {
+  typealias Action = NoAction
   struct State {
     var text: String?
     var detailText: String?
   }
-}
 
-final class SettingItemCellReactor: Reactor<SettingItemCellComponents> {
+  let initialState: State
+
   init(text: String?, detailText: String?) {
-    super.init(initialState: State(text: text, detailText: detailText))
+    self.initialState = State(text: text, detailText: detailText)
   }
 }

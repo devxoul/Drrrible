@@ -12,7 +12,7 @@ import ReactorKit
 import RxReusable
 import RxSwift
 
-final class ShotViewReactionButtonView: UIView, ReactorKit.ViewType, RxReusableType {
+final class ShotViewReactionButtonView: UIView, View, RxReusableType {
 
   // MARK: Constants
 

@@ -10,19 +10,19 @@ import UIKit
 
 import ReactorKit
 
-struct ShotViewTextCellComponents: ReactorComponents {
+final class ShotViewTextCellReactor: Reactor {
+  typealias Action = NoAction
+  
   struct State {
     var text: NSAttributedString?
   }
-}
 
-final class ShotViewTextCellReactor: Reactor<ShotViewTextCellComponents> {
   fileprivate let provider: ServiceProviderType
+  let initialState: State
 
   init(provider: ServiceProviderType, shot: Shot) {
     self.provider = provider
     let text = shot.text.flatMap { try? NSAttributedString.init(htmlString: $0) }
-    let initialState = State(text: text)
-    super.init(initialState: initialState)
+    self.initialState = State(text: text)
   }
 }

@@ -11,7 +11,7 @@ import UIKit
 
 import ReactorKit
 
-final class LoginViewController: BaseViewController, ViewType {
+final class LoginViewController: BaseViewController, View {
 
   // MARK: Constants
 

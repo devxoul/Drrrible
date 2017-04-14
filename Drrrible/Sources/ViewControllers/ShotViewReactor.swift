@@ -11,7 +11,7 @@ import RxCocoa
 import RxSwift
 import RxSwiftUtilities
 
-struct ShotViewComponents: ReactorComponents {
+final class ShotViewReactor: Reactor {
   enum Action {
     case refresh
     case shotEvent(Shot.Event)
@@ -34,25 +34,23 @@ struct ShotViewComponents: ReactorComponents {
       return [self.shotSection, self.commentSection]
     }
   }
-}
-
-final class ShotViewReactor: Reactor<ShotViewComponents> {
 
   fileprivate let provider: ServiceProviderType
   fileprivate let shotID: Int
+  let initialState: State
 
   init(provider: ServiceProviderType, shotID: Int, shot initialShot: Shot? = nil) {
     self.provider = provider
     self.shotID = shotID
-    super.init(initialState: State())
+    self.initialState = State()
   }
 
-  override func transform(action: Observable<Action>) -> Observable<Action> {
+  func transform(action: Observable<Action>) -> Observable<Action> {
     let shotEvent: Observable<Action> = Shot.event.map(Action.shotEvent)
     return Observable.of(action, shotEvent).merge()
   }
 
-  override func mutate(action: Action) -> Observable<Mutation> {
+  func mutate(action: Action) -> Observable<Mutation> {
     switch action {
     case .refresh:
       guard !self.currentState.isRefreshing else { return .empty() }
@@ -103,7 +101,7 @@ final class ShotViewReactor: Reactor<ShotViewComponents> {
     }
   }
 
-  override func reduce(state: State, mutation: Mutation) -> State {
+  func reduce(state: State, mutation: Mutation) -> State {
     var state = state
     switch mutation {
     case let .setRefreshing(isRefreshing):

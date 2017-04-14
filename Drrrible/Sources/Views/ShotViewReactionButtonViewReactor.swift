@@ -9,7 +9,7 @@
 import ReactorKit
 import RxSwift
 
-struct ShotViewReactionButtonViewComponents: ReactorComponents {
+class ShotViewReactionButtonViewReactor: Reactor {
   enum Action {
     case toggleReaction
     case shotEvent(Shot.Event)
@@ -24,15 +24,19 @@ struct ShotViewReactionButtonViewComponents: ReactorComponents {
     var canToggleReaction: Bool
     var text: String
   }
-}
 
-class ShotViewReactionButtonViewReactor: Reactor<ShotViewReactionButtonViewComponents> {
-  override func transform(action: Observable<Action>) -> Observable<Action> {
+  let initialState: State
+
+  init(initialState: State) {
+    self.initialState = initialState
+  }
+
+  func transform(action: Observable<Action>) -> Observable<Action> {
     let shotEvent = Shot.event.map { Action.shotEvent($0) }
     return Observable.of(action, shotEvent).merge()
   }
 
-  override func reduce(state: State, mutation: Mutation) -> State {
+  func reduce(state: State, mutation: Mutation) -> State {
     var state = state
     switch mutation {
     case let .setReacted(isReacted):

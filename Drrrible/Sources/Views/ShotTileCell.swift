@@ -11,7 +11,7 @@ import UIKit
 import ReactorKit
 import URLNavigator
 
-final class ShotTileCell: BaseCollectionViewCell, ViewType {
+final class ShotTileCell: BaseCollectionViewCell, View {
 
   // MARK: Constants
 

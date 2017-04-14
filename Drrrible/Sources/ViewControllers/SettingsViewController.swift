@@ -14,7 +14,7 @@ import ReactorKit
 import ReusableKit
 import RxDataSources
 
-final class SettingsViewController: BaseViewController, ReactorKit.ViewType {
+final class SettingsViewController: BaseViewController, View {
 
   // MARK: Constants
 

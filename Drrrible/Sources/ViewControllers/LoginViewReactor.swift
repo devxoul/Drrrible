@@ -11,7 +11,8 @@ import RxCocoa
 import RxSwift
 import RxSwiftUtilities
 
-struct LoginViewComponents: ReactorComponents {
+final class LoginViewReactor: Reactor {
+
   enum Action {
     case login
   }
@@ -29,18 +30,15 @@ struct LoginViewComponents: ReactorComponents {
   enum Navigation {
     case main(MainTabBarViewReactor)
   }
-}
-
-final class LoginViewReactor: Reactor<LoginViewComponents> {
 
   let provider: ServiceProviderType
+  let initialState: State = State()
 
   init(provider: ServiceProviderType) {
     self.provider = provider
-    super.init(initialState: State())
   }
 
-  override func mutate(action: Action) -> Observable<Mutation> {
+  func mutate(action: Action) -> Observable<Mutation> {
     switch action {
     case .login:
       let setLoading = Observable.just(Mutation.setLoading(true))
@@ -54,7 +52,7 @@ final class LoginViewReactor: Reactor<LoginViewComponents> {
     }
   }
 
-  override func reduce(state: State, mutation: Mutation) -> State {
+  func reduce(state: State, mutation: Mutation) -> State {
     var state = state
     switch mutation {
     case let .setLoading(isLoading):

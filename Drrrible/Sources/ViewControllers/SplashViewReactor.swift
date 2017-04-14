@@ -10,7 +10,8 @@ import ReactorKit
 import RxCocoa
 import RxSwift
 
-struct SplashViewComponents: ReactorComponents {
+final class SplashViewReactor: Reactor {
+
   enum Action {
     case checkIfAuthenticated
   }
@@ -27,22 +28,19 @@ struct SplashViewComponents: ReactorComponents {
     case login(LoginViewReactor)
     case main(MainTabBarViewReactor)
   }
-}
-
-final class SplashViewReactor: Reactor<SplashViewComponents> {
 
   fileprivate let provider: ServiceProviderType
+  let initialState: State
 
 
   // MARK: Initializing
 
   init(provider: ServiceProviderType) {
     self.provider = provider
-    let initialState = State()
-    super.init(initialState: initialState)
+    self.initialState = State()
   }
 
-  override func mutate(action: Action) -> Observable<Mutation> {
+  func mutate(action: Action) -> Observable<Mutation> {
     switch action {
     case .checkIfAuthenticated:
       return self.provider.userService.fetchMe()
@@ -57,7 +55,7 @@ final class SplashViewReactor: Reactor<SplashViewComponents> {
     }
   }
 
-  override func reduce(state: State, mutation: Mutation) -> State {
+  func reduce(state: State, mutation: Mutation) -> State {
     var state = state
     switch mutation {
     case let .setNavigation(navigation):

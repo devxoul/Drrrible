@@ -11,7 +11,7 @@ import UIKit
 import ReactorKit
 import TTTAttributedLabel
 
-final class ShotViewTextCell: BaseCollectionViewCell, ViewType {
+final class ShotViewTextCell: BaseCollectionViewCell, View {
 
   // MARK: Constants
 

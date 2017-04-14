@@ -10,7 +10,8 @@ import ReactorKit
 import RxCocoa
 import RxSwift
 
-struct SettingsViewComponents: ReactorComponents {
+final class SettingsViewReactor: Reactor {
+
   enum Action {
     case selectItem(SettingsViewSectionItem)
     case updateCurrentUsername(String?)
@@ -36,11 +37,9 @@ struct SettingsViewComponents: ReactorComponents {
     case carteView
     case loginScreen(LoginViewReactor)
   }
-}
-
-final class SettingsViewReactor: Reactor<SettingsViewComponents> {
 
   fileprivate let provider: ServiceProviderType
+  let initialState: State
 
   init(provider: ServiceProviderType) {
     self.provider = provider
@@ -59,17 +58,16 @@ final class SettingsViewReactor: Reactor<SettingsViewComponents> {
     ])
 
     let sections = [aboutSection] + [logoutSection]
-    let initialState = State(sections: sections)
-    super.init(initialState: initialState)
+    self.initialState = State(sections: sections)
   }
 
-  override func transform(action: Observable<Action>) -> Observable<Action> {
+  func transform(action: Observable<Action>) -> Observable<Action> {
     let updateCurrentUsername = self.provider.userService.currentUser
       .map { Action.updateCurrentUsername($0?.name) }
     return Observable.of(action, updateCurrentUsername).merge()
   }
 
-  override func mutate(action: Action) -> Observable<Mutation> {
+  func mutate(action: Action) -> Observable<Mutation> {
     switch action {
     case let .selectItem(sectionItem):
       switch sectionItem {
@@ -96,7 +94,7 @@ final class SettingsViewReactor: Reactor<SettingsViewComponents> {
     }
   }
 
-  override func reduce(state: State, mutation: Mutation) -> State {
+  func reduce(state: State, mutation: Mutation) -> State {
     var state = state
     switch mutation {
     case let .updateLogoutSection(newSection):

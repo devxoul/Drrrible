@@ -10,7 +10,7 @@ import UIKit
 
 import ReactorKit
 
-final class ShotViewTitleCell: BaseCollectionViewCell, ViewType {
+final class ShotViewTitleCell: BaseCollectionViewCell, View {
 
   // MARK: Types
 

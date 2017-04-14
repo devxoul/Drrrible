@@ -13,7 +13,7 @@ import ReusableKit
 import RxCocoa
 import RxDataSources
 
-final class ShotViewController: BaseViewController, ReactorKit.ViewType {
+final class ShotViewController: BaseViewController, View {
 
   // MARK: Constants
 
