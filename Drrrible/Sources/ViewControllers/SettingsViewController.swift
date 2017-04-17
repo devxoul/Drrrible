@@ -87,7 +87,7 @@ final class SettingsViewController: BaseViewController, View {
     // Action
     self.tableView.rx.itemSelected(dataSource: self.dataSource)
       .map(Reactor.Action.selectItem)
-      .bindTo(reactor.action)
+      .bind(to: reactor.action)
       .disposed(by: self.disposeBag)
 
     self.tableView.rx.itemSelected(dataSource: self.dataSource)
@@ -106,7 +106,7 @@ final class SettingsViewController: BaseViewController, View {
 
     // State
     reactor.state.map { $0.sections }
-      .bindTo(self.tableView.rx.items(dataSource: self.dataSource))
+      .bind(to: self.tableView.rx.items(dataSource: self.dataSource))
       .disposed(by: self.disposeBag)
 
     reactor.state.map { $0.navigation }
