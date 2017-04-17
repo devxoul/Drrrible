@@ -37,7 +37,8 @@ final class SettingsViewController: BaseViewController, View {
 
   // MARK: Initializing
 
-  override init() {
+  init(reactor: SettingsViewReactor) {
+    defer { self.reactor = reactor }
     super.init()
     self.title = "Settings".localized
     self.tabBarItem.image = UIImage(named: "tab-settings")
@@ -65,21 +66,21 @@ final class SettingsViewController: BaseViewController, View {
 
   // MARK: Configuring
 
-  func configure(reactor: SettingsViewReactor) {
+  func bind(reactor: SettingsViewReactor) {
     self.dataSource.configureCell = { dataSource, tableView, indexPath, sectionItem in
       let cell = tableView.dequeue(Reusable.cell, for: indexPath)
       switch sectionItem {
       case .version(let reactor):
-        cell.configure(reactor: reactor)
+        cell.reactor = reactor
 
       case .icons(let reactor):
-        cell.configure(reactor: reactor)
+        cell.reactor = reactor
 
       case .openSource(let reactor):
-        cell.configure(reactor: reactor)
+        cell.reactor = reactor
 
       case .logout(let reactor):
-        cell.configure(reactor: reactor)
+        cell.reactor = reactor
       }
       return cell
     }
@@ -123,7 +124,7 @@ final class SettingsViewController: BaseViewController, View {
           self.navigationController?.pushViewController(viewController, animated: true)
 
         case let .loginScreen(reactor):
-          AppDelegate.shared.presentLoginScreen(reactor: reactor)
+          AppDelegate.shared.presentLoginScreen()
         }
       })
       .addDisposableTo(self.disposeBag)

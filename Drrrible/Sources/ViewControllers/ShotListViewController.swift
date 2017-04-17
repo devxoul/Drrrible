@@ -53,7 +53,8 @@ final class ShotListViewController: BaseViewController, View {
 
   // MARK: Initializing
 
-  override init() {
+  init(reactor: ShotListViewReactor) {
+    defer { self.reactor = reactor }
     super.init()
     self.title = "Shots"
     self.tabBarItem.image = UIImage(named: "tab-shots")
@@ -83,13 +84,13 @@ final class ShotListViewController: BaseViewController, View {
 
   // MARK: Configuring
 
-  func configure(reactor: ShotListViewReactor) {
+  func bind(reactor: ShotListViewReactor) {
     self.collectionView.rx.setDelegate(self).addDisposableTo(self.disposeBag)
     self.dataSource.configureCell = { dataSource, collectionView, indexPath, sectionItem in
       switch sectionItem {
       case .shotTile(let reactor):
         let cell = collectionView.dequeue(Reusable.shotTileCell, for: indexPath)
-        cell.configure(reactor: reactor)
+        cell.reactor = reactor
         return cell
       }
     }

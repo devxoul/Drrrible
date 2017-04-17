@@ -32,6 +32,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
   class var shared: AppDelegate {
     return UIApplication.shared.delegate as! AppDelegate
   }
+  fileprivate let serviceProvider: ServiceProviderType = ServiceProvider()
 
 
   // MARK: UI
@@ -51,11 +52,10 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     window.backgroundColor = .white
     window.makeKeyAndVisible()
 
-    let serviceProvider: ServiceProviderType = ServiceProvider()
-    URLNavigationMap.initialize(provider: serviceProvider)
+    URLNavigationMap.initialize(provider: self.serviceProvider)
 
-    let splashViewController = SplashViewController()
-    splashViewController.reactor = SplashViewReactor(provider: serviceProvider)
+    let reactor = SplashViewReactor(provider: self.serviceProvider)
+    let splashViewController = SplashViewController(reactor: reactor)
     window.rootViewController = splashViewController
 
     self.window = window
@@ -90,15 +90,15 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
 
   // MARK: Presenting
 
-  func presentLoginScreen(reactor: LoginViewReactor) {
-    let viewController = LoginViewController()
-    viewController.reactor = reactor
+  func presentLoginScreen() {
+    let reactor = LoginViewReactor(provider: self.serviceProvider)
+    let viewController = LoginViewController(reactor: reactor)
     self.window?.rootViewController = viewController
   }
 
-  func presentMainScreen(reactor: MainTabBarViewReactor) {
-    let mainTabBarController = MainTabBarController()
-    mainTabBarController.reactor = reactor
+  func presentMainScreen() {
+    let reactor = MainTabBarViewReactor(provider: self.serviceProvider)
+    let mainTabBarController = MainTabBarController(reactor: reactor)
     self.window?.rootViewController = mainTabBarController
   }
 

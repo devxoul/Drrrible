@@ -21,11 +21,11 @@ final class ShotViewReactorTests: XCTestCase {
     RxExpect { test in
       let provider = MockServiceProvider()
       let reactor = ShotViewReactor(provider: provider, shotID: 1)
-      test.input(reactor.refresh, [
-        next(100, Void()),
-        next(200, Void()),
+      test.input(reactor.action, [
+        next(100, .refresh),
+        next(200, .refresh),
       ])
-      test.assert(reactor.isRefreshing)
+      test.assert(reactor.state.map { $0.isRefreshing }.distinctUntilChanged())
         .filterNext()
         .equal([
           false, // initial
@@ -44,11 +44,14 @@ final class ShotViewReactorTests: XCTestCase {
         $0.shotClosure = { _ in .just(ShotFixture.shot1) }
       }
       let reactor = ShotViewReactor(provider: provider, shotID: 1)
-      test.input(reactor.refresh, [
-        next(100, Void()),
+      test.input(reactor.action, [
+        next(100, .refresh),
       ])
 
-      let isShotSectionItemsEmpty = reactor.sections.map { $0.first?.items.isEmpty ?? true }
+      let isShotSectionItemsEmpty = reactor.state
+        .map { $0.sections }
+        .map { $0.first?.items.isEmpty ?? true }
+        .distinctUntilChanged()
       test.assert(isShotSectionItemsEmpty)
         .filterNext()
         .equal([

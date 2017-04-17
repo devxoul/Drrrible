@@ -53,6 +53,18 @@ final class LoginViewController: BaseViewController, View {
   fileprivate let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .white)
 
 
+  // MARK: Initializing
+
+  init(reactor: LoginViewReactor) {
+    defer { self.reactor = reactor }
+    super.init()
+  }
+  
+  required convenience init?(coder aDecoder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+
+
   // MARK: View Life Cycle
 
   override func viewDidLoad() {
@@ -77,7 +89,7 @@ final class LoginViewController: BaseViewController, View {
 
   // MARK: Configuring
 
-  func configure(reactor: LoginViewReactor) {
+  func bind(reactor: LoginViewReactor) {
     // Input
     self.loginButton.rx.tap
       .map { Reactor.Action.login }
@@ -93,13 +105,11 @@ final class LoginViewController: BaseViewController, View {
       .bindTo(self.activityIndicatorView.rx.isAnimating)
       .addDisposableTo(self.disposeBag)
 
-    reactor.state.map { $0.navigation }
-      .filterNil()
-      .subscribe(onNext: { navigation in
-        switch navigation {
-        case let .main(reactor):
-          AppDelegate.shared.presentMainScreen(reactor: reactor)
-        }
+    reactor.state.map { $0.isLoggedIn }
+      .distinctUntilChanged()
+      .filter { $0 }
+      .subscribe(onNext: { _ in
+        AppDelegate.shared.presentMainScreen()
       })
       .addDisposableTo(self.disposeBag)
   }

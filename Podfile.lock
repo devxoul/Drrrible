@@ -80,7 +80,7 @@ DEPENDENCIES:
   - MoyaSugar
   - MoyaSugar/RxSwift
   - ObjectMapper
-  - ReactorKit (from `https://github.com/devxoul/TheReactiveArchitecture.git`, branch `reactor`)
+  - ReactorKit
   - ReusableKit
   - RxCocoa
   - RxDataSources
@@ -104,17 +104,11 @@ DEPENDENCIES:
   - Yet
 
 EXTERNAL SOURCES:
-  ReactorKit:
-    :branch: reactor
-    :git: https://github.com/devxoul/TheReactiveArchitecture.git
   WebLinking:
     :commit: fddbacc30deab8afe12ce1d3b78bd27c593a0c29
     :git: https://github.com/kylef/WebLinking.swift
 
 CHECKOUT OPTIONS:
-  ReactorKit:
-    :commit: 9f8aa7cba5f9b4337352e4d22ec1d120345b8795
-    :git: https://github.com/devxoul/TheReactiveArchitecture.git
   WebLinking:
     :commit: fddbacc30deab8afe12ce1d3b78bd27c593a0c29
     :git: https://github.com/kylef/WebLinking.swift
@@ -130,7 +124,7 @@ SPEC CHECKSUMS:
   Moya: d3721622e3cc0cc2f038d69a258686f0b66e7252
   MoyaSugar: 302175740302bed7309b9483c4a3321631eab753
   ObjectMapper: fb30f71e08470d1e5a20b199fafe1246281db898
-  ReactorKit: cb050be73189855b525a8e065d660bef3332b357
+  ReactorKit: b461941775ff25f28b6326b786445b68f9e48dfd
   Result: 2453a22e5c5b11c0c3a478736e82cd02f763b781
   ReusableKit: 89e743a120bab0d95848bff27e481833c2768905
   RxCocoa: d14ef6b6029e1ddc6e966508c09289090de68ff9
@@ -154,6 +148,6 @@ SPEC CHECKSUMS:
   WebLinking: 3f71787c14a225148e8be29fe6e7c98597cbc459
   Yet: 54bc49057805c60f4cd9e5ae7e9384dba7e98626
 
-PODFILE CHECKSUM: 5c9dda20dae2a909f630dfec23f8f39f7efe9619
+PODFILE CHECKSUM: 298a8f8a8748ca072a6685b930df8fc298debf99
 
 COCOAPODS: 1.2.0

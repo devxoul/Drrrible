@@ -50,9 +50,9 @@ final class ShotViewReactionCell: BaseCollectionViewCell, View {
 
   // MARK: Configure
 
-  func configure(reactor: ShotViewReactionCellReactor) {
-    self.likeButtonView.configure(reactor: reactor.likeButtonViewReactor)
-    self.commentButtonView.configure(reactor: reactor.commentButtonViewReactor)
+  func bind(reactor: ShotViewReactionCellReactor) {
+    self.likeButtonView.reactor = reactor.likeButtonViewReactor
+    self.commentButtonView.reactor = reactor.commentButtonViewReactor
     self.setNeedsLayout()
   }
 

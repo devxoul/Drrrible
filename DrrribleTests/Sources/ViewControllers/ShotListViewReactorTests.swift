@@ -21,10 +21,10 @@ final class ShotListViewReactorTests: XCTestCase {
     RxExpect() { test in
       let provider = MockServiceProvider()
       let reactor = ShotListViewReactor(provider: provider)
-      test.input(reactor.refresh, [
-        next(100, Void()),
+      test.input(reactor.action, [
+        next(100, .refresh),
       ])
-      test.assert(reactor.isRefreshing)
+      test.assert(reactor.state.map { $0.isRefreshing })
         .filterNext()
         .equal([
           false,
@@ -44,11 +44,14 @@ final class ShotListViewReactorTests: XCTestCase {
       }
 
       let reactor = ShotListViewReactor(provider: provider)
-      test.input(reactor.refresh, [
-        next(100, Void()),
+      test.input(reactor.action, [
+        next(100, .refresh),
       ])
 
-      let sectionItemCount = reactor.sections.map { $0[0].items.count }
+      let sectionItemCount = reactor.state
+        .map { $0.sections }
+        .map { $0[0].items.count }
+        .distinctUntilChanged()
       test.assert(sectionItemCount)
         .filterNext()
         .equal([

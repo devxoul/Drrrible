@@ -28,22 +28,21 @@ final class LoginViewReactorTests: XCTestCase {
         $0.fetchMeClosure = { Observable.just(Void()) }
       }
       let reactor = LoginViewReactor(provider: provider)
-      reactor.presentMainScreen.subscribe().addDisposableTo(test.disposeBag)
 
       // Input
-      test.input(reactor.login, [
-        next(100, Void()),
+      test.input(reactor.action, [
+        next(100, .login),
       ])
 
       // Output
-      test.assert(reactor.isLoading)
+      test.assert(reactor.state.map { $0.isLoading }.distinctUntilChanged())
         .filterNext()
-        .equal([false, true, false])
+        .equal([false, true])
     }
   }
 
-  func testPresentMainScreen() {
-    RxExpect("it should present main screen when authorize() and fetchMe() succeeds") { test in
+  func testIsLoggedIn() {
+    RxExpect("it should set isLoggedIn true when authorize() and fetchMe() succeeds") { test in
       // Environment
       let provider = MockServiceProvider()
       provider.authService = MockAuthService(provider: provider).then {
@@ -55,18 +54,17 @@ final class LoginViewReactorTests: XCTestCase {
       let reactor = LoginViewReactor(provider: provider)
 
       // Input
-      test.input(reactor.login, [
-        next(100, Void()),
+      test.input(reactor.action, [
+        next(100, .login),
       ])
 
       // Output
-      test.assert(reactor.presentMainScreen)
+      test.assert(reactor.state.map { $0.isLoggedIn }.distinctUntilChanged())
         .filterNext()
-        .not()
-        .isEmpty()
+        .equal([false, true])
     }
 
-    RxExpect("it should not present main screen when authorize() fails") { test in
+    RxExpect("it should not isLoggedIn false when authorize() fails") { test in
       // Environment
       let provider = MockServiceProvider()
       provider.authService = MockAuthService(provider: provider).then {
@@ -78,17 +76,17 @@ final class LoginViewReactorTests: XCTestCase {
       let reactor = LoginViewReactor(provider: provider)
 
       // Input
-      test.input(reactor.login, [
-        next(100, Void()),
+      test.input(reactor.action, [
+        next(100, .login),
       ])
 
       // Output
-      test.assert(reactor.presentMainScreen)
+      test.assert(reactor.state.map { $0.isLoggedIn }.distinctUntilChanged())
         .filterNext()
-        .isEmpty()
+        .equal([false])
     }
 
-    RxExpect("it should not present main screen when fetchMe() fails") { test in
+    RxExpect("it should set isLoggedIn false when fetchMe() fails") { test in
       // Environment
       let provider = MockServiceProvider()
       provider.authService = MockAuthService(provider: provider).then {
@@ -100,14 +98,14 @@ final class LoginViewReactorTests: XCTestCase {
       let reactor = LoginViewReactor(provider: provider)
 
       // Input
-      test.input(reactor.login, [
-        next(100, Void()),
+      test.input(reactor.action, [
+        next(100, .login),
       ])
 
       // Output
-      test.assert(reactor.presentMainScreen)
+      test.assert(reactor.state.map { $0.isLoggedIn }.distinctUntilChanged())
         .filterNext()
-        .isEmpty()
+        .equal([false])
     }
   }
 

@@ -35,9 +35,21 @@ final class SplashViewController: BaseViewController, View {
   }
 
 
+  // MARK: Initializing
+
+  init(reactor: Reactor) {
+    defer { self.reactor = reactor }
+    super.init()
+  }
+  
+  required convenience init?(coder aDecoder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+
+
   // MARK: Configuring
 
-  func configure(reactor: Reactor) {
+  func bind(reactor: Reactor) {
     // Action
     self.rx.viewDidAppear
       .map { _ in Reactor.Action.checkIfAuthenticated }
@@ -45,15 +57,14 @@ final class SplashViewController: BaseViewController, View {
       .addDisposableTo(self.disposeBag)
 
     // State
-    reactor.state.map { $0.navigation }.debug()
+    reactor.state.map { $0.isAuthenticated }
       .filterNil()
-      .subscribe(onNext: { navigation in
-        switch navigation {
-        case let .login(reactor):
-          AppDelegate.shared.presentLoginScreen(reactor: reactor)
-
-        case let .main(reactor):
-          AppDelegate.shared.presentMainScreen(reactor: reactor)
+      .subscribe(onNext: { [weak reactor] isAuthenticated in
+        guard let reactor = reactor else { return }
+        if !isAuthenticated {
+          AppDelegate.shared.presentLoginScreen()
+        } else {
+          AppDelegate.shared.presentMainScreen()
         }
       })
       .addDisposableTo(self.disposeBag)

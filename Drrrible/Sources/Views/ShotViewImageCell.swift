@@ -27,7 +27,7 @@ final class ShotViewImageCell: BaseCollectionViewCell, View {
 
   // MARK: Configuring
 
-  func configure(reactor: ShotViewImageCellReactor) {
+  func bind(reactor: ShotViewImageCellReactor) {
     reactor.state.map { $0.imageURL }
       .subscribe(onNext: { [weak self] imageURL in
         self?.imageView.kf.setImage(with: imageURL)

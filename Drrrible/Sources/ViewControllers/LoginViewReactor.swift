@@ -19,16 +19,12 @@ final class LoginViewReactor: Reactor {
 
   enum Mutation {
     case setLoading(Bool)
-    case setNavigation(Navigation)
+    case setLoggedIn(Bool)
   }
 
   struct State {
     var isLoading: Bool = false
-    var navigation: Navigation?
-  }
-
-  enum Navigation {
-    case main(MainTabBarViewReactor)
+    var isLoggedIn: Bool = false
   }
 
   let provider: ServiceProviderType
@@ -41,14 +37,13 @@ final class LoginViewReactor: Reactor {
   func mutate(action: Action) -> Observable<Mutation> {
     switch action {
     case .login:
-      let setLoading = Observable.just(Mutation.setLoading(true))
-      let setNavigation = self.provider.authService.authorize()
+      let setLoading: Observable<Mutation> = .just(Mutation.setLoading(true))
+      let setLoggedIn: Observable<Mutation> = self.provider.authService.authorize()
         .flatMap { self.provider.userService.fetchMe() }
-        .map { _ -> Mutation in
-          let reactor = MainTabBarViewReactor(provider: self.provider)
-          return Mutation.setNavigation(.main(reactor))
-        }
-      return setLoading.concat(setNavigation)
+        .map { true }
+        .catchErrorJustReturn(false)
+        .map(Mutation.setLoggedIn)
+      return setLoading.concat(setLoggedIn)
     }
   }
 
@@ -59,8 +54,8 @@ final class LoginViewReactor: Reactor {
       state.isLoading = isLoading
       return state
 
-    case let .setNavigation(navigation):
-      state.navigation = navigation
+    case let .setLoggedIn(isLoggedIn):
+      state.isLoggedIn = isLoggedIn
       return state
     }
   }

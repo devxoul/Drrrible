@@ -17,19 +17,14 @@ final class SplashViewReactor: Reactor {
   }
 
   enum Mutation {
-    case setNavigation(Navigation)
+    case setAuthenticated(Bool)
   }
 
   struct State {
-    var navigation: Navigation?
+    var isAuthenticated: Bool?
   }
 
-  enum Navigation {
-    case login(LoginViewReactor)
-    case main(MainTabBarViewReactor)
-  }
-
-  fileprivate let provider: ServiceProviderType
+  let provider: ServiceProviderType
   let initialState: State
 
 
@@ -44,22 +39,17 @@ final class SplashViewReactor: Reactor {
     switch action {
     case .checkIfAuthenticated:
       return self.provider.userService.fetchMe()
-        .map { _ -> Mutation in
-          let reactor = LoginViewReactor(provider: self.provider)
-          return .setNavigation(.login(reactor))
-        }
-        .catchErrorJustReturn({ _ -> Mutation in
-          let reactor = MainTabBarViewReactor(provider: self.provider)
-          return .setNavigation(.main(reactor))
-        }())
+        .map { true }
+        .catchErrorJustReturn(false)
+        .map(Mutation.setAuthenticated)
     }
   }
 
   func reduce(state: State, mutation: Mutation) -> State {
     var state = state
     switch mutation {
-    case let .setNavigation(navigation):
-      state.navigation = navigation
+    case let .setAuthenticated(isAuthenticated):
+      state.isAuthenticated = isAuthenticated
       return state
     }
   }
