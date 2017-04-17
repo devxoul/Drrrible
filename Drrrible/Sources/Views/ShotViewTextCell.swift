@@ -47,7 +47,7 @@ final class ShotViewTextCell: BaseCollectionViewCell, View {
       .subscribe(onNext: { [weak self] text in
         self?.label.setText(text)
       })
-      .addDisposableTo(self.disposeBag)
+      .disposed(by: self.disposeBag)
     self.setNeedsLayout()
   }
 

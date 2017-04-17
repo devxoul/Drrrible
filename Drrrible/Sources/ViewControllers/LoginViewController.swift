@@ -82,16 +82,16 @@ final class LoginViewController: BaseViewController, View {
     self.loginButton.rx.tap
       .map { Reactor.Action.login }
       .bindTo(reactor.action)
-      .addDisposableTo(self.disposeBag)
+      .disposed(by: self.disposeBag)
 
     // Output
     reactor.state.map { $0.isLoading }
       .bindTo(self.loginButton.rx.isHidden)
-      .addDisposableTo(self.disposeBag)
+      .disposed(by: self.disposeBag)
 
     reactor.state.map { $0.isLoading }
       .bindTo(self.activityIndicatorView.rx.isAnimating)
-      .addDisposableTo(self.disposeBag)
+      .disposed(by: self.disposeBag)
 
     reactor.state.map { $0.navigation }
       .filterNil()
@@ -101,7 +101,7 @@ final class LoginViewController: BaseViewController, View {
           AppDelegate.shared.presentMainScreen(reactor: reactor)
         }
       })
-      .addDisposableTo(self.disposeBag)
+      .disposed(by: self.disposeBag)
   }
 
 }

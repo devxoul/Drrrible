@@ -85,7 +85,7 @@ final class ShotViewController: BaseViewController, View {
   // MARK: Configuring
 
   func configure(reactor: ShotViewReactor) {
-    self.collectionView.rx.setDelegate(self).addDisposableTo(self.disposeBag)
+    self.collectionView.rx.setDelegate(self).disposed(by: self.disposeBag)
     self.dataSource.configureCell = { dataSource, collectionView, indexPath, sectionItem in
       switch sectionItem {
       case .image(let reactor):
@@ -122,26 +122,26 @@ final class ShotViewController: BaseViewController, View {
     self.rx.viewDidLoad
       .map { Reactor.Action.refresh }
       .bindTo(reactor.action)
-      .addDisposableTo(self.disposeBag)
+      .disposed(by: self.disposeBag)
 
     self.refreshControl.rx.controlEvent(.valueChanged)
       .map { Reactor.Action.refresh }
       .bindTo(reactor.action)
-      .addDisposableTo(self.disposeBag)
+      .disposed(by: self.disposeBag)
 
     // Output
     reactor.state.map { $0.sections }
       .map { $0.isEmpty }
       .bindTo(self.collectionView.rx.isHidden)
-      .addDisposableTo(self.disposeBag)
+      .disposed(by: self.disposeBag)
 
     reactor.state.map { $0.isRefreshing }
       .bindTo(self.refreshControl.rx.isRefreshing)
-      .addDisposableTo(self.disposeBag)
+      .disposed(by: self.disposeBag)
 
     reactor.state.map { $0.sections }
       .bindTo(self.collectionView.rx.items(dataSource: self.dataSource))
-      .addDisposableTo(self.disposeBag)
+      .disposed(by: self.disposeBag)
   }
 
 }
