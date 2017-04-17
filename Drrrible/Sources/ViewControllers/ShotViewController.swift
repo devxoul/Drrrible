@@ -121,26 +121,26 @@ final class ShotViewController: BaseViewController, View {
     // Input
     self.rx.viewDidLoad
       .map { Reactor.Action.refresh }
-      .bindTo(reactor.action)
+      .bind(to: reactor.action)
       .disposed(by: self.disposeBag)
 
     self.refreshControl.rx.controlEvent(.valueChanged)
       .map { Reactor.Action.refresh }
-      .bindTo(reactor.action)
+      .bind(to: reactor.action)
       .disposed(by: self.disposeBag)
 
     // Output
     reactor.state.map { $0.sections }
       .map { $0.isEmpty }
-      .bindTo(self.collectionView.rx.isHidden)
+      .bind(to: self.collectionView.rx.isHidden)
       .disposed(by: self.disposeBag)
 
     reactor.state.map { $0.isRefreshing }
-      .bindTo(self.refreshControl.rx.isRefreshing)
+      .bind(to: self.refreshControl.rx.isRefreshing)
       .disposed(by: self.disposeBag)
 
     reactor.state.map { $0.sections }
-      .bindTo(self.collectionView.rx.items(dataSource: self.dataSource))
+      .bind(to: self.collectionView.rx.items(dataSource: self.dataSource))
       .disposed(by: self.disposeBag)
   }
 

@@ -81,16 +81,16 @@ final class LoginViewController: BaseViewController, View {
     // Input
     self.loginButton.rx.tap
       .map { Reactor.Action.login }
-      .bindTo(reactor.action)
+      .bind(to: reactor.action)
       .disposed(by: self.disposeBag)
 
     // Output
     reactor.state.map { $0.isLoading }
-      .bindTo(self.loginButton.rx.isHidden)
+      .bind(to: self.loginButton.rx.isHidden)
       .disposed(by: self.disposeBag)
 
     reactor.state.map { $0.isLoading }
-      .bindTo(self.activityIndicatorView.rx.isAnimating)
+      .bind(to: self.activityIndicatorView.rx.isAnimating)
       .disposed(by: self.disposeBag)
 
     reactor.state.map { $0.navigation }

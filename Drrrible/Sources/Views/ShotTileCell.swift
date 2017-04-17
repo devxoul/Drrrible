@@ -51,7 +51,7 @@ final class ShotTileCell: BaseCollectionViewCell, View {
     // Action
     self.cardView.rx.tapGesture() { $0.delegate = ExclusiveGestureRecognizerDelegate.shared }
       .map { _ in Reactor.Action.showShot }
-      .bindTo(reactor.action)
+      .bind(to: reactor.action)
       .disposed(by: self.disposeBag)
 
     // State
