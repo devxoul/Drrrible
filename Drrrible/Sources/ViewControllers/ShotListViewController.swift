@@ -84,7 +84,7 @@ final class ShotListViewController: BaseViewController, View {
   // MARK: Configuring
 
   func configure(reactor: ShotListViewReactor) {
-    self.collectionView.rx.setDelegate(self).addDisposableTo(self.disposeBag)
+    self.collectionView.rx.setDelegate(self).disposed(by: self.disposeBag)
     self.dataSource.configureCell = { dataSource, collectionView, indexPath, sectionItem in
       switch sectionItem {
       case .shotTile(let reactor):
@@ -103,28 +103,28 @@ final class ShotListViewController: BaseViewController, View {
     // Action
     self.rx.viewDidLoad
       .map { Reactor.Action.refresh }
-      .bindTo(reactor.action)
-      .addDisposableTo(self.disposeBag)
+      .bind(to: reactor.action)
+      .disposed(by: self.disposeBag)
 
     self.refreshControl.rx.controlEvent(.valueChanged)
       .map { Reactor.Action.refresh }
-      .bindTo(reactor.action)
-      .addDisposableTo(self.disposeBag)
+      .bind(to: reactor.action)
+      .disposed(by: self.disposeBag)
 
     self.collectionView.rx.isReachedBottom
       .map { Reactor.Action.loadMore }
-      .bindTo(reactor.action)
-      .addDisposableTo(self.disposeBag)
+      .bind(to: reactor.action)
+      .disposed(by: self.disposeBag)
 
     // Output
     reactor.state.map { $0.isRefreshing }
       .distinctUntilChanged()
-      .bindTo(self.refreshControl.rx.isRefreshing)
-      .addDisposableTo(self.disposeBag)
+      .bind(to: self.refreshControl.rx.isRefreshing)
+      .disposed(by: self.disposeBag)
 
     reactor.state.map { $0.sections }
-      .bindTo(self.collectionView.rx.items(dataSource: self.dataSource))
-      .addDisposableTo(self.disposeBag)
+      .bind(to: self.collectionView.rx.items(dataSource: self.dataSource))
+      .disposed(by: self.disposeBag)
   }
 
 }

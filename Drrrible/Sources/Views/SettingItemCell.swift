@@ -28,7 +28,7 @@ final class SettingItemCell: BaseTableViewViewCell, View {
         self?.textLabel?.text = state.text
         self?.detailTextLabel?.text = state.detailText
       })
-      .addDisposableTo(self.disposeBag)
+      .disposed(by: self.disposeBag)
   }
 
 }

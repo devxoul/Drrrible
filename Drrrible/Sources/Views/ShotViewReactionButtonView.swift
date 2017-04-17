@@ -57,21 +57,21 @@ final class ShotViewReactionButtonView: UIView, View, RxReusableType {
     // Action
     self.button.rx.tap
       .map { Reactor.Action.toggleReaction }
-      .bindTo(reactor.action)
-      .addDisposableTo(self.disposeBag)
+      .bind(to: reactor.action)
+      .disposed(by: self.disposeBag)
 
     // State
     reactor.state.map { $0.isReacted }
-      .bindTo(self.button.rx.isSelected)
-      .addDisposableTo(self.disposeBag)
+      .bind(to: self.button.rx.isSelected)
+      .disposed(by: self.disposeBag)
 
     reactor.state.map { $0.canToggleReaction }
-      .bindTo(self.button.rx.isUserInteractionEnabled)
-      .addDisposableTo(self.disposeBag)
+      .bind(to: self.button.rx.isUserInteractionEnabled)
+      .disposed(by: self.disposeBag)
 
     reactor.state.map { $0.text }
-      .bindTo(self.label.rx.text)
-      .addDisposableTo(self.disposeBag)
+      .bind(to: self.label.rx.text)
+      .disposed(by: self.disposeBag)
 
     self.setNeedsLayout()
   }

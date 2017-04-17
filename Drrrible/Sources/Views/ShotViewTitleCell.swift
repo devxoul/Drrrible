@@ -73,19 +73,19 @@ final class ShotViewTitleCell: BaseCollectionViewCell, View {
       .subscribe(onNext: { [weak self] avatarURL in
         self?.avatarView.kf.setImage(with: avatarURL)
       })
-      .addDisposableTo(self.disposeBag)
+      .disposed(by: self.disposeBag)
 
     reactor.state.map { $0.title }
-      .bindTo(self.titleLabel.rx.text)
-      .addDisposableTo(self.disposeBag)
+      .bind(to: self.titleLabel.rx.text)
+      .disposed(by: self.disposeBag)
 
     reactor.state.map { $0.username }
-      .bindTo(self.usernameLabel.rx.text)
-      .addDisposableTo(self.disposeBag)
+      .bind(to: self.usernameLabel.rx.text)
+      .disposed(by: self.disposeBag)
 
     reactor.state
       .subscribe(onNext: { [weak self] _ in self?.setNeedsLayout() })
-      .addDisposableTo(self.disposeBag)
+      .disposed(by: self.disposeBag)
   }
 
 
