@@ -15,7 +15,7 @@ import RxTest
 
 @testable import Drrrible
 
-final class ShotViewReactorTests: XCTestCase {
+final class ShotViewReactorTests: TestCase {
 
   func testIsRefreshing() {
     RxExpect { test in

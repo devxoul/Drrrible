@@ -13,4 +13,5 @@ final class MockServiceProvider: ServiceProviderType {
   lazy var authService: AuthServiceType = MockAuthService(provider: self)
   lazy var userService: UserServiceType = MockUserService(provider: self)
   lazy var shotService: ShotServiceType = MockShotService(provider: self)
+  lazy var appStoreService: AppStoreServiceType = MockAppStoreService(provider: self)
 }

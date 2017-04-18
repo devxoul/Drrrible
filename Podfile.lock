@@ -8,6 +8,8 @@ PODS:
   - Crashlytics (3.8.4):
     - Fabric (~> 1.6.3)
   - Fabric (1.6.11)
+  - Firebase (3.16.0):
+    - Firebase/Core (= 3.16.0)
   - Firebase/Core (3.16.0):
     - FirebaseAnalytics (= 3.8.0)
     - FirebaseCore (= 3.6.0)
@@ -91,6 +93,7 @@ DEPENDENCIES:
   - CocoaLumberjack/Swift
   - Crashlytics
   - Fabric
+  - Firebase
   - Firebase/Core
   - KeychainAccess
   - Kingfisher
@@ -175,6 +178,6 @@ SPEC CHECKSUMS:
   WebLinking: 3f71787c14a225148e8be29fe6e7c98597cbc459
   Yet: 54bc49057805c60f4cd9e5ae7e9384dba7e98626
 
-PODFILE CHECKSUM: 4108b2a368adcb4aa579a8e1a861012d714ede08
+PODFILE CHECKSUM: b2184a055650aca8650df2e19a9e3d21477a2f77
 
 COCOAPODS: 1.2.0

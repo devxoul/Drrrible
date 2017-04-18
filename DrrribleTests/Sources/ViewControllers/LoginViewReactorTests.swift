@@ -15,7 +15,7 @@ import RxTest
 
 @testable import Drrrible
 
-final class LoginViewReactorTests: XCTestCase {
+final class LoginViewReactorTests: TestCase {
 
   func testIsLoading() {
     RxExpect("is should change isLoading when start login") { test in

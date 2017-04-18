@@ -56,7 +56,7 @@ target 'Drrrible' do
   pod 'Firebase/Core'
 
   target 'DrrribleTests' do
-    inherit! :search_paths
+    inherit! :complete
 
     pod 'RxTest'
     pod 'RxExpect'

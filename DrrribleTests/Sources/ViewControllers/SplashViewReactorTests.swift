@@ -15,7 +15,7 @@ import RxTest
 
 @testable import Drrrible
 
-final class SplashViewReactorTests: XCTestCase {
+final class SplashViewReactorTests: TestCase {
 
   func testIsAuthenticated() {
     RxExpect("it should set isAuthenticated false when not authenticated") { test in

@@ -27,7 +27,6 @@ import URLNavigator
 import WebLinking
 import Yet
 
-@UIApplicationMain
 final class AppDelegate: UIResponder, UIApplicationDelegate {
 
   // MARK: Properties
