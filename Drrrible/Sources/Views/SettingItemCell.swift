@@ -22,7 +22,7 @@ final class SettingItemCell: BaseTableViewViewCell, View {
 
   // MARK: Configuring
 
-  func configure(reactor: SettingItemCellReactor) {
+  func bind(reactor: SettingItemCellReactor) {
     reactor.state
       .subscribe(onNext: { [weak self] state in
         self?.textLabel?.text = state.text

@@ -42,7 +42,7 @@ final class ShotViewTextCell: BaseCollectionViewCell, View {
 
   // MARK: Configuring
 
-  func configure(reactor: ShotViewTextCellReactor) {
+  func bind(reactor: ShotViewTextCellReactor) {
     reactor.state.map { $0.text }
       .subscribe(onNext: { [weak self] text in
         self?.label.setText(text)

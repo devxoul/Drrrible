@@ -47,7 +47,7 @@ final class ShotTileCell: BaseCollectionViewCell, View {
 
   // MARK: Configuring
 
-  func configure(reactor: ShotCellReactor) {
+  func bind(reactor: ShotCellReactor) {
     // Action
     self.cardView.rx.tapGesture() { $0.delegate = ExclusiveGestureRecognizerDelegate.shared }
       .map { _ in Reactor.Action.showShot }
@@ -66,8 +66,7 @@ final class ShotTileCell: BaseCollectionViewCell, View {
       .subscribe(onNext: { navigation in
         switch navigation {
         case let .shot(reactor):
-          let viewController = ShotViewController()
-          viewController.reactor = reactor
+          let viewController = ShotViewController(reactor: reactor)
           Navigator.push(viewController)
         }
       })

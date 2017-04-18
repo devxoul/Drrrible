@@ -68,7 +68,7 @@ final class ShotViewTitleCell: BaseCollectionViewCell, View {
 
   // MARK: Configuring
 
-  func configure(reactor: ShotViewTitleCellReactor) {
+  func bind(reactor: ShotViewTitleCellReactor) {
     reactor.state.map { $0.avatarURL }
       .subscribe(onNext: { [weak self] avatarURL in
         self?.avatarView.kf.setImage(with: avatarURL)

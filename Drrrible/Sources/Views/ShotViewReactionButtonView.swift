@@ -53,7 +53,7 @@ final class ShotViewReactionButtonView: UIView, View, RxReusableType {
 
   // MARK: Configure
 
-  func configure(reactor: ShotViewReactionButtonViewReactor) {
+  func bind(reactor: ShotViewReactionButtonViewReactor) {
     // Action
     self.button.rx.tap
       .map { Reactor.Action.toggleReaction }

@@ -17,32 +17,34 @@ import RxTest
 
 final class SplashViewReactorTests: XCTestCase {
 
-  func testPresentLoginScreen() {
-    RxExpect("it should present login screen when not authenticated") { test in
+  func testIsAuthenticated() {
+    RxExpect("it should set isAuthenticated false when not authenticated") { test in
       let provider = MockServiceProvider()
       provider.userService = MockUserService(provider: provider).then {
         $0.fetchMeClosure = { Observable.error(MockError()) }
       }
       let reactor = SplashViewReactor(provider: provider)
-      test.input(reactor.checkIfAuthenticated, [
-        next(100, Void()),
-      ])
-      test.assert(reactor.presentLoginScreen.map(true))
-        .filterNext()
-        .equal([true])
-    }
-  }
 
-  func testPresentMainScreen() {
-    RxExpect("it should present main screen when authenticated") { test in
+      // input
+      test.input(reactor.action, [
+        next(100, .checkIfAuthenticated),
+      ])
+
+      // assert
+      test.assert(reactor.state.map { $0.isAuthenticated }.distinctUntilChanged())
+        .filterNext()
+        .equal([nil, false]) { $0 == $1 }
+    }
+
+    RxExpect("it should set isAuthenticated true when not authenticated") { test in
       let provider = MockServiceProvider()
       let reactor = SplashViewReactor(provider: provider)
-      test.input(reactor.checkIfAuthenticated, [
-        next(100, Void()),
+      test.input(reactor.action, [
+        next(100, .checkIfAuthenticated),
       ])
-      test.assert(reactor.presentMainScreen.map(true))
+      test.assert(reactor.state.map { $0.isAuthenticated }.distinctUntilChanged())
         .filterNext()
-        .equal([true])
+        .equal([nil, true]) { $0 == $1 }
     }
   }
 

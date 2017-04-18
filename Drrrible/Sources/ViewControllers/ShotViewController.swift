@@ -55,7 +55,8 @@ final class ShotViewController: BaseViewController, View {
 
   // MARK: Initializing
 
-  override init() {
+  init(reactor: ShotViewReactor) {
+    defer { self.reactor = reactor }
     super.init()
     self.title = "Shot"
   }
@@ -84,33 +85,34 @@ final class ShotViewController: BaseViewController, View {
 
   // MARK: Configuring
 
-  func configure(reactor: ShotViewReactor) {
-    self.collectionView.rx.setDelegate(self).disposed(by: self.disposeBag)
+  func bind(reactor: ShotViewReactor) {
+    self.collectionView.rx.setDelegate(self).addDisposableTo(self.disposeBag)
+
     self.dataSource.configureCell = { dataSource, collectionView, indexPath, sectionItem in
       switch sectionItem {
       case .image(let reactor):
         let cell = collectionView.dequeue(Reusable.imageCell, for: indexPath)
-        cell.configure(reactor: reactor)
+        cell.reactor = reactor
         return cell
 
       case .title(let reactor):
         let cell = collectionView.dequeue(Reusable.titleCell, for: indexPath)
-        cell.configure(reactor: reactor)
+        cell.reactor = reactor
         return cell
 
       case .text(let reactor):
         let cell = collectionView.dequeue(Reusable.textCell, for: indexPath)
-        cell.configure(reactor: reactor)
+        cell.reactor = reactor
         return cell
 
       case .reaction(let reactor):
         let cell = collectionView.dequeue(Reusable.reactionCell, for: indexPath)
-        cell.configure(reactor: reactor)
+        cell.reactor = reactor
         return cell
 
       case .comment(let reactor):
         let cell = collectionView.dequeue(Reusable.commentCell, for: indexPath)
-        cell.configure(reactor: reactor)
+        cell.reactor = reactor
         return cell
 
       case .activityIndicator:
