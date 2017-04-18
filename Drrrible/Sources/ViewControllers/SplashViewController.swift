@@ -53,8 +53,8 @@ final class SplashViewController: BaseViewController, View {
     // Action
     self.rx.viewDidAppear
       .map { _ in Reactor.Action.checkIfAuthenticated }
-      .bindTo(reactor.action)
-      .addDisposableTo(self.disposeBag)
+      .bind(to: reactor.action)
+      .disposed(by: self.disposeBag)
 
     // State
     reactor.state.map { $0.isAuthenticated }
@@ -67,7 +67,7 @@ final class SplashViewController: BaseViewController, View {
           AppDelegate.shared.presentMainScreen()
         }
       })
-      .addDisposableTo(self.disposeBag)
+      .disposed(by: self.disposeBag)
   }
 
 }

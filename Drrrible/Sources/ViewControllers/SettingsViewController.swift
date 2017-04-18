@@ -88,8 +88,8 @@ final class SettingsViewController: BaseViewController, View {
     // Action
     self.tableView.rx.itemSelected(dataSource: self.dataSource)
       .map(Reactor.Action.selectItem)
-      .bindTo(reactor.action)
-      .addDisposableTo(self.disposeBag)
+      .bind(to: reactor.action)
+      .disposed(by: self.disposeBag)
 
     self.tableView.rx.itemSelected(dataSource: self.dataSource)
       .subscribe(onNext: { [weak self] sectionItem in
@@ -103,12 +103,12 @@ final class SettingsViewController: BaseViewController, View {
         [logoutAction, cancelAction].forEach(actionSheet.addAction)
         self.present(actionSheet, animated: true, completion: nil)
       })
-      .addDisposableTo(self.disposeBag)
+      .disposed(by: self.disposeBag)
 
     // State
     reactor.state.map { $0.sections }
-      .bindTo(self.tableView.rx.items(dataSource: self.dataSource))
-      .addDisposableTo(self.disposeBag)
+      .bind(to: self.tableView.rx.items(dataSource: self.dataSource))
+      .disposed(by: self.disposeBag)
 
     reactor.state.map { $0.navigation }
       .filterNil()
@@ -127,14 +127,14 @@ final class SettingsViewController: BaseViewController, View {
           AppDelegate.shared.presentLoginScreen()
         }
       })
-      .addDisposableTo(self.disposeBag)
+      .disposed(by: self.disposeBag)
 
     // UI
     self.tableView.rx.itemSelected
       .subscribe(onNext: { [weak tableView] indexPath in
         tableView?.deselectRow(at: indexPath, animated: false)
       })
-      .addDisposableTo(self.disposeBag)
+      .disposed(by: self.disposeBag)
   }
 
 }

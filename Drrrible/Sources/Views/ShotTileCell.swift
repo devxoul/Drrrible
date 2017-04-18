@@ -51,15 +51,15 @@ final class ShotTileCell: BaseCollectionViewCell, View {
     // Action
     self.cardView.rx.tapGesture() { $0.delegate = ExclusiveGestureRecognizerDelegate.shared }
       .map { _ in Reactor.Action.showShot }
-      .bindTo(reactor.action)
-      .addDisposableTo(self.disposeBag)
+      .bind(to: reactor.action)
+      .disposed(by: self.disposeBag)
 
     // State
     reactor.state.map { $0.imageURL }
       .subscribe(onNext: { [weak self] imageURL in
         self?.imageView.kf.setImage(with: imageURL, placeholder: nil)
       })
-      .addDisposableTo(self.disposeBag)
+      .disposed(by: self.disposeBag)
 
     reactor.state.map { $0.navigation }
       .filterNil()
@@ -70,7 +70,7 @@ final class ShotTileCell: BaseCollectionViewCell, View {
           Navigator.push(viewController)
         }
       })
-      .addDisposableTo(self.disposeBag)
+      .disposed(by: self.disposeBag)
   }
 
 

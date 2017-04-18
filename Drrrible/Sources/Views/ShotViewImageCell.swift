@@ -32,7 +32,7 @@ final class ShotViewImageCell: BaseCollectionViewCell, View {
       .subscribe(onNext: { [weak self] imageURL in
         self?.imageView.kf.setImage(with: imageURL)
       })
-      .addDisposableTo(self.disposeBag)
+      .disposed(by: self.disposeBag)
   }
 
 

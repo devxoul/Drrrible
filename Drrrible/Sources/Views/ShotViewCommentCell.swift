@@ -68,7 +68,7 @@ final class ShotViewCommentCell: BaseCollectionViewCell, View {
         self?.messageLabel.setText(state.message)
         self?.setNeedsLayout()
       })
-      .addDisposableTo(self.disposeBag)
+      .disposed(by: self.disposeBag)
   }
 
 
