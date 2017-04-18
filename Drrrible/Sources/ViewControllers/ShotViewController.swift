@@ -58,7 +58,7 @@ final class ShotViewController: BaseViewController, View {
   init(reactor: ShotViewReactor) {
     defer { self.reactor = reactor }
     super.init()
-    self.title = "Shot"
+    self.title = "shot".localized
   }
   
   required convenience init?(coder aDecoder: NSCoder) {

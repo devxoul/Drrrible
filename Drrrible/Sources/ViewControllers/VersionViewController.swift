@@ -45,7 +45,7 @@ final class VersionViewController: BaseViewController, View {
   init(reactor: VersionViewReactor) {
     defer { self.reactor = reactor }
     super.init()
-    self.title = "Version".localized
+    self.title = "version".localized
   }
   
   required convenience init?(coder aDecoder: NSCoder) {
@@ -105,11 +105,11 @@ extension VersionViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeue(Reusable.cell, for: indexPath)
     if indexPath.row == 0 {
-      cell.textLabel?.text = "Current version".localized
+      cell.textLabel?.text = "current_version".localized
       cell.detailTextLabel?.text = self.reactor?.currentState.currentVersion
       cell.isLoading = false
     } else {
-      cell.textLabel?.text = "Latest version".localized
+      cell.textLabel?.text = "latest_version".localized
       cell.detailTextLabel?.text = self.reactor?.currentState.latestVersion
       cell.isLoading = self.reactor?.currentState.isLoading ?? false
     }

@@ -1,7 +1,11 @@
-/* 
-  Localizable.strings
-  Drrrible
-
-  Created by Suyeol Jeon on 07/03/2017.
-  Copyright © 2017 Suyeol Jeon. All rights reserved.
-*/
+"settings" = "설정";
+"logout" = "로그아웃";
+"cancel" = "취소";
+"version" = "버전";
+"icons_from" = "아이콘 출처";
+"open_source_license" = "오픈소스 라이센스";
+"current_version" = "현재 버전";
+"latest_version" = "최신 버전";
+"login_with_dribbble" = "Dribbble 계정으로 로그인하기";
+"shots" = "피드";
+"shot" = "자세히 보기";

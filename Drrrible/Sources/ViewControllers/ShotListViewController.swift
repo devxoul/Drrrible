@@ -56,7 +56,7 @@ final class ShotListViewController: BaseViewController, View {
   init(reactor: ShotListViewReactor) {
     defer { self.reactor = reactor }
     super.init()
-    self.title = "Shots"
+    self.title = "shots".localized
     self.tabBarItem.image = UIImage(named: "tab-shots")
     self.tabBarItem.selectedImage = UIImage(named: "tab-shots-selected")
   }

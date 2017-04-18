@@ -1,7 +1,6 @@
-api_key: 92608e07a31e98a6b8cb8b53555c919b
-project_id: 99649
+api_key: 99dcd72ad6697196d27d9a0156c45549
+project_id: 106657
 type: apple_strings
-tags: [ios]
 
 languages: [en, ko]
 path: Drrrible/Resources/{LANGUAGE}.lproj/Localizable.strings

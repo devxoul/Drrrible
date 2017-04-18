@@ -39,15 +39,15 @@ final class SettingsViewReactor: Reactor {
 
     let aboutSection = SettingsViewSection.about([
       .version(SettingItemCellReactor(
-        text: "Version".localized,
+        text: "version".localized,
         detailText: Bundle.main.version
       )),
-      .icons(SettingItemCellReactor(text: "Icons from".localized, detailText: "icons8.com")),
-      .openSource(SettingItemCellReactor(text: "Open Source License".localized, detailText: nil)),
+      .icons(SettingItemCellReactor(text: "icons_from".localized, detailText: "icons8.com")),
+      .openSource(SettingItemCellReactor(text: "open_source_license".localized, detailText: nil)),
     ])
 
     let logoutSection = SettingsViewSection.logout([
-      .logout(SettingItemCellReactor(text: "Logout".localized, detailText: nil))
+      .logout(SettingItemCellReactor(text: "logout".localized, detailText: nil))
     ])
 
     let sections = [aboutSection] + [logoutSection]
@@ -64,7 +64,7 @@ final class SettingsViewReactor: Reactor {
     switch action {
     case let .updateCurrentUsername(name):
       let section = SettingsViewSection.logout([
-        .logout(SettingItemCellReactor(text: "Logout".localized, detailText: name))
+        .logout(SettingItemCellReactor(text: "logout".localized, detailText: name))
       ])
       return .just(.updateLogoutSection(section))
 

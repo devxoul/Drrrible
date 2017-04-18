@@ -41,7 +41,7 @@ final class LoginViewController: BaseViewController, View {
   }
   fileprivate let loginButton = UIButton().then {
     $0.titleLabel?.font = Font.loginButtonTitle
-    $0.setTitle("Login with Dribbble", for: .normal)
+    $0.setTitle("login_with_dribbble".localized, for: .normal)
     $0.setBackgroundImage(
       UIImage.resizable()
         .color(0xFF2719.color)

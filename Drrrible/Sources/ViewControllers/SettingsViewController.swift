@@ -40,7 +40,7 @@ final class SettingsViewController: BaseViewController, View {
   init(reactor: SettingsViewReactor) {
     defer { self.reactor = reactor }
     super.init()
-    self.title = "Settings".localized
+    self.title = "settings".localized
     self.tabBarItem.image = UIImage(named: "tab-settings")
     self.tabBarItem.selectedImage = UIImage(named: "tab-settings-selected")
   }
@@ -119,10 +119,10 @@ final class SettingsViewController: BaseViewController, View {
 
         case .logout:
           let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-          let logoutAction = UIAlertAction(title: "Logout".localized, style: .destructive) { _ in
+          let logoutAction = UIAlertAction(title: "logout".localized, style: .destructive) { _ in
             reactor.action.onNext(.logout)
           }
-          let cancelAction = UIAlertAction(title: "Cancel".localized, style: .cancel, handler: nil)
+          let cancelAction = UIAlertAction(title: "cancel".localized, style: .cancel, handler: nil)
           [logoutAction, cancelAction].forEach(actionSheet.addAction)
           self.present(actionSheet, animated: true, completion: nil)
         }
