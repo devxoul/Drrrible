@@ -85,51 +85,50 @@ final class SettingsViewController: BaseViewController, View {
       return cell
     }
 
-    // Action
-    self.tableView.rx.itemSelected(dataSource: self.dataSource)
-      .map(Reactor.Action.selectItem)
-      .bind(to: reactor.action)
-      .disposed(by: self.disposeBag)
-
-    self.tableView.rx.itemSelected(dataSource: self.dataSource)
-      .subscribe(onNext: { [weak self] sectionItem in
-        guard let `self` = self else { return }
-        guard case .logout = sectionItem else { return }
-        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        let logoutAction = UIAlertAction(title: "Logout".localized, style: .destructive) { _ in
-          reactor.action.onNext(.logout)
-        }
-        let cancelAction = UIAlertAction(title: "Cancel".localized, style: .cancel, handler: nil)
-        [logoutAction, cancelAction].forEach(actionSheet.addAction)
-        self.present(actionSheet, animated: true, completion: nil)
-      })
-      .disposed(by: self.disposeBag)
-
     // State
     reactor.state.map { $0.sections }
       .bind(to: self.tableView.rx.items(dataSource: self.dataSource))
       .disposed(by: self.disposeBag)
 
-    reactor.state.map { $0.navigation }
-      .filterNil()
-      .subscribe(onNext: { [weak self] navigation in
-        guard let `self` = self else { return }
-        switch navigation {
-        case let .webView(url):
+    reactor.state.map { $0.isLoggedOut }
+      .distinctUntilChanged()
+      .filter { $0 }
+      .subscribe(onNext: { _ in
+        AppDelegate.shared.presentLoginScreen()
+      })
+      .disposed(by: self.disposeBag)
+
+    // View
+    self.tableView.rx.itemSelected(dataSource: self.dataSource)
+      .subscribe(onNext: { [weak self] sectionItem in
+        guard let `self` = self, let reactor = self.reactor else { return }
+        switch sectionItem {
+        case .version:
+          let reactor = VersionViewReactor(provider: reactor.provider)
+          let viewController = VersionViewController(reactor: reactor)
+          self.navigationController?.pushViewController(viewController, animated: true)
+
+        case .icons:
+          let url = URL(string: "https://icons8.com")!
           let viewController = SFSafariViewController(url: url)
           self.present(viewController, animated: true, completion: nil)
 
-        case .carteView:
+        case .openSource:
           let viewController = CarteViewController()
           self.navigationController?.pushViewController(viewController, animated: true)
 
-        case let .loginScreen(reactor):
-          AppDelegate.shared.presentLoginScreen()
+        case .logout:
+          let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+          let logoutAction = UIAlertAction(title: "Logout".localized, style: .destructive) { _ in
+            reactor.action.onNext(.logout)
+          }
+          let cancelAction = UIAlertAction(title: "Cancel".localized, style: .cancel, handler: nil)
+          [logoutAction, cancelAction].forEach(actionSheet.addAction)
+          self.present(actionSheet, animated: true, completion: nil)
         }
       })
       .disposed(by: self.disposeBag)
 
-    // UI
     self.tableView.rx.itemSelected
       .subscribe(onNext: { [weak tableView] indexPath in
         tableView?.deselectRow(at: indexPath, animated: false)

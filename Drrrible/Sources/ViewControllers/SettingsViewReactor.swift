@@ -13,32 +13,25 @@ import RxSwift
 final class SettingsViewReactor: Reactor {
 
   enum Action {
-    case selectItem(SettingsViewSectionItem)
     case updateCurrentUsername(String?)
     case logout
   }
 
   enum Mutation {
     case updateLogoutSection(SettingsViewSection)
-    case setNavigation(Navigation)
+    case setLoggedOut
   }
 
   struct State {
-    var navigation: Navigation?
     var sections: [SettingsViewSection] = []
+    var isLoggedOut: Bool = false
 
     init(sections: [SettingsViewSection]) {
       self.sections = sections
     }
   }
 
-  enum Navigation {
-    case webView(URL)
-    case carteView
-    case loginScreen(LoginViewReactor)
-  }
-
-  fileprivate let provider: ServiceProviderType
+  let provider: ServiceProviderType
   let initialState: State
 
   init(provider: ServiceProviderType) {
@@ -46,10 +39,10 @@ final class SettingsViewReactor: Reactor {
 
     let aboutSection = SettingsViewSection.about([
       .version(SettingItemCellReactor(
-        text: "App Version".localized,
-        detailText: Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String
+        text: "Version".localized,
+        detailText: Bundle.main.version
       )),
-      .icons(SettingItemCellReactor(text: "Icons from icons8.com".localized, detailText: nil)),
+      .icons(SettingItemCellReactor(text: "Icons from".localized, detailText: "icons8.com")),
       .openSource(SettingItemCellReactor(text: "Open Source License".localized, detailText: nil)),
     ])
 
@@ -69,19 +62,6 @@ final class SettingsViewReactor: Reactor {
 
   func mutate(action: Action) -> Observable<Mutation> {
     switch action {
-    case let .selectItem(sectionItem):
-      switch sectionItem {
-      case .icons:
-        let url = URL(string: "https://icons8.com")!
-        return .just(.setNavigation(.webView(url)))
-
-      case .openSource:
-        return .just(.setNavigation(.carteView))
-
-      default:
-        return .empty()
-      }
-
     case let .updateCurrentUsername(name):
       let section = SettingsViewSection.logout([
         .logout(SettingItemCellReactor(text: "Logout".localized, detailText: name))
@@ -89,8 +69,7 @@ final class SettingsViewReactor: Reactor {
       return .just(.updateLogoutSection(section))
 
     case .logout:
-      let reactor = LoginViewReactor(provider: self.provider)
-      return .just(.setNavigation(.loginScreen(reactor)))
+      return .just(.setLoggedOut)
     }
   }
 
@@ -109,8 +88,8 @@ final class SettingsViewReactor: Reactor {
       state.sections[index] = newSection
       return state
 
-    case let .setNavigation(navigation):
-      state.navigation = navigation
+    case .setLoggedOut:
+      state.isLoggedOut = true
       return state
     }
   }

@@ -20,6 +20,11 @@
 		031EB0821E70624D004D6349 /* AuthPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EB0811E70624D004D6349 /* AuthPlugin.swift */; };
 		031F92861EA55FA00025D5FB /* TestMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031F92851EA55FA00025D5FB /* TestMain.swift */; };
 		034D334C1EA67119004498FB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 034D334B1EA67119004498FB /* GoogleService-Info.plist */; };
+		034D334E1EA67631004498FB /* AppStoreAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034D334D1EA67631004498FB /* AppStoreAPI.swift */; };
+		034D33501EA67662004498FB /* AppStoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034D334F1EA67662004498FB /* AppStoreService.swift */; };
+		034D33521EA68746004498FB /* VersionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034D33511EA68746004498FB /* VersionViewController.swift */; };
+		034D33541EA68755004498FB /* VersionViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034D33531EA68755004498FB /* VersionViewReactor.swift */; };
+		034D33561EA687BA004498FB /* Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034D33551EA687BA004498FB /* Bundle.swift */; };
 		035D068A1E71A1F800AFF030 /* ShotService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035D06891E71A1F800AFF030 /* ShotService.swift */; };
 		035D068C1E71A40000AFF030 /* ShotTileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035D068B1E71A40000AFF030 /* ShotTileCell.swift */; };
 		035D068E1E71A48000AFF030 /* ShotCellReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035D068D1E71A48000AFF030 /* ShotCellReactor.swift */; };
@@ -126,6 +131,11 @@
 		031EB0811E70624D004D6349 /* AuthPlugin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthPlugin.swift; sourceTree = "<group>"; };
 		031F92851EA55FA00025D5FB /* TestMain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestMain.swift; sourceTree = "<group>"; };
 		034D334B1EA67119004498FB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		034D334D1EA67631004498FB /* AppStoreAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppStoreAPI.swift; sourceTree = "<group>"; };
+		034D334F1EA67662004498FB /* AppStoreService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppStoreService.swift; sourceTree = "<group>"; };
+		034D33511EA68746004498FB /* VersionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VersionViewController.swift; sourceTree = "<group>"; };
+		034D33531EA68755004498FB /* VersionViewReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VersionViewReactor.swift; sourceTree = "<group>"; };
+		034D33551EA687BA004498FB /* Bundle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bundle.swift; sourceTree = "<group>"; };
 		035D06891E71A1F800AFF030 /* ShotService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShotService.swift; sourceTree = "<group>"; };
 		035D068B1E71A40000AFF030 /* ShotTileCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShotTileCell.swift; sourceTree = "<group>"; };
 		035D068D1E71A48000AFF030 /* ShotCellReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShotCellReactor.swift; sourceTree = "<group>"; };
@@ -424,6 +434,7 @@
 			children = (
 				031EB0731E7006BD004D6349 /* Networking.swift */,
 				031EB06A1E7001FF004D6349 /* DribbbleAPI.swift */,
+				034D334D1EA67631004498FB /* AppStoreAPI.swift */,
 				031EB0801E706248004D6349 /* Plugins */,
 			);
 			path = Networking;
@@ -461,6 +472,7 @@
 				031EB05A1E6FEFE7004D6349 /* AuthService.swift */,
 				031EB0751E700814004D6349 /* UserService.swift */,
 				035D06891E71A1F800AFF030 /* ShotService.swift */,
+				034D334F1EA67662004498FB /* AppStoreService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -479,6 +491,7 @@
 				038B68FA1E71F5D8006B44F9 /* UIColor+Dribbble.swift */,
 				0377C5621E746E5200EE4576 /* UIEdgeInsets+Init.swift */,
 				0365BB951E754424009BA3F8 /* ExclusiveGestureRecognizerDelegate.swift */,
+				034D33551EA687BA004498FB /* Bundle.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -499,6 +512,8 @@
 				0377C5541E745BF000EE4576 /* ShotViewReactor.swift */,
 				038B69021E72A466006B44F9 /* SettingsViewController.swift */,
 				038B69041E72A46D006B44F9 /* SettingsViewReactor.swift */,
+				034D33511EA68746004498FB /* VersionViewController.swift */,
+				034D33531EA68755004498FB /* VersionViewReactor.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -824,6 +839,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				03DF951D1E6EB56C00E31665 /* SplashViewReactor.swift in Sources */,
+				034D33561EA687BA004498FB /* Bundle.swift in Sources */,
 				0365BB8C1E747D91009BA3F8 /* ShotViewTextCellReactor.swift in Sources */,
 				038B690F1E73153E006B44F9 /* UITableView+Rx.swift in Sources */,
 				031EB0781E700912004D6349 /* ObjectMapper+Rx.swift in Sources */,
@@ -855,7 +871,9 @@
 				031EB0671E6FFDE3004D6349 /* Shot.swift in Sources */,
 				0365BBA01E758BB4009BA3F8 /* ModelStream.swift in Sources */,
 				031EB05B1E6FEFE7004D6349 /* AuthService.swift in Sources */,
+				034D334E1EA67631004498FB /* AppStoreAPI.swift in Sources */,
 				038B69051E72A46D006B44F9 /* SettingsViewReactor.swift in Sources */,
+				034D33501EA67662004498FB /* AppStoreService.swift in Sources */,
 				035D068E1E71A48000AFF030 /* ShotCellReactor.swift in Sources */,
 				0365BB941E753F5E009BA3F8 /* ShotViewReactionCellReactor.swift in Sources */,
 				038B68F91E71F338006B44F9 /* CollectionActivityIndicatorView.swift in Sources */,
@@ -876,6 +894,7 @@
 				03DF95071E6EAADE00E31665 /* ServiceProvider.swift in Sources */,
 				031EB0631E6FF7A9004D6349 /* AccessToken.swift in Sources */,
 				03D996D41E80535B004773AE /* ShotViewCommentCell.swift in Sources */,
+				034D33521EA68746004498FB /* VersionViewController.swift in Sources */,
 				038B68FF1E72A399006B44F9 /* MainTabBarController.swift in Sources */,
 				03DF95031E6EAACF00E31665 /* UIViewController+Rx.swift in Sources */,
 				03D996D61E805392004773AE /* ShotViewCommentCellReactor.swift in Sources */,
@@ -884,6 +903,7 @@
 				038B69031E72A466006B44F9 /* SettingsViewController.swift in Sources */,
 				0365BB8E1E748246009BA3F8 /* NSAttributedString+HTMLString.swift in Sources */,
 				038B69011E72A3BC006B44F9 /* MainTabBarViewReactor.swift in Sources */,
+				034D33541EA68755004498FB /* VersionViewReactor.swift in Sources */,
 				0365BB9E1E755320009BA3F8 /* ShotViewReactionCommentButtonViewReactor.swift in Sources */,
 				03DF95111E6EAB8E00E31665 /* Snap.swift in Sources */,
 				0365BB961E754424009BA3F8 /* ExclusiveGestureRecognizerDelegate.swift in Sources */,

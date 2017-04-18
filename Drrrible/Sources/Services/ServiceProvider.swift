@@ -11,6 +11,7 @@ protocol ServiceProviderType: class {
   var authService: AuthServiceType { get }
   var userService: UserServiceType { get }
   var shotService: ShotServiceType { get }
+  var appStoreService: AppStoreServiceType { get }
 }
 
 final class ServiceProvider: ServiceProviderType {
@@ -18,4 +19,5 @@ final class ServiceProvider: ServiceProviderType {
   lazy var authService: AuthServiceType = AuthService(provider: self)
   lazy var userService: UserServiceType = UserService(provider: self)
   lazy var shotService: ShotServiceType = ShotService(provider: self)
+  lazy var appStoreService: AppStoreServiceType = AppStoreService(provider: self)
 }
