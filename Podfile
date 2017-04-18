@@ -50,6 +50,10 @@ target 'Drrrible' do
   pod 'Yet'
   pod 'Carte'
 
+  # SDK
+  pod 'Fabric'
+  pod 'Crashlytics'
+
   target 'DrrribleTests' do
     inherit! :search_paths
 

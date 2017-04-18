@@ -9,6 +9,8 @@
 import UIKit
 
 import CGFloatLiteral
+import Crashlytics
+import Fabric
 import Kingfisher
 import ManualLayout
 import RxGesture
@@ -46,6 +48,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     _ application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?
   ) -> Bool {
+    self.configureSDKs()
     self.configureAppearance()
 
     let window = UIWindow(frame: UIScreen.main.bounds)
@@ -74,6 +77,17 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
       return true
     }
     return false
+  }
+
+
+  // MARK: SDKs
+
+  private func configureSDKs() {
+    self.configureFabric()
+  }
+
+  private func configureFabric() {
+    Fabric.with([Crashlytics.self])
   }
 
 
