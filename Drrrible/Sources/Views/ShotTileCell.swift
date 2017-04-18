@@ -48,12 +48,6 @@ final class ShotTileCell: BaseCollectionViewCell, View {
   // MARK: Configuring
 
   func bind(reactor: ShotCellReactor) {
-    // Action
-    self.cardView.rx.tapGesture() { $0.delegate = ExclusiveGestureRecognizerDelegate.shared }
-      .map { _ in Reactor.Action.showShot }
-      .bind(to: reactor.action)
-      .disposed(by: self.disposeBag)
-
     // State
     reactor.state.map { $0.imageURL }
       .subscribe(onNext: { [weak self] imageURL in
@@ -61,14 +55,18 @@ final class ShotTileCell: BaseCollectionViewCell, View {
       })
       .disposed(by: self.disposeBag)
 
-    reactor.state.map { $0.navigation }
-      .filterNil()
-      .subscribe(onNext: { navigation in
-        switch navigation {
-        case let .shot(reactor):
-          let viewController = ShotViewController(reactor: reactor)
-          Navigator.push(viewController)
-        }
+    // View
+    self.cardView.rx.tapGesture() { $0.delegate = ExclusiveGestureRecognizerDelegate.shared }
+      .whileDisplaying(self)
+      .subscribe(onNext: { [weak reactor] _ in
+        guard let reactor = reactor else { return }
+        let nextReactor = ShotViewReactor(
+          provider: reactor.provider,
+          shotID: reactor.shot.id,
+          shot: reactor.shot
+        )
+        let viewController = ShotViewController(reactor: nextReactor)
+        Navigator.push(viewController)
       })
       .disposed(by: self.disposeBag)
   }
