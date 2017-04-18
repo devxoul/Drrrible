@@ -11,6 +11,7 @@ import UIKit
 import CGFloatLiteral
 import Crashlytics
 import Fabric
+import Firebase
 import Kingfisher
 import ManualLayout
 import RxGesture
@@ -84,10 +85,15 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
 
   private func configureSDKs() {
     self.configureFabric()
+    self.configureFirebase()
   }
 
   private func configureFabric() {
     Fabric.with([Crashlytics.self])
+  }
+
+  private func configureFirebase() {
+    FIRApp.configure()
   }
 
 

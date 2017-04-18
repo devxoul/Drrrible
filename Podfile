@@ -53,6 +53,7 @@ target 'Drrrible' do
   # SDK
   pod 'Fabric'
   pod 'Crashlytics'
+  pod 'Firebase/Core'
 
   target 'DrrribleTests' do
     inherit! :search_paths
