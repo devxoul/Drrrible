@@ -6,25 +6,22 @@
 //  Copyright © 2017 Suyeol Jeon. All rights reserved.
 //
 
+import ReactorKit
 import RxCocoa
 import RxSwift
 
-protocol ShotViewImageCellReactorType {
-  // Output
-  var imageURL: URL { get }
-}
-
-final class ShotViewImageCellReactor: ShotViewImageCellReactorType {
-
-  // MARK: Output
-
-  let imageURL: URL
-
-
-  // MARK: Initializing
-
-  init(provider: ServiceProviderType, shot: Shot) {
-    self.imageURL = shot.imageURLs.hidpi ?? shot.imageURLs.normal
+final class ShotViewImageCellReactor: Reactor {
+  typealias Action = NoAction
+  
+  struct State {
+    var imageURL: URL
   }
 
+  fileprivate let provider: ServiceProviderType
+  let initialState: State
+
+  init(provider: ServiceProviderType, shot: Shot) {
+    self.provider = provider
+    self.initialState = State(imageURL: shot.imageURLs.hidpi ?? shot.imageURLs.normal)
+  }
 }

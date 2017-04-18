@@ -23,7 +23,6 @@ class BaseViewController: UIViewController {
 
   init() {
     super.init(nibName: nil, bundle: nil)
-//    self.navigationItem.back
   }
 
   required convenience init?(coder aDecoder: NSCoder) {
@@ -37,7 +36,7 @@ class BaseViewController: UIViewController {
 
   // MARK: Rx
 
-  let disposeBag = DisposeBag()
+  var disposeBag = DisposeBag()
 
 
   // MARK: Layout Constraints

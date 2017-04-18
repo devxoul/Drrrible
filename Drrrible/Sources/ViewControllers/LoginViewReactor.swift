@@ -6,42 +6,58 @@
 //  Copyright © 2017 Suyeol Jeon. All rights reserved.
 //
 
+import ReactorKit
 import RxCocoa
 import RxSwift
 import RxSwiftUtilities
 
-protocol LoginViewReactorType {
-  // Input
-  var login: PublishSubject<Void> { get }
+final class LoginViewReactor: Reactor {
 
-  // Output
-  var isLoading: Driver<Bool> { get }
-  var presentMainScreen: Observable<MainTabBarViewReactorType> { get }
-}
+  enum Action {
+    case login
+  }
 
-final class LoginViewReactor: LoginViewReactorType {
+  enum Mutation {
+    case setLoading(Bool)
+    case setLoggedIn(Bool)
+  }
 
-  // MARK: Input
+  struct State {
+    var isLoading: Bool = false
+    var isLoggedIn: Bool = false
+  }
 
-  let login: PublishSubject<Void> = .init()
-
-
-  // MARK: Output
-
-  let isLoading: Driver<Bool>
-  let presentMainScreen: Observable<MainTabBarViewReactorType>
-
-
-  // MARK: Initializing
+  let provider: ServiceProviderType
+  let initialState: State = State()
 
   init(provider: ServiceProviderType) {
-    let isLoading = ActivityIndicator()
-    self.isLoading = isLoading.asDriver()
-    self.presentMainScreen = self.login
-      .filter(!isLoading)
-      .flatMap { provider.authService.authorize().trackActivity(isLoading) }
-      .flatMap { provider.userService.fetchMe() }
-      .map { MainTabBarViewReactor(provider: provider) }
+    self.provider = provider
+  }
+
+  func mutate(action: Action) -> Observable<Mutation> {
+    switch action {
+    case .login:
+      let setLoading: Observable<Mutation> = .just(Mutation.setLoading(true))
+      let setLoggedIn: Observable<Mutation> = self.provider.authService.authorize()
+        .flatMap { self.provider.userService.fetchMe() }
+        .map { true }
+        .catchErrorJustReturn(false)
+        .map(Mutation.setLoggedIn)
+      return setLoading.concat(setLoggedIn)
+    }
+  }
+
+  func reduce(state: State, mutation: Mutation) -> State {
+    var state = state
+    switch mutation {
+    case let .setLoading(isLoading):
+      state.isLoading = isLoading
+      return state
+
+    case let .setLoggedIn(isLoggedIn):
+      state.isLoggedIn = isLoggedIn
+      return state
+    }
   }
 
 }

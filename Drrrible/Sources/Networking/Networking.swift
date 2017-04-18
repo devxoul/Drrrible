@@ -42,7 +42,7 @@ final class Networking<Target: SugarTargetType>: RxMoyaSugarProvider<Target> {
           log.debug(message, file: file, function: function, line: line)
         },
         onError: { error in
-          if let response = (error as? Moya.Error)?.response {
+          if let response = (error as? MoyaError)?.response {
             if let jsonObject = try? response.mapJSON(failsOnEmptyData: false) {
               let message = "FAILURE: \(requestString) (\(response.statusCode))\n\(jsonObject)"
               log.warning(message, file: file, function: function, line: line)

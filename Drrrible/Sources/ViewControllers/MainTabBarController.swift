@@ -8,47 +8,50 @@
 
 import UIKit
 
+import ReactorKit
 import RxCocoa
 import RxSwift
 
-final class MainTabBarController: UITabBarController {
+final class MainTabBarController: UITabBarController, View {
 
   // MARK: Properties
 
-  fileprivate let disposeBag = DisposeBag()
+  var disposeBag = DisposeBag()
 
 
   // MARK: Initializing
 
-  init(reactor: MainTabBarViewReactorType) {
+  init(reactor: MainTabBarViewReactor) {
+    defer { self.reactor = reactor }
     super.init(nibName: nil, bundle: nil)
-    self.configure(reactor: reactor)
   }
   
-  required init?(coder aDecoder: NSCoder) {
+  required convenience init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
 
 
   // MARK: Configuring
 
-  private func configure(reactor: MainTabBarViewReactorType) {
-    // Output
+  func bind(reactor: MainTabBarViewReactor) {
+    let shotListNavigationController = reactor.state.map { $0.shotListViewReactor }
+      .map { reactor -> UINavigationController in
+        let viewController = ShotListViewController(reactor: reactor)
+        return UINavigationController(rootViewController: viewController)
+      }
 
-    let shotListNavigationController: Driver<UINavigationController> = reactor.shotListViewReactor
-      .map { ShotListViewController(reactor: $0) }
-      .map { UINavigationController(rootViewController: $0) }
+    let settingsNavigationController = reactor.state.map { $0.settingsViewReactor }
+      .map { reactor -> UINavigationController in
+        let viewController = SettingsViewController(reactor: reactor)
+        return UINavigationController(rootViewController: viewController)
+      }
 
-    let settingsNavigationController: Driver<UINavigationController> = reactor.settingsViewReactor
-      .map { SettingsViewController(reactor: $0) }
-      .map { UINavigationController(rootViewController: $0) }
-
-    let navigationControllers: [Driver<UINavigationController>] = [
+    let navigationControllers: [Observable<UINavigationController>] = [
       shotListNavigationController,
       settingsNavigationController,
     ]
-    Driver.combineLatest(navigationControllers) { $0 }
-      .drive(onNext: { [weak self] navigationControllers in
+    Observable.combineLatest(navigationControllers) { $0 }
+      .subscribe(onNext: { [weak self] navigationControllers in
         self?.viewControllers = navigationControllers
       })
       .addDisposableTo(self.disposeBag)

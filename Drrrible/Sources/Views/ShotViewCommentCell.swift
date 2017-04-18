@@ -8,9 +8,10 @@
 
 import UIKit
 
+import ReactorKit
 import TTTAttributedLabel
 
-final class ShotViewCommentCell: BaseCollectionViewCell {
+final class ShotViewCommentCell: BaseCollectionViewCell, View {
 
   // MARK: Constants
 
@@ -59,17 +60,21 @@ final class ShotViewCommentCell: BaseCollectionViewCell {
 
   // MARK: Configuring
 
-  func configure(reactor: ShotViewCommentCellReactorType) {
-    self.avatarView.kf.setImage(with: reactor.avatarURL)
-    self.nameLabel.text = reactor.name
-    self.messageLabel.setText(reactor.message)
-    self.setNeedsLayout()
+  func bind(reactor: ShotViewCommentCellReactor) {
+    reactor.state
+      .subscribe(onNext: { [weak self] state in
+        self?.avatarView.kf.setImage(with: state.avatarURL)
+        self?.nameLabel.text = state.name
+        self?.messageLabel.setText(state.message)
+        self?.setNeedsLayout()
+      })
+      .addDisposableTo(self.disposeBag)
   }
 
 
   // MARK: Size
 
-  class func size(width: CGFloat, reactor: ShotViewCommentCellReactorType) -> CGSize {
+  class func size(width: CGFloat, reactor: ShotViewCommentCellReactor) -> CGSize {
     var height: CGFloat = 0
     height += Metric.paddingTopBottom
     height += snap(Font.nameLabel.lineHeight)
@@ -79,7 +84,7 @@ final class ShotViewCommentCell: BaseCollectionViewCell {
       - Metric.avatarViewSize
       - Metric.messageLabelLeft
     height += Metric.messageLabelTop
-    height += reactor.message.height(thatFitsWidth: messageLabelMaxWidth)
+    height += reactor.currentState.message.height(thatFitsWidth: messageLabelMaxWidth)
     height += Metric.paddingTopBottom
     return CGSize(width: width, height: height)
   }

@@ -6,194 +6,144 @@
 //  Copyright © 2017 Suyeol Jeon. All rights reserved.
 //
 
+import ReactorKit
 import RxCocoa
 import RxSwift
 import RxSwiftUtilities
 
-protocol ShotViewReactorType {
-  // Input
-  var dispose: PublishSubject<Void> { get }
-  var refresh: PublishSubject<Void> { get }
-
-  // Output
-  var isRefreshing: Driver<Bool> { get }
-  var sections: Driver<[ShotViewSection]> { get }
-}
-
-final class ShotViewReactor: ShotViewReactorType {
-
-  // MARK: Types
-
-  fileprivate enum CommentOperation {
-    case refresh([Comment])
-    case loadMore([Comment])
+final class ShotViewReactor: Reactor {
+  enum Action {
+    case refresh
+    case shotEvent(Shot.Event)
   }
 
+  enum Mutation {
+    case setRefreshing(Bool)
+    case setShot(Shot?)
+    case setLiked(Bool)
+    case setComments([Comment])
+  }
 
-  // MARK: Input
+  struct State {
+    var isRefreshing: Bool = false
+    var shot: Shot?
 
-  let dispose: PublishSubject<Void> = .init()
-  let refresh: PublishSubject<Void> = .init()
+    var shotSection: ShotViewSection = .shot([])
+    var commentSection: ShotViewSection = .comment([.activityIndicator])
+    var sections: [ShotViewSection] {
+      return [self.shotSection, self.commentSection]
+    }
+  }
 
-
-  // MARK: Output
-
-  let isRefreshing: Driver<Bool>
-  let sections: Driver<[ShotViewSection]>
-
-
-  // MARK: Initializing
+  fileprivate let provider: ServiceProviderType
+  fileprivate let shotID: Int
+  let initialState: State
 
   init(provider: ServiceProviderType, shotID: Int, shot initialShot: Shot? = nil) {
-    let shot: Observable<Shot> = Shot.event
-      .scan(initialShot) { oldShot, event in
-        switch event {
-        case let .create(newShot):
-          guard newShot.id == shotID else { return oldShot }
-          return newShot
+    self.provider = provider
+    self.shotID = shotID
+    self.initialState = State()
+  }
 
-        case let .update(newShot):
-          guard newShot.id == shotID else { return oldShot }
-          return newShot
+  func transform(action: Observable<Action>) -> Observable<Action> {
+    let shotEvent: Observable<Action> = Shot.event.map(Action.shotEvent)
+    return Observable.of(action, shotEvent).merge()
+  }
 
-        case let .delete(id):
-          guard id == shotID else { return oldShot }
-          return nil
+  func mutate(action: Action) -> Observable<Mutation> {
+    switch action {
+    case .refresh:
+      guard !self.currentState.isRefreshing else { return .empty() }
+      let startRefreshing: Observable<Mutation> = .just(.setRefreshing(true))
+      let stopRefreshing: Observable<Mutation> = .just(.setRefreshing(false))
+      let setShot: Observable<Mutation> = self.provider.shotService
+        .shot(id: self.shotID)
+        .map { shot in Mutation.setShot(shot) }
 
-        case let .like(id):
-          guard id == shotID else { return oldShot }
-          return oldShot?.with {
-            $0.isLiked = true
-            $0.likeCount += 1
-          }
+      let setLiked: Observable<Mutation> = self.provider.shotService
+        .isLiked(shotID: self.shotID)
+        .map { isLiked in Mutation.setLiked(isLiked) }
 
-        case let .unlike(id):
-          guard id == shotID else { return oldShot }
-          return oldShot?.with {
-            $0.isLiked = false
-            $0.likeCount -= 1
-          }
-        }
+      let setComments: Observable<Mutation> = self.provider.shotService
+        .comments(shotID: self.shotID)
+        .map { list in .setComments(list.items) }
+
+      let main = Observable.concat([startRefreshing, setShot, stopRefreshing])
+      let sub = Observable.of(setLiked, setComments).merge()
+      return .concat([main, sub])
+
+    case let .shotEvent(event):
+      return self.mutate(shotEvent: event)
+    }
+  }
+
+  private func mutate(shotEvent: Shot.Event) -> Observable<Mutation> {
+    switch shotEvent {
+    case let .create(shot):
+      guard shot.id == self.shotID else { return .empty() }
+      return .just(.setShot(shot))
+
+    case let .update(shot):
+      guard shot.id == self.shotID else { return .empty() }
+      return .just(.setShot(shot))
+
+    case let .delete(id):
+      guard id == self.shotID else { return .empty() }
+      return .just(.setShot(nil))
+
+    case let .like(id):
+      guard id == self.shotID else { return .empty() }
+      return .just(.setLiked(true))
+
+    case let .unlike(id):
+      guard id == self.shotID else { return .empty() }
+      return .just(.setLiked(false))
+    }
+  }
+
+  func reduce(state: State, mutation: Mutation) -> State {
+    var state = state
+    switch mutation {
+    case let .setRefreshing(isRefreshing):
+      state.isRefreshing = isRefreshing
+      return state
+
+    case let .setShot(shot):
+      guard let shot = shot else {
+        state.shotSection = .shot([])
+        state.shot = nil
+        return state
       }
-      .startWith(initialShot)
-      .filterNil()
-      .shareReplay(1)
+      let sectionItems: [ShotViewSectionItem] = [
+        .image(ShotViewImageCellReactor(provider: self.provider, shot: shot)),
+        .title(ShotViewTitleCellReactor(provider: self.provider, shot: shot)),
+        .text(ShotViewTextCellReactor(provider: self.provider, shot: shot)),
+        .reaction(ShotViewReactionCellReactor(provider: self.provider, shot: shot))
+      ]
+      state.shotSection = .shot(sectionItems)
+      state.shot = shot
+      return state
 
-    let isRefreshing = ActivityIndicator()
-    self.isRefreshing = isRefreshing.asDriver()
-
-    let didRefreshShot = self.refresh
-      .filter(!isRefreshing)
-      .flatMap {
-        provider.shotService.shot(id: shotID)
-          .trackActivity(isRefreshing)
-          .ignoreErrors()
+    case let .setLiked(isLiked):
+      guard var shot = state.shot else { return state }
+      if isLiked && shot.isLiked != true {
+        shot.isLiked = true
+        shot.likeCount += 1
+      } else if !isLiked && shot.isLiked != false {
+        shot.isLiked = false
+        shot.likeCount -= 1
+      } else {
+        return state
       }
-      .shareReplay(1)
+      return self.reduce(state: state, mutation: .setShot(shot))
 
-    // Refresh shot
-    _ = didRefreshShot
-      .map(Shot.Event.update)
-      .takeUntil(self.dispose)
-      .bindTo(Shot.event)
-
-    // Refresh isLiked
-    _ = didRefreshShot
-      .flatMap { shot in
-        provider.shotService.isLiked(shotID: shotID)
-          .catchErrorJustReturn(false)
-          .map { isLiked -> Shot in
-            var newShot = shot
-            newShot.isLiked = isLiked
-            return newShot
-          }
-      }
-      .map(Shot.Event.update)
-      .takeUntil(self.dispose)
-      .bindTo(Shot.event)
-
-    let shotSectionItemImage: Observable<ShotViewSectionItem> = shot
-      .map { shot in .image(ShotViewImageCellReactor(provider: provider, shot: shot)) }
-      .shareReplay(1)
-
-    let shotSectionItemTitle: Observable<ShotViewSectionItem> = shot
-      .map { shot in .title(ShotViewTitleCellReactor(provider: provider, shot: shot)) }
-      .shareReplay(1)
-
-    let shotSectionItemText: Observable<ShotViewSectionItem> = shot
-      .map { shot in .text(ShotViewTextCellReactor(provider: provider, shot: shot)) }
-      .shareReplay(1)
-
-    let shotSectionItemReaction: Observable<ShotViewSectionItem> = shot
-      .map { shot in .reaction(ShotViewReactionCellReactor(provider: provider, shot: shot)) }
-      .shareReplay(1)
-
-    let shotSectionItems = [
-      shotSectionItemImage,
-      shotSectionItemTitle,
-      shotSectionItemText,
-      shotSectionItemReaction,
-    ]
-    let shotSection: Observable<ShotViewSection> = Observable<[ShotViewSectionItem]>
-      .combineLatest(shotSectionItems) { $0 }
-      .startWith([])
-      .map { sectionItems in ShotViewSection.shot(sectionItems) }
-      .shareReplay(1)
-
-    //
-    // Comment Section
-    //
-    let commentNextURL = Variable<URL?>(nil)
-    let commentOperationRefresh = didRefreshShot
-      .flatMap { shot in
-        provider.shotService.comments(shotID: shotID)
-          .catchErrorJustReturn(List(items: []))
-      }
-      .do(onNext: { commentList in
-        commentNextURL.value = commentList.nextURL
-      })
-      .map { commentList in
-        CommentOperation.refresh(commentList.items)
-      }
-
-    let commentOperation = commentOperationRefresh
-
-    let comments: Observable<[Comment]> = commentOperation
-      .scan([]) { comments, operation in
-        switch operation {
-        case let .refresh(newComments):
-          return newComments
-
-        case let .loadMore(newComments):
-          return comments + newComments
-        }
-      }
-      .startWith([])
-
-    let commentSection: Observable<ShotViewSection> = comments
-      .map { comments in
-        let sectionItems: [ShotViewSectionItem] = comments.map { comment in
-          let reactor = ShotViewCommentCellReactor(provider: provider, comment: comment)
-          let sectionItem = ShotViewSectionItem.comment(reactor)
-          return sectionItem
-        }
-        if sectionItems.isEmpty {
-          return ShotViewSection.comment([.activityIndicator])
-        } else {
-          return ShotViewSection.comment(sectionItems)
-        }
-      }
-
-    //
-    // Section
-    //
-    let sections = [shotSection, commentSection]
-    self.sections = Observable<[ShotViewSection]>
-      .combineLatest(sections) { sections in
-        guard !sections[0].items.isEmpty else { return [] }
-        return sections
-      }
-      .asDriver(onErrorJustReturn: [])
+    case let .setComments(comments):
+      let sectionItems = comments
+        .map { ShotViewCommentCellReactor(provider: self.provider, comment: $0) }
+        .map { ShotViewSectionItem.comment($0) }
+      state.commentSection = .comment(sectionItems)
+      return state
+    }
   }
 
 }

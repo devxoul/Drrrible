@@ -8,18 +8,21 @@
 
 import UIKit
 
-protocol ShotViewTextCellReactorType {
-  var text: NSAttributedString? { get }
-}
+import ReactorKit
 
-final class ShotViewTextCellReactor: ShotViewTextCellReactorType {
-  let text: NSAttributedString?
+final class ShotViewTextCellReactor: Reactor {
+  typealias Action = NoAction
+  
+  struct State {
+    var text: NSAttributedString?
+  }
+
+  fileprivate let provider: ServiceProviderType
+  let initialState: State
 
   init(provider: ServiceProviderType, shot: Shot) {
-    if let text = shot.text {
-      self.text = try? NSAttributedString(htmlString: text)
-    } else {
-      self.text = nil
-    }
+    self.provider = provider
+    let text = shot.text.flatMap { try? NSAttributedString.init(htmlString: $0) }
+    self.initialState = State(text: text)
   }
 }

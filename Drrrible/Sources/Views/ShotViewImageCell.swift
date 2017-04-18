@@ -8,7 +8,9 @@
 
 import UIKit
 
-final class ShotViewImageCell: BaseCollectionViewCell {
+import ReactorKit
+
+final class ShotViewImageCell: BaseCollectionViewCell, View {
 
   // MARK: UI
 
@@ -25,15 +27,18 @@ final class ShotViewImageCell: BaseCollectionViewCell {
 
   // MARK: Configuring
 
-  func configure(reactor: ShotViewImageCellReactorType) {
-    // Output
-    self.imageView.kf.setImage(with: reactor.imageURL)
+  func bind(reactor: ShotViewImageCellReactor) {
+    reactor.state.map { $0.imageURL }
+      .subscribe(onNext: { [weak self] imageURL in
+        self?.imageView.kf.setImage(with: imageURL)
+      })
+      .addDisposableTo(self.disposeBag)
   }
 
 
   // MARK: Size
 
-  class func size(width: CGFloat, reactor: ShotViewImageCellReactorType) -> CGSize {
+  class func size(width: CGFloat, reactor: ShotViewImageCellReactor) -> CGSize {
     return CGSize(width: width, height: ceil(width * 3 / 4))
   }
 

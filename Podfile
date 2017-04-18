@@ -3,6 +3,9 @@ platform :ios, '9.0'
 target 'Drrrible' do
   use_frameworks!
 
+  # Architecture
+  pod 'ReactorKit'
+
   # Networking
   pod 'Alamofire'
   pod 'Moya'

@@ -6,47 +6,52 @@
 //  Copyright © 2017 Suyeol Jeon. All rights reserved.
 //
 
+import ReactorKit
 import RxCocoa
 import RxSwift
 
-protocol SplashViewReactorType {
-  // Input
-  var checkIfAuthenticated: PublishSubject<Void> { get }
+final class SplashViewReactor: Reactor {
 
-  // Output
-  var presentLoginScreen: Observable<LoginViewReactorType> { get }
-  var presentMainScreen: Observable<MainTabBarViewReactorType> { get }
-}
+  enum Action {
+    case checkIfAuthenticated
+  }
 
-final class SplashViewReactor: SplashViewReactorType {
+  enum Mutation {
+    case setAuthenticated(Bool)
+  }
 
-  // MARK: Input
+  struct State {
+    var isAuthenticated: Bool?
+  }
 
-  let checkIfAuthenticated: PublishSubject<Void> = .init()
-
-
-  // MARK: Output
-
-  let presentLoginScreen: Observable<LoginViewReactorType>
-  let presentMainScreen: Observable<MainTabBarViewReactorType>
+  let provider: ServiceProviderType
+  let initialState: State
 
 
   // MARK: Initializing
 
   init(provider: ServiceProviderType) {
-    let isAuthenticated = self.checkIfAuthenticated
-      .flatMap { provider.userService.fetchMe() }
-      .map { true }
-      .catchError { _ in .just(false) }
-      .shareReplay(1)
+    self.provider = provider
+    self.initialState = State()
+  }
 
-    self.presentLoginScreen = isAuthenticated
-      .filter { !$0 }
-      .map { _ in LoginViewReactor(provider: provider) }
+  func mutate(action: Action) -> Observable<Mutation> {
+    switch action {
+    case .checkIfAuthenticated:
+      return self.provider.userService.fetchMe()
+        .map { true }
+        .catchErrorJustReturn(false)
+        .map(Mutation.setAuthenticated)
+    }
+  }
 
-    self.presentMainScreen = isAuthenticated
-      .filter { $0 }
-      .map { _ in MainTabBarViewReactor(provider: provider) }
+  func reduce(state: State, mutation: Mutation) -> State {
+    var state = state
+    switch mutation {
+    case let .setAuthenticated(isAuthenticated):
+      state.isAuthenticated = isAuthenticated
+      return state
+    }
   }
 
 }

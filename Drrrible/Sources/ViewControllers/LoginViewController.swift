@@ -9,7 +9,9 @@
 import SafariServices
 import UIKit
 
-final class LoginViewController: BaseViewController {
+import ReactorKit
+
+final class LoginViewController: BaseViewController, View {
 
   // MARK: Constants
 
@@ -53,9 +55,9 @@ final class LoginViewController: BaseViewController {
 
   // MARK: Initializing
 
-  init(reactor: LoginViewReactorType) {
+  init(reactor: LoginViewReactor) {
+    defer { self.reactor = reactor }
     super.init()
-    self.configure(reactor: reactor)
   }
   
   required convenience init?(coder aDecoder: NSCoder) {
@@ -87,23 +89,28 @@ final class LoginViewController: BaseViewController {
 
   // MARK: Configuring
 
-  private func configure(reactor: LoginViewReactorType) {
+  func bind(reactor: LoginViewReactor) {
     // Input
     self.loginButton.rx.tap
-      .bindTo(reactor.login)
+      .map { Reactor.Action.login }
+      .bindTo(reactor.action)
       .addDisposableTo(self.disposeBag)
 
     // Output
-    reactor.isLoading
-      .drive(self.loginButton.rx.isHidden)
+    reactor.state.map { $0.isLoading }
+      .bindTo(self.loginButton.rx.isHidden)
       .addDisposableTo(self.disposeBag)
 
-    reactor.isLoading
-      .drive(self.activityIndicatorView.rx.isAnimating)
+    reactor.state.map { $0.isLoading }
+      .bindTo(self.activityIndicatorView.rx.isAnimating)
       .addDisposableTo(self.disposeBag)
 
-    reactor.presentMainScreen
-      .subscribe(onNext: AppDelegate.shared.presentMainScreen)
+    reactor.state.map { $0.isLoggedIn }
+      .distinctUntilChanged()
+      .filter { $0 }
+      .subscribe(onNext: { _ in
+        AppDelegate.shared.presentMainScreen()
+      })
       .addDisposableTo(self.disposeBag)
   }
 

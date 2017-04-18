@@ -8,7 +8,9 @@
 
 import UIKit
 
-final class ShotViewReactionCell: BaseCollectionViewCell {
+import ReactorKit
+
+final class ShotViewReactionCell: BaseCollectionViewCell, View {
 
   // MARK: Constants
 
@@ -48,16 +50,16 @@ final class ShotViewReactionCell: BaseCollectionViewCell {
 
   // MARK: Configure
 
-  func configure(reactor: ShotViewReactionCellReactorType) {
-    self.likeButtonView.configure(reactor: reactor.likeButtonViewReactor)
-    self.commentButtonView.configure(reactor: reactor.commentButtonViewReactor)
+  func bind(reactor: ShotViewReactionCellReactor) {
+    self.likeButtonView.reactor = reactor.likeButtonViewReactor
+    self.commentButtonView.reactor = reactor.commentButtonViewReactor
     self.setNeedsLayout()
   }
 
 
   // MARK: Size
 
-  class func size(width: CGFloat, reactor: ShotViewReactionCellReactorType) -> CGSize {
+  class func size(width: CGFloat, reactor: ShotViewReactionCellReactor) -> CGSize {
     let buttonViewHeight = ShotViewReactionButtonView.height()
     let height = Metric.paddingTop + buttonViewHeight + Metric.paddingBottom
     return CGSize(width: width, height: height)

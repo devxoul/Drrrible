@@ -6,19 +6,42 @@
 //  Copyright © 2017 Suyeol Jeon. All rights reserved.
 //
 
+import ReactorKit
 import RxSwift
 
-enum ShotReactionType {
-  case like
-}
+class ShotViewReactionButtonViewReactor: Reactor {
+  enum Action {
+    case toggleReaction
+    case shotEvent(Shot.Event)
+  }
 
-protocol ShotViewReactionButtonViewReactorType {
-  // Input
-  var dispose: PublishSubject<Void> { get }
-  var toggleReaction: PublishSubject<Void> { get }
+  enum Mutation {
+    case setReacted(Bool)
+  }
 
-  // Output
-  var isReacted: Bool { get }
-  var canToggleReaction: Bool { get }
-  var text: String { get }
+  struct State {
+    var isReacted: Bool
+    var canToggleReaction: Bool
+    var text: String
+  }
+
+  let initialState: State
+
+  init(initialState: State) {
+    self.initialState = initialState
+  }
+
+  func transform(action: Observable<Action>) -> Observable<Action> {
+    let shotEvent = Shot.event.map { Action.shotEvent($0) }
+    return Observable.of(action, shotEvent).merge()
+  }
+
+  func reduce(state: State, mutation: Mutation) -> State {
+    var state = state
+    switch mutation {
+    case let .setReacted(isReacted):
+      state.isReacted = isReacted
+      return state
+    }
+  }
 }

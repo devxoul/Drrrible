@@ -8,23 +8,16 @@
 
 import UIKit
 
-final class SplashViewController: BaseViewController {
+import ReactorKit
+
+final class SplashViewController: BaseViewController, View {
+
+  typealias Reactor = SplashViewReactor
+
 
   // MARK: UI
 
   fileprivate let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
-
-
-  // MARK: Initializing
-
-  init(reactor: SplashViewReactorType) {
-    super.init()
-    self.configure(reactor: reactor)
-  }
-  
-  required convenience init?(coder aDecoder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
-  }
 
 
   // MARK: View Life Cycle
@@ -42,23 +35,37 @@ final class SplashViewController: BaseViewController {
   }
 
 
+  // MARK: Initializing
+
+  init(reactor: Reactor) {
+    defer { self.reactor = reactor }
+    super.init()
+  }
+  
+  required convenience init?(coder aDecoder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+
+
   // MARK: Configuring
 
-  private func configure(reactor: SplashViewReactorType) {
+  func bind(reactor: Reactor) {
+    // Action
     self.rx.viewDidAppear
-      .map { _ in Void() }
-      .bindTo(reactor.checkIfAuthenticated)
+      .map { _ in Reactor.Action.checkIfAuthenticated }
+      .bindTo(reactor.action)
       .addDisposableTo(self.disposeBag)
 
-    reactor.presentLoginScreen
-      .subscribe(onNext: { reactor in
-        AppDelegate.shared.presentLoginScreen(reactor: reactor)
-      })
-      .addDisposableTo(self.disposeBag)
-
-    reactor.presentMainScreen
-      .subscribe(onNext: { reactor in
-        AppDelegate.shared.presentMainScreen(reactor: reactor)
+    // State
+    reactor.state.map { $0.isAuthenticated }
+      .filterNil()
+      .subscribe(onNext: { [weak reactor] isAuthenticated in
+        guard let reactor = reactor else { return }
+        if !isAuthenticated {
+          AppDelegate.shared.presentLoginScreen()
+        } else {
+          AppDelegate.shared.presentMainScreen()
+        }
       })
       .addDisposableTo(self.disposeBag)
   }

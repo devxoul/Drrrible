@@ -6,28 +6,25 @@
 //  Copyright © 2017 Suyeol Jeon. All rights reserved.
 //
 
+import ReactorKit
 import RxCocoa
 import RxSwift
 
-protocol MainTabBarViewReactorType {
-  // Output
-  var shotListViewReactor: Driver<ShotListViewReactorType> { get }
-  var settingsViewReactor: Driver<SettingsViewReactorType> { get }
-}
+final class MainTabBarViewReactor: Reactor {
+  typealias Action = NoAction
 
-final class MainTabBarViewReactor: MainTabBarViewReactorType {
+  struct State {
+    var shotListViewReactor: ShotListViewReactor
+    var settingsViewReactor: SettingsViewReactor
+  }
 
-  // MARK: Output
-
-  let shotListViewReactor: Driver<ShotListViewReactorType>
-  let settingsViewReactor: Driver<SettingsViewReactorType>
-
-
-  // MARK: Initializing
+  let initialState: State
 
   init(provider: ServiceProviderType) {
-    self.shotListViewReactor = .just(ShotListViewReactor(provider: provider))
-    self.settingsViewReactor = .just(SettingsViewReactor(provider: provider))
+    self.initialState = State(
+      shotListViewReactor: ShotListViewReactor(provider: provider),
+      settingsViewReactor: SettingsViewReactor(provider: provider)
+    )
   }
 
 }

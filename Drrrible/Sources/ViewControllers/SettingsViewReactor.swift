@@ -6,120 +6,113 @@
 //  Copyright © 2017 Suyeol Jeon. All rights reserved.
 //
 
+import ReactorKit
 import RxCocoa
 import RxSwift
 
-enum LogoutAlertActionItem {
-  case logout
-  case cancel
-}
+final class SettingsViewReactor: Reactor {
 
-protocol SettingsViewReactorType: class {
-  // Input
-  var tableViewDidSelectItem: PublishSubject<SettingsViewSectionItem> { get }
-  var logoutAlertDidSelectActionItem: PublishSubject<LogoutAlertActionItem> { get }
-
-  // Output
-  var tableViewSections: Driver<[SettingsViewSection]> { get }
-  var presentWebViewController: Observable<URL> { get }
-  var presentCarteViewController: Observable<Void> { get }
-  var presentLogoutAlert: Observable<[LogoutAlertActionItem]> { get }
-  var presentLoginScreen: Observable<LoginViewReactorType> { get }
-}
-
-final class SettingsViewReactor: SettingsViewReactorType {
-
-  // MARK: Input
-
-  let tableViewDidSelectItem: PublishSubject<SettingsViewSectionItem> = .init()
-  var logoutAlertDidSelectActionItem: PublishSubject<LogoutAlertActionItem> = .init()
-
-
-  // MARK: Output
-
-  let tableViewSections: Driver<[SettingsViewSection]>
-  let presentWebViewController: Observable<URL>
-  let presentCarteViewController: Observable<Void>
-  let presentLogoutAlert: Observable<[LogoutAlertActionItem]>
-  let presentLoginScreen: Observable<LoginViewReactorType>
-
-
-  // MARK: Initializing
-
-  init(provider: ServiceProviderType) {
-    let cls = SettingsViewReactor.self
-
-    let sections = [
-      cls.aboutSection(provider: provider),
-      cls.logoutSection(provider: provider),
-    ]
-    self.tableViewSections = Observable
-      .combineLatest(sections) { $0 }
-      .asDriver(onErrorJustReturn: [])
-
-    self.presentWebViewController = self.tableViewDidSelectItem
-      .filter { sectionItem -> Bool in
-        if case .icons = sectionItem {
-          return true
-        } else {
-          return false
-        }
-      }
-      .map(URL(string: "https://icons8.com")!)
-
-    self.presentCarteViewController = self.tableViewDidSelectItem
-      .filter { sectionItem -> Bool in
-        if case .openSource = sectionItem {
-          return true
-        } else {
-          return false
-        }
-      }
-      .mapVoid()
-
-    self.presentLogoutAlert = self.tableViewDidSelectItem
-      .filter { sectionItem -> Bool in
-        if case .logout = sectionItem {
-          return true
-        } else {
-          return false
-        }
-      }
-      .map { _ in [.logout, .cancel] }
-
-    self.presentLoginScreen = self.logoutAlertDidSelectActionItem
-      .filter { $0 == .logout }
-      .do(onNext: { _ in provider.authService.logout() })
-      .map { _ in LoginViewReactor(provider: provider) }
+  enum Action {
+    case selectItem(SettingsViewSectionItem)
+    case updateCurrentUsername(String?)
+    case logout
   }
 
+  enum Mutation {
+    case updateLogoutSection(SettingsViewSection)
+    case setNavigation(Navigation)
+  }
 
-  // MARK: Functions
+  struct State {
+    var navigation: Navigation?
+    var sections: [SettingsViewSection] = []
 
-  private class func aboutSection(
-    provider: ServiceProviderType
-  ) -> Observable<SettingsViewSection> {
-    let sectionItems: [SettingsViewSectionItem] = [
+    init(sections: [SettingsViewSection]) {
+      self.sections = sections
+    }
+  }
+
+  enum Navigation {
+    case webView(URL)
+    case carteView
+    case loginScreen(LoginViewReactor)
+  }
+
+  fileprivate let provider: ServiceProviderType
+  let initialState: State
+
+  init(provider: ServiceProviderType) {
+    self.provider = provider
+
+    let aboutSection = SettingsViewSection.about([
       .version(SettingItemCellReactor(
         text: "App Version".localized,
         detailText: Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String
       )),
       .icons(SettingItemCellReactor(text: "Icons from icons8.com".localized, detailText: nil)),
       .openSource(SettingItemCellReactor(text: "Open Source License".localized, detailText: nil)),
-    ]
-    return .just(.about(sectionItems))
+    ])
+
+    let logoutSection = SettingsViewSection.logout([
+      .logout(SettingItemCellReactor(text: "Logout".localized, detailText: nil))
+    ])
+
+    let sections = [aboutSection] + [logoutSection]
+    self.initialState = State(sections: sections)
   }
 
-  private class func logoutSection(
-    provider: ServiceProviderType
-  ) -> Observable<SettingsViewSection> {
-    let logoutSectionItem: Observable<SettingsViewSectionItem> = provider.userService.currentUser
-      .map { user -> SettingsViewSectionItem in
-        .logout(SettingItemCellReactor(text: "Logout".localized, detailText: user?.name))
+  func transform(action: Observable<Action>) -> Observable<Action> {
+    let updateCurrentUsername = self.provider.userService.currentUser
+      .map { Action.updateCurrentUsername($0?.name) }
+    return Observable.of(action, updateCurrentUsername).merge()
+  }
+
+  func mutate(action: Action) -> Observable<Mutation> {
+    switch action {
+    case let .selectItem(sectionItem):
+      switch sectionItem {
+      case .icons:
+        let url = URL(string: "https://icons8.com")!
+        return .just(.setNavigation(.webView(url)))
+
+      case .openSource:
+        return .just(.setNavigation(.carteView))
+
+      default:
+        return .empty()
       }
-    return logoutSectionItem
-      .map { sectionItem in [sectionItem] }
-      .map { sectionItems in .logout(sectionItems) }
+
+    case let .updateCurrentUsername(name):
+      let section = SettingsViewSection.logout([
+        .logout(SettingItemCellReactor(text: "Logout".localized, detailText: name))
+      ])
+      return .just(.updateLogoutSection(section))
+
+    case .logout:
+      let reactor = LoginViewReactor(provider: self.provider)
+      return .just(.setNavigation(.loginScreen(reactor)))
+    }
+  }
+
+  func reduce(state: State, mutation: Mutation) -> State {
+    var state = state
+    switch mutation {
+    case let .updateLogoutSection(newSection):
+      guard let index = state.sections.index(where: { section in
+        if case (.logout, .logout) = (section, newSection) {
+          return true
+        } else {
+          return false
+        }
+      })
+      else { return state }
+      state.sections[index] = newSection
+      return state
+
+    case let .setNavigation(navigation):
+      state.navigation = navigation
+      return state
+    }
   }
 
 }

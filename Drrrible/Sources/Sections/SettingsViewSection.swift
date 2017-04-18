@@ -30,8 +30,8 @@ extension SettingsViewSection: SectionModelType {
 }
 
 enum SettingsViewSectionItem {
-  case version(SettingItemCellReactorType)
-  case icons(SettingItemCellReactorType)
-  case openSource(SettingItemCellReactorType)
-  case logout(SettingItemCellReactorType)
+  case version(SettingItemCellReactor)
+  case icons(SettingItemCellReactor)
+  case openSource(SettingItemCellReactor)
+  case logout(SettingItemCellReactor)
 }

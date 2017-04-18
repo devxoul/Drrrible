@@ -8,9 +8,10 @@
 
 import UIKit
 
+import ReactorKit
 import URLNavigator
 
-final class ShotTileCell: BaseCollectionViewCell {
+final class ShotTileCell: BaseCollectionViewCell, View {
 
   // MARK: Constants
 
@@ -46,19 +47,28 @@ final class ShotTileCell: BaseCollectionViewCell {
 
   // MARK: Configuring
 
-  func configure(reactor: ShotCellReactorType) {
-    // Input
+  func bind(reactor: ShotCellReactor) {
+    // Action
     self.cardView.rx.tapGesture() { $0.delegate = ExclusiveGestureRecognizerDelegate.shared }
-      .mapVoid()
-      .bindTo(reactor.showShot)
+      .map { _ in Reactor.Action.showShot }
+      .bindTo(reactor.action)
       .addDisposableTo(self.disposeBag)
 
-    // Output
-    self.imageView.kf.setImage(with: reactor.imageURL, placeholder: nil)
-    reactor.presentShotViewController
-      .whileDisplaying(self)
-      .subscribe(onNext: { reactor in
-        Navigator.push(ShotViewController(reactor: reactor))
+    // State
+    reactor.state.map { $0.imageURL }
+      .subscribe(onNext: { [weak self] imageURL in
+        self?.imageView.kf.setImage(with: imageURL, placeholder: nil)
+      })
+      .addDisposableTo(self.disposeBag)
+
+    reactor.state.map { $0.navigation }
+      .filterNil()
+      .subscribe(onNext: { navigation in
+        switch navigation {
+        case let .shot(reactor):
+          let viewController = ShotViewController(reactor: reactor)
+          Navigator.push(viewController)
+        }
       })
       .addDisposableTo(self.disposeBag)
   }
@@ -66,7 +76,7 @@ final class ShotTileCell: BaseCollectionViewCell {
 
   // MARK: Size
 
-  class func size(width: CGFloat, reactor: ShotCellReactorType) -> CGSize {
+  class func size(width: CGFloat, reactor: ShotCellReactor) -> CGSize {
     return CGSize(width: width, height: ceil(width * 3 / 4))
   }
 

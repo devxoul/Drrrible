@@ -6,119 +6,95 @@
 //  Copyright © 2017 Suyeol Jeon. All rights reserved.
 //
 
+import ReactorKit
 import RxCocoa
 import RxSwift
 import RxSwiftUtilities
 
-protocol ShotListViewReactorType {
-  // Input
-  var dispose: PublishSubject<Void> { get }
-  var refresh: PublishSubject<Void> { get }
-  var loadMore: PublishSubject<Void> { get }
-
-  // Output
-  var isRefreshing: Driver<Bool> { get }
-  var sections: Driver<[ShotListViewSection]> { get }
-}
-
-final class ShotListViewReactor: ShotListViewReactorType {
-
-  // MARK: Types
-
-  fileprivate enum ShotOperation {
-    case refresh([Shot])
-    case loadMore([Shot])
+final class ShotListViewReactor: Reactor {
+  enum Action {
+    case refresh
+    case loadMore
   }
 
+  enum Mutation {
+    case setRefreshing(Bool)
+    case setLoading(Bool)
+    case setShots([Shot], nextURL: URL?)
+    case appendShots([Shot], nextURL: URL?)
+  }
 
-  // MARK: Input
+  struct State {
+    var isRefreshing: Bool = false
+    var isLoading: Bool = false
+    var nextURL: URL?
+    var sections: [ShotListViewSection] = [.shotTile([])]
+  }
 
-  let dispose: PublishSubject<Void> = .init()
-  let refresh: PublishSubject<Void> = .init()
-  let loadMore: PublishSubject<Void> = .init()
-
-
-  // MARK: Output
-
-  let isRefreshing: Driver<Bool>
-  let sections: Driver<[ShotListViewSection]>
-
-
-  // MARK: Initializing
+  let provider: ServiceProviderType
+  let initialState: State
 
   init(provider: ServiceProviderType) {
-    let isRefreshing = ActivityIndicator()
-    let isLoading = ActivityIndicator()
-    self.isRefreshing = isRefreshing.asDriver()
+    self.provider = provider
+    self.initialState = State()
+  }
 
-    let nextURL = Variable<URL?>(nil)
-
-    let didRefreshShots = self.refresh
-      .filter(!isRefreshing)
-      .filter(!isLoading)
-      .flatMap {
-        provider.shotService.shots(paging: .refresh)
-          .trackActivity(isRefreshing)
-          .ignoreErrors()
-      }
-      .shareReplay(1)
-
-    let didLoadMoreShots = self.loadMore
-      .withLatestFrom(nextURL.asObservable())
-      .filterNil()
-      .filter(!isRefreshing)
-      .filter(!isLoading)
-      .flatMap { nextURL in
-        provider.shotService.shots(paging: .next(nextURL))
-          .trackActivity(isRefreshing)
-          .ignoreErrors()
-      }
-      .shareReplay(1)
-
-    _ = Observable.of(didRefreshShots, didLoadMoreShots).merge()
-      .map { $0.nextURL }
-      .takeUntil(self.dispose)
-      .bindTo(nextURL)
-
-    let shotOperationRefresh: Observable<ShotOperation> = didRefreshShots
-      .map { list in ShotOperation.refresh(list.items) }
-      .shareReplay(1)
-
-    let shotOperationLoadMore: Observable<ShotOperation> = didLoadMoreShots
-      .do(onNext: { [weak nextURL] list in
-        nextURL?.value = list.nextURL
-      })
-      .map { list in ShotOperation.loadMore(list.items) }
-      .shareReplay(1)
-
-    let shots: Observable<[Shot]> = Observable
-      .of(shotOperationRefresh, shotOperationLoadMore)
-      .merge()
-      .scan([]) { shots, operation in
-        switch operation {
-        case let .refresh(newShots):
-          return newShots
-
-        case let .loadMore(newShots):
-          return shots + newShots
+  func mutate(action: Action) -> Observable<Mutation> {
+    switch action {
+    case .refresh:
+      guard !self.currentState.isRefreshing else { return .empty() }
+      guard !self.currentState.isLoading else { return .empty() }
+      let startRefreshing = Observable<Mutation>.just(.setRefreshing(true))
+      let endRefreshing = Observable<Mutation>.just(.setRefreshing(false))
+      let setShots = self.provider.shotService.shots(paging: .refresh)
+        .map { list -> Mutation in
+          return .setShots(list.items, nextURL: list.nextURL)
         }
-      }
-      .startWith([])
-      .shareReplay(1)
+      return .concat([startRefreshing, setShots, endRefreshing])
 
-    let shotSection: Observable<[ShotListViewSection]> = shots
-      .map { shots in
-        let sectionItems = shots.map { shot -> ShotListViewSectionItem in
-          let reactor = ShotCellReactor(provider: provider, shot: shot)
-          return ShotListViewSectionItem.shotTile(reactor)
+    case .loadMore:
+      guard !self.currentState.isRefreshing else { return .empty() }
+      guard !self.currentState.isLoading else { return .empty() }
+      guard let nextURL = self.currentState.nextURL else { return .empty() }
+      let startLoading = Observable<Mutation>.just(.setLoading(true))
+      let endLoading = Observable<Mutation>.just(.setLoading(false))
+      let appendShots = self.provider.shotService.shots(paging: .next(nextURL))
+        .map { list -> Mutation in
+          return .appendShots(list.items, nextURL: list.nextURL)
         }
-        let section = ShotListViewSection.shotTile(sectionItems)
-        return [section]
-      }
-      .shareReplay(1)
+      return .concat([startLoading, appendShots, endLoading])
+    }
+  }
 
-    self.sections = shotSection
-      .asDriver(onErrorJustReturn: [])
+  func reduce(state: State, mutation: Mutation) -> State {
+    var state = state
+    switch mutation {
+      case let .setRefreshing(isRefreshing):
+        state.isRefreshing = isRefreshing
+        return state
+
+      case let .setLoading(isLoading):
+        state.isLoading = isLoading
+        return state
+
+      case let .setShots(shots, nextURL):
+        let sectionItems = self.shotTileSectionItems(with: shots)
+        state.sections = [.shotTile(sectionItems)]
+        state.nextURL = nextURL
+        return state
+
+      case let .appendShots(shots, nextURL):
+        let sectionItems = state.sections[0].items + self.shotTileSectionItems(with: shots)
+        state.sections = [.shotTile(sectionItems)]
+        state.nextURL = nextURL
+        return state
+    }
+  }
+
+  private func shotTileSectionItems(with shots: [Shot]) -> [ShotListViewSectionItem] {
+    return shots
+      .map { ShotCellReactor(provider: self.provider, shot: $0) }
+      .map { ShotListViewSectionItem.shotTile($0) }
   }
 
 }
