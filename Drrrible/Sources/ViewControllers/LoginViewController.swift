@@ -16,41 +16,48 @@ final class LoginViewController: BaseViewController, View {
   // MARK: Constants
 
   fileprivate struct Metric {
+    static let logoViewTop = 70.f
+    static let logoViewSize = 225.f
+
+    static let titleLabelTop = 10.f
+
     static let loginButtonLeftRight = 30.f
-    static let loginButtonBottom = 30.f
+    static let loginButtonBottom = 40.f
     static let loginButtonHeight = 40.f
   }
 
   fileprivate struct Font {
+    static let titleLabel = UIFont.boldSystemFont(ofSize: 60)
     static let loginButtonTitle = UIFont.boldSystemFont(ofSize: 15)
   }
 
 
   // MARK: UI
 
-  override var preferredStatusBarStyle: UIStatusBarStyle {
-    return .lightContent
+  fileprivate let logoView = UIImageView(image: #imageLiteral(resourceName: "Icon512"))
+  fileprivate let titleLabel = UILabel().then {
+    $0.text = "Drrrible"
+    $0.font = Font.titleLabel
   }
-
   fileprivate let loginButton = UIButton().then {
     $0.titleLabel?.font = Font.loginButtonTitle
     $0.setTitle("Login with Dribbble", for: .normal)
     $0.setBackgroundImage(
       UIImage.resizable()
-        .color(.db_pink)
+        .color(0xFF2719.color)
         .corner(radius: 3)
         .image,
       for: .normal
     )
     $0.setBackgroundImage(
       UIImage.resizable()
-        .color(.db_darkPink)
+        .color(0xC32116.color)
         .corner(radius: 3)
         .image,
       for: .highlighted
     )
   }
-  fileprivate let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .white)
+  fileprivate let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
 
 
   // MARK: Initializing
@@ -69,12 +76,23 @@ final class LoginViewController: BaseViewController, View {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    self.view.backgroundColor = .db_charcoal
+    self.view.backgroundColor = .white
+    self.view.addSubview(self.logoView)
+    self.view.addSubview(self.titleLabel)
     self.view.addSubview(self.loginButton)
     self.view.addSubview(self.activityIndicatorView)
   }
 
   override func setupConstraints() {
+    self.logoView.snp.makeConstraints { make in
+      make.top.equalTo(Metric.logoViewTop)
+      make.centerX.equalToSuperview()
+      make.size.equalTo(Metric.logoViewSize)
+    }
+    self.titleLabel.snp.makeConstraints { make in
+      make.top.equalTo(self.logoView.snp.bottom).offset(Metric.titleLabelTop)
+      make.centerX.equalToSuperview()
+    }
     self.loginButton.snp.makeConstraints { make in
       make.left.equalTo(Metric.loginButtonLeftRight)
       make.right.equalTo(-Metric.loginButtonLeftRight)
