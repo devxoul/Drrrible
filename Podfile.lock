@@ -8,8 +8,6 @@ PODS:
   - Crashlytics (3.8.4):
     - Fabric (~> 1.6.3)
   - Fabric (1.6.11)
-  - Firebase (3.16.0):
-    - Firebase/Core (= 3.16.0)
   - Firebase/Core (3.16.0):
     - FirebaseAnalytics (= 3.8.0)
     - FirebaseCore (= 3.6.0)
@@ -82,7 +80,7 @@ PODS:
   - TouchAreaInsets (1.0.0)
   - TTTAttributedLabel (2.0.0)
   - UITextView+Placeholder (1.2.0)
-  - URLNavigator (1.1.2)
+  - URLNavigator (1.2.0)
   - WebLinking (1.1.0)
   - Yet (0.2.0)
 
@@ -93,7 +91,6 @@ DEPENDENCIES:
   - CocoaLumberjack/Swift
   - Crashlytics
   - Fabric
-  - Firebase
   - Firebase/Core
   - KeychainAccess
   - Kingfisher
@@ -174,10 +171,10 @@ SPEC CHECKSUMS:
   TouchAreaInsets: 01a873de4bac294e502bd07219f82bd18866eeee
   TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
   UITextView+Placeholder: 77680995fcdd07c3f52ec92fe1150874a2ac89ff
-  URLNavigator: 269e73ee727a7cabfa8e510a312bac3884325cc3
+  URLNavigator: 3ff788c985a0aae654e7de4959c4b0ea8a45f022
   WebLinking: 3f71787c14a225148e8be29fe6e7c98597cbc459
   Yet: 54bc49057805c60f4cd9e5ae7e9384dba7e98626
 
-PODFILE CHECKSUM: b2184a055650aca8650df2e19a9e3d21477a2f77
+PODFILE CHECKSUM: b06b46759581b80ec07ff6b454a05f4486d5fe0a
 
 COCOAPODS: 1.2.0
