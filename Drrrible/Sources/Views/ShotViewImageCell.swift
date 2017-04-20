@@ -8,13 +8,14 @@
 
 import UIKit
 
+import Kingfisher
 import ReactorKit
 
 final class ShotViewImageCell: BaseCollectionViewCell, View {
 
   // MARK: UI
 
-  fileprivate let imageView = UIImageView()
+  fileprivate let imageView = AnimatedImageView()
 
 
   // MARK: Initializing
