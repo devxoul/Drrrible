@@ -1,4 +1,5 @@
 platform :ios, '9.0'
+inhibit_all_warnings!
 
 target 'Drrrible' do
   use_frameworks!
