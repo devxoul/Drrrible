@@ -11,10 +11,10 @@ cache:
 env:
   global:
     - WORKSPACE="Drrrible.xcworkspace"
+    - SCHEME="Drrrible"
     - IOS_SDK="iphonesimulator10.3"
-    - IOS_DESTINATION="platform=iOS Simulator,name=iPhone 7,OS=10.3"
   matrix:
-    - SCHEME="Drrrible"        SDK="$IOS_SDK"      ACTION="test"
+    - SDK="$IOS_SDK"  DESTINATION="platform=iOS Simulator,name=iPhone 7,OS=10.3"
 
 install:
   - bundle install --deployment
@@ -22,5 +22,14 @@ install:
   - bundle exec pod repo update --verbose
   - bundle exec pod install
 
+before_script:
+  - set -o pipefail
+
 script:
-  - set -o pipefail && xcodebuild clean $ACTION -workspace "$WORKSPACE" -scheme "$SCHEME" -sdk "$SDK" -destination "$IOS_DESTINATION" -configuration Debug CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO | xcpretty -c
+  - xcodebuild clean build test
+    -workspace "$WORKSPACE"
+    -scheme "$SCHEME"
+    -sdk "$SDK"
+    -destination "$DESTINATION"
+    -configuration Debug
+    CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO | xcpretty -c
