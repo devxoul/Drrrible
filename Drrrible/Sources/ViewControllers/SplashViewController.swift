@@ -60,7 +60,7 @@ final class SplashViewController: BaseViewController, View {
     reactor.state.map { $0.isAuthenticated }
       .filterNil()
       .subscribe(onNext: { [weak reactor] isAuthenticated in
-        guard let reactor = reactor else { return }
+        guard reactor != nil else { return }
         if !isAuthenticated {
           AppDelegate.shared.presentLoginScreen()
         } else {
