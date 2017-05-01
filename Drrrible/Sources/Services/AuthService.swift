@@ -37,7 +37,7 @@ final class AuthService: BaseService, AuthServiceType {
   fileprivate var currentViewController: UIViewController?
   fileprivate let callbackSubject = PublishSubject<String>()
 
-  fileprivate let keychain = Keychain(service: "kr.xoul.drrrible")
+  fileprivate let keychain = Keychain(service: "com.drrrible.ios")
   private(set) var currentAccessToken: AccessToken?
 
   override init(provider: ServiceProviderType) {
