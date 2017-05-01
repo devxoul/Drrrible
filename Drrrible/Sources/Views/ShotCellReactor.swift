@@ -28,6 +28,6 @@ final class ShotCellReactor: Reactor {
   init(provider: ServiceProviderType, shot: Shot) {
     self.provider = provider
     self.shot = shot
-    self.initialState = State(imageURL: shot.imageURLs.teaser)
+    self.initialState = State(imageURL: shot.imageURLs.normal)
   }
 }
