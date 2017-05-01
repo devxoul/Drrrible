@@ -106,10 +106,8 @@
 		03DF951F1E6EB7E200E31665 /* LoginViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DF951E1E6EB7E200E31665 /* LoginViewReactor.swift */; };
 		03DF95211E6EB80700E31665 /* ShotListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DF95201E6EB80700E31665 /* ShotListViewController.swift */; };
 		03DF95231E6EB80B00E31665 /* ShotListViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DF95221E6EB80B00E31665 /* ShotListViewReactor.swift */; };
-		6DDB34252C101AA23C62E243 /* Pods_Drrrible.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23868B34FAC632E09764E4A2 /* Pods_Drrrible.framework */; };
-		A03307C2B3F35C311D6DF9A2 /* Pods_DrrribleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8DA147D5D31668FBCF30AE0 /* Pods_DrrribleTests.framework */; };
-		A1D5D085405030510CB10566 /* Pods_Drrrible_DrrribleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B6DE473ACC030C197C305CD /* Pods_Drrrible_DrrribleTests.framework */; };
-		D5FDD5E79F8CD8235CDB2098 /* Pods_Drrrible.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE2B72EA560A954FCA7B57A4 /* Pods_Drrrible.framework */; };
+		67CCAEC7ACD021B25D286650 /* Pods_Drrrible_DrrribleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3800977F199DEFED1D747AA /* Pods_Drrrible_DrrribleTests.framework */; };
+		7016FEC9D52ED214CF18F95B /* Pods_Drrrible.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAF2B5CCF3B37FF7DB8227C2 /* Pods_Drrrible.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -227,16 +225,14 @@
 		03DF951E1E6EB7E200E31665 /* LoginViewReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewReactor.swift; sourceTree = "<group>"; };
 		03DF95201E6EB80700E31665 /* ShotListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShotListViewController.swift; sourceTree = "<group>"; };
 		03DF95221E6EB80B00E31665 /* ShotListViewReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShotListViewReactor.swift; sourceTree = "<group>"; };
-		23868B34FAC632E09764E4A2 /* Pods_Drrrible.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Drrrible.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		245DA1CCFC8FA1E547422133 /* Pods-Drrrible.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Drrrible.release.xcconfig"; path = "Pods/Target Support Files/Pods-Drrrible/Pods-Drrrible.release.xcconfig"; sourceTree = "<group>"; };
-		4B6DE473ACC030C197C305CD /* Pods_Drrrible_DrrribleTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Drrrible_DrrribleTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D52274A9E04CB3BBEDA2172 /* Pods-DrrribleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrrribleTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DrrribleTests/Pods-DrrribleTests.debug.xcconfig"; sourceTree = "<group>"; };
 		7FDE13E3B73333B79F505120 /* Pods-Drrrible-DrrribleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Drrrible-DrrribleTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Drrrible-DrrribleTests/Pods-Drrrible-DrrribleTests.debug.xcconfig"; sourceTree = "<group>"; };
-		CE2B72EA560A954FCA7B57A4 /* Pods_Drrrible.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Drrrible.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C3800977F199DEFED1D747AA /* Pods_Drrrible_DrrribleTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Drrrible_DrrribleTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1C26B69DF4A8650DD5E1E2F /* Pods-Drrrible.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Drrrible.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Drrrible/Pods-Drrrible.debug.xcconfig"; sourceTree = "<group>"; };
 		D79B5590B9DCC5274E4845E7 /* Pods-DrrribleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrrribleTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DrrribleTests/Pods-DrrribleTests.release.xcconfig"; sourceTree = "<group>"; };
-		E8DA147D5D31668FBCF30AE0 /* Pods_DrrribleTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DrrribleTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F815D70CC1ED4DAC3A2A8F36 /* Pods-Drrrible-DrrribleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Drrrible-DrrribleTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Drrrible-DrrribleTests/Pods-Drrrible-DrrribleTests.release.xcconfig"; sourceTree = "<group>"; };
+		FAF2B5CCF3B37FF7DB8227C2 /* Pods_Drrrible.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Drrrible.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -244,8 +240,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A03307C2B3F35C311D6DF9A2 /* Pods_DrrribleTests.framework in Frameworks */,
-				A1D5D085405030510CB10566 /* Pods_Drrrible_DrrribleTests.framework in Frameworks */,
+				67CCAEC7ACD021B25D286650 /* Pods_Drrrible_DrrribleTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -253,8 +248,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6DDB34252C101AA23C62E243 /* Pods_Drrrible.framework in Frameworks */,
-				D5FDD5E79F8CD8235CDB2098 /* Pods_Drrrible.framework in Frameworks */,
+				7016FEC9D52ED214CF18F95B /* Pods_Drrrible.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -580,10 +574,8 @@
 		927BA4FE51A39EF3C1A224CA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				23868B34FAC632E09764E4A2 /* Pods_Drrrible.framework */,
-				CE2B72EA560A954FCA7B57A4 /* Pods_Drrrible.framework */,
-				4B6DE473ACC030C197C305CD /* Pods_Drrrible_DrrribleTests.framework */,
-				E8DA147D5D31668FBCF30AE0 /* Pods_DrrribleTests.framework */,
+				FAF2B5CCF3B37FF7DB8227C2 /* Pods_Drrrible.framework */,
+				C3800977F199DEFED1D747AA /* Pods_Drrrible_DrrribleTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
