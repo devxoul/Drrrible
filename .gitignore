@@ -8,3 +8,7 @@
 Pods/
 Carthage/
 vendor/
+
+fastlane/report.xml
+*.ipa
+*.dSYM.zip

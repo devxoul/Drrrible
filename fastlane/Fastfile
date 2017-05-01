@@ -27,15 +27,13 @@ platform :ios do
     scan
   end
 
-  desc "Submit a new Beta Build to Apple TestFlight"
+  desc "Submit a new Beta Build to Crashlytics"
   desc "This will also make sure the profile is up to date"
   lane :beta do
     # match(type: "appstore") # more information: https://codesigning.guide
     gym(scheme: "Drrrible") # Build your app - more options available
-    pilot
-
-    # sh "your_script.sh"
-    # You can also use other beta testing services here (run `fastlane actions`)
+    crashlytics(api_token: "60d029a7c4e10e88538e507f1afbdf24583030ac",
+                build_secret: "a9eb3a6ce88c63b29c30071aa033ed66c1fbeb489ba5a82f452421803fcce3b5")
   end
 
   desc "Deploy a new version to the App Store"
