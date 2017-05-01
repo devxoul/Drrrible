@@ -1,0 +1,1 @@
+This is a 3rd party application using Dribbble API. Provided sign-in information is a dribbble.com account.
