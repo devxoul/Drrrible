@@ -30,9 +30,7 @@ final class ShotViewImageCell: BaseCollectionViewCell, View {
 
   func bind(reactor: ShotViewImageCellReactor) {
     reactor.state.map { $0.imageURL }
-      .subscribe(onNext: { [weak self] imageURL in
-        self?.imageView.kf.setImage(with: imageURL)
-      })
+      .bind(to: self.imageView.rx.resource)
       .disposed(by: self.disposeBag)
   }
 

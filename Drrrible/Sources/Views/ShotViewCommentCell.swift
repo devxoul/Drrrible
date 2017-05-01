@@ -63,7 +63,7 @@ final class ShotViewCommentCell: BaseCollectionViewCell, View {
   func bind(reactor: ShotViewCommentCellReactor) {
     reactor.state
       .subscribe(onNext: { [weak self] state in
-        self?.avatarView.kf.setImage(with: state.avatarURL)
+        self?.avatarView.setImage(with: state.avatarURL)
         self?.nameLabel.text = state.name
         self?.messageLabel.setText(state.message)
         self?.setNeedsLayout()

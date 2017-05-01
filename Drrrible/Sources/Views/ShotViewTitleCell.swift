@@ -70,9 +70,7 @@ final class ShotViewTitleCell: BaseCollectionViewCell, View {
 
   func bind(reactor: ShotViewTitleCellReactor) {
     reactor.state.map { $0.avatarURL }
-      .subscribe(onNext: { [weak self] avatarURL in
-        self?.avatarView.kf.setImage(with: avatarURL)
-      })
+      .bind(to: self.avatarView.rx.resource)
       .disposed(by: self.disposeBag)
 
     reactor.state.map { $0.title }

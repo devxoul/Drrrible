@@ -50,9 +50,7 @@ final class ShotTileCell: BaseCollectionViewCell, View {
   func bind(reactor: ShotCellReactor) {
     // State
     reactor.state.map { $0.imageURL }
-      .subscribe(onNext: { [weak self] imageURL in
-        self?.imageView.kf.setImage(with: imageURL, placeholder: nil)
-      })
+      .bind(to: self.imageView.rx.resource)
       .disposed(by: self.disposeBag)
 
     // View
