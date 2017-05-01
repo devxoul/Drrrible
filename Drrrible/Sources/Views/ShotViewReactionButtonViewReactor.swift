@@ -12,7 +12,6 @@ import RxSwift
 class ShotViewReactionButtonViewReactor: Reactor {
   enum Action {
     case toggleReaction
-    case shotEvent(Shot.Event)
   }
 
   enum Mutation {
@@ -31,12 +30,18 @@ class ShotViewReactionButtonViewReactor: Reactor {
     self.initialState = initialState
   }
 
-  func transform(action: Observable<Action>) -> Observable<Action> {
-    let shotEvent = Shot.event.map { Action.shotEvent($0) }
-    return Observable.of(action, shotEvent).merge()
+  func mutate(action: Action) -> Observable<Mutation> {
+    return .empty()
   }
 
-  func mutate(action: Action) -> Observable<Mutation> {
+  func transform(mutation: Observable<Mutation>) -> Observable<Mutation> {
+    let fromShotEvent = Shot.event.flatMap { [weak self] event in
+      self?.mutation(from: event) ?? .empty()
+    }
+    return Observable.of(mutation, fromShotEvent).merge()
+  }
+
+  func mutation(from event: Shot.Event) -> Observable<Mutation> {
     return .empty()
   }
 

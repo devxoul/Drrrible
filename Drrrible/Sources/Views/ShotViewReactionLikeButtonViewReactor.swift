@@ -35,20 +35,21 @@ final class ShotViewReactionLikeButtonViewReactor: ShotViewReactionButtonViewRea
         _ = self.provider.shotService.unlike(shotID: self.shot.id).subscribe()
       }
       return .empty()
+    }
+  }
 
-    case let .shotEvent(event):
-      switch event {
-      case let .like(id):
-        guard id == self.shot.id else { return .empty() }
-        return .just(.setReacted(true))
+  override func mutation(from event: Shot.Event) -> Observable<Mutation> {
+    switch event {
+    case let .like(id):
+      guard id == self.shot.id else { return .empty() }
+      return .just(.setReacted(true))
 
-      case let .unlike(id):
-        guard id == self.shot.id else { return .empty() }
-        return .just(.setReacted(false))
+    case let .unlike(id):
+      guard id == self.shot.id else { return .empty() }
+      return .just(.setReacted(false))
 
-      default:
-        return .empty()
-      }
+    default:
+      return .empty()
     }
   }
 }
