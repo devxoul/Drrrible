@@ -14,7 +14,6 @@ import RxSwiftUtilities
 final class ShotViewReactor: Reactor {
   enum Action {
     case refresh
-    case shotEvent(Shot.Event)
   }
 
   enum Mutation {
@@ -45,11 +44,6 @@ final class ShotViewReactor: Reactor {
     self.initialState = State()
   }
 
-  func transform(action: Observable<Action>) -> Observable<Action> {
-    let shotEvent: Observable<Action> = Shot.event.map(Action.shotEvent)
-    return Observable.of(action, shotEvent).merge()
-  }
-
   func mutate(action: Action) -> Observable<Mutation> {
     switch action {
     case .refresh:
@@ -71,10 +65,14 @@ final class ShotViewReactor: Reactor {
       let main = Observable.concat([startRefreshing, setShot, stopRefreshing])
       let sub = Observable.of(setLiked, setComments).merge()
       return .concat([main, sub])
-
-    case let .shotEvent(event):
-      return self.mutate(shotEvent: event)
     }
+  }
+
+  func transform(mutation: Observable<Mutation>) -> Observable<Mutation> {
+    let fromShotEvent = Shot.event.flatMap { [weak self] event in
+      return self?.mutate(shotEvent: event) ?? .empty()
+    }
+    return Observable.of(mutation, fromShotEvent).merge()
   }
 
   private func mutate(shotEvent: Shot.Event) -> Observable<Mutation> {
