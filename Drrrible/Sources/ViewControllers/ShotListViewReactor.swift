@@ -70,7 +70,9 @@ final class ShotListViewReactor: Reactor {
     var state = state
     switch mutation {
       case let .setRefreshing(isRefreshing):
-        state.isRefreshing = isRefreshing
+        // display the collection view's activity indicator only when the section is empty
+        let isEmpty = state.sections.first?.items.isEmpty == true
+        state.isRefreshing = isRefreshing && !isEmpty
         return state
 
       case let .setLoading(isLoading):
