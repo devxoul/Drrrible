@@ -17,23 +17,6 @@ import RxTest
 
 final class ShotListViewReactorTests: TestCase {
 
-  func testIsRefreshing() {
-    RxExpect() { test in
-      let provider = MockServiceProvider()
-      let reactor = ShotListViewReactor(provider: provider)
-      test.input(reactor.action, [
-        next(100, .refresh),
-      ])
-      test.assert(reactor.state.map { $0.isRefreshing })
-        .filterNext()
-        .equal([
-          false,
-          true,
-          false,
-        ])
-    }
-  }
-
   func testSections() {
     RxExpect { test in
       let provider = MockServiceProvider()
