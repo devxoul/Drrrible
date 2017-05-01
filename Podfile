@@ -48,7 +48,7 @@ target 'Drrrible' do
   pod 'UITextView+Placeholder'
   pod 'URLNavigator'
   pod 'KeychainAccess'
-  pod 'Yet'
+  pod 'Immutable'
   pod 'Carte'
 
   # SDK
