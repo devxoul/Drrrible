@@ -24,7 +24,7 @@ final class ShotViewReactionLikeButtonViewReactor: ShotViewReactionButtonViewRea
     super.init(initialState: initialState)
   }
 
-  func mutate(action: Action) -> Observable<Mutation> {
+  override func mutate(action: Action) -> Observable<Mutation> {
     switch action {
     case .toggleReaction:
       if self.shot.isLiked == false {

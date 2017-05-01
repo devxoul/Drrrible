@@ -36,6 +36,10 @@ class ShotViewReactionButtonViewReactor: Reactor {
     return Observable.of(action, shotEvent).merge()
   }
 
+  func mutate(action: Action) -> Observable<Mutation> {
+    return .empty()
+  }
+
   func reduce(state: State, mutation: Mutation) -> State {
     var state = state
     switch mutation {
