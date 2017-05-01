@@ -30,7 +30,6 @@ platform :ios do
   desc "Submit a new Beta Build to Crashlytics"
   desc "This will also make sure the profile is up to date"
   lane :beta do
-    # match(type: "appstore") # more information: https://codesigning.guide
     gym(scheme: "Drrrible") # Build your app - more options available
     crashlytics(api_token: "60d029a7c4e10e88538e507f1afbdf24583030ac",
                 build_secret: "a9eb3a6ce88c63b29c30071aa033ed66c1fbeb489ba5a82f452421803fcce3b5")
@@ -38,11 +37,8 @@ platform :ios do
 
   desc "Deploy a new version to the App Store"
   lane :release do
-    # match(type: "appstore")
-    # snapshot
-    gym(scheme: "Drrrible") # Build your app - more options available
-    deliver(force: true)
-    # frameit
+    deliver(force: true,
+            submit_for_review: true)
   end
 
   # You can define as many lanes as you want
