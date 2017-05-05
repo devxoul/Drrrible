@@ -104,6 +104,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     UINavigationBar.appearance().shadowImage = UIImage()
     UINavigationBar.appearance().barStyle = .black
     UINavigationBar.appearance().tintColor = .db_slate
+    UITabBar.appearance().tintColor = .db_charcoal
   }
 
 
