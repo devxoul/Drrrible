@@ -52,9 +52,20 @@ final class MainTabBarController: UITabBarController, View {
     ]
     Observable.combineLatest(navigationControllers) { $0 }
       .subscribe(onNext: { [weak self] navigationControllers in
+        for navigationController in navigationControllers {
+          navigationController.tabBarItem.title = nil
+          navigationController.tabBarItem.imageInsets.top = 5
+          navigationController.tabBarItem.imageInsets.bottom = -5
+        }
         self?.viewControllers = navigationControllers
       })
       .disposed(by: self.disposeBag)
+  }
+
+  override func viewDidLayoutSubviews() {
+    super.viewDidLayoutSubviews()
+    self.tabBar.height = 44
+    self.tabBar.bottom = self.view.height
   }
 
 }
