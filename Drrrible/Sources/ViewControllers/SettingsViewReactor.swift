@@ -42,6 +42,7 @@ final class SettingsViewReactor: Reactor {
         text: "version".localized,
         detailText: Bundle.main.version
       )),
+      .github(SettingItemCellReactor(text: "view_on_github".localized, detailText: nil)),
       .icons(SettingItemCellReactor(text: "icons_from".localized, detailText: "icons8.com")),
       .openSource(SettingItemCellReactor(text: "open_source_license".localized, detailText: nil)),
     ])

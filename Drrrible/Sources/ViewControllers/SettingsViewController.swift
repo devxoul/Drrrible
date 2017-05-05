@@ -73,6 +73,9 @@ final class SettingsViewController: BaseViewController, View {
       case .version(let reactor):
         cell.reactor = reactor
 
+      case .github(let reactor):
+        cell.reactor = reactor
+
       case .icons(let reactor):
         cell.reactor = reactor
 
@@ -107,6 +110,11 @@ final class SettingsViewController: BaseViewController, View {
           let reactor = VersionViewReactor(provider: reactor.provider)
           let viewController = VersionViewController(reactor: reactor)
           self.navigationController?.pushViewController(viewController, animated: true)
+
+        case .github:
+          let url = URL(string: "https://github.com/devxoul/Drrrible")!
+          let viewController = SFSafariViewController(url: url)
+          self.present(viewController, animated: true, completion: nil)
 
         case .icons:
           let url = URL(string: "https://icons8.com")!
