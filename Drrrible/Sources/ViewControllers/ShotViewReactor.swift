@@ -124,15 +124,11 @@ final class ShotViewReactor: Reactor {
 
     case let .setLiked(isLiked):
       guard var shot = state.shot else { return state }
-      if isLiked && shot.isLiked != true {
-        shot.isLiked = true
-        shot.likeCount += 1
-      } else if !isLiked && shot.isLiked != false {
-        shot.isLiked = false
-        shot.likeCount -= 1
-      } else {
-        return state
+      guard shot.isLiked != isLiked else { return state }
+      if shot.isLiked != nil { // if this mutation is not for initial 'isLiked'
+        shot.likeCount += isLiked ? +1 : -1
       }
+      shot.isLiked = isLiked
       return self.reduce(state: state, mutation: .setShot(shot))
 
     case let .setComments(comments):
