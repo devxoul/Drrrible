@@ -116,10 +116,12 @@ final class LoginViewController: BaseViewController, View {
 
     // Output
     reactor.state.map { $0.isLoading }
+      .distinctUntilChanged()
       .bind(to: self.loginButton.rx.isHidden)
       .disposed(by: self.disposeBag)
 
     reactor.state.map { $0.isLoading }
+      .distinctUntilChanged()
       .bind(to: self.activityIndicatorView.rx.isAnimating)
       .disposed(by: self.disposeBag)
 

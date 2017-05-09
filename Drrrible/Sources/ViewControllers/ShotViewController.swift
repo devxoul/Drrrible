@@ -139,6 +139,7 @@ final class ShotViewController: BaseViewController, View {
       .disposed(by: self.disposeBag)
 
     reactor.state.map { $0.isRefreshing }
+      .distinctUntilChanged()
       .bind(to: self.refreshControl.rx.isRefreshing)
       .disposed(by: self.disposeBag)
 

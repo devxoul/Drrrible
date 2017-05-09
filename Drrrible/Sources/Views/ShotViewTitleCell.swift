@@ -74,10 +74,12 @@ final class ShotViewTitleCell: BaseCollectionViewCell, View {
       .disposed(by: self.disposeBag)
 
     reactor.state.map { $0.title }
+      .distinctUntilChanged()
       .bind(to: self.titleLabel.rx.text)
       .disposed(by: self.disposeBag)
 
     reactor.state.map { $0.username }
+      .distinctUntilChanged()
       .bind(to: self.usernameLabel.rx.text)
       .disposed(by: self.disposeBag)
 

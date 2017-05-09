@@ -28,6 +28,7 @@ final class ShotViewReactor: Reactor {
     var shotSection: ShotViewSection = .shot([])
     var commentSection: ShotViewSection = .comment([.activityIndicator])
     var sections: [ShotViewSection] {
+      log.verbose(self.commentSection)
       return [self.shotSection, self.commentSection]
     }
     init(shotID: Int) {
@@ -60,7 +61,7 @@ final class ShotViewReactor: Reactor {
         Observable.just(.setRefreshing(false)),
         Observable.merge([
           self.provider.shotService.isLiked(shotID: self.shotID).flatMap { _ in Observable.empty() },
-          self.provider.shotService.comments(shotID: self.shotID).map { Mutation.setComments($0.items) },
+//          self.provider.shotService.comments(shotID: self.shotID).map { Mutation.setComments($0.items) },
         ]),
       ])
     }

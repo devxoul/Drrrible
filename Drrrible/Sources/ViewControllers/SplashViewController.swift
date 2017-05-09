@@ -59,6 +59,7 @@ final class SplashViewController: BaseViewController, View {
     // State
     reactor.state.map { $0.isAuthenticated }
       .filterNil()
+      .distinctUntilChanged()
       .subscribe(onNext: { [weak reactor] isAuthenticated in
         guard reactor != nil else { return }
         if !isAuthenticated {

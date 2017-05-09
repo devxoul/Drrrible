@@ -50,6 +50,7 @@ final class ShotViewTextCell: BaseCollectionViewCell, View {
 
   func bind(reactor: ShotViewTextCellReactor) {
     reactor.state.map { $0.text }
+      .distinctUntilChanged()
       .subscribe(onNext: { [weak self] text in
         self?.label.setText(text)
       })
