@@ -60,12 +60,37 @@ final class MainTabBarController: UITabBarController, View {
         self?.viewControllers = navigationControllers
       })
       .disposed(by: self.disposeBag)
+
+    self.rx.didSelect
+      .subscribe(onNext: { [weak self] selectedViewController in
+        guard let `self` = self else { return }
+        // scroll to top when select same view controller again
+        if selectedViewController === self.selectedViewController {
+          self.scrollToTop(selectedViewController)
+        }
+      })
+      .disposed(by: self.disposeBag)
+
+
   }
 
   override func viewDidLayoutSubviews() {
     super.viewDidLayoutSubviews()
     self.tabBar.height = 44
     self.tabBar.bottom = self.view.height
+  }
+
+  func scrollToTop(_ viewController: UIViewController) {
+    if let navigationController = viewController as? UINavigationController {
+      let topViewController = navigationController.topViewController
+      let firstViewController = navigationController.viewControllers.first
+      if let viewController = topViewController, topViewController === firstViewController {
+        self.scrollToTop(viewController)
+      }
+      return
+    }
+    guard let scrollView = viewController.view.subviews.first as? UIScrollView else { return }
+    scrollView.setContentOffset(.zero, animated: true)
   }
 
 }
