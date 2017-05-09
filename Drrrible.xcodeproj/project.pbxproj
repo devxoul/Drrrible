@@ -72,6 +72,8 @@
 		038B690D1E72A752006B44F9 /* SettingItemCellReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038B690C1E72A752006B44F9 /* SettingItemCellReactor.swift */; };
 		038B690F1E73153E006B44F9 /* UITableView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038B690E1E73153E006B44F9 /* UITableView+Rx.swift */; };
 		038B69111E7318FE006B44F9 /* UICollectionView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038B69101E7318FE006B44F9 /* UICollectionView+Rx.swift */; };
+		03A60A8A1EC1D0090053FD0D /* Array+SectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A60A891EC1D0090053FD0D /* Array+SectionModel.swift */; };
+		03A60A8C1EC1DAD10053FD0D /* UIView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A60A8B1EC1DAD10053FD0D /* UIView+Rx.swift */; };
 		03D996D21E8051FC004773AE /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D996D11E8051FC004773AE /* Comment.swift */; };
 		03D996D41E80535B004773AE /* ShotViewCommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D996D31E80535B004773AE /* ShotViewCommentCell.swift */; };
 		03D996D61E805392004773AE /* ShotViewCommentCellReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D996D51E805392004773AE /* ShotViewCommentCellReactor.swift */; };
@@ -187,6 +189,8 @@
 		038B690C1E72A752006B44F9 /* SettingItemCellReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingItemCellReactor.swift; sourceTree = "<group>"; };
 		038B690E1E73153E006B44F9 /* UITableView+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Rx.swift"; sourceTree = "<group>"; };
 		038B69101E7318FE006B44F9 /* UICollectionView+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Rx.swift"; sourceTree = "<group>"; };
+		03A60A891EC1D0090053FD0D /* Array+SectionModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+SectionModel.swift"; sourceTree = "<group>"; };
+		03A60A8B1EC1DAD10053FD0D /* UIView+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Rx.swift"; sourceTree = "<group>"; };
 		03D996D11E8051FC004773AE /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		03D996D31E80535B004773AE /* ShotViewCommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShotViewCommentCell.swift; sourceTree = "<group>"; };
 		03D996D51E805392004773AE /* ShotViewCommentCellReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShotViewCommentCellReactor.swift; sourceTree = "<group>"; };
@@ -457,6 +461,7 @@
 			children = (
 				031EB0771E700912004D6349 /* ObjectMapper+Rx.swift */,
 				03DF95021E6EAACF00E31665 /* UIViewController+Rx.swift */,
+				03A60A8B1EC1DAD10053FD0D /* UIView+Rx.swift */,
 				035D06911E71BBD700AFF030 /* UIScrollView+Rx.swift */,
 				038B690E1E73153E006B44F9 /* UITableView+Rx.swift */,
 				038B69101E7318FE006B44F9 /* UICollectionView+Rx.swift */,
@@ -497,6 +502,7 @@
 				03DF950E1E6EAB8E00E31665 /* String+Localized.swift */,
 				0365BB8F1E74846F009BA3F8 /* NSAttributedString+BoundingRect.swift */,
 				0365BB8D1E748246009BA3F8 /* NSAttributedString+HTMLString.swift */,
+				03A60A891EC1D0090053FD0D /* Array+SectionModel.swift */,
 				03DF950F1E6EAB8E00E31665 /* UICollectionView+CellWidth.swift */,
 				03DF95101E6EAB8E00E31665 /* UIScrollView+ScrollToBottom.swift */,
 				031EB0581E6FED65004D6349 /* URLNavigationMap.swift */,
@@ -880,11 +886,13 @@
 				03D996D81E805DB6004773AE /* CollectionActivityIndicatorCell.swift in Sources */,
 				035D06961E71C84700AFF030 /* RxOperators.swift in Sources */,
 				0388F5AF1EB7692200E92AFF /* UIImageView+Kingfisher.swift in Sources */,
+				03A60A8A1EC1D0090053FD0D /* Array+SectionModel.swift in Sources */,
 				03DF95141E6EAB8E00E31665 /* UICollectionView+CellWidth.swift in Sources */,
 				03DF951F1E6EB7E200E31665 /* LoginViewReactor.swift in Sources */,
 				038B68F71E71ED90006B44F9 /* Paging.swift in Sources */,
 				0365BB8A1E747D22009BA3F8 /* ShotViewTextCell.swift in Sources */,
 				038B690D1E72A752006B44F9 /* SettingItemCellReactor.swift in Sources */,
+				03A60A8C1EC1DAD10053FD0D /* UIView+Rx.swift in Sources */,
 				031EB0671E6FFDE3004D6349 /* Shot.swift in Sources */,
 				0365BBA01E758BB4009BA3F8 /* ModelStream.swift in Sources */,
 				031EB05B1E6FEFE7004D6349 /* AuthService.swift in Sources */,

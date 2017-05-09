@@ -16,15 +16,21 @@ class ShotViewReactionButtonViewReactor: Reactor {
 
   enum Mutation {
     case setReacted(Bool)
+    case setCanToggleReaction(Bool)
+    case setCount(Int)
   }
 
   struct State {
-    var isReacted: Bool
+    let shotID: Int
+    var isReacted: Bool?
     var canToggleReaction: Bool
-    var text: String
+    var count: Int
   }
 
   let initialState: State
+  var shotID: Int {
+    return self.currentState.shotID
+  }
 
   init(initialState: State) {
     self.initialState = initialState
@@ -50,6 +56,14 @@ class ShotViewReactionButtonViewReactor: Reactor {
     switch mutation {
     case let .setReacted(isReacted):
       state.isReacted = isReacted
+      return state
+
+    case let .setCanToggleReaction(canToggleReaction):
+      state.canToggleReaction = canToggleReaction
+      return state
+
+    case let .setCount(count):
+      state.count = count
       return state
     }
   }

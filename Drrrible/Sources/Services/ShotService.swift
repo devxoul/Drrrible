@@ -36,14 +36,29 @@ final class ShotService: BaseService, ShotServiceType {
     return self.provider.networking.request(.isLikedShot(id: shotID))
       .map(true)
       .catchErrorJustReturn(false)
+      .do(onNext: { isLiked in
+        Shot.event.onNext(.updateLiked(id: shotID, isLiked: isLiked))
+      })
   }
 
   func like(shotID: Int) -> Observable<Void> {
+    Shot.event.onNext(.updateLiked(id: shotID, isLiked: true))
+    Shot.event.onNext(.increaseLikeCount(id: shotID))
     return self.provider.networking.request(.likeShot(id: shotID)).mapVoid()
+      .do(onError: { error in
+        Shot.event.onNext(.updateLiked(id: shotID, isLiked: false))
+        Shot.event.onNext(.decreaseLikeCount(id: shotID))
+      })
   }
 
   func unlike(shotID: Int) -> Observable<Void> {
-    return self.provider.networking.request(.likeShot(id: shotID)).mapVoid()
+    Shot.event.onNext(.updateLiked(id: shotID, isLiked: false))
+    Shot.event.onNext(.decreaseLikeCount(id: shotID))
+    return self.provider.networking.request(.unlikeShot(id: shotID)).mapVoid()
+      .do(onError: { error in
+        Shot.event.onNext(.updateLiked(id: shotID, isLiked: true))
+        Shot.event.onNext(.increaseLikeCount(id: shotID))
+      })
   }
 
   func comments(shotID: Int) -> Observable<List<Comment>> {

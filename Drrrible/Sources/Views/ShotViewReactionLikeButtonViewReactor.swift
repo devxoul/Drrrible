@@ -11,15 +11,14 @@ import RxSwift
 
 final class ShotViewReactionLikeButtonViewReactor: ShotViewReactionButtonViewReactor {
   fileprivate let provider: ServiceProviderType
-  fileprivate let shot: Shot
 
   init(provider: ServiceProviderType, shot: Shot) {
     self.provider = provider
-    self.shot = shot
     let initialState = State(
-      isReacted: shot.isLiked ?? false,
+      shotID: shot.id,
+      isReacted: shot.isLiked,
       canToggleReaction: shot.isLiked != nil,
-      text: "\(shot.likeCount)"
+      count: shot.likeCount
     )
     super.init(initialState: initialState)
   }
@@ -27,12 +26,10 @@ final class ShotViewReactionLikeButtonViewReactor: ShotViewReactionButtonViewRea
   override func mutate(action: Action) -> Observable<Mutation> {
     switch action {
     case .toggleReaction:
-      if self.shot.isLiked == false {
-        Shot.event.onNext(.like(id: shot.id))
-        _ = self.provider.shotService.like(shotID: self.shot.id).subscribe()
-      } else if self.shot.isLiked == true {
-        Shot.event.onNext(.unlike(id: shot.id))
-        _ = self.provider.shotService.unlike(shotID: self.shot.id).subscribe()
+      if self.currentState.isReacted != true {
+        _ = self.provider.shotService.like(shotID: self.shotID).subscribe()
+      } else {
+        _ = self.provider.shotService.unlike(shotID: self.shotID).subscribe()
       }
       return .empty()
     }
@@ -40,16 +37,17 @@ final class ShotViewReactionLikeButtonViewReactor: ShotViewReactionButtonViewRea
 
   override func mutation(from event: Shot.Event) -> Observable<Mutation> {
     switch event {
-    case let .like(id):
-      guard id == self.shot.id else { return .empty() }
-      return .just(.setReacted(true))
+    case let .updateLiked(id, isLiked):
+      guard id == self.shotID else { return .empty() }
+      return Observable.from([.setReacted(isLiked), .setCanToggleReaction(true)])
 
-    case let .unlike(id):
-      guard id == self.shot.id else { return .empty() }
-      return .just(.setReacted(false))
+    case let .increaseLikeCount(id):
+      guard id == self.shotID else { return .empty() }
+      return .just(.setCount(self.currentState.count + 1))
 
-    default:
-      return .empty()
+    case let .decreaseLikeCount(id):
+      guard id == self.shotID else { return .empty() }
+      return .just(.setCount(self.currentState.count - 1))
     }
   }
 }

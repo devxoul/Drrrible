@@ -17,9 +17,10 @@ final class ShotViewReactionCommentButtonViewReactor: ShotViewReactionButtonView
     self.provider = provider
     self.shot = shot
     let initialState = State(
+      shotID: shot.id,
       isReacted: false,
       canToggleReaction: true,
-      text: "\(shot.commentCount)"
+      count: shot.commentCount
     )
     super.init(initialState: initialState)
   }

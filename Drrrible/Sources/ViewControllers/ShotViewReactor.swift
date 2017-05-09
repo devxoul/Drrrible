@@ -18,84 +18,51 @@ final class ShotViewReactor: Reactor {
 
   enum Mutation {
     case setRefreshing(Bool)
-    case setShot(Shot?)
-    case setLiked(Bool)
+    case setShot(Shot)
     case setComments([Comment])
   }
 
   struct State {
+    let shotID: Int
     var isRefreshing: Bool = false
-    var shot: Shot?
-
     var shotSection: ShotViewSection = .shot([])
     var commentSection: ShotViewSection = .comment([.activityIndicator])
     var sections: [ShotViewSection] {
       return [self.shotSection, self.commentSection]
     }
+    init(shotID: Int) {
+      self.shotID = shotID
+    }
   }
 
   fileprivate let provider: ServiceProviderType
-  fileprivate let shotID: Int
   let initialState: State
+  fileprivate var shotID: Int {
+    return self.currentState.shotID
+  }
 
   init(provider: ServiceProviderType, shotID: Int, shot initialShot: Shot? = nil) {
     self.provider = provider
-    self.shotID = shotID
-    self.initialState = State()
+    var initialState = State(shotID: shotID)
+    if let shot = initialShot {
+      initialState.shotSection = ShotViewReactor.shotSection(from: shot, provider: provider)
+    }
+    self.initialState = initialState
   }
 
   func mutate(action: Action) -> Observable<Mutation> {
     switch action {
     case .refresh:
       guard !self.currentState.isRefreshing else { return .empty() }
-      let startRefreshing: Observable<Mutation> = .just(.setRefreshing(true))
-      let stopRefreshing: Observable<Mutation> = .just(.setRefreshing(false))
-      let setShot: Observable<Mutation> = self.provider.shotService
-        .shot(id: self.shotID)
-        .map { shot in Mutation.setShot(shot) }
-
-      let setLiked: Observable<Mutation> = self.provider.shotService
-        .isLiked(shotID: self.shotID)
-        .map { isLiked in Mutation.setLiked(isLiked) }
-
-      let setComments: Observable<Mutation> = self.provider.shotService
-        .comments(shotID: self.shotID)
-        .map { list in .setComments(list.items) }
-
-      let main = Observable.concat([startRefreshing, setShot, stopRefreshing])
-      let sub = Observable.of(setLiked, setComments).merge()
-      return .concat([main, sub])
-    }
-  }
-
-  func transform(mutation: Observable<Mutation>) -> Observable<Mutation> {
-    let fromShotEvent = Shot.event.flatMap { [weak self] event in
-      return self?.mutate(shotEvent: event) ?? .empty()
-    }
-    return Observable.of(mutation, fromShotEvent).merge()
-  }
-
-  private func mutate(shotEvent: Shot.Event) -> Observable<Mutation> {
-    switch shotEvent {
-    case let .create(shot):
-      guard shot.id == self.shotID else { return .empty() }
-      return .just(.setShot(shot))
-
-    case let .update(shot):
-      guard shot.id == self.shotID else { return .empty() }
-      return .just(.setShot(shot))
-
-    case let .delete(id):
-      guard id == self.shotID else { return .empty() }
-      return .just(.setShot(nil))
-
-    case let .like(id):
-      guard id == self.shotID else { return .empty() }
-      return .just(.setLiked(true))
-
-    case let .unlike(id):
-      guard id == self.shotID else { return .empty() }
-      return .just(.setLiked(false))
+      return Observable.concat([
+        Observable.just(.setRefreshing(true)),
+        self.provider.shotService.shot(id: self.shotID).map(Mutation.setShot),
+        Observable.just(.setRefreshing(false)),
+        Observable.merge([
+          self.provider.shotService.isLiked(shotID: self.shotID).flatMap { _ in Observable.empty() },
+          self.provider.shotService.comments(shotID: self.shotID).map { Mutation.setComments($0.items) },
+        ]),
+      ])
     }
   }
 
@@ -107,29 +74,8 @@ final class ShotViewReactor: Reactor {
       return state
 
     case let .setShot(shot):
-      guard let shot = shot else {
-        state.shotSection = .shot([])
-        state.shot = nil
-        return state
-      }
-      let sectionItems: [ShotViewSectionItem] = [
-        .image(ShotViewImageCellReactor(provider: self.provider, shot: shot)),
-        .title(ShotViewTitleCellReactor(provider: self.provider, shot: shot)),
-        .text(ShotViewTextCellReactor(provider: self.provider, shot: shot)),
-        .reaction(ShotViewReactionCellReactor(provider: self.provider, shot: shot))
-      ]
-      state.shotSection = .shot(sectionItems)
-      state.shot = shot
+      state.shotSection = ShotViewReactor.shotSection(from: shot, provider: self.provider)
       return state
-
-    case let .setLiked(isLiked):
-      guard var shot = state.shot else { return state }
-      guard shot.isLiked != isLiked else { return state }
-      if shot.isLiked != nil { // if this mutation is not for initial 'isLiked'
-        shot.likeCount += isLiked ? +1 : -1
-      }
-      shot.isLiked = isLiked
-      return self.reduce(state: state, mutation: .setShot(shot))
 
     case let .setComments(comments):
       let sectionItems = comments
@@ -140,4 +86,13 @@ final class ShotViewReactor: Reactor {
     }
   }
 
+  private static func shotSection(from shot: Shot, provider: ServiceProviderType) -> ShotViewSection {
+    let sectionItems: [ShotViewSectionItem] = [
+      .image(ShotViewImageCellReactor(provider: provider, shot: shot)),
+      .title(ShotViewTitleCellReactor(provider: provider, shot: shot)),
+      .text(ShotViewTextCellReactor(provider: provider, shot: shot)),
+      .reaction(ShotViewReactionCellReactor(provider: provider, shot: shot))
+    ]
+    return .shot(sectionItems)
+  }
 }

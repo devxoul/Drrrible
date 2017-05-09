@@ -11,11 +11,9 @@ import ObjectMapper
 struct Shot: ModelType {
 
   enum Event {
-    case create(Shot)
-    case update(Shot)
-    case delete(id: Int)
-    case like(id: Int)
-    case unlike(id: Int)
+    case updateLiked(id: Int, isLiked: Bool)
+    case increaseLikeCount(id: Int)
+    case decreaseLikeCount(id: Int)
   }
 
   var id: Int
