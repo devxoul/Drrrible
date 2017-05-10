@@ -7,6 +7,10 @@ target 'Drrrible' do
   # Architecture
   pod 'ReactorKit'
 
+  # DI
+  pod 'Swinject'
+  pod 'SwinjectAutoregistration'
+
   # Networking
   pod 'Alamofire'
   pod 'Moya'

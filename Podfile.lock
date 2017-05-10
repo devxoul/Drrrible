@@ -77,6 +77,9 @@ PODS:
   - SnapKit (3.2.0)
   - SwiftyColor (1.0.0)
   - SwiftyImage (1.0.0)
+  - Swinject (2.0.0)
+  - SwinjectAutoregistration (2.0.1):
+    - Swinject (~> 2.0.0)
   - Then (2.1.0)
   - TouchAreaInsets (1.0.0)
   - TTTAttributedLabel (2.0.0)
@@ -116,6 +119,8 @@ DEPENDENCIES:
   - SnapKit
   - SwiftyColor
   - SwiftyImage
+  - Swinject
+  - SwinjectAutoregistration
   - Then
   - TouchAreaInsets
   - TTTAttributedLabel
@@ -168,6 +173,8 @@ SPEC CHECKSUMS:
   SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
   SwiftyColor: 7fa09db14051bc5d7f539e1c4576665975225992
   SwiftyImage: 79090f8b96057b3e91064de172936b97855086e6
+  Swinject: 2e964a80d70ab09b3949c99032711f89147bfd60
+  SwinjectAutoregistration: d19654c429354bad4b544c658dc92345ccdbb72c
   Then: 8496793c8fcac95482b943909b440724c7d8d82c
   TouchAreaInsets: 01a873de4bac294e502bd07219f82bd18866eeee
   TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
@@ -175,6 +182,6 @@ SPEC CHECKSUMS:
   URLNavigator: 3ff788c985a0aae654e7de4959c4b0ea8a45f022
   WebLinking: 3f71787c14a225148e8be29fe6e7c98597cbc459
 
-PODFILE CHECKSUM: 01f587ba80db1eb6ae59ed70ab238e35fd7c362e
+PODFILE CHECKSUM: 905f47124bdce2bc6af0eb131dcc1396e78be844
 
 COCOAPODS: 1.2.0
