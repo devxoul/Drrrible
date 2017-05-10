@@ -11,7 +11,7 @@ import Then
 
 @testable import Drrrible
 
-final class MockShotService: BaseService, ShotServiceType, Then {
+final class MockShotService: ShotServiceType, ServiceContainer, Then {
   var shotsClosure: (_ paging: Paging) -> Observable<List<Shot>> = { _ in .empty() }
   func shots(paging: Paging) -> Observable<List<Shot>> {
     return self.shotsClosure(paging)

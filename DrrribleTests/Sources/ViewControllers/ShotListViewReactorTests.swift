@@ -16,17 +16,14 @@ import RxTest
 @testable import Drrrible
 
 final class ShotListViewReactorTests: TestCase {
-
   func testSections() {
     RxExpect { test in
-      let provider = MockServiceProvider()
-      provider.shotService = MockShotService(provider: provider).then {
-        $0.shotsClosure = { _ in
-          .just(List(items: [ShotFixture.shot1, ShotFixture.shot2]))
+      DI.register(ShotServiceType.self) { _ in
+        MockShotService().then {
+          $0.shotsClosure = { _ in .just(List(items: [ShotFixture.shot1, ShotFixture.shot2])) }
         }
       }
-
-      let reactor = ShotListViewReactor(provider: provider)
+      let reactor = ShotListViewReactor()
       test.input(reactor.action, [
         next(100, .refresh),
       ])
@@ -43,5 +40,4 @@ final class ShotListViewReactorTests: TestCase {
         ])
     }
   }
-
 }

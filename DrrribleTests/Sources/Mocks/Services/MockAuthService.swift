@@ -11,7 +11,7 @@ import Then
 
 @testable import Drrrible
 
-final class MockAuthService: BaseService, AuthServiceType, Then {
+final class MockAuthService: AuthServiceType, ServiceContainer, Then {
   var currentAccessToken: AccessToken? {
     return nil
   }

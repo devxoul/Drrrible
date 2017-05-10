@@ -11,7 +11,7 @@ import Then
 
 @testable import Drrrible
 
-final class MockUserService: BaseService, UserServiceType, Then {
+final class MockUserService: UserServiceType, ServiceContainer, Then {
   var currentUser: Observable<User?> {
     return .empty()
   }

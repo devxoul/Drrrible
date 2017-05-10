@@ -83,7 +83,6 @@
 		03D996FB1E811EC5004773AE /* SplashViewReactorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D996FA1E811EC5004773AE /* SplashViewReactorTests.swift */; };
 		03D997161E812691004773AE /* MockError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D9970F1E812691004773AE /* MockError.swift */; };
 		03D997171E812691004773AE /* MockAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D997111E812691004773AE /* MockAuthService.swift */; };
-		03D997181E812691004773AE /* MockServiceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D997121E812691004773AE /* MockServiceProvider.swift */; };
 		03D997191E812691004773AE /* MockShotService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D997131E812691004773AE /* MockShotService.swift */; };
 		03D9971A1E812691004773AE /* MockUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D997141E812691004773AE /* MockUserService.swift */; };
 		03D9971C1E81278B004773AE /* LoginViewReactorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D9971B1E81278B004773AE /* LoginViewReactorTests.swift */; };
@@ -202,7 +201,6 @@
 		03D996FA1E811EC5004773AE /* SplashViewReactorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewReactorTests.swift; sourceTree = "<group>"; };
 		03D9970F1E812691004773AE /* MockError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockError.swift; sourceTree = "<group>"; };
 		03D997111E812691004773AE /* MockAuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockAuthService.swift; sourceTree = "<group>"; };
-		03D997121E812691004773AE /* MockServiceProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockServiceProvider.swift; sourceTree = "<group>"; };
 		03D997131E812691004773AE /* MockShotService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockShotService.swift; sourceTree = "<group>"; };
 		03D997141E812691004773AE /* MockUserService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockUserService.swift; sourceTree = "<group>"; };
 		03D9971B1E81278B004773AE /* LoginViewReactorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewReactorTests.swift; sourceTree = "<group>"; };
@@ -347,7 +345,6 @@
 			isa = PBXGroup;
 			children = (
 				03D997111E812691004773AE /* MockAuthService.swift */,
-				03D997121E812691004773AE /* MockServiceProvider.swift */,
 				03D997131E812691004773AE /* MockShotService.swift */,
 				03D997141E812691004773AE /* MockUserService.swift */,
 				034D33571EA69ABB004498FB /* MockAppStoreService.swift */,
@@ -842,7 +839,6 @@
 				03D997191E812691004773AE /* MockShotService.swift in Sources */,
 				034D33581EA69ABB004498FB /* MockAppStoreService.swift in Sources */,
 				03D9971E1E817ACF004773AE /* ShotListViewReactorTests.swift in Sources */,
-				03D997181E812691004773AE /* MockServiceProvider.swift in Sources */,
 				034D335E1EA69CE4004498FB /* MockAppDelegate.swift in Sources */,
 				03D997211E817C1A004773AE /* ShotFixture.swift in Sources */,
 				03D9971C1E81278B004773AE /* LoginViewReactorTests.swift in Sources */,

@@ -16,14 +16,14 @@ import RxTest
 @testable import Drrrible
 
 final class SplashViewReactorTests: TestCase {
-
   func testIsAuthenticated() {
     RxExpect("it should set isAuthenticated false when not authenticated") { test in
-      let provider = MockServiceProvider()
-      provider.userService = MockUserService(provider: provider).then {
-        $0.fetchMeClosure = { Observable.error(MockError()) }
+      DI.register(UserServiceType.self) { _ in
+        MockUserService().then {
+          $0.fetchMeClosure = { Observable.error(MockError()) }
+        }
       }
-      let reactor = SplashViewReactor(provider: provider)
+      let reactor = SplashViewReactor()
 
       // input
       test.input(reactor.action, [
@@ -37,8 +37,8 @@ final class SplashViewReactorTests: TestCase {
     }
 
     RxExpect("it should set isAuthenticated true when not authenticated") { test in
-      let provider = MockServiceProvider()
-      let reactor = SplashViewReactor(provider: provider)
+      self.registerDependencies()
+      let reactor = SplashViewReactor()
       test.input(reactor.action, [
         next(100, .checkIfAuthenticated),
       ])
@@ -47,5 +47,4 @@ final class SplashViewReactorTests: TestCase {
         .equal([nil, true]) { $0 == $1 }
     }
   }
-
 }

@@ -11,7 +11,7 @@ import Then
 
 @testable import Drrrible
 
-final class MockAppStoreService: BaseService, AppStoreServiceType, Then {
+final class MockAppStoreService: AppStoreServiceType, ServiceContainer, Then {
   var latestVersionClosure: () -> Observable<String?> = { .just(nil) }
   func latestVersion() -> Observable<String?> {
     return self.latestVersionClosure()
