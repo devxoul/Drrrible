@@ -34,7 +34,6 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
   class var shared: AppDelegate {
     return UIApplication.shared.delegate as! AppDelegate
   }
-  fileprivate let serviceProvider: ServiceProviderType = ServiceProvider()
 
 
   // MARK: UI
@@ -55,9 +54,9 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     window.backgroundColor = .white
     window.makeKeyAndVisible()
 
-    URLNavigationMap.initialize(provider: self.serviceProvider)
+    URLNavigationMap.initialize()
 
-    let reactor = SplashViewReactor(provider: self.serviceProvider)
+    let reactor = SplashViewReactor()
     let splashViewController = SplashViewController(reactor: reactor)
     window.rootViewController = splashViewController
 
@@ -111,13 +110,13 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
   // MARK: Presenting
 
   func presentLoginScreen() {
-    let reactor = LoginViewReactor(provider: self.serviceProvider)
+    let reactor = LoginViewReactor()
     let viewController = LoginViewController(reactor: reactor)
     self.window?.rootViewController = viewController
   }
 
   func presentMainScreen() {
-    let reactor = MainTabBarViewReactor(provider: self.serviceProvider)
+    let reactor = MainTabBarViewReactor()
     let mainTabBarController = MainTabBarController(reactor: reactor)
     self.window?.rootViewController = mainTabBarController
   }

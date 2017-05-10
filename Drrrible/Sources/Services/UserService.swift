@@ -14,7 +14,7 @@ protocol UserServiceType {
   func fetchMe() -> Observable<Void>
 }
 
-final class UserService: BaseService, UserServiceType {
+final class UserService: UserServiceType, ServiceContainer {
 
   fileprivate let userSubject = ReplaySubject<User?>.create(bufferSize: 1)
   lazy var currentUser: Observable<User?> = self.userSubject.asObservable()
@@ -22,7 +22,7 @@ final class UserService: BaseService, UserServiceType {
     .shareReplay(1)
 
   func fetchMe() -> Observable<Void> {
-    return self.provider.networking.request(.me)
+    return self.networking.request(.me)
       .map(User.self)
       .do(onNext: { [weak self] user in
         self?.userSubject.onNext(user)

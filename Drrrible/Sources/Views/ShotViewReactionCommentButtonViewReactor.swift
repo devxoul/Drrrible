@@ -10,11 +10,9 @@ import ReactorKit
 import RxSwift
 
 final class ShotViewReactionCommentButtonViewReactor: ShotViewReactionButtonViewReactor {
-  fileprivate let provider: ServiceProviderType
   fileprivate let shot: Shot
 
-  init(provider: ServiceProviderType, shot: Shot) {
-    self.provider = provider
+  init(shot: Shot) {
     self.shot = shot
     let initialState = State(
       shotID: shot.id,

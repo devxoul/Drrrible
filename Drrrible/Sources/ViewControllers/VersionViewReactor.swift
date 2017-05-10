@@ -9,7 +9,7 @@
 import ReactorKit
 import RxSwift
 
-final class VersionViewReactor: Reactor {
+final class VersionViewReactor: Reactor, ServiceContainer {
   enum Action {
     case checkForUpdates
   }
@@ -25,19 +25,14 @@ final class VersionViewReactor: Reactor {
     var latestVersion: String?
   }
 
-  let provider: ServiceProviderType
   let initialState = State()
-
-  init(provider: ServiceProviderType) {
-    self.provider = provider
-  }
 
   func mutate(action: Action) -> Observable<Mutation> {
     switch action {
     case .checkForUpdates:
       let startLoading: Observable<Mutation> = .just(.setLoading(true))
       let clearLatestVersion: Observable<Mutation> = .just(.setLatestVersion(nil))
-      let setLatestVersion: Observable<Mutation> = self.provider.appStoreService.latestVersion()
+      let setLatestVersion: Observable<Mutation> = self.appStoreService.latestVersion()
         .map { $0 ?? "⚠️" }
         .map(Mutation.setLatestVersion)
       let stopLoading: Observable<Mutation> = .just(.setLoading(false))

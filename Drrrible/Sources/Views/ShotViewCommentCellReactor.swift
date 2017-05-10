@@ -10,7 +10,7 @@ import ReactorKit
 import RxCocoa
 import RxSwift
 
-class ShotViewCommentCellReactor: Reactor {
+class ShotViewCommentCellReactor: Reactor, ServiceContainer {
   typealias Action = NoAction
 
   struct State {
@@ -21,7 +21,7 @@ class ShotViewCommentCellReactor: Reactor {
 
   let initialState: State
 
-  init(provider: ServiceProviderType, comment: Comment) {
+  init(comment: Comment) {
     self.initialState = State(
       avatarURL: comment.user.avatarURL,
       name: comment.user.name,

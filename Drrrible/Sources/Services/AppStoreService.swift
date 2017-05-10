@@ -12,7 +12,7 @@ protocol AppStoreServiceType {
   func latestVersion() -> Observable<String?>
 }
 
-final class AppStoreService: BaseService, AppStoreServiceType {
+final class AppStoreService: AppStoreServiceType {
   fileprivate let networking = Networking<AppStoreAPI>()
 
   func latestVersion() -> Observable<String?> {

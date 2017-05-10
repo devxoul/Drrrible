@@ -10,18 +10,16 @@ import UIKit
 
 import ReactorKit
 
-final class ShotViewTextCellReactor: Reactor {
+final class ShotViewTextCellReactor: Reactor, ServiceContainer {
   typealias Action = NoAction
   
   struct State {
     var text: NSAttributedString?
   }
 
-  fileprivate let provider: ServiceProviderType
   let initialState: State
 
-  init(provider: ServiceProviderType, shot: Shot) {
-    self.provider = provider
+  init(shot: Shot) {
     let text = shot.text.flatMap { try? NSAttributedString.init(htmlString: $0) }
     self.initialState = State(text: text)
   }

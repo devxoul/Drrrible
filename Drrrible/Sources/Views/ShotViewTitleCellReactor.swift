@@ -10,7 +10,7 @@ import ReactorKit
 import RxCocoa
 import RxSwift
 
-final class ShotViewTitleCellReactor: Reactor {
+final class ShotViewTitleCellReactor: Reactor, ServiceContainer {
   typealias Action = NoAction
   
   struct State {
@@ -19,11 +19,9 @@ final class ShotViewTitleCellReactor: Reactor {
     var username: String
   }
 
-  fileprivate let provider: ServiceProviderType
   let initialState: State
 
-  init(provider: ServiceProviderType, shot: Shot) {
-    self.provider = provider
+  init(shot: Shot) {
     self.initialState = State(
       avatarURL: shot.user.avatarURL,
       title: shot.title,

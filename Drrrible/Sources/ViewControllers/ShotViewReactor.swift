@@ -11,7 +11,7 @@ import RxCocoa
 import RxSwift
 import RxSwiftUtilities
 
-final class ShotViewReactor: Reactor {
+final class ShotViewReactor: Reactor, ServiceContainer {
   enum Action {
     case refresh
   }
@@ -36,17 +36,15 @@ final class ShotViewReactor: Reactor {
     }
   }
 
-  fileprivate let provider: ServiceProviderType
   let initialState: State
   fileprivate var shotID: Int {
     return self.currentState.shotID
   }
 
-  init(provider: ServiceProviderType, shotID: Int, shot initialShot: Shot? = nil) {
-    self.provider = provider
+  init(shotID: Int, shot initialShot: Shot? = nil) {
     var initialState = State(shotID: shotID)
     if let shot = initialShot {
-      initialState.shotSection = ShotViewReactor.shotSection(from: shot, provider: provider)
+      initialState.shotSection = ShotViewReactor.shotSection(from: shot)
     }
     self.initialState = initialState
   }
@@ -57,11 +55,11 @@ final class ShotViewReactor: Reactor {
       guard !self.currentState.isRefreshing else { return .empty() }
       return Observable.concat([
         Observable.just(.setRefreshing(true)),
-        self.provider.shotService.shot(id: self.shotID).map(Mutation.setShot),
+        self.shotService.shot(id: self.shotID).map(Mutation.setShot),
         Observable.just(.setRefreshing(false)),
         Observable.merge([
-          self.provider.shotService.isLiked(shotID: self.shotID).flatMap { _ in Observable.empty() },
-//          self.provider.shotService.comments(shotID: self.shotID).map { Mutation.setComments($0.items) },
+          self.shotService.isLiked(shotID: self.shotID).flatMap { _ in Observable.empty() },
+//          self.shotService.comments(shotID: self.shotID).map { Mutation.setComments($0.items) },
         ]),
       ])
     }
@@ -75,24 +73,24 @@ final class ShotViewReactor: Reactor {
       return state
 
     case let .setShot(shot):
-      state.shotSection = ShotViewReactor.shotSection(from: shot, provider: self.provider)
+      state.shotSection = ShotViewReactor.shotSection(from: shot)
       return state
 
     case let .setComments(comments):
       let sectionItems = comments
-        .map { ShotViewCommentCellReactor(provider: self.provider, comment: $0) }
-        .map { ShotViewSectionItem.comment($0) }
+        .map(ShotViewCommentCellReactor.init)
+        .map(ShotViewSectionItem.comment)
       state.commentSection = .comment(sectionItems)
       return state
     }
   }
 
-  private static func shotSection(from shot: Shot, provider: ServiceProviderType) -> ShotViewSection {
+  private static func shotSection(from shot: Shot) -> ShotViewSection {
     let sectionItems: [ShotViewSectionItem] = [
-      .image(ShotViewImageCellReactor(provider: provider, shot: shot)),
-      .title(ShotViewTitleCellReactor(provider: provider, shot: shot)),
-      .text(ShotViewTextCellReactor(provider: provider, shot: shot)),
-      .reaction(ShotViewReactionCellReactor(provider: provider, shot: shot))
+      .image(ShotViewImageCellReactor(shot: shot)),
+      .title(ShotViewTitleCellReactor(shot: shot)),
+      .text(ShotViewTextCellReactor(shot: shot)),
+      .reaction(ShotViewReactionCellReactor(shot: shot))
     ]
     return .shot(sectionItems)
   }

@@ -11,7 +11,7 @@ import RxCocoa
 import RxSwift
 import RxSwiftUtilities
 
-final class LoginViewReactor: Reactor {
+final class LoginViewReactor: Reactor, ServiceContainer {
 
   enum Action {
     case login
@@ -27,19 +27,14 @@ final class LoginViewReactor: Reactor {
     var isLoggedIn: Bool = false
   }
 
-  let provider: ServiceProviderType
   let initialState: State = State()
-
-  init(provider: ServiceProviderType) {
-    self.provider = provider
-  }
 
   func mutate(action: Action) -> Observable<Mutation> {
     switch action {
     case .login:
       let setLoading: Observable<Mutation> = .just(Mutation.setLoading(true))
-      let setLoggedIn: Observable<Mutation> = self.provider.authService.authorize()
-        .flatMap { self.provider.userService.fetchMe() }
+      let setLoggedIn: Observable<Mutation> = self.authService.authorize()
+        .flatMap { self.userService.fetchMe() }
         .map { true }
         .catchErrorJustReturn(false)
         .map(Mutation.setLoggedIn)

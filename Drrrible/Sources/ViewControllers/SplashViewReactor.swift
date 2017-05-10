@@ -10,7 +10,7 @@ import ReactorKit
 import RxCocoa
 import RxSwift
 
-final class SplashViewReactor: Reactor {
+final class SplashViewReactor: Reactor, ServiceContainer {
 
   enum Action {
     case checkIfAuthenticated
@@ -24,21 +24,12 @@ final class SplashViewReactor: Reactor {
     var isAuthenticated: Bool?
   }
 
-  let provider: ServiceProviderType
-  let initialState: State
-
-
-  // MARK: Initializing
-
-  init(provider: ServiceProviderType) {
-    self.provider = provider
-    self.initialState = State()
-  }
+  let initialState = State()
 
   func mutate(action: Action) -> Observable<Mutation> {
     switch action {
     case .checkIfAuthenticated:
-      return self.provider.userService.fetchMe()
+      return self.userService.fetchMe()
         .map { true }
         .catchErrorJustReturn(false)
         .map(Mutation.setAuthenticated)

@@ -10,7 +10,7 @@ import ReactorKit
 import RxCocoa
 import RxSwift
 
-final class ShotCellReactor: Reactor {
+final class ShotCellReactor: Reactor, ServiceContainer {
   typealias Action = NoAction
 
   struct State {
@@ -21,12 +21,10 @@ final class ShotCellReactor: Reactor {
     }
   }
 
-  let provider: ServiceProviderType
   let shot: Shot
   let initialState: State
 
-  init(provider: ServiceProviderType, shot: Shot) {
-    self.provider = provider
+  init(shot: Shot) {
     self.shot = shot
     self.initialState = State(imageURL: shot.imageURLs.normal)
   }

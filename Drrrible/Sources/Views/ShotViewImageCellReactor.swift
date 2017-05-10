@@ -10,18 +10,16 @@ import ReactorKit
 import RxCocoa
 import RxSwift
 
-final class ShotViewImageCellReactor: Reactor {
+final class ShotViewImageCellReactor: Reactor, ServiceContainer {
   typealias Action = NoAction
   
   struct State {
     var imageURL: URL
   }
 
-  fileprivate let provider: ServiceProviderType
   let initialState: State
 
-  init(provider: ServiceProviderType, shot: Shot) {
-    self.provider = provider
+  init(shot: Shot) {
     self.initialState = State(imageURL: shot.imageURLs.hidpi ?? shot.imageURLs.normal)
   }
 }

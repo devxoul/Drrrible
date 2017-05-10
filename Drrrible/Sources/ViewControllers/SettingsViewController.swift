@@ -107,7 +107,7 @@ final class SettingsViewController: BaseViewController, View {
         guard let `self` = self, let reactor = self.reactor else { return }
         switch sectionItem {
         case .version:
-          let reactor = VersionViewReactor(provider: reactor.provider)
+          let reactor = VersionViewReactor()
           let viewController = VersionViewController(reactor: reactor)
           self.navigationController?.pushViewController(viewController, animated: true)
 

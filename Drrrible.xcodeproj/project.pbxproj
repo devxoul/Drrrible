@@ -29,6 +29,8 @@
 		034D335C1EA69C95004498FB /* TestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034D335B1EA69C95004498FB /* TestCase.swift */; };
 		034D335E1EA69CE4004498FB /* MockAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034D335D1EA69CE4004498FB /* MockAppDelegate.swift */; };
 		034D33601EA69E1D004498FB /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034D335F1EA69E1D004498FB /* main.swift */; };
+		03583DED1EC30F0B006C9057 /* DI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03583DEC1EC30F0B006C9057 /* DI.swift */; };
+		03583DEF1EC331BD006C9057 /* ServiceContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03583DEE1EC331BD006C9057 /* ServiceContainer.swift */; };
 		035D068A1E71A1F800AFF030 /* ShotService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035D06891E71A1F800AFF030 /* ShotService.swift */; };
 		035D068C1E71A40000AFF030 /* ShotTileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035D068B1E71A40000AFF030 /* ShotTileCell.swift */; };
 		035D068E1E71A48000AFF030 /* ShotCellReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035D068D1E71A48000AFF030 /* ShotCellReactor.swift */; };
@@ -93,8 +95,6 @@
 		03DF94EF1E6EA76A00E31665 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DF94E71E6EA76A00E31665 /* AppDelegate.swift */; };
 		03DF94F41E6EA7A300E31665 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 03DF94F61E6EA7A300E31665 /* Localizable.strings */; };
 		03DF95031E6EAACF00E31665 /* UIViewController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DF95021E6EAACF00E31665 /* UIViewController+Rx.swift */; };
-		03DF95061E6EAADE00E31665 /* BaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DF95041E6EAADE00E31665 /* BaseService.swift */; };
-		03DF95071E6EAADE00E31665 /* ServiceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DF95051E6EAADE00E31665 /* ServiceProvider.swift */; };
 		03DF95091E6EAB5000E31665 /* ModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DF95081E6EAB5000E31665 /* ModelType.swift */; };
 		03DF950B1E6EAB7900E31665 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DF950A1E6EAB7900E31665 /* BaseViewController.swift */; };
 		03DF95111E6EAB8E00E31665 /* Snap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DF950C1E6EAB8E00E31665 /* Snap.swift */; };
@@ -146,6 +146,8 @@
 		034D335B1EA69C95004498FB /* TestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestCase.swift; sourceTree = "<group>"; };
 		034D335D1EA69CE4004498FB /* MockAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockAppDelegate.swift; sourceTree = "<group>"; };
 		034D335F1EA69E1D004498FB /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		03583DEC1EC30F0B006C9057 /* DI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DI.swift; sourceTree = "<group>"; };
+		03583DEE1EC331BD006C9057 /* ServiceContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceContainer.swift; sourceTree = "<group>"; };
 		035D06891E71A1F800AFF030 /* ShotService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShotService.swift; sourceTree = "<group>"; };
 		035D068B1E71A40000AFF030 /* ShotTileCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShotTileCell.swift; sourceTree = "<group>"; };
 		035D068D1E71A48000AFF030 /* ShotCellReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShotCellReactor.swift; sourceTree = "<group>"; };
@@ -215,8 +217,6 @@
 		03DF94F51E6EA7A300E31665 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		03DF94F71E6EA7AB00E31665 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
 		03DF95021E6EAACF00E31665 /* UIViewController+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Rx.swift"; sourceTree = "<group>"; };
-		03DF95041E6EAADE00E31665 /* BaseService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseService.swift; sourceTree = "<group>"; };
-		03DF95051E6EAADE00E31665 /* ServiceProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceProvider.swift; sourceTree = "<group>"; };
 		03DF95081E6EAB5000E31665 /* ModelType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelType.swift; sourceTree = "<group>"; };
 		03DF950A1E6EAB7900E31665 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		03DF950C1E6EAB8E00E31665 /* Snap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Snap.swift; sourceTree = "<group>"; };
@@ -408,6 +408,7 @@
 			children = (
 				034D335F1EA69E1D004498FB /* main.swift */,
 				03DF94E71E6EA76A00E31665 /* AppDelegate.swift */,
+				03583DEC1EC30F0B006C9057 /* DI.swift */,
 				03DF94F91E6EA80A00E31665 /* Networking */,
 				03DF94FC1E6EA80A00E31665 /* Services */,
 				038B68F51E71ED31006B44F9 /* Types */,
@@ -484,8 +485,7 @@
 		03DF94FC1E6EA80A00E31665 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				03DF95041E6EAADE00E31665 /* BaseService.swift */,
-				03DF95051E6EAADE00E31665 /* ServiceProvider.swift */,
+				03583DEE1EC331BD006C9057 /* ServiceContainer.swift */,
 				031EB05A1E6FEFE7004D6349 /* AuthService.swift */,
 				031EB0751E700814004D6349 /* UserService.swift */,
 				035D06891E71A1F800AFF030 /* ShotService.swift */,
@@ -869,6 +869,7 @@
 				035D068C1E71A40000AFF030 /* ShotTileCell.swift in Sources */,
 				0365BB9A1E754E72009BA3F8 /* ShotViewReactionButtonViewReactor.swift in Sources */,
 				0365BB9C1E755309009BA3F8 /* ShotViewReactionLikeButtonViewReactor.swift in Sources */,
+				03583DEF1EC331BD006C9057 /* ServiceContainer.swift in Sources */,
 				0377C5591E745D8300EE4576 /* ShotViewImageCell.swift in Sources */,
 				03DF95131E6EAB8E00E31665 /* String+Localized.swift in Sources */,
 				035D068A1E71A1F800AFF030 /* ShotService.swift in Sources */,
@@ -880,9 +881,9 @@
 				035D06921E71BBD700AFF030 /* UIScrollView+Rx.swift in Sources */,
 				038B69071E72A4CA006B44F9 /* SettingsViewSection.swift in Sources */,
 				031EB0821E70624D004D6349 /* AuthPlugin.swift in Sources */,
-				03DF95061E6EAADE00E31665 /* BaseService.swift in Sources */,
 				03DF95211E6EB80700E31665 /* ShotListViewController.swift in Sources */,
 				0377C5611E746B5C00EE4576 /* ShotViewTitleCellReactor.swift in Sources */,
+				03583DED1EC30F0B006C9057 /* DI.swift in Sources */,
 				03D996D81E805DB6004773AE /* CollectionActivityIndicatorCell.swift in Sources */,
 				035D06961E71C84700AFF030 /* RxOperators.swift in Sources */,
 				0388F5AF1EB7692200E92AFF /* UIImageView+Kingfisher.swift in Sources */,
@@ -916,7 +917,6 @@
 				03DF95171E6EABA800E31665 /* BaseCollectionViewCell.swift in Sources */,
 				03DF95121E6EAB8E00E31665 /* String+BoundingRect.swift in Sources */,
 				0377C55F1E746ADE00EE4576 /* ShotViewTitleCell.swift in Sources */,
-				03DF95071E6EAADE00E31665 /* ServiceProvider.swift in Sources */,
 				031EB0631E6FF7A9004D6349 /* AccessToken.swift in Sources */,
 				03D996D41E80535B004773AE /* ShotViewCommentCell.swift in Sources */,
 				034D33521EA68746004498FB /* VersionViewController.swift in Sources */,

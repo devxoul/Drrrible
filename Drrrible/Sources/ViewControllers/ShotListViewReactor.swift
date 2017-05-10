@@ -11,7 +11,7 @@ import RxCocoa
 import RxSwift
 import RxSwiftUtilities
 
-final class ShotListViewReactor: Reactor {
+final class ShotListViewReactor: Reactor, ServiceContainer {
   enum Action {
     case refresh
     case loadMore
@@ -31,13 +31,7 @@ final class ShotListViewReactor: Reactor {
     var sections: [ShotListViewSection] = [.shotTile([])]
   }
 
-  let provider: ServiceProviderType
-  let initialState: State
-
-  init(provider: ServiceProviderType) {
-    self.provider = provider
-    self.initialState = State()
-  }
+  let initialState = State()
 
   func mutate(action: Action) -> Observable<Mutation> {
     switch action {
@@ -46,7 +40,7 @@ final class ShotListViewReactor: Reactor {
       guard !self.currentState.isLoading else { return .empty() }
       let startRefreshing = Observable<Mutation>.just(.setRefreshing(true))
       let endRefreshing = Observable<Mutation>.just(.setRefreshing(false))
-      let setShots = self.provider.shotService.shots(paging: .refresh)
+      let setShots = self.shotService.shots(paging: .refresh)
         .map { list -> Mutation in
           return .setShots(list.items, nextURL: list.nextURL)
         }
@@ -58,7 +52,7 @@ final class ShotListViewReactor: Reactor {
       guard let nextURL = self.currentState.nextURL else { return .empty() }
       let startLoading = Observable<Mutation>.just(.setLoading(true))
       let endLoading = Observable<Mutation>.just(.setLoading(false))
-      let appendShots = self.provider.shotService.shots(paging: .next(nextURL))
+      let appendShots = self.shotService.shots(paging: .next(nextURL))
         .map { list -> Mutation in
           return .appendShots(list.items, nextURL: list.nextURL)
         }
@@ -95,8 +89,8 @@ final class ShotListViewReactor: Reactor {
 
   private func shotTileSectionItems(with shots: [Shot]) -> [ShotListViewSectionItem] {
     return shots
-      .map { ShotCellReactor(provider: self.provider, shot: $0) }
-      .map { ShotListViewSectionItem.shotTile($0) }
+      .map(ShotCellReactor.init)
+      .map(ShotListViewSectionItem.shotTile)
   }
 
 }

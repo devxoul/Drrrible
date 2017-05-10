@@ -58,11 +58,7 @@ final class ShotTileCell: BaseCollectionViewCell, View {
       .whileDisplaying(self)
       .subscribe(onNext: { [weak reactor] _ in
         guard let reactor = reactor else { return }
-        let nextReactor = ShotViewReactor(
-          provider: reactor.provider,
-          shotID: reactor.shot.id,
-          shot: reactor.shot
-        )
+        let nextReactor = ShotViewReactor(shotID: reactor.shot.id, shot: reactor.shot)
         let viewController = ShotViewController(reactor: nextReactor)
         Navigator.push(viewController)
       })

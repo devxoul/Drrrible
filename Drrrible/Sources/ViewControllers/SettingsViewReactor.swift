@@ -10,7 +10,7 @@ import ReactorKit
 import RxCocoa
 import RxSwift
 
-final class SettingsViewReactor: Reactor {
+final class SettingsViewReactor: Reactor, ServiceContainer {
 
   enum Action {
     case updateCurrentUsername(String?)
@@ -31,12 +31,9 @@ final class SettingsViewReactor: Reactor {
     }
   }
 
-  let provider: ServiceProviderType
   let initialState: State
 
-  init(provider: ServiceProviderType) {
-    self.provider = provider
-
+  init() {
     let aboutSection = SettingsViewSection.about([
       .version(SettingItemCellReactor(
         text: "version".localized,
@@ -56,7 +53,7 @@ final class SettingsViewReactor: Reactor {
   }
 
   func transform(action: Observable<Action>) -> Observable<Action> {
-    let updateCurrentUsername = self.provider.userService.currentUser
+    let updateCurrentUsername = self.userService.currentUser
       .map { Action.updateCurrentUsername($0?.name) }
     return Observable.of(action, updateCurrentUsername).merge()
   }

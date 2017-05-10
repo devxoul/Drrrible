@@ -29,7 +29,7 @@ protocol AuthServiceType {
   func logout()
 }
 
-final class AuthService: BaseService, AuthServiceType {
+final class AuthService: AuthServiceType {
 
   fileprivate let clientID = "130182af71afe5247b857ef622bd344ca5f1c6144c8fa33c932628ac31c5ad78"
   fileprivate let clientSecret = "bbebedc51c2301049c2cb57953efefc30dc305523b8fdfadb9e9a25cb81efa1e"
@@ -40,8 +40,7 @@ final class AuthService: BaseService, AuthServiceType {
   fileprivate let keychain = Keychain(service: "com.drrrible.ios")
   private(set) var currentAccessToken: AccessToken?
 
-  override init(provider: ServiceProviderType) {
-    super.init(provider: provider)
+  init() {
     self.currentAccessToken = self.loadAccessToken()
     log.debug("currentAccessToken exists: \(self.currentAccessToken != nil)")
   }
