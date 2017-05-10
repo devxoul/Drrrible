@@ -13,6 +13,7 @@ Unofficial Dribbble iOS application using [ReactorKit](https://github.com/devxou
 
 * Using [ReactorKit](https://github.com/devxoul/ReactorKit)
 * Using [RxDataSources](https://github.com/RxSwiftCommunity/RxDataSources)
+* Using [Swinject](https://github.com/Swinject/Swinject) for dependency injection
 * Observing model updates across the view controllers
 * Navigating between view controllers
 * Using [ImmutableMappable](https://github.com/Hearst-DD/ObjectMapper#immutablemappable-protocol-beta)
