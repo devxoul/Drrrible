@@ -15,10 +15,7 @@ final class ShotCellReactor: Reactor, ServiceContainer {
 
   struct State {
     var imageURL: URL
-
-    init(imageURL: URL) {
-      self.imageURL = imageURL
-    }
+    var isAnimatedImage: Bool
   }
 
   let shot: Shot
@@ -26,6 +23,9 @@ final class ShotCellReactor: Reactor, ServiceContainer {
 
   init(shot: Shot) {
     self.shot = shot
-    self.initialState = State(imageURL: shot.imageURLs.normal)
+    self.initialState = State(
+      imageURL: shot.imageURLs.normal,
+      isAnimatedImage: shot.isAnimatedImage
+    )
   }
 }
