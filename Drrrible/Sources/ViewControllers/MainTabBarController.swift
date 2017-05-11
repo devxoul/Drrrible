@@ -62,16 +62,17 @@ final class MainTabBarController: UITabBarController, View {
       .disposed(by: self.disposeBag)
 
     self.rx.didSelect
-      .subscribe(onNext: { [weak self] selectedViewController in
-        guard let `self` = self else { return }
-        // scroll to top when select same view controller again
-        if selectedViewController === self.selectedViewController {
-          self.scrollToTop(selectedViewController)
-        }
+      .scan((nil, nil)) { state, viewController in
+        return (state.1, viewController)
+      }
+      // if select the view controller first time or select the same view controller again
+      .filter { state in state.0 == nil || state.0 === state.1 }
+      .map { state in state.1 }
+      .filterNil()
+      .subscribe(onNext: { [weak self] viewController in
+        self?.scrollToTop(viewController) // scroll to top
       })
       .disposed(by: self.disposeBag)
-
-
   }
 
   override func viewDidLayoutSubviews() {
