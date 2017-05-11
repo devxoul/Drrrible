@@ -28,7 +28,6 @@ final class ShotViewReactor: Reactor, ServiceContainer {
     var shotSection: ShotViewSection = .shot([])
     var commentSection: ShotViewSection = .comment([.activityIndicator])
     var sections: [ShotViewSection] {
-      log.verbose(self.commentSection)
       return [self.shotSection, self.commentSection]
     }
     init(shotID: Int) {
