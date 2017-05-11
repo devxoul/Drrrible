@@ -37,7 +37,8 @@ platform :ios do
   desc "Deploy a new version to the App Store"
   lane :release do
     deliver(force: true,
-            submit_for_review: true)
+            skip_binary_upload: true,
+            automatic_release: true)
   end
 
   # You can define as many lanes as you want
