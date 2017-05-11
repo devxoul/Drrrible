@@ -50,6 +50,7 @@ final class SettingsViewReactor: Reactor, ServiceContainer {
 
     let sections = [aboutSection] + [logoutSection]
     self.initialState = State(sections: sections)
+    _ = self.state
   }
 
   func transform(action: Observable<Action>) -> Observable<Action> {

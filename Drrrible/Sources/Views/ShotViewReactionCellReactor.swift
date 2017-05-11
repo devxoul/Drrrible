@@ -20,5 +20,6 @@ final class ShotViewReactionCellReactor: Reactor, ServiceContainer {
   init(shot: Shot) {
     self.likeButtonViewReactor = ShotViewReactionLikeButtonViewReactor(shot: shot)
     self.commentButtonViewReactor = ShotViewReactionCommentButtonViewReactor(shot: shot)
+    _ = self.state
   }
 }

@@ -27,6 +27,10 @@ final class VersionViewReactor: Reactor, ServiceContainer {
 
   let initialState = State()
 
+  init() {
+    _ = self.state
+  }
+
   func mutate(action: Action) -> Observable<Mutation> {
     switch action {
     case .checkForUpdates:

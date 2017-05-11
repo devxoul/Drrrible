@@ -28,5 +28,6 @@ class ShotViewCommentCellReactor: Reactor, ServiceContainer {
       message: (try? NSAttributedString(htmlString: comment.body))
         ?? NSAttributedString(string: comment.body)
     )
+    _ = self.state
   }
 }

@@ -27,5 +27,6 @@ final class ShotViewTitleCellReactor: Reactor, ServiceContainer {
       title: shot.title,
       username: "by \(shot.user.name)"
     )
+    _ = self.state
   }
 }

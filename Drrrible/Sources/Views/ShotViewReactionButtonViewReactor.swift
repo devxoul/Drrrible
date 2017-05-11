@@ -34,6 +34,7 @@ class ShotViewReactionButtonViewReactor: Reactor, ServiceContainer {
 
   init(initialState: State) {
     self.initialState = initialState
+    _ = self.state
   }
 
   func mutate(action: Action) -> Observable<Mutation> {

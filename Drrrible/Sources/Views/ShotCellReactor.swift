@@ -27,5 +27,6 @@ final class ShotCellReactor: Reactor, ServiceContainer {
       imageURL: shot.imageURLs.normal,
       isAnimatedImage: shot.isAnimatedImage
     )
+    _ = self.state
   }
 }

@@ -22,5 +22,6 @@ final class ShotViewTextCellReactor: Reactor, ServiceContainer {
   init(shot: Shot) {
     let text = shot.text.flatMap { try? NSAttributedString.init(htmlString: $0) }
     self.initialState = State(text: text)
+    _ = self.state
   }
 }

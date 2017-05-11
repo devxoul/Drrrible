@@ -46,6 +46,7 @@ final class ShotViewReactor: Reactor, ServiceContainer {
       initialState.shotSection = ShotViewReactor.shotSection(from: shot)
     }
     self.initialState = initialState
+    _ = self.state
   }
 
   func mutate(action: Action) -> Observable<Mutation> {

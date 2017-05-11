@@ -21,5 +21,6 @@ final class ShotViewImageCellReactor: Reactor, ServiceContainer {
 
   init(shot: Shot) {
     self.initialState = State(imageURL: shot.imageURLs.hidpi ?? shot.imageURLs.normal)
+    _ = self.state
   }
 }

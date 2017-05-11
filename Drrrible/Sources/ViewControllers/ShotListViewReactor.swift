@@ -33,6 +33,10 @@ final class ShotListViewReactor: Reactor, ServiceContainer {
 
   let initialState = State()
 
+  init() {
+    _ = self.state
+  }
+
   func mutate(action: Action) -> Observable<Mutation> {
     switch action {
     case .refresh:

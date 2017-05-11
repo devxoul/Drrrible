@@ -21,5 +21,6 @@ final class SettingItemCellReactor: Reactor, ServiceContainer {
 
   init(text: String?, detailText: String?) {
     self.initialState = State(text: text, detailText: detailText)
+    _ = self.state
   }
 }
