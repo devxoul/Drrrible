@@ -33,6 +33,7 @@ target 'Drrrible' do
   pod 'RxSwiftUtilities'
   pod 'RxReusable'
   pod 'RxGesture'
+  pod 'RxViewController'
 
   # UI
   pod 'SnapKit'

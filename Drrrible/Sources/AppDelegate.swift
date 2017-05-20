@@ -18,6 +18,7 @@ import ManualLayout
 import RxGesture
 import RxOptional
 import RxReusable
+import RxViewController
 import SnapKit
 import SwiftyColor
 import SwiftyImage

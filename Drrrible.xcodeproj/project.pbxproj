@@ -93,7 +93,6 @@
 		03DF94ED1E6EA76A00E31665 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03DF94E21E6EA76A00E31665 /* LaunchScreen.storyboard */; };
 		03DF94EF1E6EA76A00E31665 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DF94E71E6EA76A00E31665 /* AppDelegate.swift */; };
 		03DF94F41E6EA7A300E31665 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 03DF94F61E6EA7A300E31665 /* Localizable.strings */; };
-		03DF95031E6EAACF00E31665 /* UIViewController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DF95021E6EAACF00E31665 /* UIViewController+Rx.swift */; };
 		03DF95091E6EAB5000E31665 /* ModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DF95081E6EAB5000E31665 /* ModelType.swift */; };
 		03DF950B1E6EAB7900E31665 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DF950A1E6EAB7900E31665 /* BaseViewController.swift */; };
 		03DF95111E6EAB8E00E31665 /* Snap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DF950C1E6EAB8E00E31665 /* Snap.swift */; };
@@ -214,7 +213,6 @@
 		03DF94EB1E6EA76A00E31665 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		03DF94F51E6EA7A300E31665 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		03DF94F71E6EA7AB00E31665 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
-		03DF95021E6EAACF00E31665 /* UIViewController+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Rx.swift"; sourceTree = "<group>"; };
 		03DF95081E6EAB5000E31665 /* ModelType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelType.swift; sourceTree = "<group>"; };
 		03DF950A1E6EAB7900E31665 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		03DF950C1E6EAB8E00E31665 /* Snap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Snap.swift; sourceTree = "<group>"; };
@@ -458,7 +456,6 @@
 			isa = PBXGroup;
 			children = (
 				031EB0771E700912004D6349 /* ObjectMapper+Rx.swift */,
-				03DF95021E6EAACF00E31665 /* UIViewController+Rx.swift */,
 				03A60A8B1EC1DAD10053FD0D /* UIView+Rx.swift */,
 				035D06911E71BBD700AFF030 /* UIScrollView+Rx.swift */,
 				038B690E1E73153E006B44F9 /* UITableView+Rx.swift */,
@@ -917,7 +914,6 @@
 				03D996D41E80535B004773AE /* ShotViewCommentCell.swift in Sources */,
 				034D33521EA68746004498FB /* VersionViewController.swift in Sources */,
 				038B68FF1E72A399006B44F9 /* MainTabBarController.swift in Sources */,
-				03DF95031E6EAACF00E31665 /* UIViewController+Rx.swift in Sources */,
 				03D996D61E805392004773AE /* ShotViewCommentCellReactor.swift in Sources */,
 				0377C55D1E74680700EE4576 /* BorderedLayer.swift in Sources */,
 				0377C5631E746E5300EE4576 /* UIEdgeInsets+Init.swift in Sources */,
