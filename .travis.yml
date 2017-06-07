@@ -1,8 +1,6 @@
 language: objective-c
 osx_image: xcode8.3
 sudo: false
-rvm:
-  - 2.3
 
 cache:
   - bundler
