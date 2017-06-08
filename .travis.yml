@@ -12,7 +12,7 @@ env:
     - SCHEME="Drrrible"
     - IOS_SDK="iphonesimulator10.3"
   matrix:
-    - SDK="$IOS_SDK"  DESTINATION="platform=iOS Simulator,name=iPhone 7,OS=10.3"
+    - SDK="$IOS_SDK"  DESTINATION="platform=iOS Simulator,name=iPhone 7,OS=10.3.1"
 
 install:
   - bundle install --deployment
