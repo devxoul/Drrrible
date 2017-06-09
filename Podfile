@@ -43,6 +43,7 @@ target 'Drrrible' do
 
   # Logging
   pod 'CocoaLumberjack/Swift'
+  pod 'EventAnalytics'
 
   # Misc.
   pod 'Then'
