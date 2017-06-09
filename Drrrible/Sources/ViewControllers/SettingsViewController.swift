@@ -96,12 +96,17 @@ final class SettingsViewController: BaseViewController, View {
     reactor.state.map { $0.isLoggedOut }
       .distinctUntilChanged()
       .filter { $0 }
+      .do(onNext: { _ in analytics.log(event: .logout) })
       .subscribe(onNext: { _ in
         AppDelegate.shared.presentLoginScreen()
       })
       .disposed(by: self.disposeBag)
 
     // View
+    self.rx.viewDidAppear
+      .subscribe(onNext: { _ in analytics.log(event: .viewSettingList) })
+      .disposed(by: self.disposeBag)
+
     self.tableView.rx.itemSelected(dataSource: self.dataSource)
       .subscribe(onNext: { [weak self] sectionItem in
         guard let `self` = self, let reactor = self.reactor else { return }
@@ -126,6 +131,7 @@ final class SettingsViewController: BaseViewController, View {
           self.navigationController?.pushViewController(viewController, animated: true)
 
         case .logout:
+          analytics.log(event: .tryLogout)
           let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
           let logoutAction = UIAlertAction(title: "logout".localized, style: .destructive) { _ in
             reactor.action.onNext(.logout)
