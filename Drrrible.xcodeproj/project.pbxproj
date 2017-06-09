@@ -107,6 +107,7 @@
 		03DF951F1E6EB7E200E31665 /* LoginViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DF951E1E6EB7E200E31665 /* LoginViewReactor.swift */; };
 		03DF95211E6EB80700E31665 /* ShotListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DF95201E6EB80700E31665 /* ShotListViewController.swift */; };
 		03DF95231E6EB80B00E31665 /* ShotListViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DF95221E6EB80B00E31665 /* ShotListViewReactor.swift */; };
+		03ED15691EEABA92006E1638 /* AnalyticsEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03ED15681EEABA92006E1638 /* AnalyticsEvent.swift */; };
 		03ED156B1EEABA98006E1638 /* FirebaseProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03ED156A1EEABA98006E1638 /* FirebaseProvider.swift */; };
 		67CCAEC7ACD021B25D286650 /* Pods_Drrrible_DrrribleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3800977F199DEFED1D747AA /* Pods_Drrrible_DrrribleTests.framework */; };
 		7016FEC9D52ED214CF18F95B /* Pods_Drrrible.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAF2B5CCF3B37FF7DB8227C2 /* Pods_Drrrible.framework */; };
@@ -228,6 +229,7 @@
 		03DF951E1E6EB7E200E31665 /* LoginViewReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewReactor.swift; sourceTree = "<group>"; };
 		03DF95201E6EB80700E31665 /* ShotListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShotListViewController.swift; sourceTree = "<group>"; };
 		03DF95221E6EB80B00E31665 /* ShotListViewReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShotListViewReactor.swift; sourceTree = "<group>"; };
+		03ED15681EEABA92006E1638 /* AnalyticsEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsEvent.swift; sourceTree = "<group>"; };
 		03ED156A1EEABA98006E1638 /* FirebaseProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseProvider.swift; sourceTree = "<group>"; };
 		245DA1CCFC8FA1E547422133 /* Pods-Drrrible.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Drrrible.release.xcconfig"; path = "Pods/Target Support Files/Pods-Drrrible/Pods-Drrrible.release.xcconfig"; sourceTree = "<group>"; };
 		5D52274A9E04CB3BBEDA2172 /* Pods-DrrribleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrrribleTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DrrribleTests/Pods-DrrribleTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -567,6 +569,7 @@
 		03ED15671EEABA86006E1638 /* Analytics */ = {
 			isa = PBXGroup;
 			children = (
+				03ED15681EEABA92006E1638 /* AnalyticsEvent.swift */,
 				03ED156A1EEABA98006E1638 /* FirebaseProvider.swift */,
 			);
 			path = Analytics;
@@ -950,6 +953,7 @@
 				03DF95191E6EB2D800E31665 /* LoginViewController.swift in Sources */,
 				0377C5551E745BF000EE4576 /* ShotViewReactor.swift in Sources */,
 				03DF94EF1E6EA76A00E31665 /* AppDelegate.swift in Sources */,
+				03ED15691EEABA92006E1638 /* AnalyticsEvent.swift in Sources */,
 				031EB0691E7000C1004D6349 /* User.swift in Sources */,
 				035D069A1E71DC3000AFF030 /* List.swift in Sources */,
 			);
