@@ -92,7 +92,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
   }
 
   private func configureFirebase() {
-    FIRApp.configure()
+    FirebaseApp.configure()
   }
 
 
