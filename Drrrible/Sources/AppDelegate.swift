@@ -10,6 +10,7 @@ import UIKit
 
 import CGFloatLiteral
 import Crashlytics
+import EventAnalytics
 import Fabric
 import Firebase
 import Immutable
@@ -27,6 +28,8 @@ import TouchAreaInsets
 import UITextView_Placeholder
 import URLNavigator
 import WebLinking
+
+let analytics = EventAnalytics.Analytics<AnalyticsEvent>()
 
 final class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -49,6 +52,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?
   ) -> Bool {
     self.configureSDKs()
+    self.configureAnalytics()
     self.configureAppearance()
 
     let window = UIWindow(frame: UIScreen.main.bounds)
@@ -93,6 +97,13 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
 
   private func configureFirebase() {
     FirebaseApp.configure()
+  }
+
+
+  // MARK: Analytics
+
+  private func configureAnalytics() {
+    analytics.register(provider: FirebaseProvider())
   }
 
 

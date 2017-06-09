@@ -146,6 +146,13 @@ final class ShotViewController: BaseViewController, View {
     reactor.state.map { $0.sections }
       .bind(to: self.collectionView.rx.items(dataSource: self.dataSource))
       .disposed(by: self.disposeBag)
+
+    // View
+    self.rx.viewDidAppear
+      .subscribe(onNext: { _ in
+        analytics.log(event: .viewShot(shotID: reactor.currentState.shotID))
+      })
+      .disposed(by: self.disposeBag)
   }
 
 }

@@ -7,6 +7,7 @@ PODS:
     - CocoaLumberjack/Default
   - Crashlytics (3.8.4):
     - Fabric (~> 1.6.3)
+  - EventAnalytics (0.1.0)
   - Fabric (1.6.11)
   - Firebase/Core (4.0.1):
     - FirebaseAnalytics (= 4.0.0)
@@ -96,6 +97,7 @@ DEPENDENCIES:
   - CGFloatLiteral
   - CocoaLumberjack/Swift
   - Crashlytics
+  - EventAnalytics
   - Fabric
   - Firebase/Core
   - Immutable
@@ -148,6 +150,7 @@ SPEC CHECKSUMS:
   CGFloatLiteral: faba125ab2bb8fa90142c414f876b83099c26f25
   CocoaLumberjack: 8311463ddf9ee86a06ef92a071dd656c89244500
   Crashlytics: 79e236942ca1e7fc641df1feb9a275360a78ab6a
+  EventAnalytics: 3e4806f6d08e3463cc0b239f55649b5ab8146bd1
   Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
   Firebase: f984cd44a160be77ad0590f432e574562bfd4083
   FirebaseAnalytics: 6f08e746f7d66f5452931bc2e822b5df9c66b64a
@@ -187,6 +190,6 @@ SPEC CHECKSUMS:
   URLNavigator: 3ff788c985a0aae654e7de4959c4b0ea8a45f022
   WebLinking: 3f71787c14a225148e8be29fe6e7c98597cbc459
 
-PODFILE CHECKSUM: f9802d4791d271dff711a091011dbdc603516246
+PODFILE CHECKSUM: 04dfff1c0c71d86fee56e5bd6b8a55d82478acbf
 
 COCOAPODS: 1.2.0

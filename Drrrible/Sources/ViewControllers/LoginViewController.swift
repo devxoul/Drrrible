@@ -110,6 +110,7 @@ final class LoginViewController: BaseViewController, View {
   func bind(reactor: LoginViewReactor) {
     // Input
     self.loginButton.rx.tap
+      .do(onNext: { analytics.log(event: .tryLogin) })
       .map { Reactor.Action.login }
       .bind(to: reactor.action)
       .disposed(by: self.disposeBag)
@@ -128,6 +129,7 @@ final class LoginViewController: BaseViewController, View {
     reactor.state.map { $0.isLoggedIn }
       .distinctUntilChanged()
       .filter { $0 }
+      .do(onNext: { _ in analytics.log(event: .login) })
       .subscribe(onNext: { _ in
         AppDelegate.shared.presentMainScreen()
       })
