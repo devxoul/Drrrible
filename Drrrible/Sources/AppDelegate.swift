@@ -10,7 +10,6 @@ import UIKit
 
 import CGFloatLiteral
 import Crashlytics
-import EventAnalytics
 import Fabric
 import Firebase
 import Immutable
@@ -26,10 +25,11 @@ import SwiftyImage
 import Then
 import TouchAreaInsets
 import UITextView_Placeholder
+import Umbrella
 import URLNavigator
 import WebLinking
 
-let analytics = EventAnalytics.Analytics<AnalyticsEvent>()
+let analytics = Umbrella.Analytics<AnalyticsEvent>()
 
 final class AppDelegate: UIResponder, UIApplicationDelegate {
 

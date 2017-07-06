@@ -7,7 +7,6 @@ PODS:
     - CocoaLumberjack/Default
   - Crashlytics (3.8.4):
     - Fabric (~> 1.6.3)
-  - EventAnalytics (0.1.0)
   - Fabric (1.6.11)
   - Firebase/Core (4.0.1):
     - FirebaseAnalytics (= 4.0.0)
@@ -88,6 +87,21 @@ PODS:
   - TouchAreaInsets (1.0.0)
   - TTTAttributedLabel (2.0.0)
   - UITextView+Placeholder (1.2.0)
+  - Umbrella (0.3.1):
+    - Umbrella/Answers (= 0.3.1)
+    - Umbrella/Core (= 0.3.1)
+    - Umbrella/Firebase (= 0.3.1)
+    - Umbrella/Flurry (= 0.3.1)
+    - Umbrella/Mixpanel (= 0.3.1)
+  - Umbrella/Answers (0.3.1):
+    - Umbrella/Core
+  - Umbrella/Core (0.3.1)
+  - Umbrella/Firebase (0.3.1):
+    - Umbrella/Core
+  - Umbrella/Flurry (0.3.1):
+    - Umbrella/Core
+  - Umbrella/Mixpanel (0.3.1):
+    - Umbrella/Core
   - URLNavigator (1.2.0)
   - WebLinking (1.1.0)
 
@@ -97,7 +111,6 @@ DEPENDENCIES:
   - CGFloatLiteral
   - CocoaLumberjack/Swift
   - Crashlytics
-  - EventAnalytics
   - Fabric
   - Firebase/Core
   - Immutable
@@ -131,6 +144,7 @@ DEPENDENCIES:
   - TouchAreaInsets
   - TTTAttributedLabel
   - UITextView+Placeholder
+  - Umbrella
   - URLNavigator
   - WebLinking (from `https://github.com/kylef/WebLinking.swift`, commit `fddbacc30deab8afe12ce1d3b78bd27c593a0c29`)
 
@@ -150,7 +164,6 @@ SPEC CHECKSUMS:
   CGFloatLiteral: faba125ab2bb8fa90142c414f876b83099c26f25
   CocoaLumberjack: 8311463ddf9ee86a06ef92a071dd656c89244500
   Crashlytics: 79e236942ca1e7fc641df1feb9a275360a78ab6a
-  EventAnalytics: 3e4806f6d08e3463cc0b239f55649b5ab8146bd1
   Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
   Firebase: f984cd44a160be77ad0590f432e574562bfd4083
   FirebaseAnalytics: 6f08e746f7d66f5452931bc2e822b5df9c66b64a
@@ -187,9 +200,10 @@ SPEC CHECKSUMS:
   TouchAreaInsets: 01a873de4bac294e502bd07219f82bd18866eeee
   TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
   UITextView+Placeholder: 77680995fcdd07c3f52ec92fe1150874a2ac89ff
+  Umbrella: 896008d98f64099b03ce8ea49ff7b4cb2f9f1b48
   URLNavigator: 3ff788c985a0aae654e7de4959c4b0ea8a45f022
   WebLinking: 3f71787c14a225148e8be29fe6e7c98597cbc459
 
-PODFILE CHECKSUM: 04dfff1c0c71d86fee56e5bd6b8a55d82478acbf
+PODFILE CHECKSUM: 6dad3bb0f54834be03c24389364993828654501f
 
 COCOAPODS: 1.2.0

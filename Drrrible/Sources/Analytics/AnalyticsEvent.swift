@@ -6,8 +6,8 @@
 //  Copyright © 2017 Suyeol Jeon. All rights reserved.
 //
 
-import EventAnalytics
 import Firebase
+import Umbrella
 
 enum AnalyticsEvent {
   case tryLogin
@@ -25,7 +25,7 @@ enum AnalyticsEvent {
 }
 
 extension AnalyticsEvent: EventType {
-  func name(for provider: ProviderType) -> String {
+  func name(for provider: ProviderType) -> String? {
     switch self {
     case .tryLogin:
       return "try_login"
