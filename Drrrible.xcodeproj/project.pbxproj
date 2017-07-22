@@ -19,6 +19,7 @@
 		031EB0781E700912004D6349 /* ObjectMapper+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EB0771E700912004D6349 /* ObjectMapper+Rx.swift */; };
 		031EB0821E70624D004D6349 /* AuthPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EB0811E70624D004D6349 /* AuthPlugin.swift */; };
 		031F92861EA55FA00025D5FB /* TestMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031F92851EA55FA00025D5FB /* TestMain.swift */; };
+		034195081F23A807003B5DEE /* ShotListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034195071F23A807003B5DEE /* ShotListViewControllerTests.swift */; };
 		034D334C1EA67119004498FB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 034D334B1EA67119004498FB /* GoogleService-Info.plist */; };
 		034D334E1EA67631004498FB /* AppStoreAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034D334D1EA67631004498FB /* AppStoreAPI.swift */; };
 		034D33501EA67662004498FB /* AppStoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034D334F1EA67662004498FB /* AppStoreService.swift */; };
@@ -138,6 +139,7 @@
 		031EB0771E700912004D6349 /* ObjectMapper+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ObjectMapper+Rx.swift"; sourceTree = "<group>"; };
 		031EB0811E70624D004D6349 /* AuthPlugin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthPlugin.swift; sourceTree = "<group>"; };
 		031F92851EA55FA00025D5FB /* TestMain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestMain.swift; sourceTree = "<group>"; };
+		034195071F23A807003B5DEE /* ShotListViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShotListViewControllerTests.swift; sourceTree = "<group>"; };
 		034D334B1EA67119004498FB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		034D334D1EA67631004498FB /* AppStoreAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppStoreAPI.swift; sourceTree = "<group>"; };
 		034D334F1EA67662004498FB /* AppStoreService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppStoreService.swift; sourceTree = "<group>"; };
@@ -349,6 +351,7 @@
 				03D9971B1E81278B004773AE /* LoginViewReactorTests.swift */,
 				036CDD761F236615006C91CC /* LoginViewControllerTests.swift */,
 				03D9971D1E817ACF004773AE /* ShotListViewReactorTests.swift */,
+				034195071F23A807003B5DEE /* ShotListViewControllerTests.swift */,
 				03D997281E819012004773AE /* ShotViewReactorTests.swift */,
 			);
 			path = ViewControllers;
@@ -788,7 +791,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "ruby ${PODS_ROOT}/Carte/Sources/Carte/carte.rb post";
-			showEnvVarsInLog = 1;
 		};
 		B01C95CE2B14068F091C60D3 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -848,7 +850,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "ruby ${PODS_ROOT}/Carte/Sources/Carte/carte.rb pre";
-			showEnvVarsInLog = 1;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -873,6 +874,7 @@
 				03D996FB1E811EC5004773AE /* SplashViewReactorTests.swift in Sources */,
 				036CDD951F239A02006C91CC /* Stub.swift in Sources */,
 				036CDD961F239A02006C91CC /* StubAppDelegate.swift in Sources */,
+				034195081F23A807003B5DEE /* ShotListViewControllerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

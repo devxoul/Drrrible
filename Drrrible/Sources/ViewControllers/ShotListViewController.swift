@@ -39,8 +39,8 @@ final class ShotListViewController: BaseViewController, View {
 
   // MARK: UI
 
-  fileprivate let refreshControl = UIRefreshControl()
-  fileprivate let collectionView = UICollectionView(
+  let refreshControl = UIRefreshControl()
+  let collectionView = UICollectionView(
     frame: .zero,
     collectionViewLayout: UICollectionViewFlowLayout()
   ).then {
