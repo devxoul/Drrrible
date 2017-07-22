@@ -14,38 +14,43 @@ import RxSwift
 import RxTest
 
 @testable import Drrrible
-/*
+
 final class SplashViewReactorTests: TestCase {
-  func testIsAuthenticated() {
-    RxExpect("it should set isAuthenticated false when not authenticated") { test in
-      DI.register(UserServiceType.self) { _ in
-        MockUserService().then {
-          $0.fetchMeClosure = { Observable.error(MockError()) }
-        }
-      }
-      let reactor = SplashViewReactor()
+  func testIntialValue() {
+    let reactor = SplashViewReactor(userService: MockUserService())
+    XCTAssertEqual(reactor.currentState.isAuthenticated, nil)
+  }
 
-      // input
-      test.input(reactor.action, [
-        next(100, .checkIfAuthenticated),
-      ])
-
-      // assert
-      test.assert(reactor.state.map { $0.isAuthenticated }.distinctUntilChanged())
-        .filterNext()
-        .equal([nil, false]) { $0 == $1 }
+  func testFetchMeExecution() {
+    let userService = MockUserService()
+    userService.mock(MockUserService.fetchMe) {
+      return .empty()
     }
+    let reactor = SplashViewReactor(userService: userService)
+    _ = reactor.state
+    reactor.action.onNext(.checkIfAuthenticated)
+    XCTAssertEqual(userService.executionCount(MockUserService.fetchMe), 1)
+  }
 
-    RxExpect("it should set isAuthenticated true when not authenticated") { test in
-      self.registerDependencies()
-      let reactor = SplashViewReactor()
-      test.input(reactor.action, [
-        next(100, .checkIfAuthenticated),
-      ])
-      test.assert(reactor.state.map { $0.isAuthenticated }.distinctUntilChanged())
-        .filterNext()
-        .equal([nil, true]) { $0 == $1 }
+  func testIsAuthenticated_success() {
+    let userService = MockUserService()
+    userService.mock(MockUserService.fetchMe) {
+      return .just()
     }
+    let reactor = SplashViewReactor(userService: userService)
+    _ = reactor.state
+    reactor.action.onNext(.checkIfAuthenticated)
+    XCTAssertEqual(reactor.currentState.isAuthenticated, true)
+  }
+
+  func testIsAuthenticated_failure() {
+    let userService = MockUserService()
+    userService.mock(MockUserService.fetchMe) {
+      return .error(MockError())
+    }
+    let reactor = SplashViewReactor(userService: userService)
+    _ = reactor.state
+    reactor.action.onNext(.checkIfAuthenticated)
+    XCTAssertEqual(reactor.currentState.isAuthenticated, false)
   }
 }
-*/

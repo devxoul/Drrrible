@@ -10,8 +10,7 @@ import ReactorKit
 import RxCocoa
 import RxSwift
 
-final class SplashViewReactor: Reactor, ServiceContainer {
-
+final class SplashViewReactor: Reactor {
   enum Action {
     case checkIfAuthenticated
   }
@@ -25,6 +24,12 @@ final class SplashViewReactor: Reactor, ServiceContainer {
   }
 
   let initialState = State()
+
+  fileprivate let userService: UserServiceType
+
+  init(userService: UserServiceType) {
+    self.userService = userService
+  }
 
   func mutate(action: Action) -> Observable<Mutation> {
     switch action {
@@ -44,5 +49,4 @@ final class SplashViewReactor: Reactor, ServiceContainer {
       return state
     }
   }
-
 }
