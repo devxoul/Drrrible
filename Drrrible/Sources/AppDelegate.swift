@@ -63,9 +63,15 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
 
     let authService = AuthService()
     let userService = UserService()
+    let shotService = ShotService()
 
     let presentMainScreen: () -> Void = { [weak self] in
-      self?.presentMainScreen()
+      let reactor = MainTabBarViewReactor(
+        shotListViewReactor: ShotListViewReactor(shotService: shotService),
+        settingsViewReactor: SettingsViewReactor()
+      )
+      let mainTabBarController = MainTabBarController(reactor: reactor)
+      self?.window?.rootViewController = mainTabBarController
     }
     let presentLoginScreen: () -> Void = { [weak self] in
       let reactor = LoginViewReactor(authService: authService, userService: userService)
@@ -135,14 +141,4 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     UINavigationBar.appearance().tintColor = .db_slate
     UITabBar.appearance().tintColor = .db_charcoal
   }
-
-
-  // MARK: Presenting
-
-  func presentMainScreen() {
-    let reactor = MainTabBarViewReactor()
-    let mainTabBarController = MainTabBarController(reactor: reactor)
-    self.window?.rootViewController = mainTabBarController
-  }
-
 }

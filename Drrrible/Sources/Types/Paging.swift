@@ -12,3 +12,18 @@ enum Paging {
   case refresh
   case next(URL)
 }
+
+extension Paging: Equatable {
+  static func == (lhs: Paging, rhs: Paging) -> Bool {
+    switch (lhs, rhs) {
+    case (.refresh, .refresh):
+      return true
+
+    case let (.next(a), .next(b)) where a == b:
+      return true
+
+    default:
+      return false
+    }
+  }
+}

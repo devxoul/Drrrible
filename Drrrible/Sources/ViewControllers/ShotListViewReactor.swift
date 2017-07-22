@@ -11,7 +11,7 @@ import RxCocoa
 import RxSwift
 import RxSwiftUtilities
 
-final class ShotListViewReactor: Reactor, ServiceContainer {
+final class ShotListViewReactor: Reactor {
   enum Action {
     case refresh
     case loadMore
@@ -33,7 +33,10 @@ final class ShotListViewReactor: Reactor, ServiceContainer {
 
   let initialState = State()
 
-  init() {
+  fileprivate let shotService: ShotServiceType
+
+  init(shotService: ShotServiceType) {
+    self.shotService = shotService
     _ = self.state
   }
 

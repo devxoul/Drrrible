@@ -18,8 +18,12 @@ final class MainTabBarViewReactor: Reactor, ServiceContainer {
     var settingsViewReactor: SettingsViewReactor
   }
 
-  let initialState = State(
-    shotListViewReactor: ShotListViewReactor(),
-    settingsViewReactor: SettingsViewReactor()
-  )
+  let initialState: State
+
+  init(shotListViewReactor: ShotListViewReactor, settingsViewReactor: SettingsViewReactor) {
+    self.initialState = State(
+      shotListViewReactor: shotListViewReactor,
+      settingsViewReactor: settingsViewReactor
+    )
+  }
 }
