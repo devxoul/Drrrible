@@ -7,23 +7,22 @@
 //
 
 import RxSwift
-import Then
-
 @testable import Drrrible
 
-final class MockAuthService: AuthServiceType, ServiceContainer, Then {
+final class MockAuthService: AuthServiceType, MockService {
   var currentAccessToken: AccessToken? {
     return nil
   }
 
-  var authorizeClosure: () -> Observable<Void> = { return .never() }
   func authorize() -> Observable<Void> {
-    return self.authorizeClosure()
+    return self.call(Self.authorize)
   }
 
   func callback(code: String) {
+    self.call(Self.callback, args: code)
   }
 
   func logout() {
+    self.call(Self.logout)
   }
 }

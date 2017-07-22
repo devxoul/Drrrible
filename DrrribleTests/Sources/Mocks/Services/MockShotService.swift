@@ -7,38 +7,30 @@
 //
 
 import RxSwift
-import Then
-
 @testable import Drrrible
 
-final class MockShotService: ShotServiceType, ServiceContainer, Then {
-  var shotsClosure: (_ paging: Paging) -> Observable<List<Shot>> = { _ in .empty() }
+final class MockShotService: ShotServiceType, MockService {
   func shots(paging: Paging) -> Observable<List<Shot>> {
-    return self.shotsClosure(paging)
+    return self.call(Self.shots, args: paging)
   }
 
-  var shotClosure: (_ id: Int) -> Observable<Shot> = { _ in .empty() }
   func shot(id: Int) -> Observable<Shot> {
-    return self.shotClosure(id)
+    return self.call(Self.shot, args: id)
   }
 
-  var isLikedClosure: (_ shotID: Int) -> Observable<Bool> = { _ in .empty() }
   func isLiked(shotID: Int) -> Observable<Bool> {
-    return self.isLikedClosure(shotID)
+    return self.call(Self.isLiked, args: shotID)
   }
 
-  var likeClosure: (_ shotID: Int) -> Observable<Void> = { _ in .empty() }
   func like(shotID: Int) -> Observable<Void> {
-    return self.likeClosure(shotID)
+    return self.call(Self.like, args: shotID)
   }
 
-  var unlikeClosure: (_ shotID: Int) -> Observable<Void> = { _ in .empty() }
   func unlike(shotID: Int) -> Observable<Void> {
-    return self.unlikeClosure(shotID)
+    return self.call(Self.unlike, args: shotID)
   }
 
-  var commentsClosure: (_ shotID: Int) -> Observable<List<Comment>> = { _ in .empty() }
   func comments(shotID: Int) -> Observable<List<Comment>> {
-    return self.commentsClosure(shotID)
+    return self.call(Self.comments, args: shotID)
   }
 }

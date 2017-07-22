@@ -7,14 +7,10 @@
 //
 
 import RxSwift
-import Then
-
 @testable import Drrrible
 
-final class MockAppStoreService: AppStoreServiceType, ServiceContainer, Then {
-  var latestVersionClosure: () -> Observable<String?> = { .just(nil) }
+final class MockAppStoreService: AppStoreServiceType, MockService {
   func latestVersion() -> Observable<String?> {
-    return self.latestVersionClosure()
+    return self.call(Self.latestVersion)
   }
 }
-

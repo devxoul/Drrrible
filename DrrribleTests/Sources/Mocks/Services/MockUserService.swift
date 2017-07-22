@@ -7,17 +7,14 @@
 //
 
 import RxSwift
-import Then
-
 @testable import Drrrible
 
-final class MockUserService: UserServiceType, ServiceContainer, Then {
+final class MockUserService: UserServiceType, MockService {
   var currentUser: Observable<User?> {
     return .empty()
   }
 
-  var fetchMeClosure: () -> Observable<Void> = { .just(Void()) }
   func fetchMe() -> Observable<Void> {
-    return self.fetchMeClosure()
+    return self.call(Self.fetchMe)
   }
 }
