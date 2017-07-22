@@ -52,10 +52,10 @@ PODS:
   - RxDataSources (1.0.3):
     - RxCocoa (~> 3.0)
     - RxSwift (~> 3.0)
-  - RxExpect (0.5.1):
-    - RxCocoa (>= 3.0)
-    - RxSwift (>= 3.0)
-    - RxTest (>= 3.0)
+  - RxExpect (0.7.0):
+    - RxCocoa (>= 3.4)
+    - RxSwift (>= 3.4)
+    - RxTest (>= 3.4)
   - RxGesture (1.0.0):
     - RxCocoa (~> 3.0)
     - RxSwift (~> 3.0)
@@ -72,8 +72,8 @@ PODS:
   - RxSwiftUtilities (1.0.1):
     - RxCocoa (~> 3.0)
     - RxSwift (~> 3.0)
-  - RxTest (3.2.0):
-    - RxSwift (~> 3.0)
+  - RxTest (3.5.0):
+    - RxSwift (~> 3.4)
   - RxViewController (0.1.0):
     - RxCocoa (>= 3.0.0)
     - RxSwift (>= 3.0.0)
@@ -188,14 +188,14 @@ SPEC CHECKSUMS:
   ReusableKit: 89e743a120bab0d95848bff27e481833c2768905
   RxCocoa: d14ef6b6029e1ddc6e966508c09289090de68ff9
   RxDataSources: a021a0e944ba5f7991259829d973afdbfa719c0b
-  RxExpect: b5b995662f56e8efa3c15a600b187b07f0578b44
+  RxExpect: 6211e63608788e904cde817aa6ccc0ac4fd4beb5
   RxGesture: df17ca8be513640294c544b3165875e91de665ec
   RxKeyboard: 4046ecd1884a3bf0dacb823bd2ac8b00482d29ff
   RxOptional: b97b59183af80d1e729ac9e51d09a10be668d6a8
   RxReusable: c18e8e3b5f12a3292b76cc552dd946500f8d2c32
   RxSwift: 3789a1af753002a14edecdb698a2424624296a9c
   RxSwiftUtilities: 57e77c17b885931c37aa038f114f14fd1f478ac2
-  RxTest: 85fdd6f753e8e62635a58d37bbdd3ce7d5abbef3
+  RxTest: 1763765fd0e2282b0eb44c9050effdd7fe7156d4
   RxViewController: 45aada3de70642e419b13b100ba395287859361b
   SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
   SwiftyColor: 7fa09db14051bc5d7f539e1c4576665975225992
