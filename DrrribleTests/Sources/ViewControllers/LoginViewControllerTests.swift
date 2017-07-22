@@ -11,7 +11,7 @@ import XCTest
 
 final class LoginViewControllerTests: TestCase {
   func testAction_login() {
-    let reactor = LoginViewReactor(authService: MockAuthService(), userService: MockUserService())
+    let reactor = LoginViewReactor(authService: StubAuthService(), userService: StubUserService())
     reactor.stub.isEnabled = true
     let viewController = LoginViewController(reactor: reactor, presentMainScreen: {})
     viewController.loginButton.sendActions(for: .touchUpInside)
@@ -25,7 +25,7 @@ final class LoginViewControllerTests: TestCase {
   }
 
   func testState_isLoading() {
-    let reactor = LoginViewReactor(authService: MockAuthService(), userService: MockUserService())
+    let reactor = LoginViewReactor(authService: StubAuthService(), userService: StubUserService())
     reactor.stub.isEnabled = true
     let viewController = LoginViewController(reactor: reactor, presentMainScreen: {})
     XCTAssertEqual(viewController.loginButton.isHidden, false)
@@ -36,7 +36,7 @@ final class LoginViewControllerTests: TestCase {
   }
 
   func testState_isLoggedIn_true() {
-    let reactor = LoginViewReactor(authService: MockAuthService(), userService: MockUserService())
+    let reactor = LoginViewReactor(authService: StubAuthService(), userService: StubUserService())
     reactor.stub.isEnabled = true
     var isPresentMainScreenExecuted = false
     let viewController = LoginViewController(
@@ -49,7 +49,7 @@ final class LoginViewControllerTests: TestCase {
   }
 
   func testState_isLoggedIn_false() {
-    let reactor = LoginViewReactor(authService: MockAuthService(), userService: MockUserService())
+    let reactor = LoginViewReactor(authService: StubAuthService(), userService: StubUserService())
     reactor.stub.isEnabled = true
     var isPresentMainScreenExecuted = false
     let viewController = LoginViewController(

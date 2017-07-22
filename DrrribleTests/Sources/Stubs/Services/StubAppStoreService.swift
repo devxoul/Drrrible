@@ -1,5 +1,5 @@
 //
-//  MockAppStoreService.swift
+//  StubAppStoreService.swift
 //  Drrrible
 //
 //  Created by Suyeol Jeon on 19/04/2017.
@@ -9,8 +9,8 @@
 import RxSwift
 @testable import Drrrible
 
-final class MockAppStoreService: AppStoreServiceType, MockService {
+final class StubAppStoreService: AppStoreServiceType, Stub {
   func latestVersion() -> Observable<String?> {
-    return self.call(Self.latestVersion)
+    return self.call(latestVersion)
   }
 }

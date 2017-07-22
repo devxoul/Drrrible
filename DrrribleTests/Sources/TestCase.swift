@@ -14,12 +14,12 @@ import RxSwift
 
 class TestCase: XCTestCase {
   override func setUp() {
-    UIApplication.shared.delegate = MockAppDelegate()
-    clearMocks()
+    UIApplication.shared.delegate = StubAppDelegate()
+    clearStubs()
   }
 
   override func tearDown() {
-    clearMocks()
+    clearStubs()
     super.tearDown()
   }
 }

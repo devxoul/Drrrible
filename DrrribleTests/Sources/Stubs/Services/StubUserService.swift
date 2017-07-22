@@ -1,5 +1,5 @@
 //
-//  MockUserService.swift
+//  StubUserService.swift
 //  Drrrible
 //
 //  Created by Suyeol Jeon on 21/03/2017.
@@ -9,12 +9,12 @@
 import RxSwift
 @testable import Drrrible
 
-final class MockUserService: UserServiceType, MockService {
+final class StubUserService: UserServiceType, Stub {
   var currentUser: Observable<User?> {
     return .empty()
   }
 
   func fetchMe() -> Observable<Void> {
-    return self.call(Self.fetchMe)
+    return self.call(fetchMe)
   }
 }

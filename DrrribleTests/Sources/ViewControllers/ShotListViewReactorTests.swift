@@ -19,7 +19,7 @@ final class ShotListViewReactorTests: TestCase {
   func testSections() {
     RxExpect { test in
       DI.register(ShotServiceType.self) { _ in
-        MockShotService().then {
+        StubShotService().then {
           $0.shotsClosure = { _ in .just(List(items: [ShotFixture.shot1, ShotFixture.shot2])) }
         }
       }

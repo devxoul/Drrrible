@@ -11,7 +11,7 @@ import XCTest
 
 final class SplashViewControllerTests: TestCase {
   func testAction_checkIfAuthenticated() {
-    let reactor = SplashViewReactor(userService: MockUserService())
+    let reactor = SplashViewReactor(userService: StubUserService())
     reactor.stub.isEnabled = true
     let viewController = SplashViewController(
       reactor: reactor,
@@ -30,7 +30,7 @@ final class SplashViewControllerTests: TestCase {
 
   func testExecution_presentLoginScreen() {
     var isExecuted: (presentLoginScreen: Bool, presentMainScreen: Bool) = (false, false)
-    let reactor = SplashViewReactor(userService: MockUserService())
+    let reactor = SplashViewReactor(userService: StubUserService())
     reactor.stub.isEnabled = true
     let viewController = SplashViewController(
       reactor: reactor,
@@ -45,7 +45,7 @@ final class SplashViewControllerTests: TestCase {
 
   func testExecution_presentMainScreen() {
     var isExecuted: (presentLoginScreen: Bool, presentMainScreen: Bool) = (false, false)
-    let reactor = SplashViewReactor(userService: MockUserService())
+    let reactor = SplashViewReactor(userService: StubUserService())
     reactor.stub.isEnabled = true
     let viewController = SplashViewController(
       reactor: reactor,

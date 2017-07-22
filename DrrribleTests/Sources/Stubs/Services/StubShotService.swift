@@ -1,5 +1,5 @@
 //
-//  MockShotService.swift
+//  StubShotService.swift
 //  Drrrible
 //
 //  Created by Suyeol Jeon on 21/03/2017.
@@ -9,28 +9,28 @@
 import RxSwift
 @testable import Drrrible
 
-final class MockShotService: ShotServiceType, MockService {
+final class StubShotService: ShotServiceType, Stub {
   func shots(paging: Paging) -> Observable<List<Shot>> {
-    return self.call(Self.shots, args: paging)
+    return self.call(shots, args: paging)
   }
 
   func shot(id: Int) -> Observable<Shot> {
-    return self.call(Self.shot, args: id)
+    return self.call(shot, args: id)
   }
 
   func isLiked(shotID: Int) -> Observable<Bool> {
-    return self.call(Self.isLiked, args: shotID)
+    return self.call(isLiked, args: shotID)
   }
 
   func like(shotID: Int) -> Observable<Void> {
-    return self.call(Self.like, args: shotID)
+    return self.call(like, args: shotID)
   }
 
   func unlike(shotID: Int) -> Observable<Void> {
-    return self.call(Self.unlike, args: shotID)
+    return self.call(unlike, args: shotID)
   }
 
   func comments(shotID: Int) -> Observable<List<Comment>> {
-    return self.call(Self.comments, args: shotID)
+    return self.call(comments, args: shotID)
   }
 }

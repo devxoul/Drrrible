@@ -1,5 +1,5 @@
 //
-//  MockAppDelegate.swift
+//  StubAppDelegate.swift
 //  Drrrible
 //
 //  Created by Suyeol Jeon on 19/04/2017.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class MockAppDelegate: UIResponder, UIApplicationDelegate {
+final class StubAppDelegate: UIResponder, UIApplicationDelegate {
 
   func application(
     _ application: UIApplication,

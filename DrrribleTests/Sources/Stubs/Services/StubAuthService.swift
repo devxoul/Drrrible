@@ -1,5 +1,5 @@
 //
-//  MockAuthService.swift
+//  StubAuthService.swift
 //  Drrrible
 //
 //  Created by Suyeol Jeon on 21/03/2017.
@@ -9,20 +9,20 @@
 import RxSwift
 @testable import Drrrible
 
-final class MockAuthService: AuthServiceType, MockService {
+final class StubAuthService: AuthServiceType, Stub {
   var currentAccessToken: AccessToken? {
     return nil
   }
 
   func authorize() -> Observable<Void> {
-    return self.call(Self.authorize)
+    return self.call(authorize)
   }
 
   func callback(code: String) {
-    self.call(Self.callback, args: code)
+    self.call(callback, args: code)
   }
 
   func logout() {
-    self.call(Self.logout)
+    self.call(logout)
   }
 }

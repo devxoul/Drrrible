@@ -17,25 +17,23 @@ import RxTest
 
 final class SplashViewReactorTests: TestCase {
   func testIntialValue() {
-    let reactor = SplashViewReactor(userService: MockUserService())
+    let reactor = SplashViewReactor(userService: StubUserService())
     XCTAssertEqual(reactor.currentState.isAuthenticated, nil)
   }
 
   func testFetchMeExecution() {
-    let userService = MockUserService()
-    userService.mock(MockUserService.fetchMe) {
-      return .empty()
+    let userService = StubUserService().then {
+      $0.stub($0.fetchMe) { .empty() }
     }
     let reactor = SplashViewReactor(userService: userService)
     _ = reactor.state
     reactor.action.onNext(.checkIfAuthenticated)
-    XCTAssertEqual(userService.executionCount(MockUserService.fetchMe), 1)
+    XCTAssertEqual(userService.executions(userService.fetchMe).count, 1)
   }
 
   func testIsAuthenticated_success() {
-    let userService = MockUserService()
-    userService.mock(MockUserService.fetchMe) {
-      return .just()
+    let userService = StubUserService().then {
+      $0.stub($0.fetchMe) { .just() }
     }
     let reactor = SplashViewReactor(userService: userService)
     _ = reactor.state
@@ -44,9 +42,8 @@ final class SplashViewReactorTests: TestCase {
   }
 
   func testIsAuthenticated_failure() {
-    let userService = MockUserService()
-    userService.mock(MockUserService.fetchMe) {
-      return .error(MockError())
+    let userService = StubUserService().then {
+      $0.stub($0.fetchMe) { .error(StubError()) }
     }
     let reactor = SplashViewReactor(userService: userService)
     _ = reactor.state

@@ -18,8 +18,8 @@ import RxTest
 final class LoginViewReactorTests: TestCase {
   func testInitialState() {
     let reactor = LoginViewReactor(
-      authService: MockAuthService(),
-      userService: MockUserService()
+      authService: StubAuthService(),
+      userService: StubUserService()
     )
     XCTAssertEqual(reactor.currentState.isLoading, false)
     XCTAssertEqual(reactor.currentState.isLoggedIn, false)
@@ -27,15 +27,17 @@ final class LoginViewReactorTests: TestCase {
 
   func testExecution_serviceMethods() {
     var identifiers: [String] = []
-    let authService = MockAuthService()
-    authService.mock(MockAuthService.authorize) {
-      identifiers.append("authorize")
-      return .just()
+    let authService = StubAuthService().then {
+      $0.stub($0.authorize) {
+        identifiers.append("authorize")
+        return .just()
+      }
     }
-    let userService = MockUserService()
-    userService.mock(MockUserService.fetchMe) {
-      identifiers.append("fetchMe")
-      return .just()
+    let userService = StubUserService().then {
+      $0.stub($0.fetchMe) {
+        identifiers.append("fetchMe")
+        return .just()
+      }
     }
     let reactor = LoginViewReactor(
       authService: authService,
@@ -43,16 +45,18 @@ final class LoginViewReactorTests: TestCase {
     )
     _ = reactor.state
     reactor.action.onNext(.login)
-    XCTAssertEqual(authService.executionCount(MockAuthService.authorize), 1)
-    XCTAssertEqual(userService.executionCount(MockUserService.fetchMe), 1)
+    XCTAssertEqual(authService.executions(authService.authorize).count, 1)
+    XCTAssertEqual(userService.executions(userService.fetchMe).count, 1)
     XCTAssertEqual(identifiers, ["authorize", "fetchMe"]) // test method call order
   }
 
   func testState_isLoading_true_whileAuthorizing() {
-    let authService = MockAuthService()
-    authService.mock(MockAuthService.authorize) { .never() }
-    let userService = MockUserService()
-    userService.mock(MockUserService.fetchMe) { .empty() }
+    let authService = StubAuthService().then {
+      $0.stub($0.authorize) { .never() }
+    }
+    let userService = StubUserService().then {
+      $0.stub($0.fetchMe) { .empty() }
+    }
     let reactor = LoginViewReactor(
       authService: authService,
       userService: userService
@@ -63,10 +67,12 @@ final class LoginViewReactorTests: TestCase {
   }
 
   func testState_isLoading_true_whileFetchingMe() {
-    let authService = MockAuthService()
-    authService.mock(MockAuthService.authorize) { .just() }
-    let userService = MockUserService()
-    userService.mock(MockUserService.fetchMe) { .never() }
+    let authService = StubAuthService().then {
+      $0.stub($0.authorize) { .just() }
+    }
+    let userService = StubUserService().then {
+      $0.stub($0.fetchMe) { .never() }
+    }
     let reactor = LoginViewReactor(
       authService: authService,
       userService: userService
@@ -77,10 +83,12 @@ final class LoginViewReactorTests: TestCase {
   }
 
   func testState_isLoggedIn_true() {
-    let authService = MockAuthService()
-    authService.mock(MockAuthService.authorize) { .just() }
-    let userService = MockUserService()
-    userService.mock(MockUserService.fetchMe) { .just() }
+    let authService = StubAuthService().then {
+      $0.stub($0.authorize) { .just() }
+    }
+    let userService = StubUserService().then {
+      $0.stub($0.fetchMe) { .just() }
+    }
     let reactor = LoginViewReactor(
       authService: authService,
       userService: userService
@@ -91,10 +99,12 @@ final class LoginViewReactorTests: TestCase {
   }
 
   func testState_isLoggedIn_false_authorizeFailure() {
-    let authService = MockAuthService()
-    authService.mock(MockAuthService.authorize) { .error(MockError()) }
-    let userService = MockUserService()
-    userService.mock(MockUserService.fetchMe) { .just() }
+    let authService = StubAuthService().then {
+      $0.stub($0.authorize) { .error(StubError()) }
+    }
+    let userService = StubUserService().then {
+      $0.stub($0.fetchMe) { .just() }
+    }
     let reactor = LoginViewReactor(
       authService: authService,
       userService: userService
@@ -105,10 +115,12 @@ final class LoginViewReactorTests: TestCase {
   }
 
   func testState_isLoggedIn_false_fetchMeFailure() {
-    let authService = MockAuthService()
-    authService.mock(MockAuthService.authorize) { .just() }
-    let userService = MockUserService()
-    userService.mock(MockUserService.fetchMe) { .error(MockError()) }
+    let authService = StubAuthService().then {
+      $0.stub($0.authorize) { .just() }
+    }
+    let userService = StubUserService().then {
+      $0.stub($0.fetchMe) { .error(StubError()) }
+    }
     let reactor = LoginViewReactor(
       authService: authService,
       userService: userService

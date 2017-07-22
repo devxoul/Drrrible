@@ -11,7 +11,7 @@ import UIKit
 private func appDelegateClassName() -> String {
   let isTesting = NSClassFromString("XCTestCase") != nil
   Bundle.main.object(forInfoDictionaryKey: "")
-  return isTesting ? "DrrribleTests.MockAppDelegate" : NSStringFromClass(AppDelegate.self)
+  return isTesting ? "DrrribleTests.StubAppDelegate" : NSStringFromClass(AppDelegate.self)
 }
 
 UIApplicationMain(

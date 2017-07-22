@@ -25,9 +25,7 @@
 		034D33521EA68746004498FB /* VersionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034D33511EA68746004498FB /* VersionViewController.swift */; };
 		034D33541EA68755004498FB /* VersionViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034D33531EA68755004498FB /* VersionViewReactor.swift */; };
 		034D33561EA687BA004498FB /* Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034D33551EA687BA004498FB /* Bundle.swift */; };
-		034D33581EA69ABB004498FB /* MockAppStoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034D33571EA69ABB004498FB /* MockAppStoreService.swift */; };
 		034D335C1EA69C95004498FB /* TestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034D335B1EA69C95004498FB /* TestCase.swift */; };
-		034D335E1EA69CE4004498FB /* MockAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034D335D1EA69CE4004498FB /* MockAppDelegate.swift */; };
 		034D33601EA69E1D004498FB /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034D335F1EA69E1D004498FB /* main.swift */; };
 		03583DED1EC30F0B006C9057 /* DI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03583DEC1EC30F0B006C9057 /* DI.swift */; };
 		03583DEF1EC331BD006C9057 /* ServiceContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03583DEE1EC331BD006C9057 /* ServiceContainer.swift */; };
@@ -51,9 +49,15 @@
 		0365BB9C1E755309009BA3F8 /* ShotViewReactionLikeButtonViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0365BB9B1E755309009BA3F8 /* ShotViewReactionLikeButtonViewReactor.swift */; };
 		0365BB9E1E755320009BA3F8 /* ShotViewReactionCommentButtonViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0365BB9D1E755320009BA3F8 /* ShotViewReactionCommentButtonViewReactor.swift */; };
 		0365BBA01E758BB4009BA3F8 /* ModelStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0365BB9F1E758BB4009BA3F8 /* ModelStream.swift */; };
-		036CDD711F235269006C91CC /* MockService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036CDD701F235269006C91CC /* MockService.swift */; };
 		036CDD751F235EB4006C91CC /* SplashViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036CDD741F235EB4006C91CC /* SplashViewControllerTests.swift */; };
 		036CDD771F236615006C91CC /* LoginViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036CDD761F236615006C91CC /* LoginViewControllerTests.swift */; };
+		036CDD911F239A02006C91CC /* StubAppStoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036CDD8A1F239A02006C91CC /* StubAppStoreService.swift */; };
+		036CDD921F239A02006C91CC /* StubAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036CDD8B1F239A02006C91CC /* StubAuthService.swift */; };
+		036CDD931F239A02006C91CC /* StubShotService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036CDD8C1F239A02006C91CC /* StubShotService.swift */; };
+		036CDD941F239A02006C91CC /* StubUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036CDD8D1F239A02006C91CC /* StubUserService.swift */; };
+		036CDD951F239A02006C91CC /* Stub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036CDD8E1F239A02006C91CC /* Stub.swift */; };
+		036CDD961F239A02006C91CC /* StubAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036CDD8F1F239A02006C91CC /* StubAppDelegate.swift */; };
+		036CDD971F239A02006C91CC /* StubError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036CDD901F239A02006C91CC /* StubError.swift */; };
 		0377C5531E745BC200EE4576 /* ShotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0377C5521E745BC200EE4576 /* ShotViewController.swift */; };
 		0377C5551E745BF000EE4576 /* ShotViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0377C5541E745BF000EE4576 /* ShotViewReactor.swift */; };
 		0377C5571E745CDB00EE4576 /* ShotViewSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0377C5561E745CDB00EE4576 /* ShotViewSection.swift */; };
@@ -84,10 +88,6 @@
 		03D996D61E805392004773AE /* ShotViewCommentCellReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D996D51E805392004773AE /* ShotViewCommentCellReactor.swift */; };
 		03D996D81E805DB6004773AE /* CollectionActivityIndicatorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D996D71E805DB6004773AE /* CollectionActivityIndicatorCell.swift */; };
 		03D996FB1E811EC5004773AE /* SplashViewReactorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D996FA1E811EC5004773AE /* SplashViewReactorTests.swift */; };
-		03D997161E812691004773AE /* MockError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D9970F1E812691004773AE /* MockError.swift */; };
-		03D997171E812691004773AE /* MockAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D997111E812691004773AE /* MockAuthService.swift */; };
-		03D997191E812691004773AE /* MockShotService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D997131E812691004773AE /* MockShotService.swift */; };
-		03D9971A1E812691004773AE /* MockUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D997141E812691004773AE /* MockUserService.swift */; };
 		03D9971C1E81278B004773AE /* LoginViewReactorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D9971B1E81278B004773AE /* LoginViewReactorTests.swift */; };
 		03D9971E1E817ACF004773AE /* ShotListViewReactorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D9971D1E817ACF004773AE /* ShotListViewReactorTests.swift */; };
 		03D997211E817C1A004773AE /* ShotFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D997201E817C1A004773AE /* ShotFixture.swift */; };
@@ -144,9 +144,7 @@
 		034D33511EA68746004498FB /* VersionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VersionViewController.swift; sourceTree = "<group>"; };
 		034D33531EA68755004498FB /* VersionViewReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VersionViewReactor.swift; sourceTree = "<group>"; };
 		034D33551EA687BA004498FB /* Bundle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bundle.swift; sourceTree = "<group>"; };
-		034D33571EA69ABB004498FB /* MockAppStoreService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockAppStoreService.swift; sourceTree = "<group>"; };
 		034D335B1EA69C95004498FB /* TestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestCase.swift; sourceTree = "<group>"; };
-		034D335D1EA69CE4004498FB /* MockAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockAppDelegate.swift; sourceTree = "<group>"; };
 		034D335F1EA69E1D004498FB /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		03583DEC1EC30F0B006C9057 /* DI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DI.swift; sourceTree = "<group>"; };
 		03583DEE1EC331BD006C9057 /* ServiceContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceContainer.swift; sourceTree = "<group>"; };
@@ -170,9 +168,15 @@
 		0365BB9B1E755309009BA3F8 /* ShotViewReactionLikeButtonViewReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShotViewReactionLikeButtonViewReactor.swift; sourceTree = "<group>"; };
 		0365BB9D1E755320009BA3F8 /* ShotViewReactionCommentButtonViewReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShotViewReactionCommentButtonViewReactor.swift; sourceTree = "<group>"; };
 		0365BB9F1E758BB4009BA3F8 /* ModelStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelStream.swift; sourceTree = "<group>"; };
-		036CDD701F235269006C91CC /* MockService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockService.swift; sourceTree = "<group>"; };
 		036CDD741F235EB4006C91CC /* SplashViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewControllerTests.swift; sourceTree = "<group>"; };
 		036CDD761F236615006C91CC /* LoginViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewControllerTests.swift; sourceTree = "<group>"; };
+		036CDD8A1F239A02006C91CC /* StubAppStoreService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StubAppStoreService.swift; sourceTree = "<group>"; };
+		036CDD8B1F239A02006C91CC /* StubAuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StubAuthService.swift; sourceTree = "<group>"; };
+		036CDD8C1F239A02006C91CC /* StubShotService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StubShotService.swift; sourceTree = "<group>"; };
+		036CDD8D1F239A02006C91CC /* StubUserService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StubUserService.swift; sourceTree = "<group>"; };
+		036CDD8E1F239A02006C91CC /* Stub.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stub.swift; sourceTree = "<group>"; };
+		036CDD8F1F239A02006C91CC /* StubAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StubAppDelegate.swift; sourceTree = "<group>"; };
+		036CDD901F239A02006C91CC /* StubError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StubError.swift; sourceTree = "<group>"; };
 		0377C5521E745BC200EE4576 /* ShotViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShotViewController.swift; sourceTree = "<group>"; };
 		0377C5541E745BF000EE4576 /* ShotViewReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShotViewReactor.swift; sourceTree = "<group>"; };
 		0377C5561E745CDB00EE4576 /* ShotViewSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShotViewSection.swift; sourceTree = "<group>"; };
@@ -205,10 +209,6 @@
 		03D996DE1E811B97004773AE /* DrrribleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DrrribleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		03D996EB1E811BAB004773AE /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		03D996FA1E811EC5004773AE /* SplashViewReactorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewReactorTests.swift; sourceTree = "<group>"; };
-		03D9970F1E812691004773AE /* MockError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockError.swift; sourceTree = "<group>"; };
-		03D997111E812691004773AE /* MockAuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockAuthService.swift; sourceTree = "<group>"; };
-		03D997131E812691004773AE /* MockShotService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockShotService.swift; sourceTree = "<group>"; };
-		03D997141E812691004773AE /* MockUserService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockUserService.swift; sourceTree = "<group>"; };
 		03D9971B1E81278B004773AE /* LoginViewReactorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewReactorTests.swift; sourceTree = "<group>"; };
 		03D9971D1E817ACF004773AE /* ShotListViewReactorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShotListViewReactorTests.swift; sourceTree = "<group>"; };
 		03D997201E817C1A004773AE /* ShotFixture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShotFixture.swift; sourceTree = "<group>"; };
@@ -281,6 +281,28 @@
 			path = Plugins;
 			sourceTree = "<group>";
 		};
+		036CDD881F239A02006C91CC /* Stubs */ = {
+			isa = PBXGroup;
+			children = (
+				036CDD891F239A02006C91CC /* Services */,
+				036CDD8E1F239A02006C91CC /* Stub.swift */,
+				036CDD8F1F239A02006C91CC /* StubAppDelegate.swift */,
+				036CDD901F239A02006C91CC /* StubError.swift */,
+			);
+			path = Stubs;
+			sourceTree = "<group>";
+		};
+		036CDD891F239A02006C91CC /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				036CDD8A1F239A02006C91CC /* StubAppStoreService.swift */,
+				036CDD8B1F239A02006C91CC /* StubAuthService.swift */,
+				036CDD8C1F239A02006C91CC /* StubShotService.swift */,
+				036CDD8D1F239A02006C91CC /* StubUserService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		038B68F51E71ED31006B44F9 /* Types */ = {
 			isa = PBXGroup;
 			children = (
@@ -303,8 +325,8 @@
 			children = (
 				031F92851EA55FA00025D5FB /* TestMain.swift */,
 				034D335B1EA69C95004498FB /* TestCase.swift */,
-				03D9970E1E812691004773AE /* Mocks */,
 				03D9971F1E817C13004773AE /* Fixtures */,
+				036CDD881F239A02006C91CC /* Stubs */,
 				03D996F81E811EAF004773AE /* ViewControllers */,
 				03D996F91E811EAF004773AE /* Views */,
 			);
@@ -337,28 +359,6 @@
 			children = (
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		03D9970E1E812691004773AE /* Mocks */ = {
-			isa = PBXGroup;
-			children = (
-				034D335D1EA69CE4004498FB /* MockAppDelegate.swift */,
-				03D9970F1E812691004773AE /* MockError.swift */,
-				03D997101E812691004773AE /* Services */,
-			);
-			path = Mocks;
-			sourceTree = "<group>";
-		};
-		03D997101E812691004773AE /* Services */ = {
-			isa = PBXGroup;
-			children = (
-				036CDD701F235269006C91CC /* MockService.swift */,
-				03D997111E812691004773AE /* MockAuthService.swift */,
-				03D997131E812691004773AE /* MockShotService.swift */,
-				03D997141E812691004773AE /* MockUserService.swift */,
-				034D33571EA69ABB004498FB /* MockAppStoreService.swift */,
-			);
-			path = Services;
 			sourceTree = "<group>";
 		};
 		03D9971F1E817C13004773AE /* Fixtures */ = {
@@ -855,22 +855,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				03D997191E812691004773AE /* MockShotService.swift in Sources */,
-				034D33581EA69ABB004498FB /* MockAppStoreService.swift in Sources */,
 				03D9971E1E817ACF004773AE /* ShotListViewReactorTests.swift in Sources */,
-				034D335E1EA69CE4004498FB /* MockAppDelegate.swift in Sources */,
 				036CDD771F236615006C91CC /* LoginViewControllerTests.swift in Sources */,
+				036CDD971F239A02006C91CC /* StubError.swift in Sources */,
+				036CDD941F239A02006C91CC /* StubUserService.swift in Sources */,
 				03D997211E817C1A004773AE /* ShotFixture.swift in Sources */,
+				036CDD911F239A02006C91CC /* StubAppStoreService.swift in Sources */,
+				036CDD921F239A02006C91CC /* StubAuthService.swift in Sources */,
 				03D9971C1E81278B004773AE /* LoginViewReactorTests.swift in Sources */,
 				031F92861EA55FA00025D5FB /* TestMain.swift in Sources */,
 				036CDD751F235EB4006C91CC /* SplashViewControllerTests.swift in Sources */,
 				03D997291E819012004773AE /* ShotViewReactorTests.swift in Sources */,
-				03D997171E812691004773AE /* MockAuthService.swift in Sources */,
-				036CDD711F235269006C91CC /* MockService.swift in Sources */,
+				036CDD931F239A02006C91CC /* StubShotService.swift in Sources */,
 				034D335C1EA69C95004498FB /* TestCase.swift in Sources */,
-				03D9971A1E812691004773AE /* MockUserService.swift in Sources */,
-				03D997161E812691004773AE /* MockError.swift in Sources */,
 				03D996FB1E811EC5004773AE /* SplashViewReactorTests.swift in Sources */,
+				036CDD951F239A02006C91CC /* Stub.swift in Sources */,
+				036CDD961F239A02006C91CC /* StubAppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
