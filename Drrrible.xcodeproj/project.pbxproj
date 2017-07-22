@@ -51,6 +51,7 @@
 		0365BB9C1E755309009BA3F8 /* ShotViewReactionLikeButtonViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0365BB9B1E755309009BA3F8 /* ShotViewReactionLikeButtonViewReactor.swift */; };
 		0365BB9E1E755320009BA3F8 /* ShotViewReactionCommentButtonViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0365BB9D1E755320009BA3F8 /* ShotViewReactionCommentButtonViewReactor.swift */; };
 		0365BBA01E758BB4009BA3F8 /* ModelStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0365BB9F1E758BB4009BA3F8 /* ModelStream.swift */; };
+		036CDD711F235269006C91CC /* MockService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036CDD701F235269006C91CC /* MockService.swift */; };
 		0377C5531E745BC200EE4576 /* ShotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0377C5521E745BC200EE4576 /* ShotViewController.swift */; };
 		0377C5551E745BF000EE4576 /* ShotViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0377C5541E745BF000EE4576 /* ShotViewReactor.swift */; };
 		0377C5571E745CDB00EE4576 /* ShotViewSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0377C5561E745CDB00EE4576 /* ShotViewSection.swift */; };
@@ -167,6 +168,7 @@
 		0365BB9B1E755309009BA3F8 /* ShotViewReactionLikeButtonViewReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShotViewReactionLikeButtonViewReactor.swift; sourceTree = "<group>"; };
 		0365BB9D1E755320009BA3F8 /* ShotViewReactionCommentButtonViewReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShotViewReactionCommentButtonViewReactor.swift; sourceTree = "<group>"; };
 		0365BB9F1E758BB4009BA3F8 /* ModelStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelStream.swift; sourceTree = "<group>"; };
+		036CDD701F235269006C91CC /* MockService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockService.swift; sourceTree = "<group>"; };
 		0377C5521E745BC200EE4576 /* ShotViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShotViewController.swift; sourceTree = "<group>"; };
 		0377C5541E745BF000EE4576 /* ShotViewReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShotViewReactor.swift; sourceTree = "<group>"; };
 		0377C5561E745CDB00EE4576 /* ShotViewSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShotViewSection.swift; sourceTree = "<group>"; };
@@ -344,6 +346,7 @@
 		03D997101E812691004773AE /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				036CDD701F235269006C91CC /* MockService.swift */,
 				03D997111E812691004773AE /* MockAuthService.swift */,
 				03D997131E812691004773AE /* MockShotService.swift */,
 				03D997141E812691004773AE /* MockUserService.swift */,
@@ -855,6 +858,7 @@
 				031F92861EA55FA00025D5FB /* TestMain.swift in Sources */,
 				03D997291E819012004773AE /* ShotViewReactorTests.swift in Sources */,
 				03D997171E812691004773AE /* MockAuthService.swift in Sources */,
+				036CDD711F235269006C91CC /* MockService.swift in Sources */,
 				034D335C1EA69C95004498FB /* TestCase.swift in Sources */,
 				03D9971A1E812691004773AE /* MockUserService.swift in Sources */,
 				03D997161E812691004773AE /* MockError.swift in Sources */,
