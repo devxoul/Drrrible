@@ -15,6 +15,12 @@ final class SplashViewController: BaseViewController, View {
   typealias Reactor = SplashViewReactor
 
 
+  // MARK: Properties
+
+  private let presentLoginScreen: () -> Void
+  private let presentMainScreen: () -> Void
+
+
   // MARK: UI
 
   fileprivate let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
@@ -37,8 +43,14 @@ final class SplashViewController: BaseViewController, View {
 
   // MARK: Initializing
 
-  init(reactor: Reactor) {
+  init(
+    reactor: Reactor,
+    presentLoginScreen: @escaping () -> Void,
+    presentMainScreen: @escaping () -> Void
+  ) {
     defer { self.reactor = reactor }
+    self.presentLoginScreen = presentLoginScreen
+    self.presentMainScreen = presentMainScreen
     super.init()
   }
   
@@ -60,12 +72,11 @@ final class SplashViewController: BaseViewController, View {
     reactor.state.map { $0.isAuthenticated }
       .filterNil()
       .distinctUntilChanged()
-      .subscribe(onNext: { [weak reactor] isAuthenticated in
-        guard reactor != nil else { return }
+      .subscribe(onNext: { [weak self] isAuthenticated in
         if !isAuthenticated {
-          AppDelegate.shared.presentLoginScreen()
+          self?.presentLoginScreen()
         } else {
-          AppDelegate.shared.presentMainScreen()
+          self?.presentMainScreen()
         }
       })
       .disposed(by: self.disposeBag)

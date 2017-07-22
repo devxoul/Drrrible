@@ -63,7 +63,11 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
 
     let userService = UserService()
     let reactor = SplashViewReactor(userService: userService)
-    let splashViewController = SplashViewController(reactor: reactor)
+    let splashViewController = SplashViewController(
+      reactor: reactor,
+      presentLoginScreen: { [weak self] in self?.presentLoginScreen() },
+      presentMainScreen: { [weak self] in self?.presentMainScreen() }
+    )
     window.rootViewController = splashViewController
 
     self.window = window
