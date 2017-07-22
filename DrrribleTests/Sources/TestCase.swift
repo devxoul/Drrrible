@@ -15,13 +15,11 @@ import RxSwift
 class TestCase: XCTestCase {
   override func setUp() {
     UIApplication.shared.delegate = MockAppDelegate()
-    self.registerDependencies()
+    clearMocks()
   }
 
-  func registerDependencies() {
-    DI.autoregister(AuthServiceType.self, initializer: MockAuthService.init)
-    DI.autoregister(UserServiceType.self, initializer: MockUserService.init)
-    DI.autoregister(ShotServiceType.self, initializer: MockShotService.init).inObjectScope(.container)
-    DI.autoregister(AppStoreServiceType.self, initializer: MockAppStoreService.init).inObjectScope(.container)
+  override func tearDown() {
+    clearMocks()
+    super.tearDown()
   }
 }
