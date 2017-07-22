@@ -14,7 +14,7 @@ import RxSwift
 import RxTest
 
 @testable import Drrrible
-
+/*
 final class SplashViewReactorTests: TestCase {
   func testIsAuthenticated() {
     RxExpect("it should set isAuthenticated false when not authenticated") { test in
@@ -48,3 +48,4 @@ final class SplashViewReactorTests: TestCase {
     }
   }
 }
+*/

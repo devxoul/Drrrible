@@ -14,7 +14,7 @@ import RxSwift
 import RxTest
 
 @testable import Drrrible
-
+/*
 final class ShotViewReactorTests: TestCase {
   func testIsRefreshing() {
     RxExpect { test in
@@ -61,3 +61,4 @@ final class ShotViewReactorTests: TestCase {
     }
   }
 }
+*/
