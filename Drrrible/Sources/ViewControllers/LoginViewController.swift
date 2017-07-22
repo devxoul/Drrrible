@@ -32,14 +32,19 @@ final class LoginViewController: BaseViewController, View {
   }
 
 
+  // MARK: Properties
+
+  fileprivate let presentMainScreen: () -> Void
+
+
   // MARK: UI
 
-  fileprivate let logoView = UIImageView(image: #imageLiteral(resourceName: "Icon512"))
-  fileprivate let titleLabel = UILabel().then {
+  let logoView = UIImageView(image: #imageLiteral(resourceName: "Icon512"))
+  let titleLabel = UILabel().then {
     $0.text = "Drrrible"
     $0.font = Font.titleLabel
   }
-  fileprivate let loginButton = UIButton().then {
+  let loginButton = UIButton().then {
     $0.titleLabel?.font = Font.loginButtonTitle
     $0.setTitle("login_with_dribbble".localized, for: .normal)
     $0.setBackgroundImage(
@@ -57,13 +62,14 @@ final class LoginViewController: BaseViewController, View {
       for: .highlighted
     )
   }
-  fileprivate let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+  let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
 
 
   // MARK: Initializing
 
-  init(reactor: LoginViewReactor) {
+  init(reactor: LoginViewReactor, presentMainScreen: @escaping () -> Void) {
     defer { self.reactor = reactor }
+    self.presentMainScreen = presentMainScreen
     super.init()
   }
   
@@ -130,8 +136,8 @@ final class LoginViewController: BaseViewController, View {
       .distinctUntilChanged()
       .filter { $0 }
       .do(onNext: { _ in analytics.log(event: .login) })
-      .subscribe(onNext: { _ in
-        AppDelegate.shared.presentMainScreen()
+      .subscribe(onNext: { [weak self] _ in
+        self?.presentMainScreen()
       })
       .disposed(by: self.disposeBag)
   }

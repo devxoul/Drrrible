@@ -64,15 +64,22 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     let authService = AuthService()
     let userService = UserService()
 
+    let presentMainScreen: () -> Void = { [weak self] in
+      self?.presentMainScreen()
+    }
+    let presentLoginScreen: () -> Void = { [weak self] in
+      let reactor = LoginViewReactor(authService: authService, userService: userService)
+      self?.window?.rootViewController = LoginViewController(
+        reactor: reactor,
+        presentMainScreen: presentMainScreen
+      )
+    }
+
     let reactor = SplashViewReactor(userService: userService)
     let splashViewController = SplashViewController(
       reactor: reactor,
-      presentLoginScreen: { [weak self] in
-        let reactor = LoginViewReactor(authService: authService, userService: userService)
-        let viewController = LoginViewController(reactor: reactor)
-        self?.window?.rootViewController = viewController
-      },
-      presentMainScreen: { [weak self] in self?.presentMainScreen() }
+      presentLoginScreen: presentLoginScreen,
+      presentMainScreen: presentMainScreen
     )
     window.rootViewController = splashViewController
 

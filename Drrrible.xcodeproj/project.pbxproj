@@ -53,6 +53,7 @@
 		0365BBA01E758BB4009BA3F8 /* ModelStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0365BB9F1E758BB4009BA3F8 /* ModelStream.swift */; };
 		036CDD711F235269006C91CC /* MockService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036CDD701F235269006C91CC /* MockService.swift */; };
 		036CDD751F235EB4006C91CC /* SplashViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036CDD741F235EB4006C91CC /* SplashViewControllerTests.swift */; };
+		036CDD771F236615006C91CC /* LoginViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036CDD761F236615006C91CC /* LoginViewControllerTests.swift */; };
 		0377C5531E745BC200EE4576 /* ShotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0377C5521E745BC200EE4576 /* ShotViewController.swift */; };
 		0377C5551E745BF000EE4576 /* ShotViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0377C5541E745BF000EE4576 /* ShotViewReactor.swift */; };
 		0377C5571E745CDB00EE4576 /* ShotViewSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0377C5561E745CDB00EE4576 /* ShotViewSection.swift */; };
@@ -171,6 +172,7 @@
 		0365BB9F1E758BB4009BA3F8 /* ModelStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelStream.swift; sourceTree = "<group>"; };
 		036CDD701F235269006C91CC /* MockService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockService.swift; sourceTree = "<group>"; };
 		036CDD741F235EB4006C91CC /* SplashViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewControllerTests.swift; sourceTree = "<group>"; };
+		036CDD761F236615006C91CC /* LoginViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewControllerTests.swift; sourceTree = "<group>"; };
 		0377C5521E745BC200EE4576 /* ShotViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShotViewController.swift; sourceTree = "<group>"; };
 		0377C5541E745BF000EE4576 /* ShotViewReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShotViewReactor.swift; sourceTree = "<group>"; };
 		0377C5561E745CDB00EE4576 /* ShotViewSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShotViewSection.swift; sourceTree = "<group>"; };
@@ -323,6 +325,7 @@
 				03D996FA1E811EC5004773AE /* SplashViewReactorTests.swift */,
 				036CDD741F235EB4006C91CC /* SplashViewControllerTests.swift */,
 				03D9971B1E81278B004773AE /* LoginViewReactorTests.swift */,
+				036CDD761F236615006C91CC /* LoginViewControllerTests.swift */,
 				03D9971D1E817ACF004773AE /* ShotListViewReactorTests.swift */,
 				03D997281E819012004773AE /* ShotViewReactorTests.swift */,
 			);
@@ -785,7 +788,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "ruby ${PODS_ROOT}/Carte/Sources/Carte/carte.rb post";
-			showEnvVarsInLog = 1;
 		};
 		B01C95CE2B14068F091C60D3 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -845,7 +847,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "ruby ${PODS_ROOT}/Carte/Sources/Carte/carte.rb pre";
-			showEnvVarsInLog = 1;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -858,6 +859,7 @@
 				034D33581EA69ABB004498FB /* MockAppStoreService.swift in Sources */,
 				03D9971E1E817ACF004773AE /* ShotListViewReactorTests.swift in Sources */,
 				034D335E1EA69CE4004498FB /* MockAppDelegate.swift in Sources */,
+				036CDD771F236615006C91CC /* LoginViewControllerTests.swift in Sources */,
 				03D997211E817C1A004773AE /* ShotFixture.swift in Sources */,
 				03D9971C1E81278B004773AE /* LoginViewReactorTests.swift in Sources */,
 				031F92861EA55FA00025D5FB /* TestMain.swift in Sources */,
