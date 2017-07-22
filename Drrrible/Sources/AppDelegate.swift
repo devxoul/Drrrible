@@ -61,11 +61,17 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
 
     URLNavigationMap.initialize()
 
+    let authService = AuthService()
     let userService = UserService()
+
     let reactor = SplashViewReactor(userService: userService)
     let splashViewController = SplashViewController(
       reactor: reactor,
-      presentLoginScreen: { [weak self] in self?.presentLoginScreen() },
+      presentLoginScreen: { [weak self] in
+        let reactor = LoginViewReactor(authService: authService, userService: userService)
+        let viewController = LoginViewController(reactor: reactor)
+        self?.window?.rootViewController = viewController
+      },
       presentMainScreen: { [weak self] in self?.presentMainScreen() }
     )
     window.rootViewController = splashViewController
@@ -125,12 +131,6 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
   // MARK: Presenting
-
-  func presentLoginScreen() {
-    let reactor = LoginViewReactor()
-    let viewController = LoginViewController(reactor: reactor)
-    self.window?.rootViewController = viewController
-  }
 
   func presentMainScreen() {
     let reactor = MainTabBarViewReactor()

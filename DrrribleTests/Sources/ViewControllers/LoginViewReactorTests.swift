@@ -14,110 +14,107 @@ import RxSwift
 import RxTest
 
 @testable import Drrrible
-/*
+
 final class LoginViewReactorTests: TestCase {
-  func testIsLoading() {
-    RxExpect("it should change isLoading when start login") { test in
-      // Environment
-      DI.register(AuthServiceType.self) { _ in
-        MockAuthService().then {
-          $0.authorizeClosure = { Observable.just(Void()) }
-        }
-      }
-      DI.register(UserServiceType.self) { _ in
-        MockUserService().then {
-          $0.fetchMeClosure = { Observable.just(Void()) }
-        }
-      }
-      let reactor = LoginViewReactor()
-
-      // Input
-      test.input(reactor.action, [
-        next(100, .login),
-      ])
-
-      // Output
-      test.assert(reactor.state.map { $0.isLoading }.distinctUntilChanged())
-        .filterNext()
-        .equal([false, true])
-    }
+  func testInitialState() {
+    let reactor = LoginViewReactor(
+      authService: MockAuthService(),
+      userService: MockUserService()
+    )
+    XCTAssertEqual(reactor.currentState.isLoading, false)
+    XCTAssertEqual(reactor.currentState.isLoggedIn, false)
   }
 
-  func testIsLoggedIn() {
-    RxExpect("it should set isLoggedIn true when authorize() and fetchMe() succeeds") { test in
-      // Environment
-      DI.register(AuthServiceType.self) { _ in
-        MockAuthService().then {
-          $0.authorizeClosure = { Observable.just(Void()) }
-        }
-      }
-      DI.register(UserServiceType.self) { _ in
-        MockUserService().then {
-          $0.fetchMeClosure = { Observable.just(Void()) }
-        }
-      }
-      let reactor = LoginViewReactor()
-
-      // Input
-      test.input(reactor.action, [
-        next(100, .login),
-      ])
-
-      // Output
-      test.assert(reactor.state.map { $0.isLoggedIn }.distinctUntilChanged())
-        .filterNext()
-        .equal([false, true])
+  func testExecution_serviceMethods() {
+    var identifiers: [String] = []
+    let authService = MockAuthService()
+    authService.mock(MockAuthService.authorize) {
+      identifiers.append("authorize")
+      return .just()
     }
-
-    RxExpect("it should not isLoggedIn false when authorize() fails") { test in
-      // Environment
-      DI.register(AuthServiceType.self) { _ in
-        MockAuthService().then {
-          $0.authorizeClosure = { .error(MockError()) }
-        }
-      }
-      DI.register(UserServiceType.self) { _ in
-        MockUserService().then {
-          $0.fetchMeClosure = { Observable.just(Void()) }
-        }
-      }
-      let reactor = LoginViewReactor()
-
-      // Input
-      test.input(reactor.action, [
-        next(100, .login),
-      ])
-
-      // Output
-      test.assert(reactor.state.map { $0.isLoggedIn }.distinctUntilChanged())
-        .filterNext()
-        .equal([false])
+    let userService = MockUserService()
+    userService.mock(MockUserService.fetchMe) {
+      identifiers.append("fetchMe")
+      return .just()
     }
+    let reactor = LoginViewReactor(
+      authService: authService,
+      userService: userService
+    )
+    _ = reactor.state
+    reactor.action.onNext(.login)
+    XCTAssertEqual(authService.executionCount(MockAuthService.authorize), 1)
+    XCTAssertEqual(userService.executionCount(MockUserService.fetchMe), 1)
+    XCTAssertEqual(identifiers, ["authorize", "fetchMe"]) // test method call order
+  }
 
-    RxExpect("it should set isLoggedIn false when fetchMe() fails") { test in
-      // Environment
-      DI.register(AuthServiceType.self) { _ in
-        MockAuthService().then {
-          $0.authorizeClosure = { .just(Void()) }
-        }
-      }
-      DI.register(UserServiceType.self) { _ in
-        MockUserService().then {
-          $0.fetchMeClosure = { .error(MockError()) }
-        }
-      }
-      let reactor = LoginViewReactor()
+  func testState_isLoading_true_whileAuthorizing() {
+    let authService = MockAuthService()
+    authService.mock(MockAuthService.authorize) { .never() }
+    let userService = MockUserService()
+    userService.mock(MockUserService.fetchMe) { .empty() }
+    let reactor = LoginViewReactor(
+      authService: authService,
+      userService: userService
+    )
+    _ = reactor.state
+    reactor.action.onNext(.login)
+    XCTAssertEqual(reactor.currentState.isLoading, true)
+  }
 
-      // Input
-      test.input(reactor.action, [
-        next(100, .login),
-      ])
+  func testState_isLoading_true_whileFetchingMe() {
+    let authService = MockAuthService()
+    authService.mock(MockAuthService.authorize) { .just() }
+    let userService = MockUserService()
+    userService.mock(MockUserService.fetchMe) { .never() }
+    let reactor = LoginViewReactor(
+      authService: authService,
+      userService: userService
+    )
+    _ = reactor.state
+    reactor.action.onNext(.login)
+    XCTAssertEqual(reactor.currentState.isLoading, true)
+  }
 
-      // Output
-      test.assert(reactor.state.map { $0.isLoggedIn }.distinctUntilChanged())
-        .filterNext()
-        .equal([false])
-    }
+  func testState_isLoggedIn_true() {
+    let authService = MockAuthService()
+    authService.mock(MockAuthService.authorize) { .just() }
+    let userService = MockUserService()
+    userService.mock(MockUserService.fetchMe) { .just() }
+    let reactor = LoginViewReactor(
+      authService: authService,
+      userService: userService
+    )
+    _ = reactor.state
+    reactor.action.onNext(.login)
+    XCTAssertEqual(reactor.currentState.isLoggedIn, true)
+  }
+
+  func testState_isLoggedIn_false_authorizeFailure() {
+    let authService = MockAuthService()
+    authService.mock(MockAuthService.authorize) { .error(MockError()) }
+    let userService = MockUserService()
+    userService.mock(MockUserService.fetchMe) { .just() }
+    let reactor = LoginViewReactor(
+      authService: authService,
+      userService: userService
+    )
+    _ = reactor.state
+    reactor.action.onNext(.login)
+    XCTAssertEqual(reactor.currentState.isLoggedIn, false)
+  }
+
+  func testState_isLoggedIn_false_fetchMeFailure() {
+    let authService = MockAuthService()
+    authService.mock(MockAuthService.authorize) { .just() }
+    let userService = MockUserService()
+    userService.mock(MockUserService.fetchMe) { .error(MockError()) }
+    let reactor = LoginViewReactor(
+      authService: authService,
+      userService: userService
+    )
+    _ = reactor.state
+    reactor.action.onNext(.login)
+    XCTAssertEqual(reactor.currentState.isLoggedIn, false)
   }
 }
-*/

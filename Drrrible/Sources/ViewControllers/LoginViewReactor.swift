@@ -12,7 +12,6 @@ import RxSwift
 import RxSwiftUtilities
 
 final class LoginViewReactor: Reactor, ServiceContainer {
-
   enum Action {
     case login
   }
@@ -28,6 +27,14 @@ final class LoginViewReactor: Reactor, ServiceContainer {
   }
 
   let initialState: State = State()
+
+  fileprivate let authService: AuthServiceType
+  fileprivate let userService: UserServiceType
+
+  init(authService: AuthServiceType, userService: UserServiceType) {
+    self.authService = authService
+    self.userService = userService
+  }
 
   func mutate(action: Action) -> Observable<Mutation> {
     switch action {
@@ -54,5 +61,4 @@ final class LoginViewReactor: Reactor, ServiceContainer {
       return state
     }
   }
-
 }

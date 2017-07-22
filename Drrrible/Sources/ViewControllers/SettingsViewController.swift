@@ -98,7 +98,8 @@ final class SettingsViewController: BaseViewController, View {
       .filter { $0 }
       .do(onNext: { _ in analytics.log(event: .logout) })
       .subscribe(onNext: { _ in
-        AppDelegate.shared.presentLoginScreen()
+        // TODO:
+        // AppDelegate.shared.presentLoginScreen()
       })
       .disposed(by: self.disposeBag)
 
