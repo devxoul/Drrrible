@@ -14,16 +14,7 @@ final class MainTabBarViewReactor: Reactor, ServiceContainer {
   typealias Action = NoAction
 
   struct State {
-    var shotListViewReactor: ShotListViewReactor
-    var settingsViewReactor: SettingsViewReactor
   }
 
-  let initialState: State
-
-  init(shotListViewReactor: ShotListViewReactor, settingsViewReactor: SettingsViewReactor) {
-    self.initialState = State(
-      shotListViewReactor: shotListViewReactor,
-      settingsViewReactor: settingsViewReactor
-    )
-  }
+  let initialState: State = State()
 }

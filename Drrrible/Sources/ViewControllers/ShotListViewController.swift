@@ -35,6 +35,7 @@ final class ShotListViewController: BaseViewController, View {
   // MARK: Properties
 
   fileprivate let dataSource = RxCollectionViewSectionedReloadDataSource<ShotListViewSection>()
+  fileprivate let shotTileCellDependency: ShotTileCell.Dependency
 
 
   // MARK: UI
@@ -53,8 +54,9 @@ final class ShotListViewController: BaseViewController, View {
 
   // MARK: Initializing
 
-  init(reactor: ShotListViewReactor) {
+  init(reactor: ShotListViewReactor, shotTileCellDependency: ShotTileCell.Dependency) {
     defer { self.reactor = reactor }
+    self.shotTileCellDependency = shotTileCellDependency
     super.init()
     self.title = "shots".localized
     self.tabBarItem.image = UIImage(named: "tab-shots")
@@ -87,10 +89,12 @@ final class ShotListViewController: BaseViewController, View {
   func bind(reactor: ShotListViewReactor) {
     self.collectionView.rx.setDelegate(self).addDisposableTo(self.disposeBag)
 
-    self.dataSource.configureCell = { dataSource, collectionView, indexPath, sectionItem in
+    self.dataSource.configureCell = { [weak self] dataSource, collectionView, indexPath, sectionItem in
       switch sectionItem {
       case .shotTile(let reactor):
         let cell = collectionView.dequeue(Reusable.shotTileCell, for: indexPath)
+        guard let `self` = self else { return cell }
+        cell.dependency = self.shotTileCellDependency
         cell.reactor = reactor
         return cell
       }

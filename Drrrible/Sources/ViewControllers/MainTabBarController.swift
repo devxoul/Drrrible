@@ -21,9 +21,21 @@ final class MainTabBarController: UITabBarController, View {
 
   // MARK: Initializing
 
-  init(reactor: MainTabBarViewReactor) {
+  init(
+    reactor: MainTabBarViewReactor,
+    shotListViewController: ShotListViewController,
+    settingsViewController: SettingsViewController
+  ) {
     defer { self.reactor = reactor }
     super.init(nibName: nil, bundle: nil)
+    self.viewControllers = [shotListViewController, settingsViewController]
+      .map { viewController -> UINavigationController in
+        let navigationController = UINavigationController(rootViewController: viewController)
+        navigationController.tabBarItem.title = nil
+        navigationController.tabBarItem.imageInsets.top = 5
+        navigationController.tabBarItem.imageInsets.bottom = -5
+        return navigationController
+      }
   }
   
   required convenience init?(coder aDecoder: NSCoder) {
@@ -34,33 +46,6 @@ final class MainTabBarController: UITabBarController, View {
   // MARK: Configuring
 
   func bind(reactor: MainTabBarViewReactor) {
-    let shotListNavigationController = reactor.state.map { $0.shotListViewReactor }
-      .map { reactor -> UINavigationController in
-        let viewController = ShotListViewController(reactor: reactor)
-        return UINavigationController(rootViewController: viewController)
-      }
-
-    let settingsNavigationController = reactor.state.map { $0.settingsViewReactor }
-      .map { reactor -> UINavigationController in
-        let viewController = SettingsViewController(reactor: reactor)
-        return UINavigationController(rootViewController: viewController)
-      }
-
-    let navigationControllers: [Observable<UINavigationController>] = [
-      shotListNavigationController,
-      settingsNavigationController,
-    ]
-    Observable.combineLatest(navigationControllers) { $0 }
-      .subscribe(onNext: { [weak self] navigationControllers in
-        for navigationController in navigationControllers {
-          navigationController.tabBarItem.title = nil
-          navigationController.tabBarItem.imageInsets.top = 5
-          navigationController.tabBarItem.imageInsets.bottom = -5
-        }
-        self?.viewControllers = navigationControllers
-      })
-      .disposed(by: self.disposeBag)
-
     self.rx.didSelect
       .scan((nil, nil)) { state, viewController in
         return (state.1, viewController)

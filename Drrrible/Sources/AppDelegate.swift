@@ -66,11 +66,19 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     let shotService = ShotService()
 
     let presentMainScreen: () -> Void = { [weak self] in
-      let reactor = MainTabBarViewReactor(
-        shotListViewReactor: ShotListViewReactor(shotService: shotService),
-        settingsViewReactor: SettingsViewReactor()
+      let mainTabBarController = MainTabBarController(
+        reactor: MainTabBarViewReactor(),
+        shotListViewController: ShotListViewController(
+          reactor: ShotListViewReactor(shotService: shotService),
+          shotTileCellDependency: .init(
+            imageOptions: [],
+            shotViewControllerFactory: { id, shot in
+              ShotViewController(reactor: ShotViewReactor(shotID: id, shot: shot))
+            }
+          )
+        ),
+        settingsViewController: SettingsViewController(reactor: SettingsViewReactor())
       )
-      let mainTabBarController = MainTabBarController(reactor: reactor)
       self?.window?.rootViewController = mainTabBarController
     }
     let presentLoginScreen: () -> Void = { [weak self] in

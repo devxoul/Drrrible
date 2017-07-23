@@ -8,10 +8,19 @@
 
 import UIKit
 
+import Kingfisher
 import ReactorKit
 import URLNavigator
 
 final class ShotTileCell: BaseCollectionViewCell, View {
+
+  // MARK: Types
+
+  struct Dependency {
+    let imageOptions: KingfisherOptionsInfo
+    let shotViewControllerFactory: (_ id: Int, _ shot: Shot?) -> ShotViewController
+  }
+
 
   // MARK: Constants
 
@@ -28,9 +37,14 @@ final class ShotTileCell: BaseCollectionViewCell, View {
   }
 
 
+  // MARK: Properties
+
+  var dependency: Dependency?
+
+
   // MARK: UI
 
-  fileprivate let cardView = UIImageView().then {
+  let cardView = UIImageView().then {
     $0.image = UIImage.resizable()
       .border(color: .db_border)
       .border(width: 1 / UIScreen.main.scale)
@@ -38,11 +52,11 @@ final class ShotTileCell: BaseCollectionViewCell, View {
       .color(.white)
       .image
   }
-  fileprivate let imageView = UIImageView().then {
+  let imageView = UIImageView().then {
     $0.contentMode = .scaleAspectFill
     $0.clipsToBounds = true
   }
-  fileprivate let gifLabel = UILabel().then {
+  let gifLabel = UILabel().then {
     $0.font = Font.gifLabel
     $0.text = "GIF"
     $0.textAlignment = .center
@@ -68,9 +82,11 @@ final class ShotTileCell: BaseCollectionViewCell, View {
   // MARK: Configuring
 
   func bind(reactor: ShotCellReactor) {
+    guard let dependency = self.dependency else { preconditionFailure() }
+
     // State
     reactor.state.map { $0.imageURL }
-      .bind(to: self.imageView.rx.resource)
+      .bind(to: self.imageView.rx.image(options: dependency.imageOptions))
       .disposed(by: self.disposeBag)
 
     reactor.state.map { !$0.isAnimatedImage }
@@ -82,8 +98,7 @@ final class ShotTileCell: BaseCollectionViewCell, View {
       .whileDisplaying(self)
       .subscribe(onNext: { [weak reactor] _ in
         guard let reactor = reactor else { return }
-        let nextReactor = ShotViewReactor(shotID: reactor.shot.id, shot: reactor.shot)
-        let viewController = ShotViewController(reactor: nextReactor)
+        let viewController = dependency.shotViewControllerFactory(reactor.shot.id, reactor.shot)
         Navigator.push(viewController)
       })
       .disposed(by: self.disposeBag)
