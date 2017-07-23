@@ -38,11 +38,15 @@ extension UIImageView {
   func setImage(
     with resource: Resource?,
     placeholder: UIImage? = nil,
+    options: KingfisherOptionsInfo? = nil,
     progress: ((Int64, Int64) -> Void)? = nil,
     completion: ((ImageResult) -> Void)? = nil
   ) -> RetrieveImageTask {
+    var options = options ?? []
     // GIF will only animates in the AnimatedImageView
-    let options: KingfisherOptionsInfo? = (self is AnimatedImageView) ? nil : [.onlyLoadFirstFrame]
+    if self is AnimatedImageView == false {
+      options.append(.onlyLoadFirstFrame)
+    }
     let completionHandler: CompletionHandler = { image, error, cacheType, url in
       if let image = image {
         completion?(.success(image))
@@ -61,13 +65,14 @@ extension UIImageView {
 }
 
 extension Reactive where Base: UIImageView {
+  @available(*, deprecated)
   var resource: UIBindingObserver<Base, Resource?> {
-    return self.resource(placeholder: nil)
+    return self.image(placeholder: nil, options: [])
   }
 
-  func resource(placeholder: UIImage? = nil) -> UIBindingObserver<Base, Resource?> {
+  func image(placeholder: UIImage? = nil, options: KingfisherOptionsInfo) -> UIBindingObserver<Base, Resource?> {
     return UIBindingObserver(UIElement: self.base) { imageView, resource in
-      imageView.setImage(with: resource, placeholder: placeholder)
+      imageView.setImage(with: resource, placeholder: placeholder, options: options)
     }
   }
 }
