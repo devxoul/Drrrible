@@ -91,9 +91,8 @@
 		03D996D81E805DB6004773AE /* CollectionActivityIndicatorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D996D71E805DB6004773AE /* CollectionActivityIndicatorCell.swift */; };
 		03D996FB1E811EC5004773AE /* SplashViewReactorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D996FA1E811EC5004773AE /* SplashViewReactorTests.swift */; };
 		03D9971C1E81278B004773AE /* LoginViewReactorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D9971B1E81278B004773AE /* LoginViewReactorTests.swift */; };
-		03D9971E1E817ACF004773AE /* ShotListViewReactorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D9971D1E817ACF004773AE /* ShotListViewReactorTests.swift */; };
 		03D997211E817C1A004773AE /* ShotFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D997201E817C1A004773AE /* ShotFixture.swift */; };
-		03D997291E819012004773AE /* ShotViewReactorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D997281E819012004773AE /* ShotViewReactorTests.swift */; };
+		03D997291E819012004773AE /* ShotListViewReactorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D997281E819012004773AE /* ShotListViewReactorTests.swift */; };
 		03DF94EC1E6EA76A00E31665 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03DF94E11E6EA76A00E31665 /* Assets.xcassets */; };
 		03DF94ED1E6EA76A00E31665 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03DF94E21E6EA76A00E31665 /* LaunchScreen.storyboard */; };
 		03DF94EF1E6EA76A00E31665 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DF94E71E6EA76A00E31665 /* AppDelegate.swift */; };
@@ -218,9 +217,8 @@
 		03D996EB1E811BAB004773AE /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		03D996FA1E811EC5004773AE /* SplashViewReactorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewReactorTests.swift; sourceTree = "<group>"; };
 		03D9971B1E81278B004773AE /* LoginViewReactorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewReactorTests.swift; sourceTree = "<group>"; };
-		03D9971D1E817ACF004773AE /* ShotListViewReactorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShotListViewReactorTests.swift; sourceTree = "<group>"; };
 		03D997201E817C1A004773AE /* ShotFixture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShotFixture.swift; sourceTree = "<group>"; };
-		03D997281E819012004773AE /* ShotViewReactorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShotViewReactorTests.swift; sourceTree = "<group>"; };
+		03D997281E819012004773AE /* ShotListViewReactorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShotListViewReactorTests.swift; sourceTree = "<group>"; };
 		03DF94CA1E6EA54D00E31665 /* Drrrible.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Drrrible.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		03DF94E11E6EA76A00E31665 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		03DF94E31E6EA76A00E31665 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -363,9 +361,8 @@
 				036CDD741F235EB4006C91CC /* SplashViewControllerTests.swift */,
 				03D9971B1E81278B004773AE /* LoginViewReactorTests.swift */,
 				036CDD761F236615006C91CC /* LoginViewControllerTests.swift */,
-				03D9971D1E817ACF004773AE /* ShotListViewReactorTests.swift */,
+				03D997281E819012004773AE /* ShotListViewReactorTests.swift */,
 				034195071F23A807003B5DEE /* ShotListViewControllerTests.swift */,
-				03D997281E819012004773AE /* ShotViewReactorTests.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -889,7 +886,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				03D9971E1E817ACF004773AE /* ShotListViewReactorTests.swift in Sources */,
 				036CDD771F236615006C91CC /* LoginViewControllerTests.swift in Sources */,
 				036CDD971F239A02006C91CC /* StubError.swift in Sources */,
 				036CDD941F239A02006C91CC /* StubUserService.swift in Sources */,
@@ -901,7 +897,7 @@
 				03EE6F791F250B0600C2C6D8 /* UIGestureRecognizer+Test.swift in Sources */,
 				031F92861EA55FA00025D5FB /* TestMain.swift in Sources */,
 				036CDD751F235EB4006C91CC /* SplashViewControllerTests.swift in Sources */,
-				03D997291E819012004773AE /* ShotViewReactorTests.swift in Sources */,
+				03D997291E819012004773AE /* ShotListViewReactorTests.swift in Sources */,
 				036CDD931F239A02006C91CC /* StubShotService.swift in Sources */,
 				034D832F1F246BD700975F2F /* StubImageDownloader.swift in Sources */,
 				034D335C1EA69C95004498FB /* TestCase.swift in Sources */,
