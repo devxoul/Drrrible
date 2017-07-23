@@ -24,7 +24,7 @@ PODS:
     - GoogleToolboxForMac/Defines (= 2.1.1)
   - Immutable (0.3.0)
   - KeychainAccess (3.0.1)
-  - Kingfisher (3.5.1)
+  - Kingfisher (3.10.3)
   - ManualLayout (1.3.0)
   - Moya (8.0.3):
     - Moya/Core (= 8.0.3)
@@ -178,7 +178,7 @@ SPEC CHECKSUMS:
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   Immutable: 647a894d00b459bf3672f2b38b7da9cbf6a8b923
   KeychainAccess: 017ea25e313a49eda10bb19b0bb0760fb1edfe1a
-  Kingfisher: 12eeffeef42ea45b68c5e5acfe8ba9005b713ab4
+  Kingfisher: a0ac82dc5bcf0388dd74b294cf2cc13730c63436
   ManualLayout: 68ac8cfa6b5f656f7a9fadec3730208b95986880
   Moya: d3721622e3cc0cc2f038d69a258686f0b66e7252
   MoyaSugar: 302175740302bed7309b9483c4a3321631eab753
