@@ -114,6 +114,7 @@
 		03DF95231E6EB80B00E31665 /* ShotListViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DF95221E6EB80B00E31665 /* ShotListViewReactor.swift */; };
 		03E147691F2478860018D96D /* StubShotTileCellDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E147681F2478860018D96D /* StubShotTileCellDependency.swift */; };
 		03ED15691EEABA92006E1638 /* AnalyticsEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03ED15681EEABA92006E1638 /* AnalyticsEvent.swift */; };
+		03EE6F791F250B0600C2C6D8 /* UIGestureRecognizer+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03EE6F781F250B0600C2C6D8 /* UIGestureRecognizer+Test.swift */; };
 		03FE6AF41F23C835005D04DA /* ShotCellReactorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FE6AF31F23C835005D04DA /* ShotCellReactorTests.swift */; };
 		03FE6AF61F23C96E005D04DA /* ShotTileCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FE6AF51F23C96E005D04DA /* ShotTileCellTests.swift */; };
 		67CCAEC7ACD021B25D286650 /* Pods_Drrrible_DrrribleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3800977F199DEFED1D747AA /* Pods_Drrrible_DrrribleTests.framework */; };
@@ -243,6 +244,7 @@
 		03DF95221E6EB80B00E31665 /* ShotListViewReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShotListViewReactor.swift; sourceTree = "<group>"; };
 		03E147681F2478860018D96D /* StubShotTileCellDependency.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StubShotTileCellDependency.swift; sourceTree = "<group>"; };
 		03ED15681EEABA92006E1638 /* AnalyticsEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsEvent.swift; sourceTree = "<group>"; };
+		03EE6F781F250B0600C2C6D8 /* UIGestureRecognizer+Test.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIGestureRecognizer+Test.swift"; sourceTree = "<group>"; };
 		03FE6AF31F23C835005D04DA /* ShotCellReactorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShotCellReactorTests.swift; sourceTree = "<group>"; };
 		03FE6AF51F23C96E005D04DA /* ShotTileCellTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShotTileCellTests.swift; sourceTree = "<group>"; };
 		245DA1CCFC8FA1E547422133 /* Pods-Drrrible.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Drrrible.release.xcconfig"; path = "Pods/Target Support Files/Pods-Drrrible/Pods-Drrrible.release.xcconfig"; sourceTree = "<group>"; };
@@ -341,6 +343,7 @@
 				036CDD881F239A02006C91CC /* Stubs */,
 				03D996F81E811EAF004773AE /* ViewControllers */,
 				03D996F91E811EAF004773AE /* Views */,
+				03EE6F771F250AF900C2C6D8 /* TestUtils */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -602,6 +605,14 @@
 				03ED15681EEABA92006E1638 /* AnalyticsEvent.swift */,
 			);
 			path = Analytics;
+			sourceTree = "<group>";
+		};
+		03EE6F771F250AF900C2C6D8 /* TestUtils */ = {
+			isa = PBXGroup;
+			children = (
+				03EE6F781F250B0600C2C6D8 /* UIGestureRecognizer+Test.swift */,
+			);
+			path = TestUtils;
 			sourceTree = "<group>";
 		};
 		53955C0C767CCBF3D51F88B9 /* Pods */ = {
@@ -887,6 +898,7 @@
 				03E147691F2478860018D96D /* StubShotTileCellDependency.swift in Sources */,
 				036CDD921F239A02006C91CC /* StubAuthService.swift in Sources */,
 				03D9971C1E81278B004773AE /* LoginViewReactorTests.swift in Sources */,
+				03EE6F791F250B0600C2C6D8 /* UIGestureRecognizer+Test.swift in Sources */,
 				031F92861EA55FA00025D5FB /* TestMain.swift in Sources */,
 				036CDD751F235EB4006C91CC /* SplashViewControllerTests.swift in Sources */,
 				03D997291E819012004773AE /* ShotViewReactorTests.swift in Sources */,

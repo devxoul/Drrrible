@@ -38,4 +38,22 @@ final class ShotTileCellTests: TestCase {
     reactor.stub.state.value.isAnimatedImage = true
     XCTAssertEqual(cell.gifLabel.isHidden, false)
   }
+
+  func testCardViewTap() {
+    let reactor = ShotCellReactor(shot: ShotFixture.shot1)
+    reactor.stub.isEnabled = true
+    let cell = ShotTileCell()
+    var isShotViewControllerFactoryExecuted = false
+    cell.dependency = .stub(shotViewControllerFactory: { id, shot in
+      isShotViewControllerFactoryExecuted = true
+      let reactor = ShotViewReactor(shotID: id, shot: nil)
+      reactor.stub.isEnabled = true
+      return ShotViewController(reactor: reactor)
+    })
+    cell.reactor = reactor
+    let gestureRecognizer = cell.cardView.gestureRecognizers?.lazy.flatMap { $0 as? UITapGestureRecognizer }.first
+    XCTAssertNotNil(gestureRecognizer)
+    gestureRecognizer?.sendAction(withState: .ended)
+    XCTAssertTrue(isShotViewControllerFactoryExecuted)
+  }
 }

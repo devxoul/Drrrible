@@ -95,7 +95,7 @@ final class ShotTileCell: BaseCollectionViewCell, View {
 
     // View
     self.cardView.rx.tapGesture() { $0.delegate = ExclusiveGestureRecognizerDelegate.shared }
-      .whileDisplaying(self)
+      .filter { $0.state == .ended }
       .subscribe(onNext: { [weak reactor] _ in
         guard let reactor = reactor else { return }
         let viewController = dependency.shotViewControllerFactory(reactor.shot.id, reactor.shot)
