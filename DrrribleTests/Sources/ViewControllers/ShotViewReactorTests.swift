@@ -17,7 +17,10 @@ import RxTest
 
 final class ShotListViewReactorTests: TestCase {
   func testInitialState() {
-    let reactor = ShotListViewReactor(shotService: StubShotService())
+    let reactor = ShotListViewReactor(
+      shotService: StubShotService(),
+      shotCellReactorFactory: ShotCellReactor.init
+    )
     XCTAssertEqual(reactor.currentState.isRefreshing, false)
     XCTAssertEqual(reactor.currentState.isLoading, false)
     XCTAssertEqual(reactor.currentState.nextURL, nil)
@@ -32,7 +35,10 @@ final class ShotListViewReactorTests: TestCase {
         return .just(List<Shot>(items: shots, nextURL: nextURL))
       }
     }
-    let reactor = ShotListViewReactor(shotService: shotService)
+    let reactor = ShotListViewReactor(
+      shotService: shotService,
+      shotCellReactorFactory: ShotCellReactor.init
+    )
     _ = reactor.state
     reactor.action.onNext(.refresh)
     let executions = shotService.executions(shotService.shots)
@@ -58,7 +64,10 @@ final class ShotListViewReactorTests: TestCase {
         }
       }
     }
-    let reactor = ShotListViewReactor(shotService: shotService)
+    let reactor = ShotListViewReactor(
+      shotService: shotService,
+      shotCellReactorFactory: ShotCellReactor.init
+    )
     _ = reactor.state
     reactor.action.onNext(.refresh) // to set next url
     reactor.action.onNext(.loadMore)

@@ -66,17 +66,23 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     let shotService = ShotService()
 
     let presentMainScreen: () -> Void = { [weak self] in
+      let shotListViewReactor = ShotListViewReactor(
+        shotService: shotService,
+        shotCellReactorFactory: ShotCellReactor.init
+      )
+      let shotTileCellDependency = ShotTileCell.Dependency(
+        imageOptions: [],
+        shotViewControllerFactory: { id, shot in
+          ShotViewController(reactor: ShotViewReactor(shotID: id, shot: shot))
+        }
+      )
+      let shotListViewController = ShotListViewController(
+        reactor: shotListViewReactor,
+        shotTileCellDependency: shotTileCellDependency
+      )
       let mainTabBarController = MainTabBarController(
         reactor: MainTabBarViewReactor(),
-        shotListViewController: ShotListViewController(
-          reactor: ShotListViewReactor(shotService: shotService),
-          shotTileCellDependency: .init(
-            imageOptions: [],
-            shotViewControllerFactory: { id, shot in
-              ShotViewController(reactor: ShotViewReactor(shotID: id, shot: shot))
-            }
-          )
-        ),
+        shotListViewController: shotListViewController,
         settingsViewController: SettingsViewController(reactor: SettingsViewReactor())
       )
       self?.window?.rootViewController = mainTabBarController

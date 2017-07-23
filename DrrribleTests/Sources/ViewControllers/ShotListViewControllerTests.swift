@@ -11,7 +11,10 @@ import XCTest
 
 final class ShotListViewControllerTests: TestCase {
   func testAction_refresh_viewDidLoad() {
-    let reactor = ShotListViewReactor(shotService: StubShotService())
+    let reactor = ShotListViewReactor(
+      shotService: StubShotService(),
+      shotCellReactorFactory: ShotCellReactor.init
+    )
     reactor.stub.isEnabled = true
     let viewController = ShotListViewController(reactor: reactor, shotTileCellDependency: .stub())
     _ = viewController.view // make viewDidLoad() gets called
@@ -25,7 +28,10 @@ final class ShotListViewControllerTests: TestCase {
   }
 
   func testAction_refresh_refreshControl() {
-    let reactor = ShotListViewReactor(shotService: StubShotService())
+    let reactor = ShotListViewReactor(
+      shotService: StubShotService(),
+      shotCellReactorFactory: ShotCellReactor.init
+    )
     reactor.stub.isEnabled = true
     let viewController = ShotListViewController(reactor: reactor, shotTileCellDependency: .stub())
     viewController.refreshControl.sendActions(for: .valueChanged)
@@ -39,7 +45,10 @@ final class ShotListViewControllerTests: TestCase {
   }
 
   func testAction_loadMore() {
-    let reactor = ShotListViewReactor(shotService: StubShotService())
+    let reactor = ShotListViewReactor(
+      shotService: StubShotService(),
+      shotCellReactorFactory: ShotCellReactor.init
+    )
     reactor.stub.isEnabled = true
     let viewController = ShotListViewController(reactor: reactor, shotTileCellDependency: .stub())
     viewController.collectionView.height = 100
@@ -56,7 +65,10 @@ final class ShotListViewControllerTests: TestCase {
   }
 
   func testState_isRefreshing() {
-    let reactor = ShotListViewReactor(shotService: StubShotService())
+    let reactor = ShotListViewReactor(
+      shotService: StubShotService(),
+      shotCellReactorFactory: ShotCellReactor.init
+    )
     reactor.stub.isEnabled = true
     let viewController = ShotListViewController(reactor: reactor, shotTileCellDependency: .stub())
     reactor.stub.state.value.isRefreshing = true
@@ -64,7 +76,10 @@ final class ShotListViewControllerTests: TestCase {
   }
 
   func testState_sections() {
-    let reactor = ShotListViewReactor(shotService: StubShotService())
+    let reactor = ShotListViewReactor(
+      shotService: StubShotService(),
+      shotCellReactorFactory: ShotCellReactor.init
+    )
     reactor.stub.isEnabled = true
     let viewController = ShotListViewController(reactor: reactor, shotTileCellDependency: .stub())
     let cellReactors = [ShotFixture.shot1, ShotFixture.shot2].map(ShotCellReactor.init)

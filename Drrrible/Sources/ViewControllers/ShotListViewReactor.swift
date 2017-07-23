@@ -34,9 +34,14 @@ final class ShotListViewReactor: Reactor {
   let initialState = State()
 
   fileprivate let shotService: ShotServiceType
+  fileprivate let shotCellReactorFactory: (Shot) -> ShotCellReactor
 
-  init(shotService: ShotServiceType) {
+  init(
+    shotService: ShotServiceType,
+    shotCellReactorFactory: @escaping (Shot) -> ShotCellReactor
+  ) {
     self.shotService = shotService
+    self.shotCellReactorFactory = shotCellReactorFactory
     _ = self.state
   }
 
@@ -96,7 +101,7 @@ final class ShotListViewReactor: Reactor {
 
   private func shotTileSectionItems(with shots: [Shot]) -> [ShotListViewSectionItem] {
     return shots
-      .map(ShotCellReactor.init)
+      .map(self.shotCellReactorFactory)
       .map(ShotListViewSectionItem.shotTile)
   }
 
