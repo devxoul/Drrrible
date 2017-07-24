@@ -5,8 +5,7 @@ target 'Drrrible' do
   use_frameworks!
 
   # Architecture
-  pod 'ReactorKit', :git => 'https://github.com/ReactorKit/ReactorKit',
-                    :branch => 'stub'
+  pod 'ReactorKit'
 
   # DI
   pod 'Swinject'
