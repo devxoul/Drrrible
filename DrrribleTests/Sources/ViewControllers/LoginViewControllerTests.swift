@@ -14,6 +14,7 @@ final class LoginViewControllerTests: TestCase {
     let reactor = LoginViewReactor(authService: StubAuthService(), userService: StubUserService())
     reactor.stub.isEnabled = true
     let viewController = LoginViewController(reactor: reactor, presentMainScreen: {})
+    _ = viewController.view
     viewController.loginButton.sendActions(for: .touchUpInside)
     XCTAssertTrue({
       if case .login = reactor.stub.actions.last! {
@@ -28,6 +29,7 @@ final class LoginViewControllerTests: TestCase {
     let reactor = LoginViewReactor(authService: StubAuthService(), userService: StubUserService())
     reactor.stub.isEnabled = true
     let viewController = LoginViewController(reactor: reactor, presentMainScreen: {})
+    _ = viewController.view
     XCTAssertEqual(viewController.loginButton.isHidden, false)
     XCTAssertEqual(viewController.activityIndicatorView.isAnimating, false)
     reactor.stub.state.value.isLoading = true
@@ -43,7 +45,7 @@ final class LoginViewControllerTests: TestCase {
       reactor: reactor,
       presentMainScreen: { isPresentMainScreenExecuted = true }
     )
-    _ = viewController
+    _ = viewController.view
     reactor.stub.state.value.isLoggedIn = true
     XCTAssertEqual(isPresentMainScreenExecuted, true)
   }
@@ -56,7 +58,7 @@ final class LoginViewControllerTests: TestCase {
       reactor: reactor,
       presentMainScreen: { isPresentMainScreenExecuted = true }
     )
-    _ = viewController
+    _ = viewController.view
     reactor.stub.state.value.isLoggedIn = false
     XCTAssertEqual(isPresentMainScreenExecuted, false)
   }

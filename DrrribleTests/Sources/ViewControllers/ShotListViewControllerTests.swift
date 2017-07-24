@@ -34,6 +34,7 @@ final class ShotListViewControllerTests: TestCase {
     )
     reactor.stub.isEnabled = true
     let viewController = ShotListViewController(reactor: reactor, shotTileCellDependency: .stub())
+    _ = viewController.view
     viewController.refreshControl.sendActions(for: .valueChanged)
     XCTAssertTrue({
       if case .refresh = reactor.stub.actions.last! {
@@ -51,6 +52,7 @@ final class ShotListViewControllerTests: TestCase {
     )
     reactor.stub.isEnabled = true
     let viewController = ShotListViewController(reactor: reactor, shotTileCellDependency: .stub())
+    _ = viewController.view
     viewController.collectionView.height = 100
     viewController.collectionView.contentSize.height = 300
     viewController.collectionView.contentOffset.y = 300
@@ -71,6 +73,7 @@ final class ShotListViewControllerTests: TestCase {
     )
     reactor.stub.isEnabled = true
     let viewController = ShotListViewController(reactor: reactor, shotTileCellDependency: .stub())
+    _ = viewController.view
     reactor.stub.state.value.isRefreshing = true
     XCTAssertEqual(viewController.refreshControl.isRefreshing, true)
   }
@@ -82,6 +85,7 @@ final class ShotListViewControllerTests: TestCase {
     )
     reactor.stub.isEnabled = true
     let viewController = ShotListViewController(reactor: reactor, shotTileCellDependency: .stub())
+    _ = viewController.view
     let cellReactors = [ShotFixture.shot1, ShotFixture.shot2].map(ShotCellReactor.init)
     let sectionItems = cellReactors.map(ShotListViewSectionItem.shotTile)
     reactor.stub.state.value.sections = [.shotTile(sectionItems)]

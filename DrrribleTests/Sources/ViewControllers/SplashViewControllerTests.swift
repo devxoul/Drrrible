@@ -18,6 +18,7 @@ final class SplashViewControllerTests: TestCase {
       presentLoginScreen: {},
       presentMainScreen: {}
     )
+    _ = viewController.view
     viewController.viewDidAppear(false)
     XCTAssertTrue({
       if case .checkIfAuthenticated = reactor.stub.actions.last! {
@@ -37,7 +38,7 @@ final class SplashViewControllerTests: TestCase {
       presentLoginScreen: { isExecuted.presentLoginScreen = true },
       presentMainScreen: { isExecuted.presentMainScreen = true }
     )
-    _ = viewController
+    _ = viewController.view
     reactor.stub.state.value.isAuthenticated = false
     XCTAssertEqual(isExecuted.presentLoginScreen, true)
     XCTAssertEqual(isExecuted.presentMainScreen, false)
@@ -52,7 +53,7 @@ final class SplashViewControllerTests: TestCase {
       presentLoginScreen: { isExecuted.presentLoginScreen = true },
       presentMainScreen: { isExecuted.presentMainScreen = true }
     )
-    _ = viewController
+    _ = viewController.view
     reactor.stub.state.value.isAuthenticated = true
     XCTAssertEqual(isExecuted.presentLoginScreen, false)
     XCTAssertEqual(isExecuted.presentMainScreen, true)
