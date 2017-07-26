@@ -16,7 +16,8 @@ extension ShotTileCell.Dependency {
   ) -> ShotTileCell.Dependency {
     let downloader: ImageDownloader = downloader ?? StubImageDownloader()
     let shotViewControllerFactory = shotViewControllerFactory ?? { id, shot in
-      ShotViewController(reactor: ShotViewReactor(shotID: id, shot: shot))
+      let reactor = ShotViewReactor(shotID: id, shot: shot, shotService: StubShotService())
+      return ShotViewController(reactor: reactor)
     }
     return .init(
       imageOptions: [.forceRefresh, .downloader(downloader)],

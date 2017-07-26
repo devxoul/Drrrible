@@ -163,7 +163,7 @@ final class ShotViewController: BaseViewController, View {
 extension ShotViewController: URLNavigable {
   convenience init?(navigation: Navigation) {
     guard let shotID = navigation.values["id"] as? Int else { return nil }
-    let reactor = ShotViewReactor(shotID: shotID)
+    let reactor = ShotViewReactor(shotID: shotID, shotService: ShotService())
     self.init(reactor: reactor)
   }
 }

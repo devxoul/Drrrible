@@ -11,7 +11,7 @@ import RxCocoa
 import RxSwift
 import RxSwiftUtilities
 
-final class ShotViewReactor: Reactor, ServiceContainer {
+final class ShotViewReactor: Reactor {
   enum Action {
     case refresh
   }
@@ -25,10 +25,14 @@ final class ShotViewReactor: Reactor, ServiceContainer {
   struct State {
     let shotID: Int
     var isRefreshing: Bool = false
-    var shotSection: ShotViewSection = .shot([])
-    var commentSection: ShotViewSection = .comment([.activityIndicator])
+    var shotSectionItems: [ShotViewSectionItem] = []
+    var commentSectionItems: [ShotViewSectionItem] = [.activityIndicator]
     var sections: [ShotViewSection] {
-      return [self.shotSection, self.commentSection]
+      let sections: [ShotViewSection] = [
+        .shot(self.shotSectionItems),
+        .comment(self.commentSectionItems),
+      ]
+      return sections.filter { !$0.items.isEmpty }
     }
     init(shotID: Int) {
       self.shotID = shotID
@@ -40,12 +44,20 @@ final class ShotViewReactor: Reactor, ServiceContainer {
     return self.currentState.shotID
   }
 
-  init(shotID: Int, shot initialShot: Shot? = nil) {
+  fileprivate let shotService: ShotServiceType
+
+  init(shotID: Int, shot initialShot: Shot? = nil, shotService: ShotServiceType) {
     var initialState = State(shotID: shotID)
     if let shot = initialShot {
-      initialState.shotSection = ShotViewReactor.shotSection(from: shot)
+      initialState.shotSectionItems = [
+        .image(ShotViewImageCellReactor(shot: shot)),
+        .title(ShotViewTitleCellReactor(shot: shot)),
+        .text(ShotViewTextCellReactor(shot: shot)),
+        .reaction(ShotViewReactionCellReactor(shot: shot)),
+      ]
     }
     self.initialState = initialState
+    self.shotService = shotService
     _ = self.state
   }
 
@@ -73,25 +85,19 @@ final class ShotViewReactor: Reactor, ServiceContainer {
       return state
 
     case let .setShot(shot):
-      state.shotSection = ShotViewReactor.shotSection(from: shot)
+      state.shotSectionItems = [
+        .image(ShotViewImageCellReactor(shot: shot)),
+        .title(ShotViewTitleCellReactor(shot: shot)),
+        .text(ShotViewTextCellReactor(shot: shot)),
+        .reaction(ShotViewReactionCellReactor(shot: shot)),
+      ]
       return state
 
     case let .setComments(comments):
-      let sectionItems = comments
+      state.commentSectionItems = comments
         .map(ShotViewCommentCellReactor.init)
         .map(ShotViewSectionItem.comment)
-      state.commentSection = .comment(sectionItems)
       return state
     }
-  }
-
-  private static func shotSection(from shot: Shot) -> ShotViewSection {
-    let sectionItems: [ShotViewSectionItem] = [
-      .image(ShotViewImageCellReactor(shot: shot)),
-      .title(ShotViewTitleCellReactor(shot: shot)),
-      .text(ShotViewTextCellReactor(shot: shot)),
-      .reaction(ShotViewReactionCellReactor(shot: shot))
-    ]
-    return .shot(sectionItems)
   }
 }

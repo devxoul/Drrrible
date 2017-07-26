@@ -85,6 +85,8 @@
 		038B69111E7318FE006B44F9 /* UICollectionView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038B69101E7318FE006B44F9 /* UICollectionView+Rx.swift */; };
 		03A60A8A1EC1D0090053FD0D /* Array+SectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A60A891EC1D0090053FD0D /* Array+SectionModel.swift */; };
 		03A60A8C1EC1DAD10053FD0D /* UIView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A60A8B1EC1DAD10053FD0D /* UIView+Rx.swift */; };
+		03C629CB1F28C0DA008B4097 /* ShotViewReactorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C629CA1F28C0DA008B4097 /* ShotViewReactorTests.swift */; };
+		03C629CD1F28C866008B4097 /* CommentFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C629CC1F28C866008B4097 /* CommentFixture.swift */; };
 		03D996D21E8051FC004773AE /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D996D11E8051FC004773AE /* Comment.swift */; };
 		03D996D41E80535B004773AE /* ShotViewCommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D996D31E80535B004773AE /* ShotViewCommentCell.swift */; };
 		03D996D61E805392004773AE /* ShotViewCommentCellReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D996D51E805392004773AE /* ShotViewCommentCellReactor.swift */; };
@@ -209,6 +211,8 @@
 		038B69101E7318FE006B44F9 /* UICollectionView+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Rx.swift"; sourceTree = "<group>"; };
 		03A60A891EC1D0090053FD0D /* Array+SectionModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+SectionModel.swift"; sourceTree = "<group>"; };
 		03A60A8B1EC1DAD10053FD0D /* UIView+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Rx.swift"; sourceTree = "<group>"; };
+		03C629CA1F28C0DA008B4097 /* ShotViewReactorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShotViewReactorTests.swift; sourceTree = "<group>"; };
+		03C629CC1F28C866008B4097 /* CommentFixture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentFixture.swift; sourceTree = "<group>"; };
 		03D996D11E8051FC004773AE /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		03D996D31E80535B004773AE /* ShotViewCommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShotViewCommentCell.swift; sourceTree = "<group>"; };
 		03D996D51E805392004773AE /* ShotViewCommentCellReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShotViewCommentCellReactor.swift; sourceTree = "<group>"; };
@@ -363,6 +367,7 @@
 				036CDD761F236615006C91CC /* LoginViewControllerTests.swift */,
 				03D997281E819012004773AE /* ShotListViewReactorTests.swift */,
 				034195071F23A807003B5DEE /* ShotListViewControllerTests.swift */,
+				03C629CA1F28C0DA008B4097 /* ShotViewReactorTests.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -380,6 +385,7 @@
 			isa = PBXGroup;
 			children = (
 				03D997201E817C1A004773AE /* ShotFixture.swift */,
+				03C629CC1F28C866008B4097 /* CommentFixture.swift */,
 			);
 			path = Fixtures;
 			sourceTree = "<group>";
@@ -896,11 +902,13 @@
 				03D9971C1E81278B004773AE /* LoginViewReactorTests.swift in Sources */,
 				03EE6F791F250B0600C2C6D8 /* UIGestureRecognizer+Test.swift in Sources */,
 				031F92861EA55FA00025D5FB /* TestMain.swift in Sources */,
+				03C629CD1F28C866008B4097 /* CommentFixture.swift in Sources */,
 				036CDD751F235EB4006C91CC /* SplashViewControllerTests.swift in Sources */,
 				03D997291E819012004773AE /* ShotListViewReactorTests.swift in Sources */,
 				036CDD931F239A02006C91CC /* StubShotService.swift in Sources */,
 				034D832F1F246BD700975F2F /* StubImageDownloader.swift in Sources */,
 				034D335C1EA69C95004498FB /* TestCase.swift in Sources */,
+				03C629CB1F28C0DA008B4097 /* ShotViewReactorTests.swift in Sources */,
 				03D996FB1E811EC5004773AE /* SplashViewReactorTests.swift in Sources */,
 				036CDD951F239A02006C91CC /* Stub.swift in Sources */,
 				036CDD961F239A02006C91CC /* StubAppDelegate.swift in Sources */,

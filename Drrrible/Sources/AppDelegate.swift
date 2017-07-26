@@ -73,7 +73,12 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
       let shotTileCellDependency = ShotTileCell.Dependency(
         imageOptions: [],
         shotViewControllerFactory: { id, shot in
-          ShotViewController(reactor: ShotViewReactor(shotID: id, shot: shot))
+          let reactor = ShotViewReactor(
+            shotID: id,
+            shot: shot,
+            shotService: shotService
+          )
+          return ShotViewController(reactor: reactor)
         }
       )
       let shotListViewController = ShotListViewController(

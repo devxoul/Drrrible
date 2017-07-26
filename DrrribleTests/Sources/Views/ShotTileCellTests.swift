@@ -46,7 +46,7 @@ final class ShotTileCellTests: TestCase {
     var isShotViewControllerFactoryExecuted = false
     cell.dependency = .stub(shotViewControllerFactory: { id, shot in
       isShotViewControllerFactoryExecuted = true
-      let reactor = ShotViewReactor(shotID: id, shot: nil)
+      let reactor = ShotViewReactor(shotID: id, shot: nil, shotService: StubShotService())
       reactor.stub.isEnabled = true
       return ShotViewController(reactor: reactor)
     })
