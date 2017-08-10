@@ -67,6 +67,7 @@ target 'Drrrible' do
 
     pod 'RxTest'
     pod 'RxExpect'
+    pod 'Stubber'
   end
 
 end

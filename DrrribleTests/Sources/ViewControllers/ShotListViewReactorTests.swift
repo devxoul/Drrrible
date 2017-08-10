@@ -12,6 +12,7 @@ import RxCocoa
 import RxExpect
 import RxSwift
 import RxTest
+import Stubber
 
 @testable import Drrrible
 
@@ -29,11 +30,10 @@ final class ShotListViewReactorTests: TestCase {
 
   func testRefresh() {
     let nextURL = URL(string: "https://example.com")!
-    let shotService = StubShotService().then {
-      $0.stub($0.shots) { _ in
-        let shots = [ShotFixture.shot1, ShotFixture.shot2]
-        return .just(List<Shot>(items: shots, nextURL: nextURL))
-      }
+    let shotService = StubShotService()
+    Stubber.stub(shotService.shots) { _ in
+      let shots = [ShotFixture.shot1, ShotFixture.shot2]
+      return .just(List<Shot>(items: shots, nextURL: nextURL))
     }
     let reactor = ShotListViewReactor(
       shotService: shotService,
@@ -41,7 +41,7 @@ final class ShotListViewReactorTests: TestCase {
     )
     _ = reactor.state
     reactor.action.onNext(.refresh)
-    let executions = shotService.executions(shotService.shots)
+    let executions = Stubber.executions(shotService.shots)
     XCTAssertEqual(executions.count, 1)
     XCTAssertEqual(executions[0].arguments, .refresh)
     XCTAssertEqual(reactor.currentState.sections[0].items.count, 2)
@@ -49,19 +49,18 @@ final class ShotListViewReactorTests: TestCase {
   }
 
   func testLoadMore() {
-    let shotService = StubShotService().then {
-      $0.stub($0.shots) { paging in
-        switch paging {
-        case .refresh:
-          let shots = [ShotFixture.shot1]
-          let nextURL = URL(string: "https://example.com?page=1")!
-          return .just(List<Shot>(items: shots, nextURL: nextURL))
+    let shotService = StubShotService()
+    Stubber.stub(shotService.shots) { paging in
+      switch paging {
+      case .refresh:
+        let shots = [ShotFixture.shot1]
+        let nextURL = URL(string: "https://example.com?page=1")!
+        return .just(List<Shot>(items: shots, nextURL: nextURL))
 
-        case .next:
-          let shots = [ShotFixture.shot2]
-          let nextURL = URL(string: "https://example.com?page=2")!
-          return .just(List<Shot>(items: shots, nextURL: nextURL))
-        }
+      case .next:
+        let shots = [ShotFixture.shot2]
+        let nextURL = URL(string: "https://example.com?page=2")!
+        return .just(List<Shot>(items: shots, nextURL: nextURL))
       }
     }
     let reactor = ShotListViewReactor(
@@ -71,7 +70,7 @@ final class ShotListViewReactorTests: TestCase {
     _ = reactor.state
     reactor.action.onNext(.refresh) // to set next url
     reactor.action.onNext(.loadMore)
-    let executions = shotService.executions(shotService.shots)
+    let executions = Stubber.executions(shotService.shots)
     XCTAssertEqual(executions.count, 2)
     XCTAssertEqual(executions[1].arguments, .next(URL(string: "https://example.com?page=1")!))
     XCTAssertEqual(reactor.currentState.sections[0].items.count, 2)

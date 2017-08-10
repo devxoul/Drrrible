@@ -12,6 +12,7 @@ import RxCocoa
 import RxExpect
 import RxSwift
 import RxTest
+import Stubber
 
 @testable import Drrrible
 
@@ -22,19 +23,17 @@ final class SplashViewReactorTests: TestCase {
   }
 
   func testFetchMeExecution() {
-    let userService = StubUserService().then {
-      $0.stub($0.fetchMe) { .empty() }
-    }
+    let userService = StubUserService()
+    Stubber.stub(userService.fetchMe) { .empty() }
     let reactor = SplashViewReactor(userService: userService)
     _ = reactor.state
     reactor.action.onNext(.checkIfAuthenticated)
-    XCTAssertEqual(userService.executions(userService.fetchMe).count, 1)
+    XCTAssertEqual(Stubber.executions(userService.fetchMe).count, 1)
   }
 
   func testIsAuthenticated_success() {
-    let userService = StubUserService().then {
-      $0.stub($0.fetchMe) { .just() }
-    }
+    let userService = StubUserService()
+    Stubber.stub(userService.fetchMe) { .just() }
     let reactor = SplashViewReactor(userService: userService)
     _ = reactor.state
     reactor.action.onNext(.checkIfAuthenticated)
@@ -42,9 +41,8 @@ final class SplashViewReactorTests: TestCase {
   }
 
   func testIsAuthenticated_failure() {
-    let userService = StubUserService().then {
-      $0.stub($0.fetchMe) { .error(StubError()) }
-    }
+    let userService = StubUserService()
+    Stubber.stub(userService.fetchMe) { .error(StubError()) }
     let reactor = SplashViewReactor(userService: userService)
     _ = reactor.state
     reactor.action.onNext(.checkIfAuthenticated)

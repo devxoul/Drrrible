@@ -57,7 +57,6 @@
 		036CDD921F239A02006C91CC /* StubAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036CDD8B1F239A02006C91CC /* StubAuthService.swift */; };
 		036CDD931F239A02006C91CC /* StubShotService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036CDD8C1F239A02006C91CC /* StubShotService.swift */; };
 		036CDD941F239A02006C91CC /* StubUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036CDD8D1F239A02006C91CC /* StubUserService.swift */; };
-		036CDD951F239A02006C91CC /* Stub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036CDD8E1F239A02006C91CC /* Stub.swift */; };
 		036CDD961F239A02006C91CC /* StubAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036CDD8F1F239A02006C91CC /* StubAppDelegate.swift */; };
 		036CDD971F239A02006C91CC /* StubError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036CDD901F239A02006C91CC /* StubError.swift */; };
 		0377C5531E745BC200EE4576 /* ShotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0377C5521E745BC200EE4576 /* ShotViewController.swift */; };
@@ -183,7 +182,6 @@
 		036CDD8B1F239A02006C91CC /* StubAuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StubAuthService.swift; sourceTree = "<group>"; };
 		036CDD8C1F239A02006C91CC /* StubShotService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StubShotService.swift; sourceTree = "<group>"; };
 		036CDD8D1F239A02006C91CC /* StubUserService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StubUserService.swift; sourceTree = "<group>"; };
-		036CDD8E1F239A02006C91CC /* Stub.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stub.swift; sourceTree = "<group>"; };
 		036CDD8F1F239A02006C91CC /* StubAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StubAppDelegate.swift; sourceTree = "<group>"; };
 		036CDD901F239A02006C91CC /* StubError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StubError.swift; sourceTree = "<group>"; };
 		0377C5521E745BC200EE4576 /* ShotViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShotViewController.swift; sourceTree = "<group>"; };
@@ -300,7 +298,6 @@
 			children = (
 				036CDD891F239A02006C91CC /* Services */,
 				03E147671F24787C0018D96D /* Views */,
-				036CDD8E1F239A02006C91CC /* Stub.swift */,
 				036CDD8F1F239A02006C91CC /* StubAppDelegate.swift */,
 				036CDD901F239A02006C91CC /* StubError.swift */,
 				034D832E1F246BD700975F2F /* StubImageDownloader.swift */,
@@ -825,6 +822,7 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "ruby ${PODS_ROOT}/Carte/Sources/Carte/carte.rb post";
+			showEnvVarsInLog = 1;
 		};
 		B01C95CE2B14068F091C60D3 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -884,6 +882,7 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "ruby ${PODS_ROOT}/Carte/Sources/Carte/carte.rb pre";
+			showEnvVarsInLog = 1;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -910,7 +909,6 @@
 				034D335C1EA69C95004498FB /* TestCase.swift in Sources */,
 				03C629CB1F28C0DA008B4097 /* ShotViewReactorTests.swift in Sources */,
 				03D996FB1E811EC5004773AE /* SplashViewReactorTests.swift in Sources */,
-				036CDD951F239A02006C91CC /* Stub.swift in Sources */,
 				036CDD961F239A02006C91CC /* StubAppDelegate.swift in Sources */,
 				03FE6AF61F23C96E005D04DA /* ShotTileCellTests.swift in Sources */,
 				03FE6AF41F23C835005D04DA /* ShotCellReactorTests.swift in Sources */,

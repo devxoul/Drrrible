@@ -8,6 +8,7 @@
 
 import XCTest
 import RxTest
+import Stubber
 @testable import Drrrible
 
 final class ShotViewReactorTests: TestCase {
@@ -39,29 +40,29 @@ final class ShotViewReactorTests: TestCase {
 
   func testRefresh_service() {
     let shotService = StubShotService()
-    shotService.stub(shotService.shot) { _ in .empty() }
-    shotService.stub(shotService.isLiked) { _ in .empty() }
-    shotService.stub(shotService.comments) { _ in .empty() }
+    Stubber.stub(shotService.shot) { _ in .empty() }
+    Stubber.stub(shotService.isLiked) { _ in .empty() }
+    Stubber.stub(shotService.comments) { _ in .empty() }
     let reactor = ShotViewReactor(
       shotID: ShotFixture.shot1.id,
       shotService: shotService
     )
     _ = reactor.state
     reactor.action.onNext(.refresh)
-    XCTAssertEqual(shotService.executions(shotService.shot).count, 1)
-    XCTAssertEqual(shotService.executions(shotService.shot)[0].arguments, ShotFixture.shot1.id)
-    XCTAssertEqual(shotService.executions(shotService.isLiked).count, 1)
-    XCTAssertEqual(shotService.executions(shotService.isLiked)[0].arguments, ShotFixture.shot1.id)
-    XCTAssertEqual(shotService.executions(shotService.comments).count, 1)
-    XCTAssertEqual(shotService.executions(shotService.comments)[0].arguments, ShotFixture.shot1.id)
+    XCTAssertEqual(Stubber.executions(shotService.shot).count, 1)
+    XCTAssertEqual(Stubber.executions(shotService.shot)[0].arguments, ShotFixture.shot1.id)
+    XCTAssertEqual(Stubber.executions(shotService.isLiked).count, 1)
+    XCTAssertEqual(Stubber.executions(shotService.isLiked)[0].arguments, ShotFixture.shot1.id)
+    XCTAssertEqual(Stubber.executions(shotService.comments).count, 1)
+    XCTAssertEqual(Stubber.executions(shotService.comments)[0].arguments, ShotFixture.shot1.id)
   }
 
   func testIsRefreshing() {
     RxExpect { test in
       let shotService = StubShotService()
-      shotService.stub(shotService.shot) { _ in .just(ShotFixture.shot1) }
-      shotService.stub(shotService.isLiked) { _ in .just(true) }
-      shotService.stub(shotService.comments) { _ in .just(List(items: [])) }
+      Stubber.stub(shotService.shot) { _ in .just(ShotFixture.shot1) }
+      Stubber.stub(shotService.isLiked) { _ in .just(true) }
+      Stubber.stub(shotService.comments) { _ in .just(List(items: [])) }
       let reactor = ShotViewReactor(
         shotID: ShotFixture.shot1.id,
         shotService: shotService
@@ -82,9 +83,9 @@ final class ShotViewReactorTests: TestCase {
 
   func testSections_shot() {
     let shotService = StubShotService()
-    shotService.stub(shotService.shot) { _ in .just(ShotFixture.shot1) }
-    shotService.stub(shotService.isLiked) { _ in .just(true) }
-    shotService.stub(shotService.comments) { _ in .just(List(items: [])) }
+    Stubber.stub(shotService.shot) { _ in .just(ShotFixture.shot1) }
+    Stubber.stub(shotService.isLiked) { _ in .just(true) }
+    Stubber.stub(shotService.comments) { _ in .just(List(items: [])) }
     let reactor = ShotViewReactor(
       shotID: ShotFixture.shot1.id,
       shotService: shotService
@@ -134,9 +135,9 @@ final class ShotViewReactorTests: TestCase {
 
   func testSections_comment_empty() {
     let shotService = StubShotService()
-    shotService.stub(shotService.shot) { _ in .just(ShotFixture.shot1) }
-    shotService.stub(shotService.isLiked) { _ in .never() }
-    shotService.stub(shotService.comments) { _ in .just(List(items: [])) }
+    Stubber.stub(shotService.shot) { _ in .just(ShotFixture.shot1) }
+    Stubber.stub(shotService.isLiked) { _ in .never() }
+    Stubber.stub(shotService.comments) { _ in .just(List(items: [])) }
     let reactor = ShotViewReactor(
       shotID: ShotFixture.shot1.id,
       shotService: shotService
@@ -154,9 +155,9 @@ final class ShotViewReactorTests: TestCase {
 
   func testSections_comment_1() {
     let shotService = StubShotService()
-    shotService.stub(shotService.shot) { _ in .just(ShotFixture.shot1) }
-    shotService.stub(shotService.isLiked) { _ in .just(true) }
-    shotService.stub(shotService.comments) { _ in
+    Stubber.stub(shotService.shot) { _ in .just(ShotFixture.shot1) }
+    Stubber.stub(shotService.isLiked) { _ in .just(true) }
+    Stubber.stub(shotService.comments) { _ in
       return .just(List(items: [CommentFixture.comment1]))
     }
     let reactor = ShotViewReactor(
@@ -177,9 +178,9 @@ final class ShotViewReactorTests: TestCase {
 
   func testSections_comment_2() {
     let shotService = StubShotService()
-    shotService.stub(shotService.shot) { _ in .just(ShotFixture.shot1) }
-    shotService.stub(shotService.isLiked) { _ in .never() }
-    shotService.stub(shotService.comments) { _ in
+    Stubber.stub(shotService.shot) { _ in .just(ShotFixture.shot1) }
+    Stubber.stub(shotService.isLiked) { _ in .never() }
+    Stubber.stub(shotService.comments) { _ in
       return .just(List(items: [CommentFixture.comment1, CommentFixture.comment2]))
     }
     let reactor = ShotViewReactor(

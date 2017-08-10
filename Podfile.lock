@@ -78,6 +78,7 @@ PODS:
     - RxCocoa (>= 3.0.0)
     - RxSwift (>= 3.0.0)
   - SnapKit (3.2.0)
+  - Stubber (0.4.1)
   - SwiftyColor (1.0.0)
   - SwiftyImage (1.0.0)
   - Swinject (2.0.0)
@@ -136,6 +137,7 @@ DEPENDENCIES:
   - RxTest
   - RxViewController
   - SnapKit
+  - Stubber
   - SwiftyColor
   - SwiftyImage
   - Swinject
@@ -192,6 +194,7 @@ SPEC CHECKSUMS:
   RxTest: 1763765fd0e2282b0eb44c9050effdd7fe7156d4
   RxViewController: 45aada3de70642e419b13b100ba395287859361b
   SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
+  Stubber: 723ab5c898be0671320124523e9dcfb40291b7dc
   SwiftyColor: 7fa09db14051bc5d7f539e1c4576665975225992
   SwiftyImage: 79090f8b96057b3e91064de172936b97855086e6
   Swinject: 2e964a80d70ab09b3949c99032711f89147bfd60
@@ -204,6 +207,6 @@ SPEC CHECKSUMS:
   URLNavigator: 3ff788c985a0aae654e7de4959c4b0ea8a45f022
   WebLinking: 3f71787c14a225148e8be29fe6e7c98597cbc459
 
-PODFILE CHECKSUM: 6dad3bb0f54834be03c24389364993828654501f
+PODFILE CHECKSUM: 8015ab6310c070980dd059d860020d29589c9e70
 
 COCOAPODS: 1.2.0

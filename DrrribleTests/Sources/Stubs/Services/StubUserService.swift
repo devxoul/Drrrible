@@ -7,14 +7,15 @@
 //
 
 import RxSwift
+import Stubber
 @testable import Drrrible
 
-final class StubUserService: UserServiceType, Stub {
+final class StubUserService: UserServiceType {
   var currentUser: Observable<User?> {
     return .empty()
   }
 
   func fetchMe() -> Observable<Void> {
-    return self.call(fetchMe)
+    return Stubber.stubbed(fetchMe, args: (), default: .empty())
   }
 }

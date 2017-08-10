@@ -7,22 +7,23 @@
 //
 
 import RxSwift
+import Stubber
 @testable import Drrrible
 
-final class StubAuthService: AuthServiceType, Stub {
+final class StubAuthService: AuthServiceType {
   var currentAccessToken: AccessToken? {
     return nil
   }
 
   func authorize() -> Observable<Void> {
-    return self.call(authorize)
+    return Stubber.stubbed(authorize, args: (), default: .empty())
   }
 
   func callback(code: String) {
-    self.call(callback, args: code)
+    Stubber.stubbed(callback, args: code, default: Void())
   }
 
   func logout() {
-    self.call(logout)
+    Stubber.stubbed(logout, args: (), default: Void())
   }
 }

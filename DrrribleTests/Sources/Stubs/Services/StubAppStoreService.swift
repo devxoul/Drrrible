@@ -7,10 +7,11 @@
 //
 
 import RxSwift
+import Stubber
 @testable import Drrrible
 
-final class StubAppStoreService: AppStoreServiceType, Stub {
+final class StubAppStoreService: AppStoreServiceType {
   func latestVersion() -> Observable<String?> {
-    return self.call(latestVersion)
+    return Stubber.stubbed(latestVersion, args: (), default: .empty())
   }
 }

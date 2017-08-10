@@ -7,30 +7,31 @@
 //
 
 import RxSwift
+import Stubber
 @testable import Drrrible
 
-final class StubShotService: ShotServiceType, Stub {
+final class StubShotService: ShotServiceType {
   func shots(paging: Paging) -> Observable<List<Shot>> {
-    return self.call(shots, args: paging)
+    return Stubber.stubbed(shots, args: paging, default: .empty())
   }
 
   func shot(id: Int) -> Observable<Shot> {
-    return self.call(shot, args: id)
+    return Stubber.stubbed(shot, args: id, default: .empty())
   }
 
   func isLiked(shotID: Int) -> Observable<Bool> {
-    return self.call(isLiked, args: shotID)
+    return Stubber.stubbed(isLiked, args: shotID, default: .empty())
   }
 
   func like(shotID: Int) -> Observable<Void> {
-    return self.call(like, args: shotID)
+    return Stubber.stubbed(like, args: shotID, default: .empty())
   }
 
   func unlike(shotID: Int) -> Observable<Void> {
-    return self.call(unlike, args: shotID)
+    return Stubber.stubbed(unlike, args: shotID, default: .empty())
   }
 
   func comments(shotID: Int) -> Observable<List<Comment>> {
-    return self.call(comments, args: shotID)
+    return Stubber.stubbed(comments, args: shotID, default: .empty())
   }
 }

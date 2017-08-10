@@ -9,17 +9,19 @@
 import XCTest
 
 import RxSwift
+import Stubber
 
 @testable import Drrrible
 
 class TestCase: XCTestCase {
   override func setUp() {
+    super.setUp()
+    Stubber.clear()
     UIApplication.shared.delegate = StubAppDelegate()
-    clearStubs()
   }
 
   override func tearDown() {
-    clearStubs()
+    Stubber.clear()
     super.tearDown()
   }
 }
