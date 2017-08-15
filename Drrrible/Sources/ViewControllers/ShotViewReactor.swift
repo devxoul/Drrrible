@@ -69,7 +69,7 @@ final class ShotViewReactor: Reactor {
         Observable.just(.setRefreshing(true)),
         self.shotService.shot(id: self.shotID).map(Mutation.setShot),
         Observable.just(.setRefreshing(false)),
-        Observable.merge([
+        Observable.concat([
           self.shotService.isLiked(shotID: self.shotID).flatMap { _ in Observable.empty() },
           self.shotService.comments(shotID: self.shotID).map { Mutation.setComments($0.items) },
         ]),

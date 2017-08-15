@@ -64,10 +64,9 @@ target 'Drrrible' do
 
   target 'DrrribleTests' do
     inherit! :complete
-
-    pod 'RxTest'
-    pod 'RxExpect'
     pod 'Stubber'
+    pod 'Quick'
+    pod 'Nimble'
   end
 
 end

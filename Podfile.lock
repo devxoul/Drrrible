@@ -42,7 +42,9 @@ PODS:
     - Moya/RxSwift (>= 8.0.0)
     - MoyaSugar/Core
     - RxSwift (>= 3.0.0)
+  - Nimble (7.0.1)
   - ObjectMapper (2.2.5)
+  - Quick (1.1.0)
   - ReactorKit (0.5.1):
     - RxSwift (>= 3.0.0)
   - Result (3.2.1)
@@ -52,10 +54,6 @@ PODS:
   - RxDataSources (1.0.3):
     - RxCocoa (~> 3.0)
     - RxSwift (~> 3.0)
-  - RxExpect (0.7.0):
-    - RxCocoa (>= 3.4)
-    - RxSwift (>= 3.4)
-    - RxTest (>= 3.4)
   - RxGesture (1.0.0):
     - RxCocoa (~> 3.0)
     - RxSwift (~> 3.0)
@@ -72,8 +70,6 @@ PODS:
   - RxSwiftUtilities (1.0.1):
     - RxCocoa (~> 3.0)
     - RxSwift (~> 3.0)
-  - RxTest (3.5.0):
-    - RxSwift (~> 3.4)
   - RxViewController (0.1.0):
     - RxCocoa (>= 3.0.0)
     - RxSwift (>= 3.0.0)
@@ -122,19 +118,19 @@ DEPENDENCIES:
   - Moya/RxSwift
   - MoyaSugar
   - MoyaSugar/RxSwift
+  - Nimble
   - ObjectMapper
+  - Quick
   - ReactorKit
   - ReusableKit
   - RxCocoa
   - RxDataSources
-  - RxExpect
   - RxGesture
   - RxKeyboard
   - RxOptional
   - RxReusable
   - RxSwift
   - RxSwiftUtilities
-  - RxTest
   - RxViewController
   - SnapKit
   - Stubber
@@ -178,20 +174,20 @@ SPEC CHECKSUMS:
   ManualLayout: 68ac8cfa6b5f656f7a9fadec3730208b95986880
   Moya: d3721622e3cc0cc2f038d69a258686f0b66e7252
   MoyaSugar: 302175740302bed7309b9483c4a3321631eab753
+  Nimble: 657d000e11df8aebe27cdaf9d244de7f30ed87f7
   ObjectMapper: fb30f71e08470d1e5a20b199fafe1246281db898
+  Quick: dafc587e21eed9f4cab3249b9f9015b0b7a7f71d
   ReactorKit: 42df9addbaad5ab1abd817893ef870bec86b3f86
   Result: 2453a22e5c5b11c0c3a478736e82cd02f763b781
   ReusableKit: 89e743a120bab0d95848bff27e481833c2768905
   RxCocoa: d14ef6b6029e1ddc6e966508c09289090de68ff9
   RxDataSources: a021a0e944ba5f7991259829d973afdbfa719c0b
-  RxExpect: 6211e63608788e904cde817aa6ccc0ac4fd4beb5
   RxGesture: df17ca8be513640294c544b3165875e91de665ec
   RxKeyboard: 4046ecd1884a3bf0dacb823bd2ac8b00482d29ff
   RxOptional: b97b59183af80d1e729ac9e51d09a10be668d6a8
   RxReusable: c18e8e3b5f12a3292b76cc552dd946500f8d2c32
   RxSwift: 3789a1af753002a14edecdb698a2424624296a9c
   RxSwiftUtilities: 57e77c17b885931c37aa038f114f14fd1f478ac2
-  RxTest: 1763765fd0e2282b0eb44c9050effdd7fe7156d4
   RxViewController: 45aada3de70642e419b13b100ba395287859361b
   SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
   Stubber: 723ab5c898be0671320124523e9dcfb40291b7dc
@@ -207,6 +203,6 @@ SPEC CHECKSUMS:
   URLNavigator: 3ff788c985a0aae654e7de4959c4b0ea8a45f022
   WebLinking: 3f71787c14a225148e8be29fe6e7c98597cbc459
 
-PODFILE CHECKSUM: 8015ab6310c070980dd059d860020d29589c9e70
+PODFILE CHECKSUM: 2b7b51a217610d205aa61e3bd766226befc2177f
 
 COCOAPODS: 1.2.0

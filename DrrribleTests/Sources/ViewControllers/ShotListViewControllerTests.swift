@@ -1,102 +1,92 @@
 //
-//  ShotListViewControllerTests.swift
+//  ShotListViewControllerSpec.swift
 //  Drrrible
 //
 //  Created by Suyeol Jeon on 23/07/2017.
 //  Copyright © 2017 Suyeol Jeon. All rights reserved.
 //
 
-import XCTest
+import Nimble
+import Quick
 @testable import Drrrible
 
-final class ShotListViewControllerTests: TestCase {
-  func testAction_refresh_viewDidLoad() {
-    let reactor = ShotListViewReactor(
-      shotService: StubShotService(),
-      shotCellReactorFactory: ShotCellReactor.init
-    )
-    reactor.stub.isEnabled = true
-    let viewController = ShotListViewController(reactor: reactor, shotTileCellDependency: .stub())
-    _ = viewController.view // make viewDidLoad() gets called
-    XCTAssertTrue({
-      if case .refresh = reactor.stub.actions.last! {
-        return true
-      } else {
-        return false
-      }
-    }())
-  }
+final class ShotListViewControllerSpec: QuickSpec {
+  override func spec() {
+    var reactor: ShotListViewReactor!
+    var viewController: ShotListViewController!
 
-  func testAction_refresh_refreshControl() {
-    let reactor = ShotListViewReactor(
-      shotService: StubShotService(),
-      shotCellReactorFactory: ShotCellReactor.init
-    )
-    reactor.stub.isEnabled = true
-    let viewController = ShotListViewController(reactor: reactor, shotTileCellDependency: .stub())
-    _ = viewController.view
-    viewController.refreshControl.sendActions(for: .valueChanged)
-    XCTAssertTrue({
-      if case .refresh = reactor.stub.actions.last! {
-        return true
-      } else {
-        return false
-      }
-    }())
-  }
-
-  func testAction_loadMore() {
-    let reactor = ShotListViewReactor(
-      shotService: StubShotService(),
-      shotCellReactorFactory: ShotCellReactor.init
-    )
-    reactor.stub.isEnabled = true
-    let viewController = ShotListViewController(reactor: reactor, shotTileCellDependency: .stub())
-    _ = viewController.view
-    viewController.collectionView.height = 100
-    viewController.collectionView.contentSize.height = 300
-    viewController.collectionView.contentOffset.y = 300
-    viewController.collectionView.delegate?.scrollViewDidScroll?(viewController.collectionView)
-    XCTAssertTrue({
-      if case .loadMore = reactor.stub.actions.last! {
-        return true
-      } else {
-        return false
-      }
-    }())
-  }
-
-  func testState_isRefreshing() {
-    let reactor = ShotListViewReactor(
-      shotService: StubShotService(),
-      shotCellReactorFactory: ShotCellReactor.init
-    )
-    reactor.stub.isEnabled = true
-    let viewController = ShotListViewController(reactor: reactor, shotTileCellDependency: .stub())
-    _ = viewController.view
-    reactor.stub.state.value.isRefreshing = true
-    XCTAssertEqual(viewController.refreshControl.isRefreshing, true)
-  }
-
-  func testState_sections() {
-    let reactor = ShotListViewReactor(
-      shotService: StubShotService(),
-      shotCellReactorFactory: ShotCellReactor.init
-    )
-    reactor.stub.isEnabled = true
-    let viewController = ShotListViewController(reactor: reactor, shotTileCellDependency: .stub())
-    _ = viewController.view
-    let cellReactors = [ShotFixture.shot1, ShotFixture.shot2].map(ShotCellReactor.init)
-    let sectionItems = cellReactors.map(ShotListViewSectionItem.shotTile)
-    reactor.stub.state.value.sections = [.shotTile(sectionItems)]
-    viewController.collectionView.do {
-      XCTAssertEqual($0.dataSource?.collectionView($0, numberOfItemsInSection: 0), 2)
-      XCTAssertTrue(
-        ($0.dataSource?.collectionView($0, cellForItemAt: IndexPath(item: 0, section: 0)) as? ShotTileCell)?.reactor === cellReactors[0]
+    beforeEach {
+      reactor = ShotListViewReactor(
+        shotService: StubShotService(),
+        shotCellReactorFactory: ShotCellReactor.init
       )
-      XCTAssertTrue(
-        ($0.dataSource?.collectionView($0, cellForItemAt: IndexPath(item: 1, section: 0)) as? ShotTileCell)?.reactor === cellReactors[1]
-      )
+      reactor.stub.isEnabled = true
+      viewController = ShotListViewController(reactor: reactor, shotTileCellDependency: .stub())
+      _ = viewController.view // make viewDidLoad() gets called
+    }
+
+    describe("a view") {
+      context("when loaded") {
+        it("sends a refresh action") {
+          expect(reactor.stub.actions.last).to(match) {
+            if case .refresh = $0 {
+              return true
+            } else {
+              return false
+            }
+          }
+        }
+      }
+    }
+
+    describe("a refresh control") {
+      context("when triggers") {
+        it("sends a refresh action") {
+          viewController.refreshControl.sendActions(for: .valueChanged)
+          expect(reactor.stub.actions.last).to(match) {
+            if case .refresh = $0 {
+              return true
+            } else {
+              return false
+            }
+          }
+        }
+      }
+
+      context("when refreshing state") {
+        it("is refreshing") {
+          reactor.stub.state.value.isRefreshing = true
+          expect(viewController.refreshControl.isRefreshing) == true
+        }
+      }
+    }
+
+    describe("a collection view") {
+      context("when scrolls to bottom") {
+        it("sends a load more action") {
+          viewController.collectionView.height = 100
+          viewController.collectionView.contentSize.height = 300
+          viewController.collectionView.contentOffset.y = 300
+          viewController.collectionView.delegate?.scrollViewDidScroll?(viewController.collectionView)
+          expect(reactor.stub.actions.last).to(match) {
+            if case .loadMore = $0 {
+              return true
+            } else {
+              return false
+            }
+          }
+        }
+      }
+
+      context("when sections have shotTiles") {
+        it("has shot tile cells") {
+          let cellReactors = [ShotFixture.shot1, ShotFixture.shot2].map(ShotCellReactor.init)
+          let sectionItems = cellReactors.map(ShotListViewSectionItem.shotTile)
+          reactor.stub.state.value.sections = [.shotTile(sectionItems)]
+          expect(viewController.collectionView.cell(ShotTileCell.self, at: 0, 0)?.reactor) === cellReactors[0]
+          expect(viewController.collectionView.cell(ShotTileCell.self, at: 0, 1)?.reactor) === cellReactors[1]
+        }
+      }
     }
   }
 }
