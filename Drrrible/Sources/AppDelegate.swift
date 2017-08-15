@@ -87,7 +87,10 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
       )
       let shotListViewController = ShotListViewController(
         reactor: shotListViewReactor,
-        shotTileCellDependency: shotTileCellDependency
+        dependency: .init(
+          analytics: analytics,
+          shotTileCellDependency: shotTileCellDependency
+        )
       )
       let mainTabBarController = MainTabBarController(
         reactor: MainTabBarViewReactor(),

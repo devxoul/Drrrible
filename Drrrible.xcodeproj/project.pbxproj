@@ -10,6 +10,7 @@
 		0303CACC1F43267B00FF2E77 /* ShotViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0303CACB1F43267B00FF2E77 /* ShotViewControllerSpec.swift */; };
 		0303CAE81F4333EE00FF2E77 /* StubAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0303CAE71F4333EE00FF2E77 /* StubAnalytics.swift */; };
 		0303CAEB1F433E2B00FF2E77 /* StubLoginViewControllerDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0303CAEA1F433E2B00FF2E77 /* StubLoginViewControllerDependency.swift */; };
+		0303CAED1F437A6200FF2E77 /* StubShotListViewControllerDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0303CAEC1F437A6200FF2E77 /* StubShotListViewControllerDependency.swift */; };
 		031EB0591E6FED65004D6349 /* URLNavigationMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EB0581E6FED65004D6349 /* URLNavigationMap.swift */; };
 		031EB05B1E6FEFE7004D6349 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EB05A1E6FEFE7004D6349 /* AuthService.swift */; };
 		031EB0631E6FF7A9004D6349 /* AccessToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EB0621E6FF7A9004D6349 /* AccessToken.swift */; };
@@ -140,6 +141,7 @@
 		0303CACB1F43267B00FF2E77 /* ShotViewControllerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShotViewControllerSpec.swift; sourceTree = "<group>"; };
 		0303CAE71F4333EE00FF2E77 /* StubAnalytics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StubAnalytics.swift; sourceTree = "<group>"; };
 		0303CAEA1F433E2B00FF2E77 /* StubLoginViewControllerDependency.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StubLoginViewControllerDependency.swift; sourceTree = "<group>"; };
+		0303CAEC1F437A6200FF2E77 /* StubShotListViewControllerDependency.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StubShotListViewControllerDependency.swift; sourceTree = "<group>"; };
 		031EB0581E6FED65004D6349 /* URLNavigationMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLNavigationMap.swift; sourceTree = "<group>"; };
 		031EB05A1E6FEFE7004D6349 /* AuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		031EB0621E6FF7A9004D6349 /* AccessToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccessToken.swift; sourceTree = "<group>"; };
@@ -299,6 +301,7 @@
 			isa = PBXGroup;
 			children = (
 				0303CAEA1F433E2B00FF2E77 /* StubLoginViewControllerDependency.swift */,
+				0303CAEC1F437A6200FF2E77 /* StubShotListViewControllerDependency.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -931,6 +934,7 @@
 				03E147691F2478860018D96D /* StubShotTileCellDependency.swift in Sources */,
 				036CDD921F239A02006C91CC /* StubAuthService.swift in Sources */,
 				03D9971C1E81278B004773AE /* LoginViewReactorSpec.swift in Sources */,
+				0303CAED1F437A6200FF2E77 /* StubShotListViewControllerDependency.swift in Sources */,
 				03EE6F791F250B0600C2C6D8 /* UIGestureRecognizer+Test.swift in Sources */,
 				031F92861EA55FA00025D5FB /* TestMain.swift in Sources */,
 				03C629CD1F28C866008B4097 /* CommentFixture.swift in Sources */,
