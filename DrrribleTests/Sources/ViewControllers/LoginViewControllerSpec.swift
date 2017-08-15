@@ -27,7 +27,7 @@ final class LoginViewControllerSpec: QuickSpec {
       beforeEach {
         reactor = LoginViewReactor(authService: authService, userService: userService)
         reactor.stub.isEnabled = true
-        viewController = LoginViewController(reactor: reactor, presentMainScreen: {})
+        viewController = LoginViewController(reactor: reactor, dependency: .stub())
         _ = viewController.view
       }
 
@@ -52,7 +52,7 @@ final class LoginViewControllerSpec: QuickSpec {
       beforeEach {
         reactor = LoginViewReactor(authService: authService, userService: userService)
         reactor.stub.isEnabled = true
-        viewController = LoginViewController(reactor: reactor, presentMainScreen: {})
+        viewController = LoginViewController(reactor: reactor, dependency: .stub())
         _ = viewController.view
       }
 
@@ -104,7 +104,10 @@ final class LoginViewControllerSpec: QuickSpec {
         isPresentMainScreenExecuted = false
         viewController = LoginViewController(
           reactor: reactor,
-          presentMainScreen: { isPresentMainScreenExecuted = true }
+          dependency: .init(
+            analytics: StubAnalytics(),
+            presentMainScreen: { isPresentMainScreenExecuted = true }
+          )
         )
         _ = viewController.view
       }
@@ -126,6 +129,49 @@ final class LoginViewControllerSpec: QuickSpec {
 
         it("presents main screen") {
           expect(isPresentMainScreenExecuted) == false
+        }
+      }
+    }
+
+    describe("an analytics") {
+      var analytics: StubAnalytics!
+      var reactor: LoginViewReactor!
+      var viewController: LoginViewController!
+
+      beforeEach {
+        analytics = StubAnalytics()
+        reactor = LoginViewReactor(authService: authService, userService: userService)
+        reactor.stub.isEnabled = true
+        viewController = LoginViewController(
+          reactor: reactor,
+          dependency: .init(analytics: analytics, presentMainScreen: {})
+        )
+        _ = viewController.view
+      }
+
+      context("when a login button is tapped") {
+        it("logs a try login event") {
+          viewController.loginButton.sendActions(for: .touchUpInside)
+          expect(analytics.events.last).to(match) {
+            if case .tryLogin = $0 {
+              return true
+            } else {
+              return false
+            }
+          }
+        }
+      }
+
+      context("when succeeds to login") {
+        it("logs a login event") {
+          reactor.stub.state.value.isLoggedIn = true
+          expect(analytics.events.last).to(match) {
+            if case .login = $0 {
+              return true
+            } else {
+              return false
+            }
+          }
         }
       }
     }

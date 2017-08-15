@@ -59,13 +59,15 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     window.backgroundColor = .white
     window.makeKeyAndVisible()
 
-    URLNavigationMap.initialize(
-      shotViewControllerDependency: .init(analytics: analytics)
-    )
-
     let authService = AuthService()
     let userService = UserService()
     let shotService = ShotService()
+
+    let analytics = DrrribleAnalytics()
+
+    URLNavigationMap.initialize(
+      shotViewControllerDependency: .init(analytics: analytics)
+    )
 
     let presentMainScreen: () -> Void = { [weak self] in
       let shotListViewReactor = ShotListViewReactor(
@@ -98,7 +100,10 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
       let reactor = LoginViewReactor(authService: authService, userService: userService)
       self?.window?.rootViewController = LoginViewController(
         reactor: reactor,
-        presentMainScreen: presentMainScreen
+        dependency: .init(
+          analytics: analytics,
+          presentMainScreen: presentMainScreen
+        )
       )
     }
 

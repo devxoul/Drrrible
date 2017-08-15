@@ -13,6 +13,12 @@ import ReactorKit
 
 final class LoginViewController: BaseViewController, View {
 
+  struct Dependency {
+    let analytics: DrrribleAnalytics
+    let presentMainScreen: () -> Void
+  }
+
+
   // MARK: Constants
 
   fileprivate struct Metric {
@@ -34,7 +40,7 @@ final class LoginViewController: BaseViewController, View {
 
   // MARK: Properties
 
-  fileprivate let presentMainScreen: () -> Void
+  fileprivate let dependency: Dependency
 
 
   // MARK: UI
@@ -67,9 +73,9 @@ final class LoginViewController: BaseViewController, View {
 
   // MARK: Initializing
 
-  init(reactor: LoginViewReactor, presentMainScreen: @escaping () -> Void) {
+  init(reactor: LoginViewReactor, dependency: Dependency) {
     defer { self.reactor = reactor }
-    self.presentMainScreen = presentMainScreen
+    self.dependency = dependency
     super.init()
   }
   
@@ -116,7 +122,6 @@ final class LoginViewController: BaseViewController, View {
   func bind(reactor: LoginViewReactor) {
     // Input
     self.loginButton.rx.tap
-      .do(onNext: { analytics.log(.tryLogin) })
       .map { Reactor.Action.login }
       .bind(to: reactor.action)
       .disposed(by: self.disposeBag)
@@ -135,11 +140,24 @@ final class LoginViewController: BaseViewController, View {
     reactor.state.map { $0.isLoggedIn }
       .distinctUntilChanged()
       .filter { $0 }
-      .do(onNext: { _ in analytics.log(.login) })
       .subscribe(onNext: { [weak self] _ in
-        self?.presentMainScreen()
+        self?.dependency.presentMainScreen()
+      })
+      .disposed(by: self.disposeBag)
+
+    // Analytics
+    self.loginButton.rx.tap
+      .subscribe(onNext: { [weak self] in
+        self?.dependency.analytics.log(.tryLogin)
+      })
+      .disposed(by: self.disposeBag)
+
+    reactor.state.map { $0.isLoggedIn }
+      .distinctUntilChanged()
+      .filter { $0 }
+      .subscribe(onNext: { [weak self] _ in
+        self?.dependency.analytics.log(.login)
       })
       .disposed(by: self.disposeBag)
   }
-
 }
