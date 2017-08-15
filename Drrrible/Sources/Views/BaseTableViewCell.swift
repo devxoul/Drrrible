@@ -10,7 +10,7 @@ import UIKit
 
 import RxSwift
 
-class BaseTableViewViewCell: UITableViewCell {
+class BaseTableViewCell: UITableViewCell {
 
   // MARK: Initializing
 
