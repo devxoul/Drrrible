@@ -77,9 +77,6 @@ PODS:
   - Stubber (0.4.1)
   - SwiftyColor (1.0.0)
   - SwiftyImage (1.0.0)
-  - Swinject (2.0.0)
-  - SwinjectAutoregistration (2.0.1):
-    - Swinject (~> 2.0.0)
   - Then (2.1.0)
   - TouchAreaInsets (1.0.0)
   - TTTAttributedLabel (2.0.0)
@@ -126,8 +123,6 @@ DEPENDENCIES:
   - Stubber
   - SwiftyColor
   - SwiftyImage
-  - Swinject
-  - SwinjectAutoregistration
   - Then
   - TouchAreaInsets
   - TTTAttributedLabel
@@ -184,8 +179,6 @@ SPEC CHECKSUMS:
   Stubber: 723ab5c898be0671320124523e9dcfb40291b7dc
   SwiftyColor: 7fa09db14051bc5d7f539e1c4576665975225992
   SwiftyImage: 79090f8b96057b3e91064de172936b97855086e6
-  Swinject: 2e964a80d70ab09b3949c99032711f89147bfd60
-  SwinjectAutoregistration: d19654c429354bad4b544c658dc92345ccdbb72c
   Then: 8496793c8fcac95482b943909b440724c7d8d82c
   TouchAreaInsets: 01a873de4bac294e502bd07219f82bd18866eeee
   TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
@@ -194,6 +187,6 @@ SPEC CHECKSUMS:
   URLNavigator: 3ff788c985a0aae654e7de4959c4b0ea8a45f022
   WebLinking: 3f71787c14a225148e8be29fe6e7c98597cbc459
 
-PODFILE CHECKSUM: 6789c164c99b2c24e58e044e58baaf049488ea9f
+PODFILE CHECKSUM: 2cebd3cd580d4646f813e7d5af82b27a36da571b
 
-COCOAPODS: 1.2.0
+COCOAPODS: 1.3.1

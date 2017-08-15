@@ -167,18 +167,6 @@ final class ShotViewController: BaseViewController, View {
 }
 
 
-// MARK: - URLNavigable
-
-extension ShotViewController: URLNavigable {
-  convenience init?(navigation: Navigation) {
-    guard let dependency = navigation.mappingContext as? Dependency else { return nil }
-    guard let shotID = navigation.values["id"] as? Int else { return nil }
-    let reactor = ShotViewReactor(shotID: shotID, shotService: ShotService())
-    self.init(reactor: reactor, dependency: dependency)
-  }
-}
-
-
 // MARK: - UICollectionViewDelegateFlowLayout
 
 extension ShotViewController: UICollectionViewDelegateFlowLayout {

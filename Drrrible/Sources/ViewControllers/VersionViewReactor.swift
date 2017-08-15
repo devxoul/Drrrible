@@ -9,7 +9,7 @@
 import ReactorKit
 import RxSwift
 
-final class VersionViewReactor: Reactor, ServiceContainer {
+final class VersionViewReactor: Reactor {
   enum Action {
     case checkForUpdates
   }
@@ -25,9 +25,15 @@ final class VersionViewReactor: Reactor, ServiceContainer {
     var latestVersion: String?
   }
 
+  struct Dependency {
+    let appStoreService: AppStoreServiceType
+  }
+
+  fileprivate let dependency: Dependency
   let initialState = State()
 
-  init() {
+  init(dependency: Dependency) {
+    self.dependency = dependency
     _ = self.state
   }
 
@@ -36,7 +42,7 @@ final class VersionViewReactor: Reactor, ServiceContainer {
     case .checkForUpdates:
       let startLoading: Observable<Mutation> = .just(.setLoading(true))
       let clearLatestVersion: Observable<Mutation> = .just(.setLatestVersion(nil))
-      let setLatestVersion: Observable<Mutation> = self.appStoreService.latestVersion()
+      let setLatestVersion: Observable<Mutation> = self.dependency.appStoreService.latestVersion()
         .map { $0 ?? "⚠️" }
         .map(Mutation.setLatestVersion)
       let stopLoading: Observable<Mutation> = .just(.setLoading(false))

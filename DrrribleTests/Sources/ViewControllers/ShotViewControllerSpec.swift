@@ -12,14 +12,12 @@ import Quick
 
 final class ShotViewControllerSpec: QuickSpec {
   override func spec() {
-    var shotService: StubShotService!
     var reactor: ShotViewReactor!
     var analytics: StubAnalytics!
     var viewController: ShotViewController!
 
     beforeEach {
-      shotService = StubShotService()
-      reactor = ShotViewReactor(shotID: ShotFixture.shot1.id, shotService: shotService)
+      reactor = ShotViewReactor(shotID: ShotFixture.shot1.id, dependency: .stub())
       reactor.stub.isEnabled = true
       analytics = StubAnalytics()
       viewController = ShotViewController(reactor: reactor, dependency: .init(analytics: analytics))
@@ -65,7 +63,7 @@ final class ShotViewControllerSpec: QuickSpec {
       }
 
       it("has a reaction cell") {
-        let cellReactor = ShotViewReactionCellReactor(shot: ShotFixture.shot1)
+        let cellReactor = ShotViewReactionCellReactor(shot: ShotFixture.shot1, dependency: .stub())
         reactor.stub.state.value.shotSectionItems = [.reaction(cellReactor)]
         expect(viewController.collectionView.cell(ShotViewReactionCell.self, at: 0, 0)?.reactor) === cellReactor
       }

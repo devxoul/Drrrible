@@ -16,6 +16,13 @@ import RxDataSources
 
 final class SettingsViewController: BaseViewController, View {
 
+  struct Dependency {
+    let analytics: DrrribleAnalytics
+    let versionViewControllerFactory: () -> VersionViewController
+    let presentLoginScreen: () -> Void
+  }
+
+
   // MARK: Constants
 
   fileprivate struct Reusable {
@@ -25,6 +32,7 @@ final class SettingsViewController: BaseViewController, View {
 
   // MARK: Properties
 
+  fileprivate let dependency: Dependency
   fileprivate let dataSource = RxTableViewSectionedReloadDataSource<SettingsViewSection>()
 
 
@@ -37,8 +45,9 @@ final class SettingsViewController: BaseViewController, View {
 
   // MARK: Initializing
 
-  init(reactor: SettingsViewReactor) {
+  init(reactor: SettingsViewReactor, dependency: Dependency) {
     defer { self.reactor = reactor }
+    self.dependency = dependency
     super.init()
     self.title = "settings".localized
     self.tabBarItem.image = UIImage(named: "tab-settings")
@@ -96,16 +105,15 @@ final class SettingsViewController: BaseViewController, View {
     reactor.state.map { $0.isLoggedOut }
       .distinctUntilChanged()
       .filter { $0 }
-      .do(onNext: { _ in analytics.log(.logout) })
-      .subscribe(onNext: { _ in
-        // TODO:
-        // AppDelegate.shared.presentLoginScreen()
+      .do(onNext: { [weak self] _ in self?.dependency.analytics.log(.logout) })
+      .subscribe(onNext: { [weak self] _ in
+        self?.dependency.presentLoginScreen()
       })
       .disposed(by: self.disposeBag)
 
     // View
     self.rx.viewDidAppear
-      .subscribe(onNext: { _ in analytics.log(.viewSettingList) })
+      .subscribe(onNext: { [weak self] _ in self?.dependency.analytics.log(.viewSettingList) })
       .disposed(by: self.disposeBag)
 
     self.tableView.rx.itemSelected(dataSource: self.dataSource)
@@ -113,8 +121,7 @@ final class SettingsViewController: BaseViewController, View {
         guard let `self` = self, let reactor = self.reactor else { return }
         switch sectionItem {
         case .version:
-          let reactor = VersionViewReactor()
-          let viewController = VersionViewController(reactor: reactor)
+          let viewController = self.dependency.versionViewControllerFactory()
           self.navigationController?.pushViewController(viewController, animated: true)
 
         case .github:
@@ -132,7 +139,7 @@ final class SettingsViewController: BaseViewController, View {
           self.navigationController?.pushViewController(viewController, animated: true)
 
         case .logout:
-          analytics.log(.tryLogout)
+          self.dependency.analytics.log(.tryLogout)
           let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
           let logoutAction = UIAlertAction(title: "logout".localized, style: .destructive) { _ in
             reactor.action.onNext(.logout)

@@ -10,7 +10,7 @@ import UIKit
 
 import ReactorKit
 
-final class ShotViewTextCellReactor: Reactor, ServiceContainer {
+final class ShotViewTextCellReactor: Reactor {
   typealias Action = NoAction
   
   struct State {

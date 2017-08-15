@@ -10,7 +10,7 @@ import ReactorKit
 import RxCocoa
 import RxSwift
 
-class ShotViewCommentCellReactor: Reactor, ServiceContainer {
+class ShotViewCommentCellReactor: Reactor {
   typealias Action = NoAction
 
   struct State {

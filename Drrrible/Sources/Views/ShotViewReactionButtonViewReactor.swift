@@ -9,7 +9,7 @@
 import ReactorKit
 import RxSwift
 
-class ShotViewReactionButtonViewReactor: Reactor, ServiceContainer {
+class ShotViewReactionButtonViewReactor: Reactor {
   enum Action {
     case toggleReaction
   }

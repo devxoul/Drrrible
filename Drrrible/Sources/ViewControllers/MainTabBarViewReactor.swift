@@ -10,7 +10,7 @@ import ReactorKit
 import RxCocoa
 import RxSwift
 
-final class MainTabBarViewReactor: Reactor, ServiceContainer {
+final class MainTabBarViewReactor: Reactor {
   typealias Action = NoAction
 
   struct State {

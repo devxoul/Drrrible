@@ -10,6 +10,8 @@ import Moya
 import MoyaSugar
 import RxSwift
 
+typealias DrrribleNetworking = Networking<DribbbleAPI>
+
 final class Networking<Target: SugarTargetType>: RxMoyaSugarProvider<Target> {
 
   init(plugins: [PluginType] = []) {

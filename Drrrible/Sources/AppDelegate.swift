@@ -29,8 +29,6 @@ import Umbrella
 import URLNavigator
 import WebLinking
 
-let analytics = Umbrella.Analytics<AnalyticsEvent>()
-
 final class AppDelegate: UIResponder, UIApplicationDelegate {
 
   // MARK: Properties
@@ -52,7 +50,6 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?
   ) -> Bool {
     self.configureSDKs()
-    self.configureAnalytics()
     self.configureAppearance()
 
     let window = UIWindow(frame: UIScreen.main.bounds)
@@ -60,16 +57,19 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     window.makeKeyAndVisible()
 
     let authService = AuthService()
-    let userService = UserService()
-    let shotService = ShotService()
+    let networking = DrrribleNetworking(plugins: [AuthPlugin(authService: authService)])
+    let appStoreService = AppStoreService()
+    let userService = UserService(networking: networking)
+    let shotService = ShotService(networking: networking)
 
     let analytics = DrrribleAnalytics()
+    analytics.register(provider: FirebaseProvider())
 
-    URLNavigationMap.initialize(
-      shotViewControllerDependency: .init(analytics: analytics)
-    )
+    URLNavigationMap.initialize(authService: authService)
 
-    let presentMainScreen: () -> Void = { [weak self] in
+    var presentMainScreen: (() -> Void)!
+    var presentLoginScreen: (() -> Void)!
+    presentMainScreen = { [weak self] in
       let shotListViewReactor = ShotListViewReactor(
         shotService: shotService,
         shotCellReactorFactory: ShotCellReactor.init
@@ -80,7 +80,28 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
           let reactor = ShotViewReactor(
             shotID: id,
             shot: shot,
-            shotService: shotService
+            dependency: .init(
+              shotService: shotService,
+              reactionCellReactorFactory: { shot in
+                ShotViewReactionCellReactor(
+                  shot: shot,
+                  dependency: .init(
+                    likeButtonViewReactorFactory: { shot in
+                      ShotViewReactionLikeButtonViewReactor(
+                        shot: shot,
+                        dependency: .init(
+                          shotService: shotService,
+                          analytics: analytics
+                        )
+                      )
+                    },
+                    commentButtonViewReactorFactory: { shot in
+                      ShotViewReactionCommentButtonViewReactor(shot: shot)
+                    }
+                  )
+                )
+              }
+            )
           )
           return ShotViewController(reactor: reactor, dependency: .init(analytics: analytics))
         }
@@ -95,11 +116,21 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
       let mainTabBarController = MainTabBarController(
         reactor: MainTabBarViewReactor(),
         shotListViewController: shotListViewController,
-        settingsViewController: SettingsViewController(reactor: SettingsViewReactor())
+        settingsViewController: SettingsViewController(
+          reactor: SettingsViewReactor(dependency: .init(userService: userService)),
+          dependency: .init(
+            analytics: analytics,
+            versionViewControllerFactory: {
+              let reactor = VersionViewReactor(dependency: .init(appStoreService: appStoreService))
+              return VersionViewController(reactor: reactor)
+            },
+            presentLoginScreen: presentLoginScreen
+          )
+        )
       )
       self?.window?.rootViewController = mainTabBarController
     }
-    let presentLoginScreen: () -> Void = { [weak self] in
+    presentLoginScreen = { [weak self] in
       let reactor = LoginViewReactor(authService: authService, userService: userService)
       self?.window?.rootViewController = LoginViewController(
         reactor: reactor,
@@ -150,13 +181,6 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
 
   private func configureFirebase() {
     FirebaseApp.configure()
-  }
-
-
-  // MARK: Analytics
-
-  private func configureAnalytics() {
-    analytics.register(provider: FirebaseProvider())
   }
 
 

@@ -65,7 +65,7 @@ final class ShotTileCellSpec: QuickSpec {
           var isShotViewControllerFactoryExecuted = false
           cell.dependency = .stub(shotViewControllerFactory: { id, shot in
             isShotViewControllerFactoryExecuted = true
-            let reactor = ShotViewReactor(shotID: id, shot: nil, shotService: StubShotService())
+            let reactor = ShotViewReactor(shotID: id, shot: nil, dependency: .stub())
             reactor.stub.isEnabled = true
             return ShotViewController(reactor: reactor, dependency: .init(analytics: .init()))
           })

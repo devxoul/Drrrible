@@ -17,7 +17,12 @@ protocol ShotServiceType {
   func comments(shotID: Int) -> Observable<List<Comment>>
 }
 
-final class ShotService: ShotServiceType, ServiceContainer {
+final class ShotService: ShotServiceType {
+  fileprivate let networking: DrrribleNetworking
+
+  init(networking: DrrribleNetworking) {
+    self.networking = networking
+  }
 
   func shots(paging: Paging) -> Observable<List<Shot>> {
     let api: DribbbleAPI
@@ -64,5 +69,4 @@ final class ShotService: ShotServiceType, ServiceContainer {
   func comments(shotID: Int) -> Observable<List<Comment>> {
     return self.networking.request(.shotComments(shotID: shotID)).map(List<Comment>.self)
   }
-
 }

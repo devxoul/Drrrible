@@ -11,13 +11,10 @@ import UIKit
 import URLNavigator
 
 final class URLNavigationMap {
-  static func initialize(
-    shotViewControllerDependency: ShotViewController.Dependency
-  ) {
-    Navigator.map("drrrible://shot/<int:id>", ShotViewController.self, context: shotViewControllerDependency)
+  static func initialize(authService: AuthServiceType) {
     Navigator.map("drrrible://oauth/callback") { url, values in
       guard let code = url.queryParameters["code"] else { return false }
-      DI.resolve(AuthServiceType.self)?.callback(code: code)
+      authService.callback(code: code)
       return true
     }
   }

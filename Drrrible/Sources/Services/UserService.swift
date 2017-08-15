@@ -14,7 +14,12 @@ protocol UserServiceType {
   func fetchMe() -> Observable<Void>
 }
 
-final class UserService: UserServiceType, ServiceContainer {
+final class UserService: UserServiceType {
+  fileprivate let networking: DrrribleNetworking
+
+  init(networking: DrrribleNetworking) {
+    self.networking = networking
+  }
 
   fileprivate let userSubject = ReplaySubject<User?>.create(bufferSize: 1)
   lazy var currentUser: Observable<User?> = self.userSubject.asObservable()
@@ -29,5 +34,4 @@ final class UserService: UserServiceType, ServiceContainer {
       })
       .map { _ in Void() }
   }
-
 }

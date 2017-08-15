@@ -22,7 +22,7 @@ final class ShotViewReactorSpec: QuickSpec {
     context("when receives a refresh action") {
       var reactor: ShotViewReactor!
       beforeEach {
-        reactor = ShotViewReactor(shotID: ShotFixture.shot1.id, shotService: shotService)
+        reactor = ShotViewReactor(shotID: ShotFixture.shot1.id, dependency: .stub(shotService: shotService))
         reactor.action.onNext(.refresh)
       }
 
@@ -45,7 +45,7 @@ final class ShotViewReactorSpec: QuickSpec {
     describe("state.shotID") {
       context("when initialized") {
         it("is same with parameter") {
-          let reactor = ShotViewReactor(shotID: 123, shotService: shotService)
+          let reactor = ShotViewReactor(shotID: 123, dependency: .stub())
           expect(reactor.currentState.shotID) == 123
         }
       }
@@ -54,14 +54,14 @@ final class ShotViewReactorSpec: QuickSpec {
     describe("state.isRefreshing") {
       context("when initialiezd") {
         it("is not refreshing") {
-          let reactor = ShotViewReactor(shotID: 123, shotService: shotService)
+          let reactor = ShotViewReactor(shotID: 123, dependency: .stub())
           expect(reactor.currentState.isRefreshing) == false
         }
       }
 
       context("while refreshing a shot") {
         it("is refreshing") {
-          let reactor = ShotViewReactor(shotID: ShotFixture.shot1.id, shotService: shotService)
+          let reactor = ShotViewReactor(shotID: ShotFixture.shot1.id, dependency: .stub())
           Stubber.stub(shotService.shot) { _ in .never() }
           reactor.action.onNext(.refresh)
           expect(reactor.currentState.isRefreshing) == true
@@ -70,7 +70,7 @@ final class ShotViewReactorSpec: QuickSpec {
 
       context("while refreshing a like status") {
         it("is not refreshing") {
-          let reactor = ShotViewReactor(shotID: ShotFixture.shot1.id, shotService: shotService)
+          let reactor = ShotViewReactor(shotID: ShotFixture.shot1.id, dependency: .stub())
           Stubber.stub(shotService.shot) { _ in .just(ShotFixture.shot1) }
           Stubber.stub(shotService.isLiked) { _ in .never() }
           reactor.action.onNext(.refresh)
@@ -80,7 +80,7 @@ final class ShotViewReactorSpec: QuickSpec {
 
       context("while refreshing comments") {
         it("is not refreshing") {
-          let reactor = ShotViewReactor(shotID: ShotFixture.shot1.id, shotService: shotService)
+          let reactor = ShotViewReactor(shotID: ShotFixture.shot1.id, dependency: .stub())
           Stubber.stub(shotService.shot) { _ in .just(ShotFixture.shot1) }
           Stubber.stub(shotService.isLiked) { _ in .just(true) }
           Stubber.stub(shotService.comments) { _ in .never() }
@@ -91,7 +91,7 @@ final class ShotViewReactorSpec: QuickSpec {
 
       context("after refreshing") {
         it("is not refreshing") {
-          let reactor = ShotViewReactor(shotID: ShotFixture.shot1.id, shotService: shotService)
+          let reactor = ShotViewReactor(shotID: ShotFixture.shot1.id, dependency: .stub())
           Stubber.stub(shotService.shot) { _ in .just(ShotFixture.shot1) }
           Stubber.stub(shotService.isLiked) { _ in .just(true) }
           Stubber.stub(shotService.comments) { _ in .just(List(items: [])) }
@@ -115,10 +115,7 @@ final class ShotViewReactorSpec: QuickSpec {
 
         context("when initialized without a shot") {
           it("doesn't exist") {
-            let reactor = ShotViewReactor(
-              shotID: ShotFixture.shot1.id,
-              shotService: shotService
-            )
+            let reactor = ShotViewReactor(shotID: ShotFixture.shot1.id, dependency: .stub())
             let section = shotSection(from: reactor)
             expect(section?.items).to(beNil())
           }
@@ -126,11 +123,7 @@ final class ShotViewReactorSpec: QuickSpec {
 
         context("when initialized without a shot") {
           it("exists") {
-            let reactor = ShotViewReactor(
-              shotID: ShotFixture.shot1.id,
-              shot: ShotFixture.shot1,
-              shotService: shotService
-            )
+            let reactor = ShotViewReactor(shotID: ShotFixture.shot1.id, shot: ShotFixture.shot1, dependency: .stub())
             let section = shotSection(from: reactor)
             expect(section?.items).notTo(beEmpty())
           }
@@ -142,11 +135,7 @@ final class ShotViewReactorSpec: QuickSpec {
 
           beforeEach {
             Stubber.stub(shotService.shot) { _ in .just(ShotFixture.shot1) }
-            reactor = ShotViewReactor(
-              shotID: ShotFixture.shot1.id,
-              shot: ShotFixture.shot1,
-              shotService: shotService
-            )
+            reactor = ShotViewReactor(shotID: ShotFixture.shot1.id, shot: ShotFixture.shot1, dependency: .stub())
             section = shotSection(from: reactor)
           }
 
@@ -205,11 +194,7 @@ final class ShotViewReactorSpec: QuickSpec {
 
         context("when initialized") {
           it("has an activity indicator item") {
-            let reactor = ShotViewReactor(
-              shotID: ShotFixture.shot1.id,
-              shot: ShotFixture.shot1,
-              shotService: shotService
-            )
+            let reactor = ShotViewReactor(shotID: ShotFixture.shot1.id, shot: ShotFixture.shot1, dependency: .stub())
             let section = commentSection(from: reactor)
             expect(section?.items.count) == 1
             expect(section?.items).to(contain) {
@@ -228,10 +213,7 @@ final class ShotViewReactorSpec: QuickSpec {
           beforeEach {
             Stubber.stub(shotService.shot) { _ in .just(ShotFixture.shot1) }
             Stubber.stub(shotService.isLiked) { _ in .just(true) }
-            reactor = ShotViewReactor(
-              shotID: ShotFixture.shot1.id,
-              shotService: shotService
-            )
+            reactor = ShotViewReactor(shotID: ShotFixture.shot1.id, dependency: .stub())
           }
 
           context("with no comments") {

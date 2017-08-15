@@ -10,16 +10,23 @@ import RxSwift
 
 import ReactorKit
 
-final class ShotViewReactionCellReactor: Reactor, ServiceContainer {
+final class ShotViewReactionCellReactor: Reactor {
   typealias Action = NoAction
 
+  struct Dependency {
+    let likeButtonViewReactorFactory: (Shot) -> ShotViewReactionLikeButtonViewReactor
+    let commentButtonViewReactorFactory: (Shot) -> ShotViewReactionCommentButtonViewReactor
+  }
+
+  fileprivate let dependency: Dependency
   let initialState: Void = Void()
   let likeButtonViewReactor: ShotViewReactionButtonViewReactor
   let commentButtonViewReactor: ShotViewReactionButtonViewReactor
 
-  init(shot: Shot) {
-    self.likeButtonViewReactor = ShotViewReactionLikeButtonViewReactor(shot: shot)
-    self.commentButtonViewReactor = ShotViewReactionCommentButtonViewReactor(shot: shot)
+  init(shot: Shot, dependency: Dependency) {
+    self.dependency = dependency
+    self.likeButtonViewReactor = dependency.likeButtonViewReactorFactory(shot)
+    self.commentButtonViewReactor = dependency.commentButtonViewReactorFactory(shot)
     _ = self.state
   }
 }

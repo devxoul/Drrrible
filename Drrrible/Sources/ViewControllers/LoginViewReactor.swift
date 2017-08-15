@@ -11,7 +11,7 @@ import RxCocoa
 import RxSwift
 import RxSwiftUtilities
 
-final class LoginViewReactor: Reactor, ServiceContainer {
+final class LoginViewReactor: Reactor {
   enum Action {
     case login
   }

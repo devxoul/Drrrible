@@ -10,7 +10,7 @@ import ReactorKit
 import RxCocoa
 import RxSwift
 
-final class SettingItemCellReactor: Reactor, ServiceContainer {
+final class SettingItemCellReactor: Reactor {
   typealias Action = NoAction
   struct State {
     var text: String?
