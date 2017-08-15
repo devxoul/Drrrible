@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0303CACC1F43267B00FF2E77 /* ShotViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0303CACB1F43267B00FF2E77 /* ShotViewControllerSpec.swift */; };
+		0303CAE81F4333EE00FF2E77 /* StubAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0303CAE71F4333EE00FF2E77 /* StubAnalytics.swift */; };
 		031EB0591E6FED65004D6349 /* URLNavigationMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EB0581E6FED65004D6349 /* URLNavigationMap.swift */; };
 		031EB05B1E6FEFE7004D6349 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EB05A1E6FEFE7004D6349 /* AuthService.swift */; };
 		031EB0631E6FF7A9004D6349 /* AccessToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EB0621E6FF7A9004D6349 /* AccessToken.swift */; };
@@ -134,6 +136,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0303CACB1F43267B00FF2E77 /* ShotViewControllerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShotViewControllerSpec.swift; sourceTree = "<group>"; };
+		0303CAE71F4333EE00FF2E77 /* StubAnalytics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StubAnalytics.swift; sourceTree = "<group>"; };
 		031EB0581E6FED65004D6349 /* URLNavigationMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLNavigationMap.swift; sourceTree = "<group>"; };
 		031EB05A1E6FEFE7004D6349 /* AuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		031EB0621E6FF7A9004D6349 /* AccessToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccessToken.swift; sourceTree = "<group>"; };
@@ -281,6 +285,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0303CAE61F4333E800FF2E77 /* Analytics */ = {
+			isa = PBXGroup;
+			children = (
+				0303CAE71F4333EE00FF2E77 /* StubAnalytics.swift */,
+			);
+			path = Analytics;
+			sourceTree = "<group>";
+		};
 		031EB0701E7005B4004D6349 /* Logging */ = {
 			isa = PBXGroup;
 			children = (
@@ -300,6 +312,7 @@
 		036CDD881F239A02006C91CC /* Stubs */ = {
 			isa = PBXGroup;
 			children = (
+				0303CAE61F4333E800FF2E77 /* Analytics */,
 				036CDD891F239A02006C91CC /* Services */,
 				03E147671F24787C0018D96D /* Views */,
 				036CDD8F1F239A02006C91CC /* StubAppDelegate.swift */,
@@ -369,6 +382,7 @@
 				03D997281E819012004773AE /* ShotListViewReactorSpec.swift */,
 				034195071F23A807003B5DEE /* ShotListViewControllerTests.swift */,
 				03C629CA1F28C0DA008B4097 /* ShotViewReactorSpec.swift */,
+				0303CACB1F43267B00FF2E77 /* ShotViewControllerSpec.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -897,6 +911,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0303CAE81F4333EE00FF2E77 /* StubAnalytics.swift in Sources */,
 				036CDD771F236615006C91CC /* LoginViewControllerSpec.swift in Sources */,
 				03E1DC7F1F42FACC003E9F7A /* Matchers.swift in Sources */,
 				036CDD971F239A02006C91CC /* StubError.swift in Sources */,
@@ -914,6 +929,7 @@
 				03D997291E819012004773AE /* ShotListViewReactorSpec.swift in Sources */,
 				036CDD931F239A02006C91CC /* StubShotService.swift in Sources */,
 				034D832F1F246BD700975F2F /* StubImageDownloader.swift in Sources */,
+				0303CACC1F43267B00FF2E77 /* ShotViewControllerSpec.swift in Sources */,
 				034D335C1EA69C95004498FB /* TestConfiguration.swift in Sources */,
 				03C629CB1F28C0DA008B4097 /* ShotViewReactorSpec.swift in Sources */,
 				03D996FB1E811EC5004773AE /* SplashViewReactorSpec.swift in Sources */,

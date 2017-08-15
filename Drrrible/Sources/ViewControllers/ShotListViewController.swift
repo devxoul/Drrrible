@@ -134,7 +134,7 @@ final class ShotListViewController: BaseViewController, View {
 
     // View
     self.rx.viewDidAppear
-      .subscribe(onNext: { _ in analytics.log(event: .viewShotList) })
+      .subscribe(onNext: { _ in analytics.log(.viewShotList) })
       .disposed(by: self.disposeBag)
   }
 

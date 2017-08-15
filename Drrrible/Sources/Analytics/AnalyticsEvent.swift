@@ -9,6 +9,8 @@
 import Firebase
 import Umbrella
 
+typealias DrrribleAnalytics = Umbrella.Analytics<AnalyticsEvent>
+
 enum AnalyticsEvent {
   case tryLogin
   case login

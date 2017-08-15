@@ -12,9 +12,16 @@ import ReactorKit
 import ReusableKit
 import RxCocoa
 import RxDataSources
+import Umbrella
 import URLNavigator
 
 final class ShotViewController: BaseViewController, View {
+
+  // MARK: Types
+
+  struct Dependency {
+    let analytics: DrrribleAnalytics
+  }
 
   // MARK: Constants
 
@@ -33,13 +40,14 @@ final class ShotViewController: BaseViewController, View {
 
   // MARK: Properties
 
+  fileprivate let dependency: Dependency
   fileprivate let dataSource = RxCollectionViewSectionedReloadDataSource<ShotViewSection>()
 
 
   // MARK: UI
 
-  fileprivate let refreshControl = UIRefreshControl()
-  fileprivate let collectionView = UICollectionView(
+  let refreshControl = UIRefreshControl()
+  let collectionView = UICollectionView(
     frame: .zero,
     collectionViewLayout: UICollectionViewFlowLayout()
   ).then {
@@ -56,8 +64,9 @@ final class ShotViewController: BaseViewController, View {
 
   // MARK: Initializing
 
-  init(reactor: ShotViewReactor) {
+  init(reactor: ShotViewReactor, dependency: Dependency) {
     defer { self.reactor = reactor }
+    self.dependency = dependency
     super.init()
     self.title = "shot".localized
   }
@@ -149,8 +158,8 @@ final class ShotViewController: BaseViewController, View {
 
     // View
     self.rx.viewDidAppear
-      .subscribe(onNext: { _ in
-        analytics.log(event: .viewShot(shotID: reactor.currentState.shotID))
+      .subscribe(onNext: { [weak self] _ in
+        self?.dependency.analytics.log(.viewShot(shotID: reactor.currentState.shotID))
       })
       .disposed(by: self.disposeBag)
   }
@@ -162,9 +171,10 @@ final class ShotViewController: BaseViewController, View {
 
 extension ShotViewController: URLNavigable {
   convenience init?(navigation: Navigation) {
+    guard let dependency = navigation.mappingContext as? Dependency else { return nil }
     guard let shotID = navigation.values["id"] as? Int else { return nil }
     let reactor = ShotViewReactor(shotID: shotID, shotService: ShotService())
-    self.init(reactor: reactor)
+    self.init(reactor: reactor, dependency: dependency)
   }
 }
 
@@ -172,7 +182,6 @@ extension ShotViewController: URLNavigable {
 // MARK: - UICollectionViewDelegateFlowLayout
 
 extension ShotViewController: UICollectionViewDelegateFlowLayout {
-
   func collectionView(
     _ collectionView: UICollectionView,
     layout collectionViewLayout: UICollectionViewLayout,
@@ -208,5 +217,4 @@ extension ShotViewController: UICollectionViewDelegateFlowLayout {
       return CollectionActivityIndicatorCell.size(width: sectionWidth)
     }
   }
-
 }

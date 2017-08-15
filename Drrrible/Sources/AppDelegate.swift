@@ -59,7 +59,9 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     window.backgroundColor = .white
     window.makeKeyAndVisible()
 
-    URLNavigationMap.initialize()
+    URLNavigationMap.initialize(
+      shotViewControllerDependency: .init(analytics: analytics)
+    )
 
     let authService = AuthService()
     let userService = UserService()
@@ -78,7 +80,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
             shot: shot,
             shotService: shotService
           )
-          return ShotViewController(reactor: reactor)
+          return ShotViewController(reactor: reactor, dependency: .init(analytics: analytics))
         }
       )
       let shotListViewController = ShotListViewController(

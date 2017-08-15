@@ -44,6 +44,7 @@ target 'Drrrible' do
   # Logging
   pod 'CocoaLumberjack/Swift'
   pod 'Umbrella'
+  pod 'Umbrella/Firebase'
 
   # Misc.
   pod 'Then'

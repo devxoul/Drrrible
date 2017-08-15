@@ -84,20 +84,10 @@ PODS:
   - TouchAreaInsets (1.0.0)
   - TTTAttributedLabel (2.0.0)
   - UITextView+Placeholder (1.2.0)
-  - Umbrella (0.3.1):
-    - Umbrella/Answers (= 0.3.1)
-    - Umbrella/Core (= 0.3.1)
-    - Umbrella/Firebase (= 0.3.1)
-    - Umbrella/Flurry (= 0.3.1)
-    - Umbrella/Mixpanel (= 0.3.1)
-  - Umbrella/Answers (0.3.1):
-    - Umbrella/Core
-  - Umbrella/Core (0.3.1)
-  - Umbrella/Firebase (0.3.1):
-    - Umbrella/Core
-  - Umbrella/Flurry (0.3.1):
-    - Umbrella/Core
-  - Umbrella/Mixpanel (0.3.1):
+  - Umbrella (0.5.2):
+    - Umbrella/Core (= 0.5.2)
+  - Umbrella/Core (0.5.2)
+  - Umbrella/Firebase (0.5.2):
     - Umbrella/Core
   - URLNavigator (1.2.0)
   - WebLinking (1.1.0)
@@ -143,6 +133,7 @@ DEPENDENCIES:
   - TTTAttributedLabel
   - UITextView+Placeholder
   - Umbrella
+  - Umbrella/Firebase
   - URLNavigator
   - WebLinking (from `https://github.com/kylef/WebLinking.swift`, commit `fddbacc30deab8afe12ce1d3b78bd27c593a0c29`)
 
@@ -199,10 +190,10 @@ SPEC CHECKSUMS:
   TouchAreaInsets: 01a873de4bac294e502bd07219f82bd18866eeee
   TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
   UITextView+Placeholder: 77680995fcdd07c3f52ec92fe1150874a2ac89ff
-  Umbrella: 896008d98f64099b03ce8ea49ff7b4cb2f9f1b48
+  Umbrella: 628d75bc1df33f45f81af268a83412a89623a68d
   URLNavigator: 3ff788c985a0aae654e7de4959c4b0ea8a45f022
   WebLinking: 3f71787c14a225148e8be29fe6e7c98597cbc459
 
-PODFILE CHECKSUM: 2b7b51a217610d205aa61e3bd766226befc2177f
+PODFILE CHECKSUM: 6789c164c99b2c24e58e044e58baaf049488ea9f
 
 COCOAPODS: 1.2.0

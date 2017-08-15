@@ -25,10 +25,10 @@ final class ShotViewReactionLikeButtonViewReactor: ShotViewReactionButtonViewRea
     case .toggleReaction:
       if self.currentState.isReacted != true {
         _ = self.shotService.like(shotID: self.shotID).subscribe()
-        analytics.log(event: .likeShot(shotID: self.shotID))
+        analytics.log(.likeShot(shotID: self.shotID))
       } else {
         _ = self.shotService.unlike(shotID: self.shotID).subscribe()
-        analytics.log(event: .unlikeShot(shotID: self.shotID))
+        analytics.log(.unlikeShot(shotID: self.shotID))
       }
       return .empty()
     }
