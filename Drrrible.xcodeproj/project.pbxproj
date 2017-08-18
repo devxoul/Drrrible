@@ -88,6 +88,7 @@
 		038B690D1E72A752006B44F9 /* SettingItemCellReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038B690C1E72A752006B44F9 /* SettingItemCellReactor.swift */; };
 		038B690F1E73153E006B44F9 /* UITableView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038B690E1E73153E006B44F9 /* UITableView+Rx.swift */; };
 		038B69111E7318FE006B44F9 /* UICollectionView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038B69101E7318FE006B44F9 /* UICollectionView+Rx.swift */; };
+		039A70981F443DDE00891A31 /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039A70971F443DDE00891A31 /* Entry.swift */; };
 		03A60A8A1EC1D0090053FD0D /* Array+SectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A60A891EC1D0090053FD0D /* Array+SectionModel.swift */; };
 		03A60A8C1EC1DAD10053FD0D /* UIView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A60A8B1EC1DAD10053FD0D /* UIView+Rx.swift */; };
 		03C629CB1F28C0DA008B4097 /* ShotViewReactorSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C629CA1F28C0DA008B4097 /* ShotViewReactorSpec.swift */; };
@@ -221,6 +222,7 @@
 		038B690C1E72A752006B44F9 /* SettingItemCellReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingItemCellReactor.swift; sourceTree = "<group>"; };
 		038B690E1E73153E006B44F9 /* UITableView+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Rx.swift"; sourceTree = "<group>"; };
 		038B69101E7318FE006B44F9 /* UICollectionView+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Rx.swift"; sourceTree = "<group>"; };
+		039A70971F443DDE00891A31 /* Entry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entry.swift; sourceTree = "<group>"; };
 		03A60A891EC1D0090053FD0D /* Array+SectionModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+SectionModel.swift"; sourceTree = "<group>"; };
 		03A60A8B1EC1DAD10053FD0D /* UIView+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Rx.swift"; sourceTree = "<group>"; };
 		03C629CA1F28C0DA008B4097 /* ShotViewReactorSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShotViewReactorSpec.swift; sourceTree = "<group>"; };
@@ -470,6 +472,7 @@
 			children = (
 				034D335F1EA69E1D004498FB /* main.swift */,
 				03DF94E71E6EA76A00E31665 /* AppDelegate.swift */,
+				039A70971F443DDE00891A31 /* Entry.swift */,
 				03ED15671EEABA86006E1638 /* Analytics */,
 				03DF94F91E6EA80A00E31665 /* Networking */,
 				03DF94FC1E6EA80A00E31665 /* Services */,
@@ -934,7 +937,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "ruby ${PODS_ROOT}/Carte/Sources/Carte/carte.rb post";
-			showEnvVarsInLog = 1;
 		};
 		B01C95CE2B14068F091C60D3 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1072,7 +1074,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "ruby ${PODS_ROOT}/Carte/Sources/Carte/carte.rb pre";
-			showEnvVarsInLog = 1;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1151,6 +1152,7 @@
 				038B68F71E71ED90006B44F9 /* Paging.swift in Sources */,
 				0365BB8A1E747D22009BA3F8 /* ShotViewTextCell.swift in Sources */,
 				038B690D1E72A752006B44F9 /* SettingItemCellReactor.swift in Sources */,
+				039A70981F443DDE00891A31 /* Entry.swift in Sources */,
 				03A60A8C1EC1DAD10053FD0D /* UIView+Rx.swift in Sources */,
 				031EB0671E6FFDE3004D6349 /* Shot.swift in Sources */,
 				0365BBA01E758BB4009BA3F8 /* ModelStream.swift in Sources */,
