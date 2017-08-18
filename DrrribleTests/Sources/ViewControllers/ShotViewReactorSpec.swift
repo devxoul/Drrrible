@@ -62,7 +62,7 @@ final class ShotViewReactorSpec: QuickSpec {
       context("while refreshing a shot") {
         it("is refreshing") {
           let reactor = ShotViewReactor(shotID: ShotFixture.shot1.id, dependency: .stub())
-          Stubber.stub(shotService.shot) { _ in .never() }
+          Stubber.register(shotService.shot) { _ in .never() }
           reactor.action.onNext(.refresh)
           expect(reactor.currentState.isRefreshing) == true
         }
@@ -71,8 +71,8 @@ final class ShotViewReactorSpec: QuickSpec {
       context("while refreshing a like status") {
         it("is not refreshing") {
           let reactor = ShotViewReactor(shotID: ShotFixture.shot1.id, dependency: .stub())
-          Stubber.stub(shotService.shot) { _ in .just(ShotFixture.shot1) }
-          Stubber.stub(shotService.isLiked) { _ in .never() }
+          Stubber.register(shotService.shot) { _ in .just(ShotFixture.shot1) }
+          Stubber.register(shotService.isLiked) { _ in .never() }
           reactor.action.onNext(.refresh)
           expect(reactor.currentState.isRefreshing) == false
         }
@@ -81,9 +81,9 @@ final class ShotViewReactorSpec: QuickSpec {
       context("while refreshing comments") {
         it("is not refreshing") {
           let reactor = ShotViewReactor(shotID: ShotFixture.shot1.id, dependency: .stub())
-          Stubber.stub(shotService.shot) { _ in .just(ShotFixture.shot1) }
-          Stubber.stub(shotService.isLiked) { _ in .just(true) }
-          Stubber.stub(shotService.comments) { _ in .never() }
+          Stubber.register(shotService.shot) { _ in .just(ShotFixture.shot1) }
+          Stubber.register(shotService.isLiked) { _ in .just(true) }
+          Stubber.register(shotService.comments) { _ in .never() }
           reactor.action.onNext(.refresh)
           expect(reactor.currentState.isRefreshing) == false
         }
@@ -92,9 +92,9 @@ final class ShotViewReactorSpec: QuickSpec {
       context("after refreshing") {
         it("is not refreshing") {
           let reactor = ShotViewReactor(shotID: ShotFixture.shot1.id, dependency: .stub())
-          Stubber.stub(shotService.shot) { _ in .just(ShotFixture.shot1) }
-          Stubber.stub(shotService.isLiked) { _ in .just(true) }
-          Stubber.stub(shotService.comments) { _ in .just(List(items: [])) }
+          Stubber.register(shotService.shot) { _ in .just(ShotFixture.shot1) }
+          Stubber.register(shotService.isLiked) { _ in .just(true) }
+          Stubber.register(shotService.comments) { _ in .just(List(items: [])) }
           reactor.action.onNext(.refresh)
           expect(reactor.currentState.isRefreshing) == false
         }
@@ -134,7 +134,7 @@ final class ShotViewReactorSpec: QuickSpec {
           var section: ShotViewSection?
 
           beforeEach {
-            Stubber.stub(shotService.shot) { _ in .just(ShotFixture.shot1) }
+            Stubber.register(shotService.shot) { _ in .just(ShotFixture.shot1) }
             reactor = ShotViewReactor(shotID: ShotFixture.shot1.id, shot: ShotFixture.shot1, dependency: .stub())
             section = shotSection(from: reactor)
           }
@@ -211,14 +211,14 @@ final class ShotViewReactorSpec: QuickSpec {
           var reactor: ShotViewReactor!
 
           beforeEach {
-            Stubber.stub(shotService.shot) { _ in .just(ShotFixture.shot1) }
-            Stubber.stub(shotService.isLiked) { _ in .just(true) }
+            Stubber.register(shotService.shot) { _ in .just(ShotFixture.shot1) }
+            Stubber.register(shotService.isLiked) { _ in .just(true) }
             reactor = ShotViewReactor(shotID: ShotFixture.shot1.id, dependency: .stub())
           }
 
           context("with no comments") {
             it("doesn't exist") {
-              Stubber.stub(shotService.comments) { _ in .just(List(items: [])) }
+              Stubber.register(shotService.comments) { _ in .just(List(items: [])) }
               reactor.action.onNext(.refresh)
               let section = commentSection(from: reactor)
               expect(section).to(beNil())
@@ -227,7 +227,7 @@ final class ShotViewReactorSpec: QuickSpec {
 
           context("with a single comment") {
             it("has a comment item") {
-              Stubber.stub(shotService.comments) { _ in
+              Stubber.register(shotService.comments) { _ in
                 let comments = [CommentFixture.comment1]
                 return .just(List(items: comments))
               }
@@ -239,7 +239,7 @@ final class ShotViewReactorSpec: QuickSpec {
 
           context("with multiple comments") {
             it("has multiple comment items") {
-              Stubber.stub(shotService.comments) { _ in
+              Stubber.register(shotService.comments) { _ in
                 let comments = [CommentFixture.comment1, CommentFixture.comment2]
                 return .just(List(items: comments))
               }

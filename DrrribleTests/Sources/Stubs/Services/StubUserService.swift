@@ -16,6 +16,6 @@ final class StubUserService: UserServiceType {
   }
 
   func fetchMe() -> Observable<Void> {
-    return Stubber.stubbed(fetchMe, args: (), default: .empty())
+    return Stubber.invoke(fetchMe, args: (), default: .empty())
   }
 }

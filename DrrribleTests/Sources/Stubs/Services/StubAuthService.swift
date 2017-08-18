@@ -16,14 +16,14 @@ final class StubAuthService: AuthServiceType {
   }
 
   func authorize() -> Observable<Void> {
-    return Stubber.stubbed(authorize, args: (), default: .empty())
+    return Stubber.invoke(authorize, args: (), default: .empty())
   }
 
   func callback(code: String) {
-    Stubber.stubbed(callback, args: code, default: Void())
+    Stubber.invoke(callback, args: code, default: Void())
   }
 
   func logout() {
-    Stubber.stubbed(logout, args: (), default: Void())
+    Stubber.invoke(logout, args: (), default: Void())
   }
 }

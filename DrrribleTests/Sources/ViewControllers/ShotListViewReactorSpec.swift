@@ -54,7 +54,7 @@ final class ShotListViewReactorSpec: QuickSpec {
 
       it("sets next url") {
       let nextURL = URL(string: "https://example.com")!
-        Stubber.stub(shotService.shots) { _ in
+        Stubber.register(shotService.shots) { _ in
           let shots = [ShotFixture.shot1, ShotFixture.shot2]
           return .just(List<Shot>(items: shots, nextURL: nextURL))
         }
@@ -65,7 +65,7 @@ final class ShotListViewReactorSpec: QuickSpec {
 
     context("when receives a load more action") {
       beforeEach {
-        Stubber.stub(shotService.shots) { paging in
+        Stubber.register(shotService.shots) { paging in
           switch paging {
           case .refresh:
             let shots = [ShotFixture.shot1]

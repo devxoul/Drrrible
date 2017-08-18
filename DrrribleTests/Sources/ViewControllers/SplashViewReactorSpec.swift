@@ -34,7 +34,7 @@ final class SplashViewReactorSpec: QuickSpec {
     describe("state.isAuthenticated") {
       context("when succeeds to fetch my profile") {
         it("is authenticated") {
-          Stubber.stub(userService.fetchMe) { .just() }
+          Stubber.register(userService.fetchMe) { .just() }
           reactor.action.onNext(.checkIfAuthenticated)
           expect(reactor.currentState.isAuthenticated) == true
         }
@@ -42,7 +42,7 @@ final class SplashViewReactorSpec: QuickSpec {
 
       context("when fails to fetch my profile") {
         it("is not authenticated") {
-          Stubber.stub(userService.fetchMe) { .error(StubError()) }
+          Stubber.register(userService.fetchMe) { .error(StubError()) }
           reactor.action.onNext(.checkIfAuthenticated)
           expect(reactor.currentState.isAuthenticated) == false
         }

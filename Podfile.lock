@@ -74,7 +74,7 @@ PODS:
     - RxCocoa (>= 3.0.0)
     - RxSwift (>= 3.0.0)
   - SnapKit (3.2.0)
-  - Stubber (0.4.1)
+  - Stubber (0.5.0)
   - SwiftyColor (1.0.0)
   - SwiftyImage (1.0.0)
   - Then (2.1.0)
@@ -176,7 +176,7 @@ SPEC CHECKSUMS:
   RxSwiftUtilities: 57e77c17b885931c37aa038f114f14fd1f478ac2
   RxViewController: 45aada3de70642e419b13b100ba395287859361b
   SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
-  Stubber: 723ab5c898be0671320124523e9dcfb40291b7dc
+  Stubber: 7b381ced124760fde48dff1b6589d3c9019208a7
   SwiftyColor: 7fa09db14051bc5d7f539e1c4576665975225992
   SwiftyImage: 79090f8b96057b3e91064de172936b97855086e6
   Then: 8496793c8fcac95482b943909b440724c7d8d82c

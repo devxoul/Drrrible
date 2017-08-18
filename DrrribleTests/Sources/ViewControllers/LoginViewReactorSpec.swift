@@ -40,11 +40,11 @@ final class LoginViewReactorSpec: QuickSpec {
     context("when receives an action.login") {
       it("tries to login") {
         var identifiers: [String] = []
-        Stubber.stub(authService.authorize) {
+        Stubber.register(authService.authorize) {
           identifiers.append("authorize")
           return .just()
         }
-        Stubber.stub(userService.fetchMe) {
+        Stubber.register(userService.fetchMe) {
           identifiers.append("fetchMe")
           return .just()
         }
@@ -58,7 +58,7 @@ final class LoginViewReactorSpec: QuickSpec {
     describe("state.isLoading") {
       context("while authorizing") {
         it("is loading") {
-          Stubber.stub(authService.authorize) { .never() }
+          Stubber.register(authService.authorize) { .never() }
           reactor.action.onNext(.login)
           expect(reactor.currentState.isLoading) == true
         }
@@ -66,7 +66,7 @@ final class LoginViewReactorSpec: QuickSpec {
 
       context("while fetching me") {
         it("is loading") {
-          Stubber.stub(userService.fetchMe) { .never() }
+          Stubber.register(userService.fetchMe) { .never() }
           reactor.action.onNext(.login)
           expect(reactor.currentState.isLoading) == true
         }
@@ -76,8 +76,8 @@ final class LoginViewReactorSpec: QuickSpec {
     describe("state.isLoggedIn") {
       context("when succeeds to authorize and fetch my profile") {
         it("is logged in") {
-          Stubber.stub(authService.authorize) { .just() }
-          Stubber.stub(userService.fetchMe) { .just() }
+          Stubber.register(authService.authorize) { .just() }
+          Stubber.register(userService.fetchMe) { .just() }
           reactor.action.onNext(.login)
           expect(reactor.currentState.isLoggedIn) == true
         }
@@ -85,8 +85,8 @@ final class LoginViewReactorSpec: QuickSpec {
 
       context("when fails to authorize") {
         it("is not logged in") {
-          Stubber.stub(authService.authorize) { .error(StubError()) }
-          Stubber.stub(userService.fetchMe) { .just() }
+          Stubber.register(authService.authorize) { .error(StubError()) }
+          Stubber.register(userService.fetchMe) { .just() }
           reactor.action.onNext(.login)
           expect(reactor.currentState.isLoggedIn) == false
         }
@@ -94,8 +94,8 @@ final class LoginViewReactorSpec: QuickSpec {
 
       context("when fails to fetch my profile") {
         it("is not logged in") {
-          Stubber.stub(authService.authorize) { .just() }
-          Stubber.stub(userService.fetchMe) { .error(StubError()) }
+          Stubber.register(authService.authorize) { .just() }
+          Stubber.register(userService.fetchMe) { .error(StubError()) }
           reactor.action.onNext(.login)
           expect(reactor.currentState.isLoggedIn) == false
         }
