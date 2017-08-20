@@ -39,30 +39,32 @@ final class ShotViewReactor: Reactor {
     }
   }
 
-  struct Dependency {
-    let shotService: ShotServiceType
-    let reactionCellReactorFactory: (Shot) -> ShotViewReactionCellReactor
-  }
-
   let initialState: State
   fileprivate var shotID: Int {
     return self.currentState.shotID
   }
 
-  fileprivate let dependency: Dependency
+  fileprivate let shotService: ShotServiceType
+  fileprivate let reactionCellReactorFactory: (Shot) -> ShotViewReactionCellReactor
 
-  init(shotID: Int, shot initialShot: Shot? = nil, dependency: Dependency) {
+  init(
+    shotID: Int,
+    shot initialShot: Shot? = nil,
+    shotService: ShotServiceType,
+    reactionCellReactorFactory: @escaping (Shot) -> ShotViewReactionCellReactor
+  ) {
     var initialState = State(shotID: shotID)
     if let shot = initialShot {
       initialState.shotSectionItems = [
         .image(ShotViewImageCellReactor(shot: shot)),
         .title(ShotViewTitleCellReactor(shot: shot)),
         .text(ShotViewTextCellReactor(shot: shot)),
-        .reaction(dependency.reactionCellReactorFactory(shot)),
+        .reaction(reactionCellReactorFactory(shot)),
       ]
     }
     self.initialState = initialState
-    self.dependency = dependency
+    self.shotService = shotService
+    self.reactionCellReactorFactory = reactionCellReactorFactory
     _ = self.state
   }
 
@@ -72,11 +74,11 @@ final class ShotViewReactor: Reactor {
       guard !self.currentState.isRefreshing else { return .empty() }
       return Observable.concat([
         Observable.just(.setRefreshing(true)),
-        self.dependency.shotService.shot(id: self.shotID).map(Mutation.setShot),
+        self.shotService.shot(id: self.shotID).map(Mutation.setShot),
         Observable.just(.setRefreshing(false)),
         Observable.concat([
-          self.dependency.shotService.isLiked(shotID: self.shotID).flatMap { _ in Observable.empty() },
-          self.dependency.shotService.comments(shotID: self.shotID).map { Mutation.setComments($0.items) },
+          self.shotService.isLiked(shotID: self.shotID).flatMap { _ in Observable.empty() },
+          self.shotService.comments(shotID: self.shotID).map { Mutation.setComments($0.items) },
         ]),
       ])
     }
@@ -94,7 +96,7 @@ final class ShotViewReactor: Reactor {
         .image(ShotViewImageCellReactor(shot: shot)),
         .title(ShotViewTitleCellReactor(shot: shot)),
         .text(ShotViewTextCellReactor(shot: shot)),
-        .reaction(self.dependency.reactionCellReactorFactory(shot)),
+        .reaction(self.reactionCellReactorFactory(shot)),
       ]
       return state
 

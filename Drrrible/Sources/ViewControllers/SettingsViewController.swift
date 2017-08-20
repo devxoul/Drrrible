@@ -16,13 +16,6 @@ import RxDataSources
 
 final class SettingsViewController: BaseViewController, View {
 
-  struct Dependency {
-    let analytics: DrrribleAnalytics
-    let versionViewControllerFactory: () -> VersionViewController
-    let presentLoginScreen: () -> Void
-  }
-
-
   // MARK: Constants
 
   fileprivate struct Reusable {
@@ -32,7 +25,9 @@ final class SettingsViewController: BaseViewController, View {
 
   // MARK: Properties
 
-  fileprivate let dependency: Dependency
+  fileprivate let analytics: DrrribleAnalytics
+  fileprivate let versionViewControllerFactory: () -> VersionViewController
+  fileprivate let presentLoginScreen: () -> Void
   fileprivate let dataSource = RxTableViewSectionedReloadDataSource<SettingsViewSection>()
 
 
@@ -45,9 +40,16 @@ final class SettingsViewController: BaseViewController, View {
 
   // MARK: Initializing
 
-  init(reactor: SettingsViewReactor, dependency: Dependency) {
+  init(
+    reactor: SettingsViewReactor,
+    analytics: DrrribleAnalytics,
+    versionViewControllerFactory: @escaping () -> VersionViewController,
+    presentLoginScreen: @escaping () -> Void
+  ) {
     defer { self.reactor = reactor }
-    self.dependency = dependency
+    self.analytics = analytics
+    self.versionViewControllerFactory = versionViewControllerFactory
+    self.presentLoginScreen = presentLoginScreen
     super.init()
     self.title = "settings".localized
     self.tabBarItem.image = UIImage(named: "tab-settings")
@@ -105,15 +107,15 @@ final class SettingsViewController: BaseViewController, View {
     reactor.state.map { $0.isLoggedOut }
       .distinctUntilChanged()
       .filter { $0 }
-      .do(onNext: { [weak self] _ in self?.dependency.analytics.log(.logout) })
+      .do(onNext: { [weak self] _ in self?.analytics.log(.logout) })
       .subscribe(onNext: { [weak self] _ in
-        self?.dependency.presentLoginScreen()
+        self?.presentLoginScreen()
       })
       .disposed(by: self.disposeBag)
 
     // View
     self.rx.viewDidAppear
-      .subscribe(onNext: { [weak self] _ in self?.dependency.analytics.log(.viewSettingList) })
+      .subscribe(onNext: { [weak self] _ in self?.analytics.log(.viewSettingList) })
       .disposed(by: self.disposeBag)
 
     self.tableView.rx.itemSelected(dataSource: self.dataSource)
@@ -121,7 +123,7 @@ final class SettingsViewController: BaseViewController, View {
         guard let `self` = self, let reactor = self.reactor else { return }
         switch sectionItem {
         case .version:
-          let viewController = self.dependency.versionViewControllerFactory()
+          let viewController = self.versionViewControllerFactory()
           self.navigationController?.pushViewController(viewController, animated: true)
 
         case .github:
@@ -139,7 +141,7 @@ final class SettingsViewController: BaseViewController, View {
           self.navigationController?.pushViewController(viewController, animated: true)
 
         case .logout:
-          self.dependency.analytics.log(.tryLogout)
+          self.analytics.log(.tryLogout)
           let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
           let logoutAction = UIAlertAction(title: "logout".localized, style: .destructive) { _ in
             reactor.action.onNext(.logout)

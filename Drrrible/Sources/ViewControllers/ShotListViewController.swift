@@ -14,12 +14,6 @@ import RxDataSources
 
 final class ShotListViewController: BaseViewController, View {
 
-  struct Dependency {
-    let analytics: DrrribleAnalytics
-    let shotTileCellDependency: ShotTileCell.Dependency
-  }
-
-
   // MARK: Constants
 
   fileprivate struct Reusable {
@@ -40,7 +34,8 @@ final class ShotListViewController: BaseViewController, View {
 
   // MARK: Properties
 
-  fileprivate let dependency: Dependency
+  fileprivate let analytics: DrrribleAnalytics
+  fileprivate let shotTileCellDependency: ShotTileCell.Dependency
   fileprivate let dataSource = RxCollectionViewSectionedReloadDataSource<ShotListViewSection>()
 
 
@@ -60,9 +55,14 @@ final class ShotListViewController: BaseViewController, View {
 
   // MARK: Initializing
 
-  init(reactor: ShotListViewReactor, dependency: Dependency) {
+  init(
+    reactor: ShotListViewReactor,
+    analytics: DrrribleAnalytics,
+    shotTileCellDependency: ShotTileCell.Dependency
+  ) {
     defer { self.reactor = reactor }
-    self.dependency = dependency
+    self.analytics = analytics
+    self.shotTileCellDependency = shotTileCellDependency
     super.init()
     self.title = "shots".localized
     self.tabBarItem.image = UIImage(named: "tab-shots")
@@ -100,7 +100,7 @@ final class ShotListViewController: BaseViewController, View {
       case .shotTile(let reactor):
         let cell = collectionView.dequeue(Reusable.shotTileCell, for: indexPath)
         guard let `self` = self else { return cell }
-        cell.dependency = self.dependency.shotTileCellDependency
+        cell.dependency = self.shotTileCellDependency
         cell.reactor = reactor
         return cell
       }
@@ -141,7 +141,7 @@ final class ShotListViewController: BaseViewController, View {
     // Analytics
     self.rx.viewDidAppear
       .subscribe(onNext: { [weak self] _ in
-        self?.dependency.analytics.log(.viewShotList)
+        self?.analytics.log(.viewShotList)
       })
       .disposed(by: self.disposeBag)
   }

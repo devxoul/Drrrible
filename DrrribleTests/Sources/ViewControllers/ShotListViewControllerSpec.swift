@@ -21,7 +21,11 @@ final class ShotListViewControllerSpec: QuickSpec {
         shotCellReactorFactory: ShotCellReactor.init
       )
       reactor.stub.isEnabled = true
-      viewController = ShotListViewController(reactor: reactor, dependency: .stub())
+      viewController = ShotListViewController(
+        reactor: reactor,
+        analytics: .stub(),
+        shotTileCellDependency: .stub()
+      )
       _ = viewController.view // make viewDidLoad() gets called
     }
 

@@ -31,15 +31,11 @@ final class SettingsViewReactor: Reactor {
     }
   }
 
-  struct Dependency {
-    let userService: UserServiceType
-  }
-
-  fileprivate let dependency: Dependency
+  fileprivate let userService: UserServiceType
   let initialState: State
 
-  init(dependency: Dependency) {
-    self.dependency = dependency
+  init(userService: UserServiceType) {
+    self.userService = userService
     let aboutSection = SettingsViewSection.about([
       .version(SettingItemCellReactor(
         text: "version".localized,
@@ -60,7 +56,7 @@ final class SettingsViewReactor: Reactor {
   }
 
   func transform(action: Observable<Action>) -> Observable<Action> {
-    let updateCurrentUsername = self.dependency.userService.currentUser
+    let updateCurrentUsername = self.userService.currentUser
       .map { Action.updateCurrentUsername($0?.name) }
     return Observable.of(action, updateCurrentUsername).merge()
   }

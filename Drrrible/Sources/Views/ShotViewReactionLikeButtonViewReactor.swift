@@ -10,15 +10,16 @@ import ReactorKit
 import RxSwift
 
 final class ShotViewReactionLikeButtonViewReactor: ShotViewReactionButtonViewReactor {
-  struct Dependency {
-    let shotService: ShotServiceType
-    let analytics: DrrribleAnalytics
-  }
+  fileprivate let shotService: ShotServiceType
+  fileprivate let analytics: DrrribleAnalytics
 
-  fileprivate let dependency: Dependency
-
-  init(shot: Shot, dependency: Dependency) {
-    self.dependency = dependency
+  init(
+    shot: Shot,
+    shotService: ShotServiceType,
+    analytics: DrrribleAnalytics
+  ) {
+    self.shotService = shotService
+    self.analytics = analytics
     let initialState = State(
       shotID: shot.id,
       isReacted: shot.isLiked,
@@ -32,11 +33,11 @@ final class ShotViewReactionLikeButtonViewReactor: ShotViewReactionButtonViewRea
     switch action {
     case .toggleReaction:
       if self.currentState.isReacted != true {
-        _ = self.dependency.shotService.like(shotID: self.shotID).subscribe()
-        self.dependency.analytics.log(.likeShot(shotID: self.shotID))
+        _ = self.shotService.like(shotID: self.shotID).subscribe()
+        self.analytics.log(.likeShot(shotID: self.shotID))
       } else {
-        _ = self.dependency.shotService.unlike(shotID: self.shotID).subscribe()
-        self.dependency.analytics.log(.unlikeShot(shotID: self.shotID))
+        _ = self.shotService.unlike(shotID: self.shotID).subscribe()
+        self.analytics.log(.unlikeShot(shotID: self.shotID))
       }
       return .empty()
     }

@@ -63,12 +63,14 @@ final class ShotTileCellSpec: QuickSpec {
       context("when taps") {
         it("navigates to a shot view controller") {
           var isShotViewControllerFactoryExecuted = false
-          cell.dependency = .stub(shotViewControllerFactory: { id, shot in
-            isShotViewControllerFactoryExecuted = true
-            let reactor = ShotViewReactor(shotID: id, shot: nil, dependency: .stub())
-            reactor.stub.isEnabled = true
-            return ShotViewController(reactor: reactor, dependency: .init(analytics: .init()))
-          })
+          cell.dependency = .stub(
+            shotViewControllerFactory: { id, shot in
+              isShotViewControllerFactoryExecuted = true
+              let reactor = ShotViewReactor.stub(shotID: id)
+              reactor.stub.isEnabled = true
+              return ShotViewController(reactor: reactor, analytics: .stub())
+            }
+          )
           cell.reactor = reactor
           let gestureRecognizer = cell.cardView.gestureRecognizers?.lazy.flatMap { $0 as? UITapGestureRecognizer }.first
           gestureRecognizer?.sendAction(withState: .ended)

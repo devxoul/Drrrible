@@ -25,15 +25,11 @@ final class VersionViewReactor: Reactor {
     var latestVersion: String?
   }
 
-  struct Dependency {
-    let appStoreService: AppStoreServiceType
-  }
-
-  fileprivate let dependency: Dependency
+  fileprivate let appStoreService: AppStoreServiceType
   let initialState = State()
 
-  init(dependency: Dependency) {
-    self.dependency = dependency
+  init(appStoreService: AppStoreServiceType) {
+    self.appStoreService = appStoreService
     _ = self.state
   }
 
@@ -42,7 +38,7 @@ final class VersionViewReactor: Reactor {
     case .checkForUpdates:
       let startLoading: Observable<Mutation> = .just(.setLoading(true))
       let clearLatestVersion: Observable<Mutation> = .just(.setLatestVersion(nil))
-      let setLatestVersion: Observable<Mutation> = self.dependency.appStoreService.latestVersion()
+      let setLatestVersion: Observable<Mutation> = self.appStoreService.latestVersion()
         .map { $0 ?? "⚠️" }
         .map(Mutation.setLatestVersion)
       let stopLoading: Observable<Mutation> = .just(.setLoading(false))

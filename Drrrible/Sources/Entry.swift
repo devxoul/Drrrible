@@ -35,52 +35,42 @@ final class Entry {
           let reactor = ShotViewReactor(
             shotID: id,
             shot: shot,
-            dependency: .init(
-              shotService: shotService,
-              reactionCellReactorFactory: { shot in
-                ShotViewReactionCellReactor(
-                  shot: shot,
-                  dependency: .init(
-                    likeButtonViewReactorFactory: { shot in
-                      ShotViewReactionLikeButtonViewReactor(
-                        shot: shot,
-                        dependency: .init(
-                          shotService: shotService,
-                          analytics: analytics
-                        )
-                      )
-                    },
-                    commentButtonViewReactorFactory: { shot in
-                      ShotViewReactionCommentButtonViewReactor(shot: shot)
-                    }
+            shotService: shotService,
+            reactionCellReactorFactory: { shot in
+              ShotViewReactionCellReactor(
+                shot: shot,
+                likeButtonViewReactorFactory: { shot in
+                  ShotViewReactionLikeButtonViewReactor(
+                    shot: shot,
+                    shotService: shotService,
+                    analytics: analytics
                   )
-                )
-              }
-            )
+                },
+                commentButtonViewReactorFactory: { shot in
+                  ShotViewReactionCommentButtonViewReactor(shot: shot)
+                }
+              )
+            }
           )
-          return ShotViewController(reactor: reactor, dependency: .init(analytics: analytics))
+          return ShotViewController(reactor: reactor, analytics: analytics)
         }
       )
       let shotListViewController = ShotListViewController(
         reactor: shotListViewReactor,
-        dependency: .init(
-          analytics: analytics,
-          shotTileCellDependency: shotTileCellDependency
-        )
+        analytics: analytics,
+        shotTileCellDependency: shotTileCellDependency
       )
       let mainTabBarController = MainTabBarController(
         reactor: MainTabBarViewReactor(),
         shotListViewController: shotListViewController,
         settingsViewController: SettingsViewController(
-          reactor: SettingsViewReactor(dependency: .init(userService: userService)),
-          dependency: .init(
-            analytics: analytics,
-            versionViewControllerFactory: {
-              let reactor = VersionViewReactor(dependency: .init(appStoreService: appStoreService))
-              return VersionViewController(reactor: reactor)
-            },
-            presentLoginScreen: presentLoginScreen
-          )
+          reactor: SettingsViewReactor(userService: userService),
+          analytics: analytics,
+          versionViewControllerFactory: {
+            let reactor = VersionViewReactor(appStoreService: appStoreService)
+            return VersionViewController(reactor: reactor)
+          },
+          presentLoginScreen: presentLoginScreen
         )
       )
       AppDelegate.shared.window?.rootViewController = mainTabBarController
@@ -89,10 +79,8 @@ final class Entry {
       let reactor = LoginViewReactor(authService: authService, userService: userService)
       AppDelegate.shared.window?.rootViewController = LoginViewController(
         reactor: reactor,
-        dependency: .init(
-          analytics: analytics,
-          presentMainScreen: presentMainScreen
-        )
+        analytics: analytics,
+        presentMainScreen: presentMainScreen
       )
     }
 

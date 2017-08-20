@@ -16,3 +16,9 @@ final class StubAnalytics: Analytics<AnalyticsEvent> {
     self.events.append(event)
   }
 }
+
+extension Analytics where Event == AnalyticsEvent {
+  static func stub() -> Analytics {
+    return StubAnalytics()
+  }
+}

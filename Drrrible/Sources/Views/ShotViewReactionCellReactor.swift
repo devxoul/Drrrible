@@ -13,20 +13,17 @@ import ReactorKit
 final class ShotViewReactionCellReactor: Reactor {
   typealias Action = NoAction
 
-  struct Dependency {
-    let likeButtonViewReactorFactory: (Shot) -> ShotViewReactionLikeButtonViewReactor
-    let commentButtonViewReactorFactory: (Shot) -> ShotViewReactionCommentButtonViewReactor
-  }
-
-  fileprivate let dependency: Dependency
   let initialState: Void = Void()
   let likeButtonViewReactor: ShotViewReactionButtonViewReactor
   let commentButtonViewReactor: ShotViewReactionButtonViewReactor
 
-  init(shot: Shot, dependency: Dependency) {
-    self.dependency = dependency
-    self.likeButtonViewReactor = dependency.likeButtonViewReactorFactory(shot)
-    self.commentButtonViewReactor = dependency.commentButtonViewReactorFactory(shot)
+  init(
+    shot: Shot,
+    likeButtonViewReactorFactory: (Shot) -> ShotViewReactionLikeButtonViewReactor,
+    commentButtonViewReactorFactory: (Shot) -> ShotViewReactionCommentButtonViewReactor
+  ) {
+    self.likeButtonViewReactor = likeButtonViewReactorFactory(shot)
+    self.commentButtonViewReactor = commentButtonViewReactorFactory(shot)
     _ = self.state
   }
 }

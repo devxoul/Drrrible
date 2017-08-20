@@ -17,12 +17,6 @@ import URLNavigator
 
 final class ShotViewController: BaseViewController, View {
 
-  // MARK: Types
-
-  struct Dependency {
-    let analytics: DrrribleAnalytics
-  }
-
   // MARK: Constants
 
   fileprivate struct Reusable {
@@ -40,7 +34,7 @@ final class ShotViewController: BaseViewController, View {
 
   // MARK: Properties
 
-  fileprivate let dependency: Dependency
+  fileprivate let analytics: DrrribleAnalytics
   fileprivate let dataSource = RxCollectionViewSectionedReloadDataSource<ShotViewSection>()
 
 
@@ -64,9 +58,9 @@ final class ShotViewController: BaseViewController, View {
 
   // MARK: Initializing
 
-  init(reactor: ShotViewReactor, dependency: Dependency) {
+  init(reactor: ShotViewReactor, analytics: DrrribleAnalytics) {
     defer { self.reactor = reactor }
-    self.dependency = dependency
+    self.analytics = analytics
     super.init()
     self.title = "shot".localized
   }
@@ -159,7 +153,7 @@ final class ShotViewController: BaseViewController, View {
     // View
     self.rx.viewDidAppear
       .subscribe(onNext: { [weak self] _ in
-        self?.dependency.analytics.log(.viewShot(shotID: reactor.currentState.shotID))
+        self?.analytics.log(.viewShot(shotID: reactor.currentState.shotID))
       })
       .disposed(by: self.disposeBag)
   }

@@ -27,7 +27,11 @@ final class LoginViewControllerSpec: QuickSpec {
       beforeEach {
         reactor = LoginViewReactor(authService: authService, userService: userService)
         reactor.stub.isEnabled = true
-        viewController = LoginViewController(reactor: reactor, dependency: .stub())
+        viewController = LoginViewController(
+          reactor: reactor,
+          analytics: .stub(),
+          presentMainScreen: {}
+        )
         _ = viewController.view
       }
 
@@ -52,7 +56,11 @@ final class LoginViewControllerSpec: QuickSpec {
       beforeEach {
         reactor = LoginViewReactor(authService: authService, userService: userService)
         reactor.stub.isEnabled = true
-        viewController = LoginViewController(reactor: reactor, dependency: .stub())
+        viewController = LoginViewController(
+          reactor: reactor,
+          analytics: .stub(),
+          presentMainScreen: {}
+        )
         _ = viewController.view
       }
 
@@ -104,10 +112,8 @@ final class LoginViewControllerSpec: QuickSpec {
         isPresentMainScreenExecuted = false
         viewController = LoginViewController(
           reactor: reactor,
-          dependency: .init(
-            analytics: StubAnalytics(),
-            presentMainScreen: { isPresentMainScreenExecuted = true }
-          )
+          analytics: StubAnalytics(),
+          presentMainScreen: { isPresentMainScreenExecuted = true }
         )
         _ = viewController.view
       }
@@ -144,7 +150,8 @@ final class LoginViewControllerSpec: QuickSpec {
         reactor.stub.isEnabled = true
         viewController = LoginViewController(
           reactor: reactor,
-          dependency: .init(analytics: analytics, presentMainScreen: {})
+          analytics: analytics,
+          presentMainScreen: {}
         )
         _ = viewController.view
       }

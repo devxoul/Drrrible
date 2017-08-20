@@ -1,22 +1,26 @@
 //
-//  ShotViewReactorDependency.swift
+//  StubShotViewReactor.swift
 //  Drrrible
 //
-//  Created by Suyeol Jeon on 16/08/2017.
+//  Created by Suyeol Jeon on 20/08/2017.
 //  Copyright © 2017 Suyeol Jeon. All rights reserved.
 //
 
 @testable import Drrrible
 
-extension ShotViewReactor.Dependency {
+extension ShotViewReactor {
   static func stub(
+    shotID: Int,
+    shot initialShot: Shot? = nil,
     shotService: ShotServiceType? = nil,
     reactionCellReactorFactory: ((Shot) -> ShotViewReactionCellReactor)? = nil
-  ) -> ShotViewReactor.Dependency {
+  ) -> ShotViewReactor {
     return .init(
+      shotID: shotID,
+      shot: initialShot,
       shotService: shotService ?? StubShotService(),
       reactionCellReactorFactory: reactionCellReactorFactory ?? { shot in
-        ShotViewReactionCellReactor(shot: shot, dependency: .stub())
+        ShotViewReactionCellReactor.stub(shot: shot)
       }
     )
   }
