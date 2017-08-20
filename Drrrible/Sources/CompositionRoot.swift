@@ -1,5 +1,5 @@
 //
-//  Entry.swift
+//  CompositionRoot.swift
 //  Drrrible
 //
 //  Created by Suyeol Jeon on 16/08/2017.
@@ -8,9 +8,9 @@
 
 import Umbrella
 
-final class Entry {
+final class CompositionRoot {
   /// Builds a dependency graph and returns an entry view controller.
-  static func resolve() -> UIViewController {
+  static func rootViewController() -> SplashViewController {
     let authService = AuthService()
     let networking = DrrribleNetworking(plugins: [AuthPlugin(authService: authService)])
     let appStoreService = AppStoreService()
