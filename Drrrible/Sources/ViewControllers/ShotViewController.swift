@@ -63,34 +63,6 @@ final class ShotViewController: BaseViewController, View {
     self.analytics = analytics
     super.init()
     self.title = "shot".localized
-  }
-  
-  required convenience init?(coder aDecoder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
-  }
-
-
-  // MARK: View Life Cycle
-
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    self.view.backgroundColor = .db_background
-
-    self.collectionView.addSubview(self.refreshControl)
-    self.view.addSubview(self.collectionView)
-  }
-
-  override func setupConstraints() {
-    self.collectionView.snp.makeConstraints { make in
-      make.edges.equalToSuperview()
-    }
-  }
-
-
-  // MARK: Configuring
-
-  func bind(reactor: ShotViewReactor) {
-    self.collectionView.rx.setDelegate(self).addDisposableTo(self.disposeBag)
 
     self.dataSource.configureCell = { dataSource, collectionView, indexPath, sectionItem in
       switch sectionItem {
@@ -123,7 +95,33 @@ final class ShotViewController: BaseViewController, View {
         return collectionView.dequeue(Reusable.activityIndicatorCell, for: indexPath)
       }
     }
+  }
+  
+  required convenience init?(coder aDecoder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
 
+
+  // MARK: View Life Cycle
+
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    self.view.backgroundColor = .db_background
+
+    self.collectionView.addSubview(self.refreshControl)
+    self.view.addSubview(self.collectionView)
+  }
+
+  override func setupConstraints() {
+    self.collectionView.snp.makeConstraints { make in
+      make.edges.equalToSuperview()
+    }
+  }
+
+
+  // MARK: Configuring
+
+  func bind(reactor: ShotViewReactor) {
     // Input
     self.rx.viewDidLoad
       .map { Reactor.Action.refresh }
@@ -151,6 +149,9 @@ final class ShotViewController: BaseViewController, View {
       .disposed(by: self.disposeBag)
 
     // View
+    self.collectionView.rx.setDelegate(self).addDisposableTo(self.disposeBag)
+
+    // Analytics
     self.rx.viewDidAppear
       .subscribe(onNext: { [weak self] _ in
         self?.analytics.log(.viewShot(shotID: reactor.currentState.shotID))
