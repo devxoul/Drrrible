@@ -48,7 +48,14 @@ PODS:
   - ReactorKit (0.5.1):
     - RxSwift (>= 3.0.0)
   - Result (3.2.1)
-  - ReusableKit (1.1.0)
+  - ReusableKit (1.3.0):
+    - ReusableKit/Core (= 1.3.0)
+    - ReusableKit/RxSwift (= 1.3.0)
+  - ReusableKit/Core (1.3.0)
+  - ReusableKit/RxSwift (1.3.0):
+    - ReusableKit/Core
+    - RxCocoa (>= 3.4)
+    - RxSwift (>= 3.4)
   - RxCocoa (3.4.0):
     - RxSwift (~> 3.4)
   - RxDataSources (1.0.3):
@@ -67,9 +74,6 @@ PODS:
     - RxCocoa (>= 3.0)
     - RxSwift (>= 3.0)
   - RxSwift (3.4.0)
-  - RxSwiftUtilities (1.0.1):
-    - RxCocoa (~> 3.0)
-    - RxSwift (~> 3.0)
   - RxViewController (0.1.0):
     - RxCocoa (>= 3.0.0)
     - RxSwift (>= 3.0.0)
@@ -117,7 +121,6 @@ DEPENDENCIES:
   - RxOptional
   - RxReusable
   - RxSwift
-  - RxSwiftUtilities
   - RxViewController
   - SnapKit
   - Stubber
@@ -165,7 +168,7 @@ SPEC CHECKSUMS:
   Quick: dafc587e21eed9f4cab3249b9f9015b0b7a7f71d
   ReactorKit: 42df9addbaad5ab1abd817893ef870bec86b3f86
   Result: 2453a22e5c5b11c0c3a478736e82cd02f763b781
-  ReusableKit: 89e743a120bab0d95848bff27e481833c2768905
+  ReusableKit: 4e4f45128985987555bde17abbf261c0a604f9f2
   RxCocoa: d14ef6b6029e1ddc6e966508c09289090de68ff9
   RxDataSources: a021a0e944ba5f7991259829d973afdbfa719c0b
   RxGesture: df17ca8be513640294c544b3165875e91de665ec
@@ -173,7 +176,6 @@ SPEC CHECKSUMS:
   RxOptional: b97b59183af80d1e729ac9e51d09a10be668d6a8
   RxReusable: c18e8e3b5f12a3292b76cc552dd946500f8d2c32
   RxSwift: 3789a1af753002a14edecdb698a2424624296a9c
-  RxSwiftUtilities: 57e77c17b885931c37aa038f114f14fd1f478ac2
   RxViewController: 45aada3de70642e419b13b100ba395287859361b
   SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
   Stubber: 7b381ced124760fde48dff1b6589d3c9019208a7
@@ -187,6 +189,6 @@ SPEC CHECKSUMS:
   URLNavigator: 3ff788c985a0aae654e7de4959c4b0ea8a45f022
   WebLinking: 3f71787c14a225148e8be29fe6e7c98597cbc459
 
-PODFILE CHECKSUM: 2cebd3cd580d4646f813e7d5af82b27a36da571b
+PODFILE CHECKSUM: 94ee7f642291c91ca10f0e7a1244cc6d1a0764fb
 
 COCOAPODS: 1.3.1

@@ -199,7 +199,7 @@ extension ShotListViewController: UICollectionViewDelegateFlowLayout {
     case .shotTile(let reactor):
       let columnCount = Constant.shotTileSectionColumnCount.f
       let cellWidth = (sectionWidth - Metric.shotTileSectionItemSpacing) / columnCount
-      return ShotTileCell.size(width: cellWidth, reactor: reactor)
+      return Reusable.shotTileCell.class.size(width: cellWidth, reactor: reactor)
     }
   }
 

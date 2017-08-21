@@ -181,22 +181,22 @@ extension ShotViewController: UICollectionViewDelegateFlowLayout {
     let sectionItem = self.dataSource[indexPath]
     switch sectionItem {
     case .image(let reactor):
-      return ShotViewImageCell.size(width: sectionWidth, reactor: reactor)
+      return Reusable.imageCell.class.size(width: sectionWidth, reactor: reactor)
 
     case .title(let reactor):
-      return ShotViewTitleCell.size(width: sectionWidth, reactor: reactor)
+      return Reusable.titleCell.class.size(width: sectionWidth, reactor: reactor)
 
     case .text(let reactor):
-      return ShotViewTextCell.size(width: sectionWidth, reactor: reactor)
+      return Reusable.textCell.class.size(width: sectionWidth, reactor: reactor)
 
     case .reaction(let reactor):
-      return ShotViewReactionCell.size(width: sectionWidth, reactor: reactor)
+      return Reusable.reactionCell.class.size(width: sectionWidth, reactor: reactor)
 
     case .comment(let reactor):
-      return ShotViewCommentCell.size(width: sectionWidth, reactor: reactor)
+      return Reusable.commentCell.class.size(width: sectionWidth, reactor: reactor)
 
     case .activityIndicator:
-      return CollectionActivityIndicatorCell.size(width: sectionWidth)
+      return Reusable.activityIndicatorCell.class.size(width: sectionWidth)
     }
   }
 }
