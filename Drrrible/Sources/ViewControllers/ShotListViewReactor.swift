@@ -9,7 +9,6 @@
 import ReactorKit
 import RxCocoa
 import RxSwift
-import RxSwiftUtilities
 
 final class ShotListViewReactor: Reactor {
   enum Action {

@@ -26,7 +26,6 @@ target 'Drrrible' do
   pod 'RxDataSources'
   pod 'RxOptional'
   pod 'RxKeyboard'
-  pod 'RxSwiftUtilities'
   pod 'RxReusable'
   pod 'RxGesture'
   pod 'RxViewController'
