@@ -12,6 +12,7 @@ import ReactorKit
 import ReusableKit
 import RxCocoa
 import RxDataSources
+import UICollectionViewFlexLayout
 import Umbrella
 import URLNavigator
 
@@ -26,6 +27,8 @@ final class ShotViewController: BaseViewController, View {
     static let reactionCell = ReusableCell<ShotViewReactionCell>()
     static let commentCell = ReusableCell<ShotViewCommentCell>()
     static let activityIndicatorCell = ReusableCell<CollectionActivityIndicatorCell>()
+    static let sectionBackgroundView = ReusableView<CollectionBorderedBackgroundView>()
+    static let itemBackgroundView = ReusableView<CollectionBorderedBackgroundView>()
   }
 
   fileprivate struct Metric {
@@ -43,7 +46,7 @@ final class ShotViewController: BaseViewController, View {
   let refreshControl = UIRefreshControl()
   let collectionView = UICollectionView(
     frame: .zero,
-    collectionViewLayout: UICollectionViewFlowLayout()
+    collectionViewLayout: UICollectionViewFlexLayout()
   ).then {
     $0.backgroundColor = .clear
     $0.alwaysBounceVertical = true
@@ -53,6 +56,8 @@ final class ShotViewController: BaseViewController, View {
     $0.register(Reusable.reactionCell)
     $0.register(Reusable.commentCell)
     $0.register(Reusable.activityIndicatorCell)
+    $0.register(Reusable.sectionBackgroundView, kind: UICollectionElementKindSectionBackground)
+    $0.register(Reusable.itemBackgroundView, kind: UICollectionElementKindItemBackground)
   }
 
 
@@ -66,33 +71,56 @@ final class ShotViewController: BaseViewController, View {
 
     self.dataSource.configureCell = { dataSource, collectionView, indexPath, sectionItem in
       switch sectionItem {
-      case .image(let reactor):
+      case let .image(cellReactor):
         let cell = collectionView.dequeue(Reusable.imageCell, for: indexPath)
-        cell.reactor = reactor
+        cell.reactor = cellReactor
         return cell
 
-      case .title(let reactor):
+      case let .title(cellReactor):
         let cell = collectionView.dequeue(Reusable.titleCell, for: indexPath)
-        cell.reactor = reactor
+        cell.reactor = cellReactor
         return cell
 
-      case .text(let reactor):
+      case let .text(cellReactor):
         let cell = collectionView.dequeue(Reusable.textCell, for: indexPath)
-        cell.reactor = reactor
+        cell.reactor = cellReactor
         return cell
 
-      case .reaction(let reactor):
+      case let .reaction(cellReactor):
         let cell = collectionView.dequeue(Reusable.reactionCell, for: indexPath)
-        cell.reactor = reactor
+        cell.reactor = cellReactor
         return cell
 
-      case .comment(let reactor):
+      case let .comment(cellReactor):
         let cell = collectionView.dequeue(Reusable.commentCell, for: indexPath)
-        cell.reactor = reactor
+        cell.reactor = cellReactor
         return cell
 
       case .activityIndicator:
         return collectionView.dequeue(Reusable.activityIndicatorCell, for: indexPath)
+      }
+    }
+
+    self.dataSource.supplementaryViewFactory = { dataSource, collectionView, kind, indexPath in
+      switch kind {
+      case UICollectionElementKindSectionBackground:
+        let view = collectionView.dequeue(Reusable.sectionBackgroundView, kind: kind, for: indexPath)
+        view.backgroundColor = .white
+        switch dataSource[indexPath.section] {
+        case .shot:
+          view.borderedLayer?.borders = [.top, .bottom]
+        case .comment:
+          view.borderedLayer?.borders = [.bottom]
+        }
+        return view
+
+      case UICollectionElementKindItemBackground:
+        let view = collectionView.dequeue(Reusable.itemBackgroundView, kind: kind, for: indexPath)
+        view.isHidden = true
+        return view
+
+      default:
+        fatalError()
       }
     }
   }
@@ -158,46 +186,116 @@ final class ShotViewController: BaseViewController, View {
       })
       .disposed(by: self.disposeBag)
   }
-
 }
 
 
-// MARK: - UICollectionViewDelegateFlowLayout
+// MARK: - UICollectionViewDelegateFlexLayout
 
-extension ShotViewController: UICollectionViewDelegateFlowLayout {
+extension ShotViewController: UICollectionViewDelegateFlexLayout {
   func collectionView(
     _ collectionView: UICollectionView,
-    layout collectionViewLayout: UICollectionViewLayout,
-    minimumLineSpacingForSectionAt section: Int
+    layout collectionViewLayout: UICollectionViewFlexLayout,
+    verticalSpacingBetweenSectionAt section: Int,
+    and nextSection: Int
   ) -> CGFloat {
     return 0
   }
 
   func collectionView(
     _ collectionView: UICollectionView,
-    layout collectionViewLayout: UICollectionViewLayout,
-    sizeForItemAt indexPath: IndexPath
-  ) -> CGSize {
-    let sectionWidth = collectionView.sectionWidth(at: indexPath.section)
+    layout collectionViewLayout: UICollectionViewFlexLayout,
+    paddingForSectionAt section: Int
+  ) -> UIEdgeInsets {
+    let section = self.dataSource[section]
+    switch section {
+    case .shot:
+      return UIEdgeInsets(top: 0, left: 10, bottom: 10, right: 10)
+
+    case .comment:
+      return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+    }
+  }
+
+  func collectionView(
+    _ collectionView: UICollectionView,
+    layout collectionViewLayout: UICollectionViewFlexLayout,
+    paddingForItemAt indexPath: IndexPath
+  ) -> UIEdgeInsets {
     let sectionItem = self.dataSource[indexPath]
     switch sectionItem {
-    case .image(let reactor):
-      return Reusable.imageCell.class.size(width: sectionWidth, reactor: reactor)
+    case .image:
+      let sectionPadding = self.collectionView(
+        collectionView,
+        layout: collectionViewLayout,
+        paddingForSectionAt: indexPath.section
+      )
+      return UIEdgeInsets(
+        top: 0,
+        left: -sectionPadding.left,
+        bottom: 0,
+        right: -sectionPadding.right
+      )
 
-    case .title(let reactor):
-      return Reusable.titleCell.class.size(width: sectionWidth, reactor: reactor)
+    case .title:
+      return .zero
 
-    case .text(let reactor):
-      return Reusable.textCell.class.size(width: sectionWidth, reactor: reactor)
+    case .text:
+      return .zero
 
-    case .reaction(let reactor):
-      return Reusable.reactionCell.class.size(width: sectionWidth, reactor: reactor)
+    case .reaction:
+      return .zero
 
-    case .comment(let reactor):
-      return Reusable.commentCell.class.size(width: sectionWidth, reactor: reactor)
+    case .comment:
+      return .zero
 
     case .activityIndicator:
-      return Reusable.activityIndicatorCell.class.size(width: sectionWidth)
+      return .zero
+    }
+  }
+
+  func collectionView(
+    _ collectionView: UICollectionView,
+    layout collectionViewLayout: UICollectionViewFlexLayout,
+    verticalSpacingBetweenItemAt indexPath: IndexPath,
+    and nextIndexPath: IndexPath
+  ) -> CGFloat {
+    switch (self.dataSource[indexPath], self.dataSource[nextIndexPath]) {
+    case (_, .activityIndicator): return 0
+    case (.image, _): return 10
+    case (.title, _): return 10
+    case (.text, _): return 10
+    case (.reaction, _): return 10
+    case (.comment, .comment): return 15
+    case (.comment, _): return 10
+    case (.activityIndicator, _): return 0
+    }
+  }
+
+  func collectionView(
+    _ collectionView: UICollectionView,
+    layout collectionViewLayout: UICollectionViewFlexLayout,
+    sizeForItemAt indexPath: IndexPath
+  ) -> CGSize {
+    let maxWidth = collectionViewLayout.maximumWidth(forItemAt: indexPath)
+    let sectionItem = self.dataSource[indexPath]
+    switch sectionItem {
+    case let .image(cellReactor):
+      return Reusable.imageCell.class.size(width: maxWidth, reactor: cellReactor)
+
+    case let .title(cellReactor):
+      return Reusable.titleCell.class.size(width: maxWidth, reactor: cellReactor)
+
+    case let .text(cellReactor):
+      return Reusable.textCell.class.size(width: maxWidth, reactor: cellReactor)
+
+    case let .reaction(cellReactor):
+      return Reusable.reactionCell.class.size(width: maxWidth, reactor: cellReactor)
+
+    case let .comment(cellReactor):
+      return Reusable.commentCell.class.size(width: maxWidth, reactor: cellReactor)
+
+    case .activityIndicator:
+      return Reusable.activityIndicatorCell.class.size(width: maxWidth)
     }
   }
 }

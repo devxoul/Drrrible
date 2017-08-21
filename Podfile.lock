@@ -84,6 +84,7 @@ PODS:
   - Then (2.1.0)
   - TouchAreaInsets (1.0.0)
   - TTTAttributedLabel (2.0.0)
+  - UICollectionViewFlexLayout (0.2.0)
   - UITextView+Placeholder (1.2.0)
   - Umbrella (0.5.2):
     - Umbrella/Core (= 0.5.2)
@@ -129,6 +130,7 @@ DEPENDENCIES:
   - Then
   - TouchAreaInsets
   - TTTAttributedLabel
+  - UICollectionViewFlexLayout
   - UITextView+Placeholder
   - Umbrella
   - Umbrella/Firebase
@@ -184,11 +186,12 @@ SPEC CHECKSUMS:
   Then: 8496793c8fcac95482b943909b440724c7d8d82c
   TouchAreaInsets: 01a873de4bac294e502bd07219f82bd18866eeee
   TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
+  UICollectionViewFlexLayout: 5be019df4f4d5bf084bc87d4b4a14b736c191819
   UITextView+Placeholder: 77680995fcdd07c3f52ec92fe1150874a2ac89ff
   Umbrella: 628d75bc1df33f45f81af268a83412a89623a68d
   URLNavigator: 3ff788c985a0aae654e7de4959c4b0ea8a45f022
   WebLinking: 3f71787c14a225148e8be29fe6e7c98597cbc459
 
-PODFILE CHECKSUM: 94ee7f642291c91ca10f0e7a1244cc6d1a0764fb
+PODFILE CHECKSUM: 3d26f0e30b4d36daf01a3f7e4cab539db9055cfd
 
 COCOAPODS: 1.3.1

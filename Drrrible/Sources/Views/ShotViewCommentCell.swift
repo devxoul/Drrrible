@@ -16,9 +16,6 @@ final class ShotViewCommentCell: BaseCollectionViewCell, View {
   // MARK: Constants
 
   fileprivate struct Metric {
-    static let paddingTopBottom = 10.f
-    static let paddingLeftRight = 15.f
-
     static let avatarViewSize = 30.f
     static let nameLabelLeft = 8.f
 
@@ -57,7 +54,6 @@ final class ShotViewCommentCell: BaseCollectionViewCell, View {
 
   override init(frame: CGRect) {
     super.init(frame: frame)
-    self.backgroundColor = .white
     self.contentView.addSubview(self.avatarView)
     self.contentView.addSubview(self.nameLabel)
     self.contentView.addSubview(self.messageLabel)
@@ -82,16 +78,10 @@ final class ShotViewCommentCell: BaseCollectionViewCell, View {
 
   class func size(width: CGFloat, reactor: ShotViewCommentCellReactor) -> CGSize {
     var height: CGFloat = 0
-    height += Metric.paddingTopBottom
     height += snap(Font.nameLabel.lineHeight)
-
-    let messageLabelMaxWidth = width
-      - Metric.paddingLeftRight * 2
-      - Metric.avatarViewSize
-      - Metric.messageLabelLeft
+    let messageLabelMaxWidth = width - Metric.avatarViewSize - Metric.messageLabelLeft
     height += Metric.messageLabelTop
     height += reactor.currentState.message.height(thatFitsWidth: messageLabelMaxWidth)
-    height += Metric.paddingTopBottom
     return CGSize(width: width, height: height)
   }
 
@@ -101,23 +91,16 @@ final class ShotViewCommentCell: BaseCollectionViewCell, View {
   override func layoutSubviews() {
     super.layoutSubviews()
 
-    self.avatarView.top = Metric.paddingTopBottom
-    self.avatarView.left = Metric.paddingLeftRight
     self.avatarView.width = Metric.avatarViewSize
     self.avatarView.height = Metric.avatarViewSize
 
     self.nameLabel.sizeToFit()
-    self.nameLabel.top = Metric.paddingTopBottom
     self.nameLabel.left = self.avatarView.right + Metric.nameLabelLeft
-    self.nameLabel.width = min(
-      self.nameLabel.width,
-      self.contentView.width - self.nameLabel.left - Metric.paddingLeftRight
-    )
+    self.nameLabel.width = min(self.nameLabel.width, self.contentView.width - self.nameLabel.left)
 
     self.messageLabel.top = self.nameLabel.bottom + Metric.messageLabelTop
     self.messageLabel.left = self.avatarView.right + Metric.messageLabelLeft
-    self.messageLabel.width = self.contentView.width - self.messageLabel.left - Metric.paddingLeftRight
+    self.messageLabel.width = self.contentView.width - self.messageLabel.left
     self.messageLabel.sizeToFit()
   }
-
 }

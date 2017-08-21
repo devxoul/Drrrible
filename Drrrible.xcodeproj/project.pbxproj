@@ -21,6 +21,8 @@
 		031EB0781E700912004D6349 /* ObjectMapper+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EB0771E700912004D6349 /* ObjectMapper+Rx.swift */; };
 		031EB0821E70624D004D6349 /* AuthPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EB0811E70624D004D6349 /* AuthPlugin.swift */; };
 		031F92861EA55FA00025D5FB /* TestMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031F92851EA55FA00025D5FB /* TestMain.swift */; };
+		03208D8D1F4B00920073B266 /* CollectionBorderedBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03208D8C1F4B00920073B266 /* CollectionBorderedBackgroundView.swift */; };
+		03208D901F4B03E40073B266 /* UICollectionViewFlexLayout+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03208D8F1F4B03E40073B266 /* UICollectionViewFlexLayout+Rx.swift */; };
 		034195081F23A807003B5DEE /* ShotListViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034195071F23A807003B5DEE /* ShotListViewControllerSpec.swift */; };
 		034D334C1EA67119004498FB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 034D334B1EA67119004498FB /* GoogleService-Info.plist */; };
 		034D334E1EA67631004498FB /* AppStoreAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034D334D1EA67631004498FB /* AppStoreAPI.swift */; };
@@ -150,6 +152,8 @@
 		031EB0771E700912004D6349 /* ObjectMapper+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ObjectMapper+Rx.swift"; sourceTree = "<group>"; };
 		031EB0811E70624D004D6349 /* AuthPlugin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthPlugin.swift; sourceTree = "<group>"; };
 		031F92851EA55FA00025D5FB /* TestMain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestMain.swift; sourceTree = "<group>"; };
+		03208D8C1F4B00920073B266 /* CollectionBorderedBackgroundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionBorderedBackgroundView.swift; sourceTree = "<group>"; };
+		03208D8F1F4B03E40073B266 /* UICollectionViewFlexLayout+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UICollectionViewFlexLayout+Rx.swift"; sourceTree = "<group>"; };
 		034195071F23A807003B5DEE /* ShotListViewControllerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShotListViewControllerSpec.swift; sourceTree = "<group>"; };
 		034D334B1EA67119004498FB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		034D334D1EA67631004498FB /* AppStoreAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppStoreAPI.swift; sourceTree = "<group>"; };
@@ -518,6 +522,7 @@
 				038B690E1E73153E006B44F9 /* UITableView+Rx.swift */,
 				038B69101E7318FE006B44F9 /* UICollectionView+Rx.swift */,
 				035D06951E71C84700AFF030 /* RxOperators.swift */,
+				03208D8F1F4B03E40073B266 /* UICollectionViewFlexLayout+Rx.swift */,
 			);
 			path = Rx;
 			sourceTree = "<group>";
@@ -594,6 +599,7 @@
 				0377C55C1E74680700EE4576 /* BorderedLayer.swift */,
 				038B68F81E71F338006B44F9 /* CollectionActivityIndicatorView.swift */,
 				03D996D71E805DB6004773AE /* CollectionActivityIndicatorCell.swift */,
+				03208D8C1F4B00920073B266 /* CollectionBorderedBackgroundView.swift */,
 				035D068B1E71A40000AFF030 /* ShotTileCell.swift */,
 				035D068D1E71A48000AFF030 /* ShotCellReactor.swift */,
 				0377C5581E745D8300EE4576 /* ShotViewImageCell.swift */,
@@ -846,6 +852,7 @@
 				"${BUILT_PRODUCTS_DIR}/TTTAttributedLabel/TTTAttributedLabel.framework",
 				"${BUILT_PRODUCTS_DIR}/Then/Then.framework",
 				"${BUILT_PRODUCTS_DIR}/TouchAreaInsets/TouchAreaInsets.framework",
+				"${BUILT_PRODUCTS_DIR}/UICollectionViewFlexLayout/UICollectionViewFlexLayout.framework",
 				"${BUILT_PRODUCTS_DIR}/UITextView+Placeholder/UITextView_Placeholder.framework",
 				"${BUILT_PRODUCTS_DIR}/URLNavigator/URLNavigator.framework",
 				"${BUILT_PRODUCTS_DIR}/Umbrella/Umbrella.framework",
@@ -882,6 +889,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TTTAttributedLabel.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Then.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TouchAreaInsets.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UICollectionViewFlexLayout.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UITextView_Placeholder.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/URLNavigator.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Umbrella.framework",
@@ -920,7 +928,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "ruby ${PODS_ROOT}/Carte/Sources/Carte/carte.rb post";
-			showEnvVarsInLog = 1;
 		};
 		B01C95CE2B14068F091C60D3 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -958,6 +965,7 @@
 				"${BUILT_PRODUCTS_DIR}/TTTAttributedLabel/TTTAttributedLabel.framework",
 				"${BUILT_PRODUCTS_DIR}/Then/Then.framework",
 				"${BUILT_PRODUCTS_DIR}/TouchAreaInsets/TouchAreaInsets.framework",
+				"${BUILT_PRODUCTS_DIR}/UICollectionViewFlexLayout/UICollectionViewFlexLayout.framework",
 				"${BUILT_PRODUCTS_DIR}/UITextView+Placeholder/UITextView_Placeholder.framework",
 				"${BUILT_PRODUCTS_DIR}/URLNavigator/URLNavigator.framework",
 				"${BUILT_PRODUCTS_DIR}/Umbrella/Umbrella.framework",
@@ -997,6 +1005,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TTTAttributedLabel.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Then.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TouchAreaInsets.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UICollectionViewFlexLayout.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UITextView_Placeholder.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/URLNavigator.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Umbrella.framework",
@@ -1056,7 +1065,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "ruby ${PODS_ROOT}/Carte/Sources/Carte/carte.rb pre";
-			showEnvVarsInLog = 1;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1125,6 +1133,7 @@
 				03D996D81E805DB6004773AE /* CollectionActivityIndicatorCell.swift in Sources */,
 				035D06961E71C84700AFF030 /* RxOperators.swift in Sources */,
 				0388F5AF1EB7692200E92AFF /* UIImageView+Kingfisher.swift in Sources */,
+				03208D901F4B03E40073B266 /* UICollectionViewFlexLayout+Rx.swift in Sources */,
 				03A60A8A1EC1D0090053FD0D /* Array+SectionModel.swift in Sources */,
 				03DF95141E6EAB8E00E31665 /* UICollectionView+CellWidth.swift in Sources */,
 				03DF951F1E6EB7E200E31665 /* LoginViewReactor.swift in Sources */,
@@ -1172,6 +1181,7 @@
 				0365BB961E754424009BA3F8 /* ExclusiveGestureRecognizerDelegate.swift in Sources */,
 				0365BB981E754D9E009BA3F8 /* ShotViewReactionButtonView.swift in Sources */,
 				03DF95231E6EB80B00E31665 /* ShotListViewReactor.swift in Sources */,
+				03208D8D1F4B00920073B266 /* CollectionBorderedBackgroundView.swift in Sources */,
 				038B69111E7318FE006B44F9 /* UICollectionView+Rx.swift in Sources */,
 				03DF950B1E6EAB7900E31665 /* BaseViewController.swift in Sources */,
 				038B690B1E72A68B006B44F9 /* BaseTableViewCell.swift in Sources */,

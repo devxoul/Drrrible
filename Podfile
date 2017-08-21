@@ -35,6 +35,7 @@ target 'Drrrible' do
   pod 'ManualLayout'
   pod 'TTTAttributedLabel'
   pod 'TouchAreaInsets'
+  pod 'UICollectionViewFlexLayout'
 
   # Logging
   pod 'CocoaLumberjack/Swift'

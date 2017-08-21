@@ -13,15 +13,6 @@ import TTTAttributedLabel
 
 final class ShotViewTextCell: BaseCollectionViewCell, View {
 
-  // MARK: Constants
-
-  fileprivate struct Metric {
-    static let paddingTop = 0.f
-    static let paddingBottom = 10.f
-    static let paddingLeftRight = 15.f
-  }
-
-
   // MARK: UI
 
   fileprivate let label = TTTAttributedLabel(frame: .zero).then {
@@ -41,7 +32,6 @@ final class ShotViewTextCell: BaseCollectionViewCell, View {
 
   override init(frame: CGRect) {
     super.init(frame: frame)
-    self.backgroundColor = .white
     self.contentView.addSubview(self.label)
   }
 
@@ -63,9 +53,7 @@ final class ShotViewTextCell: BaseCollectionViewCell, View {
 
   class func size(width: CGFloat, reactor: ShotViewTextCellReactor) -> CGSize {
     guard let labelText = reactor.currentState.text else { return CGSize(width: width, height: 0) }
-    let labelWidth = width - Metric.paddingLeftRight * 2
-    let labelHeight = labelText.height(thatFitsWidth: labelWidth)
-    return CGSize(width: width, height: labelHeight + Metric.paddingTop + Metric.paddingBottom)
+    return CGSize(width: width, height: labelText.height(thatFitsWidth: width))
   }
 
 
@@ -73,10 +61,7 @@ final class ShotViewTextCell: BaseCollectionViewCell, View {
 
   override func layoutSubviews() {
     super.layoutSubviews()
-    self.label.top = Metric.paddingTop
-    self.label.left = Metric.paddingLeftRight
-    self.label.width = self.contentView.width - Metric.paddingLeftRight * 2
+    self.label.width = self.contentView.width
     self.label.sizeToFit()
   }
-
 }

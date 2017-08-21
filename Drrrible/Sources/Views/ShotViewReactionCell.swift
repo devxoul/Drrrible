@@ -15,18 +15,11 @@ final class ShotViewReactionCell: BaseCollectionViewCell, View {
   // MARK: Constants
 
   fileprivate struct Metric {
-    static let paddingTop = 5.f
-    static let paddingLeftRight = 15.f
-    static let paddingBottom = 10.f
     static let buttonViewSpacing = 10.f
   }
 
 
   // MARK: UI
-
-  override class var layerClass: AnyClass {
-    return BorderedLayer.self
-  }
 
   fileprivate let likeButtonView = ShotViewReactionButtonView(
     image: UIImage(named: "icon-like"),
@@ -41,8 +34,6 @@ final class ShotViewReactionCell: BaseCollectionViewCell, View {
 
   override init(frame: CGRect) {
     super.init(frame: frame)
-    self.backgroundColor = .white
-    self.borderedLayer?.borders = .bottom
     self.contentView.addSubview(self.likeButtonView)
     self.contentView.addSubview(self.commentButtonView)
   }
@@ -60,9 +51,7 @@ final class ShotViewReactionCell: BaseCollectionViewCell, View {
   // MARK: Size
 
   class func size(width: CGFloat, reactor: ShotViewReactionCellReactor) -> CGSize {
-    let buttonViewHeight = ShotViewReactionButtonView.height()
-    let height = Metric.paddingTop + buttonViewHeight + Metric.paddingBottom
-    return CGSize(width: width, height: height)
+    return CGSize(width: width, height: ShotViewReactionButtonView.height())
   }
 
 
@@ -70,10 +59,7 @@ final class ShotViewReactionCell: BaseCollectionViewCell, View {
 
   override func layoutSubviews() {
     super.layoutSubviews()
-
     self.likeButtonView.sizeToFit()
-    self.likeButtonView.left = Metric.paddingLeftRight
-
     self.commentButtonView.sizeToFit()
     self.commentButtonView.left = self.likeButtonView.right + Metric.buttonViewSpacing
   }

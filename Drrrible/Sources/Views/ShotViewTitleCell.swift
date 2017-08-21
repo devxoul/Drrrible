@@ -15,9 +15,6 @@ final class ShotViewTitleCell: BaseCollectionViewCell, View {
   // MARK: Types
 
   fileprivate struct Metric {
-    static let paddingTopBottom = 10.f
-    static let paddingLeftRight = 15.f
-
     static let avatarViewSize = 40.f
 
     static let titleLabelTop = 1.f
@@ -59,7 +56,6 @@ final class ShotViewTitleCell: BaseCollectionViewCell, View {
 
   override init(frame: CGRect) {
     super.init(frame: frame)
-    self.backgroundColor = .white
     self.contentView.addSubview(self.avatarView)
     self.contentView.addSubview(self.titleLabel)
     self.contentView.addSubview(self.usernameLabel)
@@ -92,11 +88,7 @@ final class ShotViewTitleCell: BaseCollectionViewCell, View {
   // MARK: Size
 
   class func size(width: CGFloat, reactor: ShotViewTitleCellReactor) -> CGSize {
-    let titleLabelWidth = width
-      - Metric.paddingLeftRight
-      - Metric.avatarViewSize
-      - Metric.titleLabelLeft
-      - Metric.paddingLeftRight
+    let titleLabelWidth = width - Metric.avatarViewSize - Metric.titleLabelLeft
     let titleLabelHeight = reactor.currentState.title.height(
       thatFitsWidth: titleLabelWidth,
       font: Font.titleLabel
@@ -106,7 +98,7 @@ final class ShotViewTitleCell: BaseCollectionViewCell, View {
       Metric.avatarViewSize,
       Metric.titleLabelTop + titleLabelHeight + Metric.usernameLabelTop + usernameLabelHeight
     )
-    return CGSize(width: width, height: Metric.paddingTopBottom * 2 + contentHeight)
+    return CGSize(width: width, height: contentHeight)
   }
 
 
@@ -116,15 +108,13 @@ final class ShotViewTitleCell: BaseCollectionViewCell, View {
     super.layoutSubviews()
 
     // Avatar
-    self.avatarView.top = Metric.paddingTopBottom
-    self.avatarView.left = Metric.paddingLeftRight
     self.avatarView.width = Metric.avatarViewSize
     self.avatarView.height = Metric.avatarViewSize
 
     // Title
     self.titleLabel.top = self.avatarView.top + Metric.titleLabelTop
     self.titleLabel.left = self.avatarView.right + Metric.titleLabelLeft
-    self.titleLabel.width = self.contentView.width - self.titleLabel.left - Metric.paddingLeftRight
+    self.titleLabel.width = self.contentView.width - self.titleLabel.left
     self.titleLabel.sizeToFit()
 
     // Username
@@ -133,7 +123,7 @@ final class ShotViewTitleCell: BaseCollectionViewCell, View {
     self.usernameLabel.left = self.avatarView.right + Metric.usernameLabelLeft
     self.usernameLabel.width = min(
       self.usernameLabel.width,
-      self.contentView.width - self.usernameLabel.left - Metric.paddingLeftRight
+      self.contentView.width - self.usernameLabel.left
     )
   }
 
