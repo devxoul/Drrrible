@@ -22,9 +22,9 @@ extension NSAttributedString {
     let styleTagString = NSAttributedString.styleForFont(family: fontFamily, size: fontSize)
     let htmlString = styleTagString + htmlString
     guard let data = htmlString.data(using: .utf8) else { throw HTMLStringError.invalidData }
-    let options: [String: Any] = [
-      NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,
-      NSCharacterEncodingDocumentAttribute: String.Encoding.utf8.rawValue,
+    let options: [NSAttributedString.DocumentReadingOptionKey: Any] = [
+      .documentType: NSAttributedString.DocumentType.html,
+      .characterEncoding: String.Encoding.utf8.rawValue as NSNumber,
     ]
     do {
       try self.init(data: data, options: options, documentAttributes: nil)
