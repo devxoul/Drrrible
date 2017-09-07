@@ -51,7 +51,7 @@ final class ShotListViewReactor: Reactor {
       guard !self.currentState.isLoading else { return .empty() }
       let startRefreshing = Observable<Mutation>.just(.setRefreshing(true))
       let endRefreshing = Observable<Mutation>.just(.setRefreshing(false))
-      let setShots = self.shotService.shots(paging: .refresh)
+      let setShots = self.shotService.shots(paging: .refresh).asObservable()
         .map { list -> Mutation in
           return .setShots(list.items, nextURL: list.nextURL)
         }
@@ -63,7 +63,7 @@ final class ShotListViewReactor: Reactor {
       guard let nextURL = self.currentState.nextURL else { return .empty() }
       let startLoading = Observable<Mutation>.just(.setLoading(true))
       let endLoading = Observable<Mutation>.just(.setLoading(false))
-      let appendShots = self.shotService.shots(paging: .next(nextURL))
+      let appendShots = self.shotService.shots(paging: .next(nextURL)).asObservable()
         .map { list -> Mutation in
           return .appendShots(list.items, nextURL: list.nextURL)
         }

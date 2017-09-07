@@ -19,7 +19,7 @@ protocol AuthServiceType {
   /// Start OAuth authorization process.
   ///
   /// - returns: An Observable of `AccessToken` instance.
-  func authorize() -> Observable<Void>
+  func authorize() -> Single<Void>
 
   /// Call this method when redirected from OAuth process to request access token.
   ///
@@ -45,7 +45,7 @@ final class AuthService: AuthServiceType {
     log.debug("currentAccessToken exists: \(self.currentAccessToken != nil)")
   }
 
-  func authorize() -> Observable<Void> {
+  func authorize() -> Single<Void> {
     let parameters: [String: String] = [
       "client_id": self.clientID,
       "scope": "public+write+comment+upload",
@@ -62,7 +62,7 @@ final class AuthService: AuthServiceType {
     Navigator.present(navigationController)
     self.currentViewController = navigationController
 
-    return self.callbackSubject
+    return self.callbackSubject.asSingle()
       .flatMap(self.accessToken)
       .do(onNext: { [weak self] accessToken in
         try self?.saveAccessToken(accessToken)
@@ -82,14 +82,14 @@ final class AuthService: AuthServiceType {
     self.deleteAccessToken()
   }
 
-  fileprivate func accessToken(code: String) -> Observable<AccessToken> {
+  fileprivate func accessToken(code: String) -> Single<AccessToken> {
     let urlString = "https://dribbble.com/oauth/token"
     let parameters: Parameters = [
       "client_id": self.clientID,
       "client_secret": self.clientSecret,
       "code": code,
     ]
-    return Observable.create { observer in
+    return Single.create { observer in
       let request = Alamofire
         .request(urlString, method: .post, parameters: parameters)
         .responseString { response in
@@ -97,14 +97,13 @@ final class AuthService: AuthServiceType {
           case .success(let jsonString):
             do {
               let accessToken = try AccessToken(JSONString: jsonString)
-              observer.onNext(accessToken)
-              observer.onCompleted()
+              observer(.success(accessToken))
             } catch let error {
-              observer.onError(error)
+              observer(.error(error))
             }
 
           case .failure(let error):
-            observer.onError(error)
+            observer(.error(error))
           }
         }
       return Disposables.create {

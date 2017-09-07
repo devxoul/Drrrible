@@ -9,17 +9,18 @@
 import RxSwift
 
 protocol AppStoreServiceType {
-  func latestVersion() -> Observable<String?>
+  func latestVersion() -> Single<String?>
 }
 
 final class AppStoreService: AppStoreServiceType {
   fileprivate let networking = Networking<AppStoreAPI>()
 
-  func latestVersion() -> Observable<String?> {
+  func latestVersion() -> Single<String?> {
     guard let bundleID = Bundle.main.bundleIdentifier else { return .just(nil) }
     return self.networking.request(.lookup(bundleID: bundleID))
       .mapJSON()
-      .flatMap { json -> Observable<String?> in
+      .asSingle()
+      .flatMap { json -> Single<String?> in
         let version = (json as? [String: Any])
           .flatMap { $0["results"] as? [[String: Any]] }
           .flatMap { $0.first }

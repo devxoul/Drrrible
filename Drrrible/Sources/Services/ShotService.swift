@@ -9,12 +9,12 @@
 import RxSwift
 
 protocol ShotServiceType {
-  func shots(paging: Paging) -> Observable<List<Shot>>
-  func shot(id: Int) -> Observable<Shot>
-  func isLiked(shotID: Int) -> Observable<Bool>
-  func like(shotID: Int) -> Observable<Void>
-  func unlike(shotID: Int) -> Observable<Void>
-  func comments(shotID: Int) -> Observable<List<Comment>>
+  func shots(paging: Paging) -> Single<List<Shot>>
+  func shot(id: Int) -> Single<Shot>
+  func isLiked(shotID: Int) -> Single<Bool>
+  func like(shotID: Int) -> Single<Void>
+  func unlike(shotID: Int) -> Single<Void>
+  func comments(shotID: Int) -> Single<List<Comment>>
 }
 
 final class ShotService: ShotServiceType {
@@ -24,49 +24,53 @@ final class ShotService: ShotServiceType {
     self.networking = networking
   }
 
-  func shots(paging: Paging) -> Observable<List<Shot>> {
+  func shots(paging: Paging) -> Single<List<Shot>> {
     let api: DribbbleAPI
     switch paging {
     case .refresh: api = .shots
     case .next(let url): api = .url(url)
     }
-    return self.networking.request(api).map(List<Shot>.self)
+    return self.networking.request(api).map(List<Shot>.self).asSingle()
   }
 
-  func shot(id: Int) -> Observable<Shot> {
-    return self.networking.request(.shot(id: id)).map(Shot.self)
+  func shot(id: Int) -> Single<Shot> {
+    return self.networking.request(.shot(id: id)).map(Shot.self).asSingle()
   }
 
-  func isLiked(shotID: Int) -> Observable<Bool> {
+  func isLiked(shotID: Int) -> Single<Bool> {
     return self.networking.request(.isLikedShot(id: shotID))
-      .map(true)
+      .map { _ in true }
       .catchErrorJustReturn(false)
       .do(onNext: { isLiked in
         Shot.event.onNext(.updateLiked(id: shotID, isLiked: isLiked))
       })
+      .asSingle()
   }
 
-  func like(shotID: Int) -> Observable<Void> {
+  func like(shotID: Int) -> Single<Void> {
     Shot.event.onNext(.updateLiked(id: shotID, isLiked: true))
     Shot.event.onNext(.increaseLikeCount(id: shotID))
     return self.networking.request(.likeShot(id: shotID)).mapVoid()
+      .asSingle()
       .do(onError: { error in
         Shot.event.onNext(.updateLiked(id: shotID, isLiked: false))
         Shot.event.onNext(.decreaseLikeCount(id: shotID))
       })
   }
 
-  func unlike(shotID: Int) -> Observable<Void> {
+  func unlike(shotID: Int) -> Single<Void> {
     Shot.event.onNext(.updateLiked(id: shotID, isLiked: false))
     Shot.event.onNext(.decreaseLikeCount(id: shotID))
     return self.networking.request(.unlikeShot(id: shotID)).mapVoid()
+      .asSingle()
       .do(onError: { error in
         Shot.event.onNext(.updateLiked(id: shotID, isLiked: true))
         Shot.event.onNext(.increaseLikeCount(id: shotID))
       })
   }
 
-  func comments(shotID: Int) -> Observable<List<Comment>> {
+  func comments(shotID: Int) -> Single<List<Comment>> {
     return self.networking.request(.shotComments(shotID: shotID)).map(List<Comment>.self)
+      .asSingle()
   }
 }

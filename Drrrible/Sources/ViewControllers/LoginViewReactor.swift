@@ -40,6 +40,7 @@ final class LoginViewReactor: Reactor {
     case .login:
       let setLoading: Observable<Mutation> = .just(Mutation.setLoading(true))
       let setLoggedIn: Observable<Mutation> = self.authService.authorize()
+        .asObservable()
         .flatMap { self.userService.fetchMe() }
         .map { true }
         .catchErrorJustReturn(false)

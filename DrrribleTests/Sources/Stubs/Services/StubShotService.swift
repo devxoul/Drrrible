@@ -11,27 +11,27 @@ import Stubber
 @testable import Drrrible
 
 final class StubShotService: ShotServiceType {
-  func shots(paging: Paging) -> Observable<List<Shot>> {
-    return Stubber.invoke(shots, args: paging, default: .empty())
+  func shots(paging: Paging) -> Single<List<Shot>> {
+    return Stubber.invoke(shots, args: paging, default: .never())
   }
 
-  func shot(id: Int) -> Observable<Shot> {
-    return Stubber.invoke(shot, args: id, default: .empty())
+  func shot(id: Int) -> Single<Shot> {
+    return Stubber.invoke(shot, args: id, default: .never())
   }
 
-  func isLiked(shotID: Int) -> Observable<Bool> {
-    return Stubber.invoke(isLiked, args: shotID, default: .empty())
+  func isLiked(shotID: Int) -> Single<Bool> {
+    return Stubber.invoke(isLiked, args: shotID, default: .never())
   }
 
-  func like(shotID: Int) -> Observable<Void> {
-    return Stubber.invoke(like, args: shotID, default: .empty())
+  func like(shotID: Int) -> Single<Void> {
+    return Stubber.invoke(like, args: shotID, default: .never())
   }
 
-  func unlike(shotID: Int) -> Observable<Void> {
-    return Stubber.invoke(unlike, args: shotID, default: .empty())
+  func unlike(shotID: Int) -> Single<Void> {
+    return Stubber.invoke(unlike, args: shotID, default: .never())
   }
 
-  func comments(shotID: Int) -> Observable<List<Comment>> {
-    return Stubber.invoke(comments, args: shotID, default: .empty())
+  func comments(shotID: Int) -> Single<List<Comment>> {
+    return Stubber.invoke(comments, args: shotID, default: .never())
   }
 }

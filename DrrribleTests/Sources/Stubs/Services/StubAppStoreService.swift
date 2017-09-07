@@ -11,7 +11,7 @@ import Stubber
 @testable import Drrrible
 
 final class StubAppStoreService: AppStoreServiceType {
-  func latestVersion() -> Observable<String?> {
-    return Stubber.invoke(latestVersion, args: (), default: .empty())
+  func latestVersion() -> Single<String?> {
+    return Stubber.invoke(latestVersion, args: (), default: .never())
   }
 }

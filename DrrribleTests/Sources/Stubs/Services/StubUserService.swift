@@ -12,10 +12,10 @@ import Stubber
 
 final class StubUserService: UserServiceType {
   var currentUser: Observable<User?> {
-    return .empty()
+    return .never()
   }
 
-  func fetchMe() -> Observable<Void> {
-    return Stubber.invoke(fetchMe, args: (), default: .empty())
+  func fetchMe() -> Single<Void> {
+    return Stubber.invoke(fetchMe, args: (), default: .never())
   }
 }

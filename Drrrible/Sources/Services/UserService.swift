@@ -11,7 +11,7 @@ import RxSwift
 protocol UserServiceType {
   var currentUser: Observable<User?> { get }
 
-  func fetchMe() -> Observable<Void>
+  func fetchMe() -> Single<Void>
 }
 
 final class UserService: UserServiceType {
@@ -26,9 +26,10 @@ final class UserService: UserServiceType {
     .startWith(nil)
     .shareReplay(1)
 
-  func fetchMe() -> Observable<Void> {
+  func fetchMe() -> Single<Void> {
     return self.networking.request(.me)
       .map(User.self)
+      .asSingle()
       .do(onNext: { [weak self] user in
         self?.userSubject.onNext(user)
       })

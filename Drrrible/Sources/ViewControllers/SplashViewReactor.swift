@@ -35,6 +35,7 @@ final class SplashViewReactor: Reactor {
     switch action {
     case .checkIfAuthenticated:
       return self.userService.fetchMe()
+        .asObservable()
         .map { true }
         .catchErrorJustReturn(false)
         .map(Mutation.setAuthenticated)
