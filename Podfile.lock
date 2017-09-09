@@ -7,6 +7,7 @@ PODS:
     - CocoaLumberjack/Default
   - Crashlytics (3.8.4):
     - Fabric (~> 1.6.3)
+  - Differentiator (2.0.2)
   - Fabric (1.6.11)
   - Firebase/Core (4.0.1):
     - FirebaseAnalytics (= 4.0.0)
@@ -58,7 +59,8 @@ PODS:
     - RxSwift (>= 3.4)
   - RxCocoa (3.4.0):
     - RxSwift (~> 3.4)
-  - RxDataSources (1.0.3):
+  - RxDataSources (2.0.1):
+    - Differentiator (~> 2.0)
     - RxCocoa (~> 3.0)
     - RxSwift (~> 3.0)
   - RxGesture (1.0.0):
@@ -153,6 +155,7 @@ SPEC CHECKSUMS:
   CGFloatLiteral: faba125ab2bb8fa90142c414f876b83099c26f25
   CocoaLumberjack: 8311463ddf9ee86a06ef92a071dd656c89244500
   Crashlytics: 79e236942ca1e7fc641df1feb9a275360a78ab6a
+  Differentiator: caa9b3957981a2ac8e6b2eac8a676af461caa604
   Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
   Firebase: f984cd44a160be77ad0590f432e574562bfd4083
   FirebaseAnalytics: 6f08e746f7d66f5452931bc2e822b5df9c66b64a
@@ -172,7 +175,7 @@ SPEC CHECKSUMS:
   Result: 2453a22e5c5b11c0c3a478736e82cd02f763b781
   ReusableKit: 4e4f45128985987555bde17abbf261c0a604f9f2
   RxCocoa: d14ef6b6029e1ddc6e966508c09289090de68ff9
-  RxDataSources: a021a0e944ba5f7991259829d973afdbfa719c0b
+  RxDataSources: 93c805010d4f5970e5204829a182bcdceab5adb5
   RxGesture: df17ca8be513640294c544b3165875e91de665ec
   RxKeyboard: 4046ecd1884a3bf0dacb823bd2ac8b00482d29ff
   RxOptional: b97b59183af80d1e729ac9e51d09a10be668d6a8
@@ -192,6 +195,6 @@ SPEC CHECKSUMS:
   URLNavigator: 3ff788c985a0aae654e7de4959c4b0ea8a45f022
   WebLinking: 3f71787c14a225148e8be29fe6e7c98597cbc459
 
-PODFILE CHECKSUM: 3d26f0e30b4d36daf01a3f7e4cab539db9055cfd
+PODFILE CHECKSUM: 3b9c21090b9e04918f404686fba565fcc1bfcbe6
 
 COCOAPODS: 1.3.1
