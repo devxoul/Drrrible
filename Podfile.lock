@@ -57,8 +57,8 @@ PODS:
     - ReusableKit/Core
     - RxCocoa (>= 3.4)
     - RxSwift (>= 3.4)
-  - RxCocoa (3.4.0):
-    - RxSwift (~> 3.4)
+  - RxCocoa (3.6.1):
+    - RxSwift (~> 3.6)
   - RxDataSources (2.0.1):
     - Differentiator (~> 2.0)
     - RxCocoa (~> 3.0)
@@ -75,7 +75,7 @@ PODS:
   - RxReusable (0.3.1):
     - RxCocoa (>= 3.0)
     - RxSwift (>= 3.0)
-  - RxSwift (3.4.0)
+  - RxSwift (3.6.1)
   - RxViewController (0.1.0):
     - RxCocoa (>= 3.0.0)
     - RxSwift (>= 3.0.0)
@@ -174,13 +174,13 @@ SPEC CHECKSUMS:
   ReactorKit: 42df9addbaad5ab1abd817893ef870bec86b3f86
   Result: 2453a22e5c5b11c0c3a478736e82cd02f763b781
   ReusableKit: 4e4f45128985987555bde17abbf261c0a604f9f2
-  RxCocoa: d14ef6b6029e1ddc6e966508c09289090de68ff9
+  RxCocoa: 84a08739ab186248c7f31ce4ee92d6f8a947d690
   RxDataSources: 93c805010d4f5970e5204829a182bcdceab5adb5
   RxGesture: df17ca8be513640294c544b3165875e91de665ec
   RxKeyboard: 4046ecd1884a3bf0dacb823bd2ac8b00482d29ff
   RxOptional: b97b59183af80d1e729ac9e51d09a10be668d6a8
   RxReusable: c18e8e3b5f12a3292b76cc552dd946500f8d2c32
-  RxSwift: 3789a1af753002a14edecdb698a2424624296a9c
+  RxSwift: f9de85ea20cd2f7716ee5409fc13523dc638e4e4
   RxViewController: 45aada3de70642e419b13b100ba395287859361b
   SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
   Stubber: 7b381ced124760fde48dff1b6589d3c9019208a7
