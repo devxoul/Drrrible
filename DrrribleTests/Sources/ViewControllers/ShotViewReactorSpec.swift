@@ -141,7 +141,7 @@ final class ShotViewReactorSpec: QuickSpec {
 
           it("contains an image item") {
             expect(section?.items).to(contain) {
-              if case .image = $0 {
+              if case .shot(.image) = $0 {
                 return true
               } else {
                 return false
@@ -151,7 +151,7 @@ final class ShotViewReactorSpec: QuickSpec {
 
           it("contains a title item") {
             expect(section?.items).to(contain) {
-              if case .title = $0 {
+              if case .shot(.title) = $0 {
                 return true
               } else {
                 return false
@@ -161,7 +161,7 @@ final class ShotViewReactorSpec: QuickSpec {
 
           it("contains a text item") {
             expect(section?.items).to(contain) {
-              if case .text = $0 {
+              if case .shot(.text) = $0 {
                 return true
               } else {
                 return false
@@ -171,7 +171,7 @@ final class ShotViewReactorSpec: QuickSpec {
 
           it("contains a reaction item") {
             expect(section?.items).to(contain) {
-              if case .reaction = $0 {
+              if case .shot(.reaction) = $0 {
                 return true
               } else {
                 return false

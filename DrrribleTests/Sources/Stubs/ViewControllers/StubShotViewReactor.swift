@@ -13,14 +13,14 @@ extension ShotViewReactor {
     shotID: Int,
     shot initialShot: Shot? = nil,
     shotService: ShotServiceType? = nil,
-    reactionCellReactorFactory: ((Shot) -> ShotViewReactionCellReactor)? = nil
+    shotSectionReactorFactory: ((Int, Shot?) -> ShotSectionReactor)? = nil
   ) -> ShotViewReactor {
     return .init(
       shotID: shotID,
       shot: initialShot,
       shotService: shotService ?? StubShotService(),
-      reactionCellReactorFactory: reactionCellReactorFactory ?? { shot in
-        ShotViewReactionCellReactor.stub(shot: shot)
+      shotSectionReactorFactory: shotSectionReactorFactory ?? { shotID, shot in
+        ShotSectionReactor.stub(shotID: shotID, shot: shot)
       }
     )
   }

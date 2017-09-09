@@ -19,6 +19,7 @@ final class ShotViewControllerSpec: QuickSpec {
     beforeEach {
       reactor = .stub(shotID: ShotFixture.shot1.id)
       reactor.stub.isEnabled = true
+      reactor.stub.state.value.shotSectionReactor.stub.isEnabled = true
       analytics = StubAnalytics()
       viewController = ShotViewController(reactor: reactor, analytics: analytics)
       _ = viewController.view
@@ -46,36 +47,40 @@ final class ShotViewControllerSpec: QuickSpec {
     describe("a collection view") {
       it("has an image cell") {
         let cellReactor = ShotViewImageCellReactor(shot: ShotFixture.shot1)
-        reactor.stub.state.value.shotSectionItems = [.image(cellReactor)]
+        reactor.stub.state.value.shotSectionReactor.stub.state.value.sectionItems = [.image(cellReactor)]
+        reactor.stub.state.value = reactor.stub.state.value
         expect(viewController.collectionView.cell(ShotViewImageCell.self, at: 0, 0)?.reactor) === cellReactor
       }
 
       it("has a title cell") {
         let cellReactor = ShotViewTitleCellReactor(shot: ShotFixture.shot1)
-        reactor.stub.state.value.shotSectionItems = [.title(cellReactor)]
+        reactor.stub.state.value.shotSectionReactor.stub.state.value.sectionItems = [.title(cellReactor)]
+        reactor.stub.state.value = reactor.stub.state.value
         expect(viewController.collectionView.cell(ShotViewTitleCell.self, at: 0, 0)?.reactor) === cellReactor
       }
 
       it("has a text cell") {
         let cellReactor = ShotViewTextCellReactor(shot: ShotFixture.shot1)
-        reactor.stub.state.value.shotSectionItems = [.text(cellReactor)]
+        reactor.stub.state.value.shotSectionReactor.stub.state.value.sectionItems = [.text(cellReactor)]
+        reactor.stub.state.value = reactor.stub.state.value
         expect(viewController.collectionView.cell(ShotViewTextCell.self, at: 0, 0)?.reactor) === cellReactor
       }
 
       it("has a reaction cell") {
         let cellReactor = ShotViewReactionCellReactor.stub(shot: ShotFixture.shot1)
-        reactor.stub.state.value.shotSectionItems = [.reaction(cellReactor)]
+        reactor.stub.state.value.shotSectionReactor.stub.state.value.sectionItems = [.reaction(cellReactor)]
+        reactor.stub.state.value = reactor.stub.state.value
         expect(viewController.collectionView.cell(ShotViewReactionCell.self, at: 0, 0)?.reactor) === cellReactor
       }
 
       it("has a comment cell") {
         let cellReactor = ShotViewCommentCellReactor(comment: CommentFixture.comment1)
-        reactor.stub.state.value.shotSectionItems = [.comment(cellReactor)]
+        reactor.stub.state.value.commentSectionItems = [.comment(cellReactor)]
         expect(viewController.collectionView.cell(ShotViewCommentCell.self, at: 0, 0)?.reactor) === cellReactor
       }
 
       it("has an activity indicator cell") {
-        reactor.stub.state.value.shotSectionItems = [.activityIndicator]
+        reactor.stub.state.value.commentSectionItems = [.activityIndicator]
         expect(viewController.collectionView.cell(CollectionActivityIndicatorCell.self, at: 0, 0)).notTo(beNil())
       }
     }

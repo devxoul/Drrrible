@@ -79,6 +79,9 @@ PODS:
   - RxViewController (0.1.0):
     - RxCocoa (>= 3.0.0)
     - RxSwift (>= 3.0.0)
+  - SectionReactor (0.1.0):
+    - ReactorKit
+    - RxDataSources (>= 2.0.0)
   - SnapKit (3.2.0)
   - Stubber (0.5.0)
   - SwiftyColor (1.0.0)
@@ -125,6 +128,7 @@ DEPENDENCIES:
   - RxReusable
   - RxSwift
   - RxViewController
+  - SectionReactor
   - SnapKit
   - Stubber
   - SwiftyColor
@@ -182,6 +186,7 @@ SPEC CHECKSUMS:
   RxReusable: c18e8e3b5f12a3292b76cc552dd946500f8d2c32
   RxSwift: f9de85ea20cd2f7716ee5409fc13523dc638e4e4
   RxViewController: 45aada3de70642e419b13b100ba395287859361b
+  SectionReactor: 044e4a955b32b7744b27469c2029ef69a5040148
   SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
   Stubber: 7b381ced124760fde48dff1b6589d3c9019208a7
   SwiftyColor: 7fa09db14051bc5d7f539e1c4576665975225992
@@ -195,6 +200,6 @@ SPEC CHECKSUMS:
   URLNavigator: 3ff788c985a0aae654e7de4959c4b0ea8a45f022
   WebLinking: 3f71787c14a225148e8be29fe6e7c98597cbc459
 
-PODFILE CHECKSUM: 3b9c21090b9e04918f404686fba565fcc1bfcbe6
+PODFILE CHECKSUM: 350b82f15fddae94fddecc27e41cc2f50925d0c2
 
 COCOAPODS: 1.3.1

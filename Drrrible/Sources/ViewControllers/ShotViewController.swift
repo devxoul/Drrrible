@@ -71,22 +71,22 @@ final class ShotViewController: BaseViewController, View {
 
     self.dataSource.configureCell = { dataSource, collectionView, indexPath, sectionItem in
       switch sectionItem {
-      case let .image(cellReactor):
+      case let .shot(.image(cellReactor)):
         let cell = collectionView.dequeue(Reusable.imageCell, for: indexPath)
         cell.reactor = cellReactor
         return cell
 
-      case let .title(cellReactor):
+      case let .shot(.title(cellReactor)):
         let cell = collectionView.dequeue(Reusable.titleCell, for: indexPath)
         cell.reactor = cellReactor
         return cell
 
-      case let .text(cellReactor):
+      case let .shot(.text(cellReactor)):
         let cell = collectionView.dequeue(Reusable.textCell, for: indexPath)
         cell.reactor = cellReactor
         return cell
 
-      case let .reaction(cellReactor):
+      case let .shot(.reaction(cellReactor)):
         let cell = collectionView.dequeue(Reusable.reactionCell, for: indexPath)
         cell.reactor = cellReactor
         return cell
@@ -223,7 +223,7 @@ extension ShotViewController: UICollectionViewDelegateFlexLayout {
   ) -> UIEdgeInsets {
     let sectionItem = self.dataSource[indexPath]
     switch sectionItem {
-    case .image:
+    case .shot(.image):
       let sectionPadding = self.collectionView(
         collectionView,
         layout: collectionViewLayout,
@@ -236,13 +236,13 @@ extension ShotViewController: UICollectionViewDelegateFlexLayout {
         right: -sectionPadding.right
       )
 
-    case .title:
+    case .shot(.title):
       return .zero
 
-    case .text:
+    case .shot(.text):
       return .zero
 
-    case .reaction:
+    case .shot(.reaction):
       return .zero
 
     case .comment:
@@ -261,10 +261,10 @@ extension ShotViewController: UICollectionViewDelegateFlexLayout {
   ) -> CGFloat {
     switch (self.dataSource[indexPath], self.dataSource[nextIndexPath]) {
     case (_, .activityIndicator): return 0
-    case (.image, _): return 10
-    case (.title, _): return 10
-    case (.text, _): return 10
-    case (.reaction, _): return 10
+    case (.shot(.image), _): return 10
+    case (.shot(.title), _): return 10
+    case (.shot(.text), _): return 10
+    case (.shot(.reaction), _): return 10
     case (.comment, .comment): return 15
     case (.comment, _): return 10
     case (.activityIndicator, _): return 0
@@ -279,16 +279,16 @@ extension ShotViewController: UICollectionViewDelegateFlexLayout {
     let maxWidth = collectionViewLayout.maximumWidth(forItemAt: indexPath)
     let sectionItem = self.dataSource[indexPath]
     switch sectionItem {
-    case let .image(cellReactor):
+    case let .shot(.image(cellReactor)):
       return Reusable.imageCell.class.size(width: maxWidth, reactor: cellReactor)
 
-    case let .title(cellReactor):
+    case let .shot(.title(cellReactor)):
       return Reusable.titleCell.class.size(width: maxWidth, reactor: cellReactor)
 
-    case let .text(cellReactor):
+    case let .shot(.text(cellReactor)):
       return Reusable.textCell.class.size(width: maxWidth, reactor: cellReactor)
 
-    case let .reaction(cellReactor):
+    case let .shot(.reaction(cellReactor)):
       return Reusable.reactionCell.class.size(width: maxWidth, reactor: cellReactor)
 
     case let .comment(cellReactor):

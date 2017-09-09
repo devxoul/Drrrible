@@ -29,6 +29,27 @@ final class CompositionRoot {
         shotService: shotService,
         shotCellReactorFactory: ShotCellReactor.init
       )
+      let shotSectionReactorFactory: (Int, Shot?) -> ShotSectionReactor = { shotID, shot in
+        ShotSectionReactor(
+          shotID: shotID,
+          shot: shot,
+          reactionCellReactorFactory: { shot in
+            ShotViewReactionCellReactor(
+              shot: shot,
+              likeButtonViewReactorFactory: { shot in
+                ShotViewReactionLikeButtonViewReactor(
+                  shot: shot,
+                  shotService: shotService,
+                  analytics: analytics
+                )
+              },
+              commentButtonViewReactorFactory: { shot in
+                ShotViewReactionCommentButtonViewReactor(shot: shot)
+              }
+            )
+          }
+        )
+      }
       let shotTileCellDependency = ShotTileCell.Dependency(
         imageOptions: [],
         shotViewControllerFactory: { id, shot in
@@ -36,21 +57,7 @@ final class CompositionRoot {
             shotID: id,
             shot: shot,
             shotService: shotService,
-            reactionCellReactorFactory: { shot in
-              ShotViewReactionCellReactor(
-                shot: shot,
-                likeButtonViewReactorFactory: { shot in
-                  ShotViewReactionLikeButtonViewReactor(
-                    shot: shot,
-                    shotService: shotService,
-                    analytics: analytics
-                  )
-                },
-                commentButtonViewReactorFactory: { shot in
-                  ShotViewReactionCommentButtonViewReactor(shot: shot)
-                }
-              )
-            }
+            shotSectionReactorFactory: shotSectionReactorFactory
           )
           return ShotViewController(reactor: reactor, analytics: analytics)
         }

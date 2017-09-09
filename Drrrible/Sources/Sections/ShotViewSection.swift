@@ -30,10 +30,7 @@ extension ShotViewSection: SectionModelType {
 }
 
 enum ShotViewSectionItem {
-  case image(ShotViewImageCellReactor)
-  case title(ShotViewTitleCellReactor)
-  case text(ShotViewTextCellReactor)
-  case reaction(ShotViewReactionCellReactor)
+  case shot(ShotSectionReactor.SectionItem)
   case comment(ShotViewCommentCellReactor)
   case activityIndicator
 }
