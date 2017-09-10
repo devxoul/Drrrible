@@ -25,7 +25,7 @@ final class ShotViewTitleCellReactor: Reactor {
     self.initialState = State(
       avatarURL: shot.user.avatarURL,
       title: shot.title,
-      username: "by \(shot.user.name)"
+      username: shot.user.name
     )
     _ = self.state
   }
