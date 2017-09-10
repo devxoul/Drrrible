@@ -65,11 +65,6 @@ extension UIImageView {
 }
 
 extension Reactive where Base: UIImageView {
-  @available(*, deprecated)
-  var resource: UIBindingObserver<Base, Resource?> {
-    return self.image(placeholder: nil, options: [])
-  }
-
   func image(placeholder: UIImage? = nil, options: KingfisherOptionsInfo) -> UIBindingObserver<Base, Resource?> {
     return UIBindingObserver(UIElement: self.base) { imageView, resource in
       imageView.setImage(with: resource, placeholder: placeholder, options: options)
