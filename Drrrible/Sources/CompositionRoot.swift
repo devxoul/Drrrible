@@ -66,7 +66,10 @@ final class CompositionRoot {
             reactor: reactor,
             analytics: analytics,
             shotSectionDelegateFactory: {
-              ShotSectionDelegate(imageCellDependency: .init(imageOptions: productionImageOptions))
+              ShotSectionDelegate(
+                imageCellDependency: .init(imageOptions: productionImageOptions),
+                titleCellDependency: .init(imageOptions: productionImageOptions)
+              )
             }
           )
         }

@@ -9,7 +9,13 @@
 @testable import Drrrible
 
 extension ShotSectionDelegate {
-  static func stub(imageCellDependency: ShotViewImageCell.Dependency? = nil) -> ShotSectionDelegate {
-    return ShotSectionDelegate(imageCellDependency: imageCellDependency ?? .stub())
+  static func stub(
+    imageCellDependency: ShotViewImageCell.Dependency? = nil,
+    titleCellDependency: ShotViewTitleCell.Dependency? = nil
+  ) -> ShotSectionDelegate {
+    return ShotSectionDelegate(
+      imageCellDependency: imageCellDependency ?? .stub(),
+      titleCellDependency: titleCellDependency ?? .stub()
+    )
   }
 }

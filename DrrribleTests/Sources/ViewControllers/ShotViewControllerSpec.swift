@@ -62,6 +62,7 @@ final class ShotViewControllerSpec: QuickSpec {
         reactor.stub.state.value.shotSectionReactor.stub.state.value.sectionItems = [.title(cellReactor)]
         reactor.stub.state.value = reactor.stub.state.value
         expect(viewController.collectionView.cell(ShotViewTitleCell.self, at: 0, 0)?.reactor) === cellReactor
+        expect(viewController.collectionView.cell(ShotViewTitleCell.self, at: 0, 0)?.dependency).notTo(beNil())
       }
 
       it("has a text cell") {

@@ -20,7 +20,7 @@ extension ShotTileCell.Dependency {
       return ShotViewController(
         reactor: reactor,
         analytics: .stub(),
-        shotSectionDelegateFactory: { ShotSectionDelegate(imageCellDependency: .stub()) }
+        shotSectionDelegateFactory: { .stub() }
       )
     }
     return .init(

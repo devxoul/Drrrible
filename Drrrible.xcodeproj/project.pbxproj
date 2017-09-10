@@ -66,6 +66,7 @@
 		0371425B1F64F0E30055F0C1 /* StubShotSectionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0371425A1F64F0E30055F0C1 /* StubShotSectionDelegate.swift */; };
 		0371425D1F64F1C40055F0C1 /* ShotViewImageCellReactorSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0371425C1F64F1C40055F0C1 /* ShotViewImageCellReactorSpec.swift */; };
 		0371425F1F64F2670055F0C1 /* ShotViewImageCellSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0371425E1F64F2670055F0C1 /* ShotViewImageCellSpec.swift */; };
+		037142631F64F64E0055F0C1 /* StubShotViewTitleCellDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037142621F64F64E0055F0C1 /* StubShotViewTitleCellDependency.swift */; };
 		0377C5531E745BC200EE4576 /* ShotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0377C5521E745BC200EE4576 /* ShotViewController.swift */; };
 		0377C5551E745BF000EE4576 /* ShotViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0377C5541E745BF000EE4576 /* ShotViewReactor.swift */; };
 		0377C5571E745CDB00EE4576 /* ShotViewSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0377C5561E745CDB00EE4576 /* ShotViewSection.swift */; };
@@ -204,6 +205,7 @@
 		0371425A1F64F0E30055F0C1 /* StubShotSectionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StubShotSectionDelegate.swift; sourceTree = "<group>"; };
 		0371425C1F64F1C40055F0C1 /* ShotViewImageCellReactorSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShotViewImageCellReactorSpec.swift; sourceTree = "<group>"; };
 		0371425E1F64F2670055F0C1 /* ShotViewImageCellSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShotViewImageCellSpec.swift; sourceTree = "<group>"; };
+		037142621F64F64E0055F0C1 /* StubShotViewTitleCellDependency.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StubShotViewTitleCellDependency.swift; sourceTree = "<group>"; };
 		0377C5521E745BC200EE4576 /* ShotViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShotViewController.swift; sourceTree = "<group>"; };
 		0377C5541E745BF000EE4576 /* ShotViewReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShotViewReactor.swift; sourceTree = "<group>"; };
 		0377C5561E745CDB00EE4576 /* ShotViewSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShotViewSection.swift; sourceTree = "<group>"; };
@@ -656,6 +658,7 @@
 				03E147681F2478860018D96D /* StubShotTileCellDependency.swift */,
 				03AB28DF1F49C703008D8353 /* StubShotViewReactionCellReactor.swift */,
 				037142581F64F0010055F0C1 /* StubShotViewImageCellDependency.swift */,
+				037142621F64F64E0055F0C1 /* StubShotViewTitleCellDependency.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1112,6 +1115,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				037142631F64F64E0055F0C1 /* StubShotViewTitleCellDependency.swift in Sources */,
 				0303CAE81F4333EE00FF2E77 /* StubAnalytics.swift in Sources */,
 				036CDD771F236615006C91CC /* LoginViewControllerSpec.swift in Sources */,
 				0371425F1F64F2670055F0C1 /* ShotViewImageCellSpec.swift in Sources */,

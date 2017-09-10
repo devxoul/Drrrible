@@ -8,6 +8,7 @@
 
 import UIKit
 
+import Kingfisher
 import ReactorKit
 
 final class ShotViewTitleCell: BaseCollectionViewCell, View {
@@ -29,6 +30,15 @@ final class ShotViewTitleCell: BaseCollectionViewCell, View {
     static let usernameLabelText = UIColor.db_slate
     static let titleLabelText = UIColor.black
   }
+
+  struct Dependency {
+    let imageOptions: KingfisherOptionsInfo
+  }
+
+
+  // MARK: Properties
+
+  var dependency: Dependency?
 
 
   // MARK: UI
@@ -61,8 +71,10 @@ final class ShotViewTitleCell: BaseCollectionViewCell, View {
   // MARK: Configuring
 
   func bind(reactor: ShotViewTitleCellReactor) {
+    guard let dependency = self.dependency else { preconditionFailure() }
+
     reactor.state.map { $0.avatarURL }
-      .bind(to: self.avatarView.rx.resource)
+      .bind(to: self.avatarView.rx.image(options: dependency.imageOptions))
       .disposed(by: self.disposeBag)
 
     reactor.state.map { $0.username }
