@@ -26,3 +26,10 @@ final class StubImageDownloader: ImageDownloader {
     return nil
   }
 }
+
+extension Array where Element == KingfisherOptionsInfoItem {
+  static func stub(downloader: ImageDownloader? = nil) -> KingfisherOptionsInfo {
+    let downloader = downloader ?? StubImageDownloader()
+    return [.forceRefresh, .downloader(downloader)]
+  }
+}

@@ -34,7 +34,7 @@ final class ShotViewController: BaseViewController, View {
 
   fileprivate let analytics: DrrribleAnalytics
   fileprivate let dataSource = RxCollectionViewSectionedReloadDataSource<ShotViewSection>()
-  fileprivate let shotSectionDelegate = ShotSectionDelegate()
+  fileprivate let shotSectionDelegate: ShotSectionDelegate
 
 
   // MARK: UI
@@ -54,9 +54,14 @@ final class ShotViewController: BaseViewController, View {
 
   // MARK: Initializing
 
-  init(reactor: ShotViewReactor, analytics: DrrribleAnalytics) {
+  init(
+    reactor: ShotViewReactor,
+    analytics: DrrribleAnalytics,
+    shotSectionDelegateFactory: () -> ShotSectionDelegate
+  ) {
     defer { self.reactor = reactor }
     self.analytics = analytics
+    self.shotSectionDelegate = shotSectionDelegateFactory()
     super.init()
     self.title = "shot".localized
 

@@ -68,7 +68,11 @@ final class ShotTileCellSpec: QuickSpec {
               isShotViewControllerFactoryExecuted = true
               let reactor = ShotViewReactor.stub(shotID: id)
               reactor.stub.isEnabled = true
-              return ShotViewController(reactor: reactor, analytics: .stub())
+              return ShotViewController(
+                reactor: reactor,
+                analytics: .stub(),
+                shotSectionDelegateFactory: { .stub() }
+              )
             }
           )
           cell.reactor = reactor

@@ -23,6 +23,12 @@ final class ShotSectionDelegate: SectionDelegateType {
 
   typealias SectionReactor = ShotSectionReactor
 
+  private let imageCellDependency: ShotViewImageCell.Dependency
+
+  init(imageCellDependency: ShotViewImageCell.Dependency) {
+    self.imageCellDependency = imageCellDependency
+  }
+
   func registerReusables(to collectionView: UICollectionView) {
     collectionView.register(Reusable.imageCell)
     collectionView.register(Reusable.titleCell)
@@ -39,6 +45,7 @@ final class ShotSectionDelegate: SectionDelegateType {
     switch sectionItem {
     case let .image(cellReactor):
       let cell = collectionView.dequeue(Reusable.imageCell, for: indexPath)
+      cell.dependency = self.imageCellDependency
       cell.reactor = cellReactor
       return cell
 

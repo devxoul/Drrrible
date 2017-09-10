@@ -6,6 +6,7 @@
 //  Copyright © 2017 Suyeol Jeon. All rights reserved.
 //
 
+import Kingfisher
 import Umbrella
 
 final class CompositionRoot {
@@ -21,6 +22,8 @@ final class CompositionRoot {
     analytics.register(provider: FirebaseProvider())
 
     URLNavigationMap.initialize(authService: authService)
+
+    let productionImageOptions: KingfisherOptionsInfo = []
 
     var presentMainScreen: (() -> Void)!
     var presentLoginScreen: (() -> Void)!
@@ -51,7 +54,7 @@ final class CompositionRoot {
         )
       }
       let shotTileCellDependency = ShotTileCell.Dependency(
-        imageOptions: [],
+        imageOptions: productionImageOptions,
         shotViewControllerFactory: { id, shot in
           let reactor = ShotViewReactor(
             shotID: id,
@@ -59,7 +62,13 @@ final class CompositionRoot {
             shotService: shotService,
             shotSectionReactorFactory: shotSectionReactorFactory
           )
-          return ShotViewController(reactor: reactor, analytics: analytics)
+          return ShotViewController(
+            reactor: reactor,
+            analytics: analytics,
+            shotSectionDelegateFactory: {
+              ShotSectionDelegate(imageCellDependency: .init(imageOptions: productionImageOptions))
+            }
+          )
         }
       )
       let shotListViewController = ShotListViewController(

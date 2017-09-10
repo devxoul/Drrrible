@@ -21,7 +21,11 @@ final class ShotViewControllerSpec: QuickSpec {
       reactor.stub.isEnabled = true
       reactor.stub.state.value.shotSectionReactor.stub.isEnabled = true
       analytics = StubAnalytics()
-      viewController = ShotViewController(reactor: reactor, analytics: analytics)
+      viewController = ShotViewController(
+        reactor: reactor,
+        analytics: analytics,
+        shotSectionDelegateFactory: { .stub() }
+      )
       _ = viewController.view
     }
 
@@ -50,6 +54,7 @@ final class ShotViewControllerSpec: QuickSpec {
         reactor.stub.state.value.shotSectionReactor.stub.state.value.sectionItems = [.image(cellReactor)]
         reactor.stub.state.value = reactor.stub.state.value
         expect(viewController.collectionView.cell(ShotViewImageCell.self, at: 0, 0)?.reactor) === cellReactor
+        expect(viewController.collectionView.cell(ShotViewImageCell.self, at: 0, 0)?.dependency).notTo(beNil())
       }
 
       it("has a title cell") {

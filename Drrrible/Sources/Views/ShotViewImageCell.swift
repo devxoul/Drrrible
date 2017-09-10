@@ -13,9 +13,19 @@ import ReactorKit
 
 final class ShotViewImageCell: BaseCollectionViewCell, View {
 
+  struct Dependency {
+    let imageOptions: KingfisherOptionsInfo
+  }
+
+
+  // MARK: Properties
+
+  var dependency: Dependency?
+
+
   // MARK: UI
 
-  fileprivate let imageView = AnimatedImageView()
+  let imageView = AnimatedImageView()
 
 
   // MARK: Initializing
@@ -29,8 +39,10 @@ final class ShotViewImageCell: BaseCollectionViewCell, View {
   // MARK: Configuring
 
   func bind(reactor: ShotViewImageCellReactor) {
+    guard let dependency = dependency else { preconditionFailure() }
+
     reactor.state.map { $0.imageURL }
-      .bind(to: self.imageView.rx.resource)
+      .bind(to: self.imageView.rx.image(options: dependency.imageOptions))
       .disposed(by: self.disposeBag)
   }
 

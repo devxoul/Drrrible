@@ -62,6 +62,10 @@
 		036CDD941F239A02006C91CC /* StubUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036CDD8D1F239A02006C91CC /* StubUserService.swift */; };
 		036CDD961F239A02006C91CC /* StubAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036CDD8F1F239A02006C91CC /* StubAppDelegate.swift */; };
 		036CDD971F239A02006C91CC /* StubError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036CDD901F239A02006C91CC /* StubError.swift */; };
+		037142591F64F0010055F0C1 /* StubShotViewImageCellDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037142581F64F0010055F0C1 /* StubShotViewImageCellDependency.swift */; };
+		0371425B1F64F0E30055F0C1 /* StubShotSectionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0371425A1F64F0E30055F0C1 /* StubShotSectionDelegate.swift */; };
+		0371425D1F64F1C40055F0C1 /* ShotViewImageCellReactorSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0371425C1F64F1C40055F0C1 /* ShotViewImageCellReactorSpec.swift */; };
+		0371425F1F64F2670055F0C1 /* ShotViewImageCellSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0371425E1F64F2670055F0C1 /* ShotViewImageCellSpec.swift */; };
 		0377C5531E745BC200EE4576 /* ShotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0377C5521E745BC200EE4576 /* ShotViewController.swift */; };
 		0377C5551E745BF000EE4576 /* ShotViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0377C5541E745BF000EE4576 /* ShotViewReactor.swift */; };
 		0377C5571E745CDB00EE4576 /* ShotViewSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0377C5561E745CDB00EE4576 /* ShotViewSection.swift */; };
@@ -196,6 +200,10 @@
 		036CDD8D1F239A02006C91CC /* StubUserService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StubUserService.swift; sourceTree = "<group>"; };
 		036CDD8F1F239A02006C91CC /* StubAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StubAppDelegate.swift; sourceTree = "<group>"; };
 		036CDD901F239A02006C91CC /* StubError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StubError.swift; sourceTree = "<group>"; };
+		037142581F64F0010055F0C1 /* StubShotViewImageCellDependency.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StubShotViewImageCellDependency.swift; sourceTree = "<group>"; };
+		0371425A1F64F0E30055F0C1 /* StubShotSectionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StubShotSectionDelegate.swift; sourceTree = "<group>"; };
+		0371425C1F64F1C40055F0C1 /* ShotViewImageCellReactorSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShotViewImageCellReactorSpec.swift; sourceTree = "<group>"; };
+		0371425E1F64F2670055F0C1 /* ShotViewImageCellSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShotViewImageCellSpec.swift; sourceTree = "<group>"; };
 		0377C5521E745BC200EE4576 /* ShotViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShotViewController.swift; sourceTree = "<group>"; };
 		0377C5541E745BF000EE4576 /* ShotViewReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShotViewReactor.swift; sourceTree = "<group>"; };
 		0377C5561E745CDB00EE4576 /* ShotViewSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShotViewSection.swift; sourceTree = "<group>"; };
@@ -331,6 +339,7 @@
 			isa = PBXGroup;
 			children = (
 				033594AA1F643F9B000DDC45 /* StubShotSectionReactor.swift */,
+				0371425A1F64F0E30055F0C1 /* StubShotSectionDelegate.swift */,
 			);
 			path = Sections;
 			sourceTree = "<group>";
@@ -420,6 +429,8 @@
 			children = (
 				03FE6AF31F23C835005D04DA /* ShotCellReactorSpec.swift */,
 				03FE6AF51F23C96E005D04DA /* ShotTileCellSpec.swift */,
+				0371425C1F64F1C40055F0C1 /* ShotViewImageCellReactorSpec.swift */,
+				0371425E1F64F2670055F0C1 /* ShotViewImageCellSpec.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -644,6 +655,7 @@
 			children = (
 				03E147681F2478860018D96D /* StubShotTileCellDependency.swift */,
 				03AB28DF1F49C703008D8353 /* StubShotViewReactionCellReactor.swift */,
+				037142581F64F0010055F0C1 /* StubShotViewImageCellDependency.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1102,8 +1114,10 @@
 			files = (
 				0303CAE81F4333EE00FF2E77 /* StubAnalytics.swift in Sources */,
 				036CDD771F236615006C91CC /* LoginViewControllerSpec.swift in Sources */,
+				0371425F1F64F2670055F0C1 /* ShotViewImageCellSpec.swift in Sources */,
 				03AB28E01F49C703008D8353 /* StubShotViewReactionCellReactor.swift in Sources */,
 				03E1DC7F1F42FACC003E9F7A /* Matchers.swift in Sources */,
+				0371425D1F64F1C40055F0C1 /* ShotViewImageCellReactorSpec.swift in Sources */,
 				036CDD971F239A02006C91CC /* StubError.swift in Sources */,
 				036CDD941F239A02006C91CC /* StubUserService.swift in Sources */,
 				03D997211E817C1A004773AE /* ShotFixture.swift in Sources */,
@@ -1119,8 +1133,10 @@
 				036CDD751F235EB4006C91CC /* SplashViewControllerSpec.swift in Sources */,
 				03D997291E819012004773AE /* ShotListViewReactorSpec.swift in Sources */,
 				036CDD931F239A02006C91CC /* StubShotService.swift in Sources */,
+				037142591F64F0010055F0C1 /* StubShotViewImageCellDependency.swift in Sources */,
 				034D832F1F246BD700975F2F /* StubImageDownloader.swift in Sources */,
 				0303CACC1F43267B00FF2E77 /* ShotViewControllerSpec.swift in Sources */,
+				0371425B1F64F0E30055F0C1 /* StubShotSectionDelegate.swift in Sources */,
 				033594AB1F643F9B000DDC45 /* StubShotSectionReactor.swift in Sources */,
 				034D335C1EA69C95004498FB /* TestConfiguration.swift in Sources */,
 				03C629CB1F28C0DA008B4097 /* ShotViewReactorSpec.swift in Sources */,
