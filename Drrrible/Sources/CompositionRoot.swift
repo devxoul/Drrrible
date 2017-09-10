@@ -23,7 +23,7 @@ final class CompositionRoot {
 
     URLNavigationMap.initialize(authService: authService)
 
-    let productionImageOptions: KingfisherOptionsInfo = []
+    let productionImageOptions: ImageOptions = []
 
     var presentMainScreen: (() -> Void)!
     var presentLoginScreen: (() -> Void)!

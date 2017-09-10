@@ -8,7 +8,6 @@
 
 import UIKit
 
-import Kingfisher
 import ReactorKit
 import URLNavigator
 
@@ -17,7 +16,7 @@ final class ShotTileCell: BaseCollectionViewCell, View {
   // MARK: Types
 
   struct Dependency {
-    let imageOptions: KingfisherOptionsInfo
+    let imageOptions: ImageOptions
     let shotViewControllerFactory: (_ id: Int, _ shot: Shot?) -> ShotViewController
   }
 

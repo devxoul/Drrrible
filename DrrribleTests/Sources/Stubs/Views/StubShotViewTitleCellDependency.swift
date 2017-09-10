@@ -6,11 +6,10 @@
 //  Copyright © 2017 Suyeol Jeon. All rights reserved.
 //
 
-import Kingfisher
 @testable import Drrrible
 
 extension ShotViewTitleCell.Dependency {
-  static func stub(imageOptions: KingfisherOptionsInfo? = nil) -> ShotViewTitleCell.Dependency {
+  static func stub(imageOptions: ImageOptions? = nil) -> ShotViewTitleCell.Dependency {
     return .init(imageOptions: imageOptions ?? .stub())
   }
 }

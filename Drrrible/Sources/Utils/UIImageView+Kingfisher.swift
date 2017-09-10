@@ -12,6 +12,8 @@ import Kingfisher
 import RxCocoa
 import RxSwift
 
+typealias ImageOptions = KingfisherOptionsInfo
+
 enum ImageResult {
   case success(UIImage)
   case failure(Error)
@@ -38,7 +40,7 @@ extension UIImageView {
   func setImage(
     with resource: Resource?,
     placeholder: UIImage? = nil,
-    options: KingfisherOptionsInfo? = nil,
+    options: ImageOptions? = nil,
     progress: ((Int64, Int64) -> Void)? = nil,
     completion: ((ImageResult) -> Void)? = nil
   ) -> RetrieveImageTask {
@@ -65,7 +67,7 @@ extension UIImageView {
 }
 
 extension Reactive where Base: UIImageView {
-  func image(placeholder: UIImage? = nil, options: KingfisherOptionsInfo) -> UIBindingObserver<Base, Resource?> {
+  func image(placeholder: UIImage? = nil, options: ImageOptions) -> UIBindingObserver<Base, Resource?> {
     return UIBindingObserver(UIElement: self.base) { imageView, resource in
       imageView.setImage(with: resource, placeholder: placeholder, options: options)
     }

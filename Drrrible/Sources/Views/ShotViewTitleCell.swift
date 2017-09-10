@@ -8,7 +8,6 @@
 
 import UIKit
 
-import Kingfisher
 import ReactorKit
 
 final class ShotViewTitleCell: BaseCollectionViewCell, View {
@@ -32,7 +31,7 @@ final class ShotViewTitleCell: BaseCollectionViewCell, View {
   }
 
   struct Dependency {
-    let imageOptions: KingfisherOptionsInfo
+    let imageOptions: ImageOptions
   }
 
 

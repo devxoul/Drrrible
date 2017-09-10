@@ -14,7 +14,7 @@ import ReactorKit
 final class ShotViewImageCell: BaseCollectionViewCell, View {
 
   struct Dependency {
-    let imageOptions: KingfisherOptionsInfo
+    let imageOptions: ImageOptions
   }
 
 
