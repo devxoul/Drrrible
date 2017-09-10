@@ -21,14 +21,9 @@ final class ShotViewController: BaseViewController, View {
   // MARK: Constants
 
   fileprivate struct Reusable {
-    static let imageCell = ReusableCell<ShotViewImageCell>()
-    static let titleCell = ReusableCell<ShotViewTitleCell>()
-    static let textCell = ReusableCell<ShotViewTextCell>()
-    static let reactionCell = ReusableCell<ShotViewReactionCell>()
     static let commentCell = ReusableCell<ShotViewCommentCell>()
     static let activityIndicatorCell = ReusableCell<CollectionActivityIndicatorCell>()
     static let sectionBackgroundView = ReusableView<CollectionBorderedBackgroundView>()
-    static let itemBackgroundView = ReusableView<CollectionBorderedBackgroundView>()
   }
 
   fileprivate struct Metric {
@@ -39,6 +34,7 @@ final class ShotViewController: BaseViewController, View {
 
   fileprivate let analytics: DrrribleAnalytics
   fileprivate let dataSource = RxCollectionViewSectionedReloadDataSource<ShotViewSection>()
+  fileprivate let shotSectionDelegate = ShotSectionDelegate()
 
 
   // MARK: UI
@@ -50,14 +46,9 @@ final class ShotViewController: BaseViewController, View {
   ).then {
     $0.backgroundColor = .clear
     $0.alwaysBounceVertical = true
-    $0.register(Reusable.imageCell)
-    $0.register(Reusable.titleCell)
-    $0.register(Reusable.textCell)
-    $0.register(Reusable.reactionCell)
     $0.register(Reusable.commentCell)
     $0.register(Reusable.activityIndicatorCell)
     $0.register(Reusable.sectionBackgroundView, kind: UICollectionElementKindSectionBackground)
-    $0.register(Reusable.itemBackgroundView, kind: UICollectionElementKindItemBackground)
   }
 
 
@@ -69,27 +60,13 @@ final class ShotViewController: BaseViewController, View {
     super.init()
     self.title = "shot".localized
 
-    self.dataSource.configureCell = { dataSource, collectionView, indexPath, sectionItem in
+    self.shotSectionDelegate.registerReusables(to: self.collectionView)
+
+    self.dataSource.configureCell = { [weak self] dataSource, collectionView, indexPath, sectionItem in
+      guard let `self` = self else { return collectionView.emptyCell(for: indexPath) }
       switch sectionItem {
-      case let .shot(.image(cellReactor)):
-        let cell = collectionView.dequeue(Reusable.imageCell, for: indexPath)
-        cell.reactor = cellReactor
-        return cell
-
-      case let .shot(.title(cellReactor)):
-        let cell = collectionView.dequeue(Reusable.titleCell, for: indexPath)
-        cell.reactor = cellReactor
-        return cell
-
-      case let .shot(.text(cellReactor)):
-        let cell = collectionView.dequeue(Reusable.textCell, for: indexPath)
-        cell.reactor = cellReactor
-        return cell
-
-      case let .shot(.reaction(cellReactor)):
-        let cell = collectionView.dequeue(Reusable.reactionCell, for: indexPath)
-        cell.reactor = cellReactor
-        return cell
+      case let .shot(item):
+        return self.shotSectionDelegate.configureCell(collectionView, indexPath, item)
 
       case let .comment(cellReactor):
         let cell = collectionView.dequeue(Reusable.commentCell, for: indexPath)
@@ -101,26 +78,31 @@ final class ShotViewController: BaseViewController, View {
       }
     }
 
-    self.dataSource.supplementaryViewFactory = { dataSource, collectionView, kind, indexPath in
-      switch kind {
-      case UICollectionElementKindSectionBackground:
-        let view = collectionView.dequeue(Reusable.sectionBackgroundView, kind: kind, for: indexPath)
-        view.backgroundColor = .white
-        switch dataSource[indexPath.section] {
-        case .shot:
-          view.borderedLayer?.borders = [.top, .bottom]
-        case .comment:
-          view.borderedLayer?.borders = [.bottom]
-        }
-        return view
+    self.dataSource.supplementaryViewFactory = { [weak self] dataSource, collectionView, kind, indexPath in
+      guard let `self` = self else { return collectionView.emptyView(for: indexPath, kind: kind) }
+      switch dataSource[indexPath] {
+      case let .shot(item):
+        return self.shotSectionDelegate.background(
+          collectionView: collectionView,
+          kind: kind,
+          indexPath: indexPath,
+          sectionItem: item
+        )
 
-      case UICollectionElementKindItemBackground:
-        let view = collectionView.dequeue(Reusable.itemBackgroundView, kind: kind, for: indexPath)
-        view.isHidden = true
-        return view
+      case .comment:
+        switch kind {
+        case UICollectionElementKindSectionBackground:
+          let view = collectionView.dequeue(Reusable.sectionBackgroundView, kind: kind, for: indexPath)
+          view.backgroundColor = .white
+          view.borderedLayer?.borders = [.bottom]
+          return view
+
+        default:
+          return collectionView.emptyView(for: indexPath, kind: kind)
+        }
 
       default:
-        fatalError()
+        return collectionView.emptyView(for: indexPath, kind: kind)
       }
     }
   }
@@ -223,27 +205,8 @@ extension ShotViewController: UICollectionViewDelegateFlexLayout {
   ) -> UIEdgeInsets {
     let sectionItem = self.dataSource[indexPath]
     switch sectionItem {
-    case .shot(.image):
-      let sectionPadding = self.collectionView(
-        collectionView,
-        layout: collectionViewLayout,
-        paddingForSectionAt: indexPath.section
-      )
-      return UIEdgeInsets(
-        top: 0,
-        left: -sectionPadding.left,
-        bottom: 0,
-        right: -sectionPadding.right
-      )
-
-    case .shot(.title):
-      return .zero
-
-    case .shot(.text):
-      return .zero
-
-    case .shot(.reaction):
-      return .zero
+    case let .shot(item):
+      return self.shotSectionDelegate.cellPadding(collectionViewLayout, indexPath, item)
 
     case .comment:
       return .zero
@@ -261,10 +224,8 @@ extension ShotViewController: UICollectionViewDelegateFlexLayout {
   ) -> CGFloat {
     switch (self.dataSource[indexPath], self.dataSource[nextIndexPath]) {
     case (_, .activityIndicator): return 0
-    case (.shot(.image), _): return 10
-    case (.shot(.title), _): return 10
-    case (.shot(.text), _): return 10
-    case (.shot(.reaction), _): return 10
+    case let (.shot(item), .shot(nextItem)): return self.shotSectionDelegate.cellVerticalSpacing(item, nextItem)
+    case (.shot, _): return 10
     case (.comment, .comment): return 15
     case (.comment, _): return 10
     case (.activityIndicator, _): return 0
@@ -279,17 +240,8 @@ extension ShotViewController: UICollectionViewDelegateFlexLayout {
     let maxWidth = collectionViewLayout.maximumWidth(forItemAt: indexPath)
     let sectionItem = self.dataSource[indexPath]
     switch sectionItem {
-    case let .shot(.image(cellReactor)):
-      return Reusable.imageCell.class.size(width: maxWidth, reactor: cellReactor)
-
-    case let .shot(.title(cellReactor)):
-      return Reusable.titleCell.class.size(width: maxWidth, reactor: cellReactor)
-
-    case let .shot(.text(cellReactor)):
-      return Reusable.textCell.class.size(width: maxWidth, reactor: cellReactor)
-
-    case let .shot(.reaction(cellReactor)):
-      return Reusable.reactionCell.class.size(width: maxWidth, reactor: cellReactor)
+    case let .shot(item):
+      return self.shotSectionDelegate.cellSize(collectionView, maxWidth, indexPath, item)
 
     case let .comment(cellReactor):
       return Reusable.commentCell.class.size(width: maxWidth, reactor: cellReactor)

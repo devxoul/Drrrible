@@ -79,7 +79,7 @@ PODS:
   - RxViewController (0.1.0):
     - RxCocoa (>= 3.0.0)
     - RxSwift (>= 3.0.0)
-  - SectionReactor (0.1.0):
+  - SectionReactor (0.2.1):
     - ReactorKit
     - RxDataSources (>= 2.0.0)
   - SnapKit (3.2.0)
@@ -89,7 +89,7 @@ PODS:
   - Then (2.1.0)
   - TouchAreaInsets (1.0.0)
   - TTTAttributedLabel (2.0.0)
-  - UICollectionViewFlexLayout (0.2.0)
+  - UICollectionViewFlexLayout (0.3.1)
   - UITextView+Placeholder (1.2.0)
   - Umbrella (0.5.2):
     - Umbrella/Core (= 0.5.2)
@@ -186,7 +186,7 @@ SPEC CHECKSUMS:
   RxReusable: c18e8e3b5f12a3292b76cc552dd946500f8d2c32
   RxSwift: f9de85ea20cd2f7716ee5409fc13523dc638e4e4
   RxViewController: 45aada3de70642e419b13b100ba395287859361b
-  SectionReactor: 044e4a955b32b7744b27469c2029ef69a5040148
+  SectionReactor: 8955b08e60f1b7f717e1884b8cce714468cb89e2
   SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
   Stubber: 7b381ced124760fde48dff1b6589d3c9019208a7
   SwiftyColor: 7fa09db14051bc5d7f539e1c4576665975225992
@@ -194,7 +194,7 @@ SPEC CHECKSUMS:
   Then: 8496793c8fcac95482b943909b440724c7d8d82c
   TouchAreaInsets: 01a873de4bac294e502bd07219f82bd18866eeee
   TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
-  UICollectionViewFlexLayout: 5be019df4f4d5bf084bc87d4b4a14b736c191819
+  UICollectionViewFlexLayout: 81ebb940737f0689ce35efd8c7cfa7c7f68d2d18
   UITextView+Placeholder: 77680995fcdd07c3f52ec92fe1150874a2ac89ff
   Umbrella: 628d75bc1df33f45f81af268a83412a89623a68d
   URLNavigator: 3ff788c985a0aae654e7de4959c4b0ea8a45f022
