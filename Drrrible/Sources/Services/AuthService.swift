@@ -19,7 +19,7 @@ protocol AuthServiceType {
   /// Start OAuth authorization process.
   ///
   /// - returns: An Observable of `AccessToken` instance.
-  func authorize() -> Single<Void>
+  func authorize() -> Observable<Void>
 
   /// Call this method when redirected from OAuth process to request access token.
   ///
@@ -45,7 +45,7 @@ final class AuthService: AuthServiceType {
     log.debug("currentAccessToken exists: \(self.currentAccessToken != nil)")
   }
 
-  func authorize() -> Single<Void> {
+  func authorize() -> Observable<Void> {
     let parameters: [String: String] = [
       "client_id": self.clientID,
       "scope": "public+write+comment+upload",
@@ -62,13 +62,13 @@ final class AuthService: AuthServiceType {
     Navigator.present(navigationController)
     self.currentViewController = navigationController
 
-    return self.callbackSubject.asSingle()
+    return self.callbackSubject
       .flatMap(self.accessToken)
       .do(onNext: { [weak self] accessToken in
         try self?.saveAccessToken(accessToken)
         self?.currentAccessToken = accessToken
       })
-      .map { _ in Void() }
+      .map { _ in }
   }
 
   func callback(code: String) {

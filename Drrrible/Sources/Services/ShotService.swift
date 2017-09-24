@@ -30,28 +30,26 @@ final class ShotService: ShotServiceType {
     case .refresh: api = .shots
     case .next(let url): api = .url(url)
     }
-    return self.networking.request(api).map(List<Shot>.self).asSingle()
+    return self.networking.request(api).map(List<Shot>.self)
   }
 
   func shot(id: Int) -> Single<Shot> {
-    return self.networking.request(.shot(id: id)).map(Shot.self).asSingle()
+    return self.networking.request(.shot(id: id)).map(Shot.self)
   }
 
   func isLiked(shotID: Int) -> Single<Bool> {
     return self.networking.request(.isLikedShot(id: shotID))
       .map { _ in true }
-      .catchErrorJustReturn(false)
+      .catchError { _ in .just(false) }
       .do(onNext: { isLiked in
         Shot.event.onNext(.updateLiked(id: shotID, isLiked: isLiked))
       })
-      .asSingle()
   }
 
   func like(shotID: Int) -> Single<Void> {
     Shot.event.onNext(.updateLiked(id: shotID, isLiked: true))
     Shot.event.onNext(.increaseLikeCount(id: shotID))
-    return self.networking.request(.likeShot(id: shotID)).mapVoid()
-      .asSingle()
+    return self.networking.request(.likeShot(id: shotID)).map { _ in }
       .do(onError: { error in
         Shot.event.onNext(.updateLiked(id: shotID, isLiked: false))
         Shot.event.onNext(.decreaseLikeCount(id: shotID))
@@ -61,8 +59,7 @@ final class ShotService: ShotServiceType {
   func unlike(shotID: Int) -> Single<Void> {
     Shot.event.onNext(.updateLiked(id: shotID, isLiked: false))
     Shot.event.onNext(.decreaseLikeCount(id: shotID))
-    return self.networking.request(.unlikeShot(id: shotID)).mapVoid()
-      .asSingle()
+    return self.networking.request(.unlikeShot(id: shotID)).map { _ in }
       .do(onError: { error in
         Shot.event.onNext(.updateLiked(id: shotID, isLiked: true))
         Shot.event.onNext(.increaseLikeCount(id: shotID))
@@ -71,6 +68,5 @@ final class ShotService: ShotServiceType {
 
   func comments(shotID: Int) -> Single<List<Comment>> {
     return self.networking.request(.shotComments(shotID: shotID)).map(List<Comment>.self)
-      .asSingle()
   }
 }

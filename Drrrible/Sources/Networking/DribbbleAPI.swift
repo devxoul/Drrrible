@@ -22,7 +22,6 @@ enum DribbbleAPI {
 }
 
 extension DribbbleAPI: SugarTargetType {
-
   var baseURL: URL {
     return URL(string: "https://api.dribbble.com/v1")!
   }
@@ -76,17 +75,19 @@ extension DribbbleAPI: SugarTargetType {
 
   var task: Task {
     switch self {
+    case .shots:
+      return .requestParameters(parameters: ["per_page": 100], encoding: URLEncoding())
+
     default:
-      return .request
+      return .requestPlain
     }
   }
 
-  var httpHeaderFields: [String: String]? {
+  var headers: [String: String]? {
     return ["Accept": "application/json"]
   }
 
   var sampleData: Data {
     return Data()
   }
-
 }

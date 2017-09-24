@@ -1,5 +1,5 @@
 language: objective-c
-osx_image: xcode8.3
+osx_image: xcode9
 sudo: false
 
 cache:
@@ -10,9 +10,9 @@ env:
   global:
     - WORKSPACE="Drrrible.xcworkspace"
     - SCHEME="Drrrible"
-    - IOS_SDK="iphonesimulator10.3"
+    - IOS_SDK="iphonesimulator11.0"
   matrix:
-    - SDK="$IOS_SDK"  DESTINATION="platform=iOS Simulator,name=iPhone 7,OS=10.3.1"
+    - SDK="$IOS_SDK"  DESTINATION="platform=iOS Simulator,name=iPhone 8,OS=11.0"
 
 install:
   - bundle install --deployment
