@@ -6,10 +6,9 @@
 //  Copyright © 2017 Suyeol Jeon. All rights reserved.
 //
 
-import ObjectMapper
+import Foundation
 
 struct User: ModelType {
-
   enum Event {
   }
 
@@ -23,16 +22,14 @@ struct User: ModelType {
   var followerCount: Int
   var followingCount: Int
 
-  init(map: Map) throws {
-    self.id = try map.value("id")
-    self.name = try map.value("name")
-    self.avatarURL = try? map.value("avatar_url", using: URLTransform())
-    self.bio = try? map.value("bio")
-    self.isPro = try map.value("pro")
-
-    self.shotCount = try map.value("shots_count")
-    self.followerCount = try map.value("followers_count")
-    self.followingCount = try map.value("followings_count")
+  enum CodingKeys: String, CodingKey {
+    case id = "id"
+    case name = "name"
+    case avatarURL = "avatar_url"
+    case bio = "bio"
+    case isPro = "pro"
+    case shotCount = "shots_count"
+    case followerCount = "followers_count"
+    case followingCount = "followings_count"
   }
-
 }

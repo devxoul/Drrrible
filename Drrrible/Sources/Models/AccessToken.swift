@@ -6,10 +6,7 @@
 //  Copyright © 2017 Suyeol Jeon. All rights reserved.
 //
 
-import ObjectMapper
-
 struct AccessToken: ModelType {
-
   enum Event {
   }
 
@@ -23,10 +20,9 @@ struct AccessToken: ModelType {
     self.scope = scope
   }
 
-  init(map: Map) throws {
-    self.accessToken = try map.value("access_token")
-    self.tokenType = try map.value("token_type")
-    self.scope = try map.value("scope")
+  enum CodingKeys: String, CodingKey {
+    case accessToken = "access_token"
+    case tokenType = "token_type"
+    case scope = "scope"
   }
-
 }
