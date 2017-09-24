@@ -12,8 +12,8 @@ import RxCocoa
 import RxSwift
 
 extension Reactive where Base: UIView {
-  var setNeedsLayout: UIBindingObserver<Base, Void> {
-    return UIBindingObserver(UIElement: self.base) { view, _ in
+  var setNeedsLayout: Binder<Void> {
+    return Binder(self.base) { view, _ in
       view.setNeedsLayout()
     }
   }

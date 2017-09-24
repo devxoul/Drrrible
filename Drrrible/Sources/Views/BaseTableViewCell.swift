@@ -12,6 +12,9 @@ import RxSwift
 
 class BaseTableViewCell: UITableViewCell {
 
+  var disposeBag = DisposeBag()
+  
+
   // MARK: Initializing
 
   override init(style: UITableViewCellStyle, reuseIdentifier: String?) {

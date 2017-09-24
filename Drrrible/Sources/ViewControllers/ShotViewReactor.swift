@@ -96,8 +96,6 @@ final class ShotViewReactor: Reactor {
   }
 
   func transform(state: Observable<State>) -> Observable<State> {
-    return state.merge(sections: [
-      { $0.shotSectionReactor }
-    ])
+    return state.with(section: \.shotSectionReactor)
   }
 }

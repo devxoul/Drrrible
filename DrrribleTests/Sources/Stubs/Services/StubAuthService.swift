@@ -15,7 +15,7 @@ final class StubAuthService: AuthServiceType {
     return nil
   }
 
-  func authorize() -> Single<Void> {
+  func authorize() -> Observable<Void> {
     return Stubber.invoke(authorize, args: (), default: .never())
   }
 

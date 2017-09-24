@@ -1,103 +1,106 @@
 PODS:
-  - Alamofire (4.4.0)
-  - Carte (2.0.2)
-  - CGFloatLiteral (0.3.0)
-  - CocoaLumberjack/Default (3.1.0)
-  - CocoaLumberjack/Swift (3.1.0):
+  - Alamofire (4.5.1)
+  - Carte (2.1.0)
+  - CGFloatLiteral (0.4.0)
+  - CocoaLumberjack/Default (3.2.1)
+  - CocoaLumberjack/Swift (3.2.1):
     - CocoaLumberjack/Default
-  - Crashlytics (3.8.4):
+  - Crashlytics (3.8.6):
     - Fabric (~> 1.6.3)
-  - Differentiator (2.0.2)
-  - Fabric (1.6.11)
-  - Firebase/Core (4.0.1):
-    - FirebaseAnalytics (= 4.0.0)
-    - FirebaseCore (= 4.0.1)
-  - FirebaseAnalytics (4.0.0):
+  - Differentiator (3.0.0-beta.0)
+  - Fabric (1.6.13)
+  - Firebase/Core (4.2.0):
+    - FirebaseAnalytics (= 4.0.3)
+    - FirebaseCore (= 4.0.7)
+  - FirebaseAnalytics (4.0.3):
     - FirebaseCore (~> 4.0)
     - FirebaseInstanceID (~> 2.0)
     - GoogleToolboxForMac/NSData+zlib (~> 2.1)
-  - FirebaseCore (4.0.1):
+    - nanopb (~> 0.3)
+  - FirebaseCore (4.0.7):
     - GoogleToolboxForMac/NSData+zlib (~> 2.1)
-  - FirebaseInstanceID (2.0.0):
-    - FirebaseCore (~> 4.0)
+    - nanopb (~> 0.3)
+  - FirebaseInstanceID (2.0.3)
   - GoogleToolboxForMac/Defines (2.1.1)
   - GoogleToolboxForMac/NSData+zlib (2.1.1):
     - GoogleToolboxForMac/Defines (= 2.1.1)
-  - Immutable (0.3.0)
-  - KeychainAccess (3.0.1)
-  - Kingfisher (3.10.3)
+  - Immutable (0.5.0)
+  - KeychainAccess (3.1.0)
+  - Kingfisher (4.0.1)
   - ManualLayout (1.3.0)
-  - Moya (8.0.3):
-    - Moya/Core (= 8.0.3)
-  - Moya/Core (8.0.3):
+  - Moya (9.0.0):
+    - Moya/Core (= 9.0.0)
+  - Moya/Core (9.0.0):
     - Alamofire (~> 4.1)
     - Result (~> 3.0)
-  - Moya/RxSwift (8.0.3):
+  - Moya/RxSwift (9.0.0):
     - Moya/Core
-    - RxSwift (~> 3.0)
-  - MoyaSugar (0.4.0):
-    - MoyaSugar/Core (= 0.4.0)
-  - MoyaSugar/Core (0.4.0):
-    - Moya (>= 8.0.0)
-  - MoyaSugar/RxSwift (0.4.0):
-    - Moya/RxSwift (>= 8.0.0)
+    - RxSwift (= 4.0.0-beta.0)
+  - MoyaSugar (1.0.0-beta.1):
+    - MoyaSugar/Core (= 1.0.0-beta.1)
+  - MoyaSugar/Core (1.0.0-beta.1):
+    - Moya (>= 9.0.0)
+  - MoyaSugar/RxSwift (1.0.0-beta.1):
+    - Moya/RxSwift (>= 9.0.0)
     - MoyaSugar/Core
-    - RxSwift (>= 3.0.0)
+    - RxSwift (>= 4.0.0.beta.0)
+  - nanopb (0.3.8):
+    - nanopb/decode (= 0.3.8)
+    - nanopb/encode (= 0.3.8)
+  - nanopb/decode (0.3.8)
+  - nanopb/encode (0.3.8)
   - Nimble (7.0.1)
-  - ObjectMapper (2.2.5)
+  - ObjectMapper (3.0.0)
   - Quick (1.1.0)
-  - ReactorKit (0.5.1):
+  - ReactorKit (0.6.0):
     - RxSwift (>= 3.0.0)
-  - Result (3.2.1)
-  - ReusableKit (1.3.0):
-    - ReusableKit/Core (= 1.3.0)
-    - ReusableKit/RxSwift (= 1.3.0)
-  - ReusableKit/Core (1.3.0)
-  - ReusableKit/RxSwift (1.3.0):
+  - Result (3.2.3)
+  - ReusableKit (2.0.0):
+    - ReusableKit/Core (= 2.0.0)
+    - ReusableKit/RxSwift (= 2.0.0)
+  - ReusableKit/Core (2.0.0)
+  - ReusableKit/RxSwift (2.0.0):
     - ReusableKit/Core
-    - RxCocoa (>= 3.4)
-    - RxSwift (>= 3.4)
-  - RxCocoa (3.6.1):
-    - RxSwift (~> 3.6)
-  - RxDataSources (2.0.1):
-    - Differentiator (~> 2.0)
-    - RxCocoa (~> 3.0)
-    - RxSwift (~> 3.0)
-  - RxGesture (1.0.0):
-    - RxCocoa (~> 3.0)
-    - RxSwift (~> 3.0)
-  - RxKeyboard (0.4.1):
-    - RxCocoa (>= 3.0)
-    - RxSwift (>= 3.0)
-  - RxOptional (3.1.3):
+    - RxCocoa (>= 4.0.0-beta.0)
+    - RxSwift (>= 4.0.0-beta.0)
+  - RxCocoa (4.0.0-beta.0):
+    - RxSwift (~> 4.0.0-beta.0)
+  - RxDataSources (3.0.0-beta.0):
+    - Differentiator (~> 3.0.0-beta.0)
+    - RxCocoa (~> 4.0.0-beta.0)
+    - RxSwift (~> 4.0.0-beta.0)
+  - RxGesture (1.1.1):
+    - RxCocoa (~> 4.0.0-alpha.0)
+    - RxSwift (~> 4.0.0-alpha.0)
+  - RxKeyboard (0.7.0):
+    - RxCocoa (>= 4.0.0-beta.0)
+    - RxSwift (>= 4.0.0-beta.0)
+  - RxOptional (3.2.0):
     - RxCocoa
     - RxSwift
-  - RxReusable (0.3.1):
-    - RxCocoa (>= 3.0)
-    - RxSwift (>= 3.0)
-  - RxSwift (3.6.1)
-  - RxViewController (0.1.0):
+  - RxSwift (4.0.0-beta.0)
+  - RxViewController (0.2.0):
     - RxCocoa (>= 3.0.0)
     - RxSwift (>= 3.0.0)
   - SectionReactor (0.2.1):
     - ReactorKit
-    - RxDataSources (>= 2.0.0)
-  - SnapKit (3.2.0)
-  - Stubber (0.5.0)
+    - RxDataSources
+  - SnapKit (4.0.0)
+  - Stubber (1.0.0)
   - SwiftyColor (1.0.0)
-  - SwiftyImage (1.0.0)
-  - Then (2.1.0)
-  - TouchAreaInsets (1.0.0)
+  - SwiftyImage (1.2.0)
+  - Then (2.2.0)
+  - TouchAreaInsets (1.1.0)
   - TTTAttributedLabel (2.0.0)
   - UICollectionViewFlexLayout (0.3.1)
   - UITextView+Placeholder (1.2.0)
-  - Umbrella (0.5.2):
-    - Umbrella/Core (= 0.5.2)
-  - Umbrella/Core (0.5.2)
-  - Umbrella/Firebase (0.5.2):
+  - Umbrella (0.6.0):
+    - Umbrella/Core (= 0.6.0)
+  - Umbrella/Core (0.6.0)
+  - Umbrella/Firebase (0.6.0):
     - Umbrella/Core
-  - URLNavigator (1.2.0)
-  - WebLinking (1.1.0)
+  - URLNavigator (1.2.5)
+  - WebLinking (2.0.0)
 
 DEPENDENCIES:
   - Alamofire
@@ -105,30 +108,30 @@ DEPENDENCIES:
   - CGFloatLiteral
   - CocoaLumberjack/Swift
   - Crashlytics
+  - Differentiator (from `https://github.com/RxSwiftCommunity/RxDataSources.git`, branch `swift4.0`)
   - Fabric
   - Firebase/Core
   - Immutable
   - KeychainAccess
   - Kingfisher
   - ManualLayout
-  - Moya
-  - Moya/RxSwift
-  - MoyaSugar
-  - MoyaSugar/RxSwift
-  - Nimble
-  - ObjectMapper
-  - Quick
+  - Moya (from `https://github.com/Moya/Moya.git`, branch `10.0.0-dev`)
+  - Moya/RxSwift (from `https://github.com/Moya/Moya.git`, branch `10.0.0-dev`)
+  - MoyaSugar (from `https://github.com/devxoul/MoyaSugar.git`, branch `master`)
+  - MoyaSugar/RxSwift (from `https://github.com/devxoul/MoyaSugar.git`, branch `master`)
+  - Nimble (from `https://github.com/Quick/Nimble.git`, branch `master`)
+  - ObjectMapper (from `https://github.com/Hearst-DD/ObjectMapper.git`, branch `swift-4`)
+  - Quick (from `https://github.com/Quick/Quick.git`, branch `master`)
   - ReactorKit
   - ReusableKit
-  - RxCocoa
-  - RxDataSources
-  - RxGesture
+  - RxCocoa (= 4.0.0-beta.0)
+  - RxDataSources (from `https://github.com/RxSwiftCommunity/RxDataSources.git`, branch `swift4.0`)
+  - RxGesture (from `https://github.com/sidmani/RxGesture.git`, branch `swift-4`)
   - RxKeyboard
   - RxOptional
-  - RxReusable
-  - RxSwift
+  - RxSwift (= 4.0.0-beta.0)
   - RxViewController
-  - SectionReactor
+  - SectionReactor (from `https://github.com/devxoul/SectionReactor.git`, branch `swift-4.0`)
   - SnapKit
   - Stubber
   - SwiftyColor
@@ -140,66 +143,126 @@ DEPENDENCIES:
   - UITextView+Placeholder
   - Umbrella
   - Umbrella/Firebase
-  - URLNavigator
-  - WebLinking (from `https://github.com/kylef/WebLinking.swift`, commit `fddbacc30deab8afe12ce1d3b78bd27c593a0c29`)
+  - URLNavigator (from `https://github.com/devxoul/URLNavigator.git`, branch `master`)
+  - WebLinking (from `https://github.com/devxoul/WebLinking.swift`, branch `swift-4.0`)
 
 EXTERNAL SOURCES:
+  Differentiator:
+    :branch: swift4.0
+    :git: https://github.com/RxSwiftCommunity/RxDataSources.git
+  Moya:
+    :branch: 10.0.0-dev
+    :git: https://github.com/Moya/Moya.git
+  MoyaSugar:
+    :branch: master
+    :git: https://github.com/devxoul/MoyaSugar.git
+  Nimble:
+    :branch: master
+    :git: https://github.com/Quick/Nimble.git
+  ObjectMapper:
+    :branch: swift-4
+    :git: https://github.com/Hearst-DD/ObjectMapper.git
+  Quick:
+    :branch: master
+    :git: https://github.com/Quick/Quick.git
+  RxDataSources:
+    :branch: swift4.0
+    :git: https://github.com/RxSwiftCommunity/RxDataSources.git
+  RxGesture:
+    :branch: swift-4
+    :git: https://github.com/sidmani/RxGesture.git
+  SectionReactor:
+    :branch: swift-4.0
+    :git: https://github.com/devxoul/SectionReactor.git
+  URLNavigator:
+    :branch: master
+    :git: https://github.com/devxoul/URLNavigator.git
   WebLinking:
-    :commit: fddbacc30deab8afe12ce1d3b78bd27c593a0c29
-    :git: https://github.com/kylef/WebLinking.swift
+    :branch: swift-4.0
+    :git: https://github.com/devxoul/WebLinking.swift
 
 CHECKOUT OPTIONS:
+  Differentiator:
+    :commit: 847b3ce429f5dab62ddc00d5d2d10131a650af11
+    :git: https://github.com/RxSwiftCommunity/RxDataSources.git
+  Moya:
+    :commit: 4382d73610cacc35f2330a0cdb91180d29e16b51
+    :git: https://github.com/Moya/Moya.git
+  MoyaSugar:
+    :commit: ffd3ee7ea5fc1c9d3fe904d43d56ce08e1f38a15
+    :git: https://github.com/devxoul/MoyaSugar.git
+  Nimble:
+    :commit: a63252b16eba6cdebec4e4936388c90552165a68
+    :git: https://github.com/Quick/Nimble.git
+  ObjectMapper:
+    :commit: 18051553fc44e98ffb1b7e93fa94cd184283d993
+    :git: https://github.com/Hearst-DD/ObjectMapper.git
+  Quick:
+    :commit: 3665ae9570b682a562df847cccbb46811864676a
+    :git: https://github.com/Quick/Quick.git
+  RxDataSources:
+    :commit: 847b3ce429f5dab62ddc00d5d2d10131a650af11
+    :git: https://github.com/RxSwiftCommunity/RxDataSources.git
+  RxGesture:
+    :commit: cc397115485a69919859fdce3875d613786c8308
+    :git: https://github.com/sidmani/RxGesture.git
+  SectionReactor:
+    :commit: 96aa587080bf5c278f554b85cdf37a36e9847a5a
+    :git: https://github.com/devxoul/SectionReactor.git
+  URLNavigator:
+    :commit: fd39b074b6afe22847e789e6e0f20a711062335d
+    :git: https://github.com/devxoul/URLNavigator.git
   WebLinking:
-    :commit: fddbacc30deab8afe12ce1d3b78bd27c593a0c29
-    :git: https://github.com/kylef/WebLinking.swift
+    :commit: 9f425b2dc9d48647d62f234be2527f962831728c
+    :git: https://github.com/devxoul/WebLinking.swift
 
 SPEC CHECKSUMS:
-  Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
-  Carte: 546fb42f805910f271e6e743d4a4eef6b12ae254
-  CGFloatLiteral: faba125ab2bb8fa90142c414f876b83099c26f25
-  CocoaLumberjack: 8311463ddf9ee86a06ef92a071dd656c89244500
-  Crashlytics: 79e236942ca1e7fc641df1feb9a275360a78ab6a
-  Differentiator: caa9b3957981a2ac8e6b2eac8a676af461caa604
-  Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
-  Firebase: f984cd44a160be77ad0590f432e574562bfd4083
-  FirebaseAnalytics: 6f08e746f7d66f5452931bc2e822b5df9c66b64a
-  FirebaseCore: 06172c5a0744ab3dd14f778fd666c22855e20098
-  FirebaseInstanceID: 9fbf536668f4d3f0880e7438456dabd1376e294b
+  Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
+  Carte: 7b8d90c312cb5586aea71ed693c0f4f046af42db
+  CGFloatLiteral: 2ab558b74124b584dd023a35b7e41795a61d8140
+  CocoaLumberjack: 2800c03334042fe80589423c8d80e582dcaec482
+  Crashlytics: 95d05f4e4c19a771250c4bd9ce344d996de32bbf
+  Differentiator: dc3c10813dbc68a761292f18f4039bc99ad73693
+  Fabric: 2fb5676bc811af011a04513451f463dac6803206
+  Firebase: 9548cae14d69718add12d75a5b312893f7ef89c7
+  FirebaseAnalytics: 76f754d37ca5b04f36856729b6af3ca0152d1069
+  FirebaseCore: 9a6cc1e3eaf75905390f9220596ad4fd8f92faee
+  FirebaseInstanceID: a4fc702b5a026f7322964376047f1a3f1f7cc6ff
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
-  Immutable: 647a894d00b459bf3672f2b38b7da9cbf6a8b923
-  KeychainAccess: 017ea25e313a49eda10bb19b0bb0760fb1edfe1a
-  Kingfisher: a0ac82dc5bcf0388dd74b294cf2cc13730c63436
+  Immutable: a77b96749daf0f74d2471bca7dc08703b92fd6d8
+  KeychainAccess: 94c5540b32eabf7bc32bfb976a268e8ea05fd6da
+  Kingfisher: b771785e9461ed4b8686d40e7145f9e58100cb24
   ManualLayout: 68ac8cfa6b5f656f7a9fadec3730208b95986880
-  Moya: d3721622e3cc0cc2f038d69a258686f0b66e7252
-  MoyaSugar: 302175740302bed7309b9483c4a3321631eab753
-  Nimble: 657d000e11df8aebe27cdaf9d244de7f30ed87f7
-  ObjectMapper: fb30f71e08470d1e5a20b199fafe1246281db898
-  Quick: dafc587e21eed9f4cab3249b9f9015b0b7a7f71d
-  ReactorKit: 42df9addbaad5ab1abd817893ef870bec86b3f86
-  Result: 2453a22e5c5b11c0c3a478736e82cd02f763b781
-  ReusableKit: 4e4f45128985987555bde17abbf261c0a604f9f2
-  RxCocoa: 84a08739ab186248c7f31ce4ee92d6f8a947d690
-  RxDataSources: 93c805010d4f5970e5204829a182bcdceab5adb5
-  RxGesture: df17ca8be513640294c544b3165875e91de665ec
-  RxKeyboard: 4046ecd1884a3bf0dacb823bd2ac8b00482d29ff
-  RxOptional: b97b59183af80d1e729ac9e51d09a10be668d6a8
-  RxReusable: c18e8e3b5f12a3292b76cc552dd946500f8d2c32
-  RxSwift: f9de85ea20cd2f7716ee5409fc13523dc638e4e4
-  RxViewController: 45aada3de70642e419b13b100ba395287859361b
-  SectionReactor: 8955b08e60f1b7f717e1884b8cce714468cb89e2
-  SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
-  Stubber: 7b381ced124760fde48dff1b6589d3c9019208a7
+  Moya: 43aa124994d3f6eb663e15436a9e909b39cc62cb
+  MoyaSugar: 5c7e6e005b4c4df1ee71ebe86d57af49da88a7f7
+  nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
+  Nimble: 1b6670c36e5750169b9e4cc2e9cfa82a7603c69e
+  ObjectMapper: 739e5530df22248823f6cc7ed9e016ebf2c26a27
+  Quick: 4700beb8056662b579facd79eaca7f04fb3d48e6
+  ReactorKit: d979377df0ff393cb0ed4df9c2b31b2edd8dca08
+  Result: 128640a6347e8d2ae48b142556739a2d13f90ce6
+  ReusableKit: 668daa3e98e614ec2e135db2028a958baa2abd6f
+  RxCocoa: 8d809675f4e89c5c4c5a6900bbd11fe632ad5d86
+  RxDataSources: 2ec4fd48dd47a8c8f0886aa9fa25338fda930017
+  RxGesture: 846e57fef9ddab441cdb76c8668bed1cb3d027b6
+  RxKeyboard: d7b65fd85347c2ec214d21c95537dadc62d3b9af
+  RxOptional: d2d6a68064bc16b4801332c40663967f481b0234
+  RxSwift: e0899fae37065c16db976cc5e3c957e4e388869c
+  RxViewController: 67cc7dde0f9e2ed941029eceec750c3ecb6ba74b
+  SectionReactor: 1b8d29993ab415c621fb0610d35671f5a67dd7c3
+  SnapKit: a42d492c16e80209130a3379f73596c3454b7694
+  Stubber: 0d3759dc6979d0a6163d77d971927f01aa5b5258
   SwiftyColor: 7fa09db14051bc5d7f539e1c4576665975225992
-  SwiftyImage: 79090f8b96057b3e91064de172936b97855086e6
-  Then: 8496793c8fcac95482b943909b440724c7d8d82c
-  TouchAreaInsets: 01a873de4bac294e502bd07219f82bd18866eeee
+  SwiftyImage: ebaa7c7b6163cd4ad102f3bb05a8fb276d35b4f3
+  Then: 823f9813e1d4d0a814a5ba15e9c9d33ec7aca631
+  TouchAreaInsets: eb1ad705965a142a30a9c6a3405bec5e46d8613b
   TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
   UICollectionViewFlexLayout: 81ebb940737f0689ce35efd8c7cfa7c7f68d2d18
   UITextView+Placeholder: 77680995fcdd07c3f52ec92fe1150874a2ac89ff
-  Umbrella: 628d75bc1df33f45f81af268a83412a89623a68d
-  URLNavigator: 3ff788c985a0aae654e7de4959c4b0ea8a45f022
-  WebLinking: 3f71787c14a225148e8be29fe6e7c98597cbc459
+  Umbrella: a4b409f07d023748ce84959363341ca7068c82ef
+  URLNavigator: d7be873d03072a926f7cc950695fa06987a27b67
+  WebLinking: a2ffdedbc8741b6cc490a3a06b747f7b528d6b7b
 
-PODFILE CHECKSUM: 350b82f15fddae94fddecc27e41cc2f50925d0c2
+PODFILE CHECKSUM: a44176695ac1c4fdae88cea2ba46ae6ca231e351
 
 COCOAPODS: 1.3.1

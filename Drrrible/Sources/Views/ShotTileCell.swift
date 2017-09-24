@@ -93,7 +93,7 @@ final class ShotTileCell: BaseCollectionViewCell, View {
       .disposed(by: self.disposeBag)
 
     // View
-    self.cardView.rx.tapGesture() { $0.delegate = ExclusiveGestureRecognizerDelegate.shared }
+    self.cardView.rx.tapGesture()
       .filter { $0.state == .ended }
       .subscribe(onNext: { [weak reactor] _ in
         guard let reactor = reactor else { return }

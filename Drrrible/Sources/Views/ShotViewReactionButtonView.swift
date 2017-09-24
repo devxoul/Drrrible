@@ -9,10 +9,9 @@
 import UIKit
 
 import ReactorKit
-import RxReusable
 import RxSwift
 
-final class ShotViewReactionButtonView: UIView, View, RxReusableType {
+final class ShotViewReactionButtonView: UIView, View {
 
   // MARK: Constants
 
@@ -34,6 +33,11 @@ final class ShotViewReactionButtonView: UIView, View, RxReusableType {
   fileprivate let label = UILabel().then {
     $0.font = Font.label
   }
+
+
+  // MARK: Properties
+
+  var disposeBag = DisposeBag()
 
 
   // MARK: Initializing
@@ -77,7 +81,7 @@ final class ShotViewReactionButtonView: UIView, View, RxReusableType {
       .bind(to: self.label.rx.text)
       .disposed(by: self.disposeBag)
 
-    reactor.state.mapVoid()
+    reactor.state.map { _ in }
       .bind(to: self.rx.setNeedsLayout)
       .disposed(by: self.disposeBag)
   }

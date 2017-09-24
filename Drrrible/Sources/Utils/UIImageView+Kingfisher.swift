@@ -67,8 +67,8 @@ extension UIImageView {
 }
 
 extension Reactive where Base: UIImageView {
-  func image(placeholder: UIImage? = nil, options: ImageOptions) -> UIBindingObserver<Base, Resource?> {
-    return UIBindingObserver(UIElement: self.base) { imageView, resource in
+  func image(placeholder: UIImage? = nil, options: ImageOptions) -> Binder<Resource?> {
+    return Binder(self.base) { imageView, resource in
       imageView.setImage(with: resource, placeholder: placeholder, options: options)
     }
   }

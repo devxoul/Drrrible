@@ -19,7 +19,6 @@ final class AppStoreService: AppStoreServiceType {
     guard let bundleID = Bundle.main.bundleIdentifier else { return .just(nil) }
     return self.networking.request(.lookup(bundleID: bundleID))
       .mapJSON()
-      .asSingle()
       .flatMap { json -> Single<String?> in
         let version = (json as? [String: Any])
           .flatMap { $0["results"] as? [[String: Any]] }
