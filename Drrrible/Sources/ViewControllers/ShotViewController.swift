@@ -39,7 +39,9 @@ final class ShotViewController: BaseViewController, View {
 
   // MARK: UI
 
-  let refreshControl = UIRefreshControl()
+  let refreshControl = UIRefreshControl().then {
+    $0.layer.zPosition = -999
+  }
   let collectionView = UICollectionView(
     frame: .zero,
     collectionViewLayout: UICollectionViewFlexLayout()
@@ -122,9 +124,8 @@ final class ShotViewController: BaseViewController, View {
   override func viewDidLoad() {
     super.viewDidLoad()
     self.view.backgroundColor = .db_background
-
-    self.collectionView.addSubview(self.refreshControl)
     self.view.addSubview(self.collectionView)
+    self.collectionView.refreshControl = refreshControl
   }
 
   override func setupConstraints() {
