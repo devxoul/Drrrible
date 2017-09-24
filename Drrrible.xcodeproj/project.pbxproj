@@ -18,7 +18,7 @@
 		031EB0721E7005B4004D6349 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EB0711E7005B4004D6349 /* Logger.swift */; };
 		031EB0741E7006BD004D6349 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EB0731E7006BD004D6349 /* Networking.swift */; };
 		031EB0761E700814004D6349 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EB0751E700814004D6349 /* UserService.swift */; };
-		031EB0781E700912004D6349 /* ObjectMapper+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EB0771E700912004D6349 /* ObjectMapper+Rx.swift */; };
+		031EB0781E700912004D6349 /* Moya+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EB0771E700912004D6349 /* Moya+Rx.swift */; };
 		031EB0821E70624D004D6349 /* AuthPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EB0811E70624D004D6349 /* AuthPlugin.swift */; };
 		031F92861EA55FA00025D5FB /* TestMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031F92851EA55FA00025D5FB /* TestMain.swift */; };
 		03208D8D1F4B00920073B266 /* CollectionBorderedBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03208D8C1F4B00920073B266 /* CollectionBorderedBackgroundView.swift */; };
@@ -94,6 +94,7 @@
 		03A60A8C1EC1DAD10053FD0D /* UIView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A60A8B1EC1DAD10053FD0D /* UIView+Rx.swift */; };
 		03AB28DE1F49C54E008D8353 /* StubShotViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AB28DD1F49C54E008D8353 /* StubShotViewReactor.swift */; };
 		03AB28E01F49C703008D8353 /* StubShotViewReactionCellReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AB28DF1F49C703008D8353 /* StubShotViewReactionCellReactor.swift */; };
+		03AEB8F21F7831EB00540F06 /* Fixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AEB8F11F7831EB00540F06 /* Fixture.swift */; };
 		03C629CB1F28C0DA008B4097 /* ShotViewReactorSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C629CA1F28C0DA008B4097 /* ShotViewReactorSpec.swift */; };
 		03C629CD1F28C866008B4097 /* CommentFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C629CC1F28C866008B4097 /* CommentFixture.swift */; };
 		03D996D21E8051FC004773AE /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D996D11E8051FC004773AE /* Comment.swift */; };
@@ -156,7 +157,7 @@
 		031EB0711E7005B4004D6349 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		031EB0731E7006BD004D6349 /* Networking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		031EB0751E700814004D6349 /* UserService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
-		031EB0771E700912004D6349 /* ObjectMapper+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ObjectMapper+Rx.swift"; sourceTree = "<group>"; };
+		031EB0771E700912004D6349 /* Moya+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Moya+Rx.swift"; sourceTree = "<group>"; };
 		031EB0811E70624D004D6349 /* AuthPlugin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthPlugin.swift; sourceTree = "<group>"; };
 		031F92851EA55FA00025D5FB /* TestMain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestMain.swift; sourceTree = "<group>"; };
 		03208D8C1F4B00920073B266 /* CollectionBorderedBackgroundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionBorderedBackgroundView.swift; sourceTree = "<group>"; };
@@ -232,6 +233,7 @@
 		03A60A8B1EC1DAD10053FD0D /* UIView+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Rx.swift"; sourceTree = "<group>"; };
 		03AB28DD1F49C54E008D8353 /* StubShotViewReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StubShotViewReactor.swift; sourceTree = "<group>"; };
 		03AB28DF1F49C703008D8353 /* StubShotViewReactionCellReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StubShotViewReactionCellReactor.swift; sourceTree = "<group>"; };
+		03AEB8F11F7831EB00540F06 /* Fixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fixture.swift; sourceTree = "<group>"; };
 		03C629CA1F28C0DA008B4097 /* ShotViewReactorSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShotViewReactorSpec.swift; sourceTree = "<group>"; };
 		03C629CC1F28C866008B4097 /* CommentFixture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentFixture.swift; sourceTree = "<group>"; };
 		03D996D11E8051FC004773AE /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
@@ -440,6 +442,7 @@
 			children = (
 				03D997201E817C1A004773AE /* ShotFixture.swift */,
 				03C629CC1F28C866008B4097 /* CommentFixture.swift */,
+				03AEB8F11F7831EB00540F06 /* Fixture.swift */,
 			);
 			path = Fixtures;
 			sourceTree = "<group>";
@@ -542,7 +545,7 @@
 		03DF94FA1E6EA80A00E31665 /* Rx */ = {
 			isa = PBXGroup;
 			children = (
-				031EB0771E700912004D6349 /* ObjectMapper+Rx.swift */,
+				031EB0771E700912004D6349 /* Moya+Rx.swift */,
 				03A60A8B1EC1DAD10053FD0D /* UIView+Rx.swift */,
 				035D06911E71BBD700AFF030 /* UIScrollView+Rx.swift */,
 				038B690E1E73153E006B44F9 /* UITableView+Rx.swift */,
@@ -866,11 +869,11 @@
 				"${BUILT_PRODUCTS_DIR}/ManualLayout/ManualLayout.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
 				"${BUILT_PRODUCTS_DIR}/MoyaSugar/MoyaSugar.framework",
-				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/ReactorKit/ReactorKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/ReusableKit/ReusableKit.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCodable/RxCodable.framework",
 				"${BUILT_PRODUCTS_DIR}/RxDataSources/RxDataSources.framework",
 				"${BUILT_PRODUCTS_DIR}/RxGesture/RxGesture.framework",
 				"${BUILT_PRODUCTS_DIR}/RxKeyboard/RxKeyboard.framework",
@@ -905,11 +908,11 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ManualLayout.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MoyaSugar.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactorKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReusableKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCodable.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxDataSources.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxGesture.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxKeyboard.framework",
@@ -984,11 +987,11 @@
 				"${BUILT_PRODUCTS_DIR}/ManualLayout/ManualLayout.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
 				"${BUILT_PRODUCTS_DIR}/MoyaSugar/MoyaSugar.framework",
-				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/ReactorKit/ReactorKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/ReusableKit/ReusableKit.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCodable/RxCodable.framework",
 				"${BUILT_PRODUCTS_DIR}/RxDataSources/RxDataSources.framework",
 				"${BUILT_PRODUCTS_DIR}/RxGesture/RxGesture.framework",
 				"${BUILT_PRODUCTS_DIR}/RxKeyboard/RxKeyboard.framework",
@@ -1026,11 +1029,11 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ManualLayout.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MoyaSugar.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactorKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReusableKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCodable.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxDataSources.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxGesture.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxKeyboard.framework",
@@ -1146,6 +1149,7 @@
 				03D996FB1E811EC5004773AE /* SplashViewReactorSpec.swift in Sources */,
 				036CDD961F239A02006C91CC /* StubAppDelegate.swift in Sources */,
 				03FE6AF61F23C96E005D04DA /* ShotTileCellSpec.swift in Sources */,
+				03AEB8F21F7831EB00540F06 /* Fixture.swift in Sources */,
 				03FE6AF41F23C835005D04DA /* ShotCellReactorSpec.swift in Sources */,
 				034195081F23A807003B5DEE /* ShotListViewControllerSpec.swift in Sources */,
 			);
@@ -1159,7 +1163,7 @@
 				034D33561EA687BA004498FB /* Bundle.swift in Sources */,
 				0365BB8C1E747D91009BA3F8 /* ShotViewTextCellReactor.swift in Sources */,
 				038B690F1E73153E006B44F9 /* UITableView+Rx.swift in Sources */,
-				031EB0781E700912004D6349 /* ObjectMapper+Rx.swift in Sources */,
+				031EB0781E700912004D6349 /* Moya+Rx.swift in Sources */,
 				0377C5571E745CDB00EE4576 /* ShotViewSection.swift in Sources */,
 				035D068C1E71A40000AFF030 /* ShotTileCell.swift in Sources */,
 				0365BB9A1E754E72009BA3F8 /* ShotViewReactionButtonViewReactor.swift in Sources */,

@@ -32,6 +32,6 @@ final class UserService: UserServiceType {
       .do(onNext: { [weak self] user in
         self?.userSubject.onNext(user)
       })
-      .map { _ in Void() }
+      .map { _ in }
   }
 }
