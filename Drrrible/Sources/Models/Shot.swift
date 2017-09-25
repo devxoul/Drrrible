@@ -6,10 +6,9 @@
 //  Copyright © 2017 Suyeol Jeon. All rights reserved.
 //
 
-import ObjectMapper
+import Foundation
 
 struct Shot: ModelType {
-
   enum Event {
     case updateLiked(id: Int, isLiked: Bool)
     case increaseLikeCount(id: Int)
@@ -21,7 +20,7 @@ struct Shot: ModelType {
   var text: String?
   var user: User
 
-  var imageURLs: (hidpi: URL?, normal: URL, teaser: URL)
+  var imageURLs: ShotImageURLs
   var imageWidth: Int
   var imageHeight: Int
   var isAnimatedImage: Bool
@@ -32,27 +31,32 @@ struct Shot: ModelType {
 
   var createdAt: Date
 
-  var isLiked: Bool?
+  var isLiked: Bool? = nil
 
-  init(map: Map) throws {
-    self.id = try map.value("id")
-    self.title = try map.value("title")
-    self.text = try? map.value("description")
-    self.user = try map.value("user")
+  enum CodingKeys: String, CodingKey {
+    case id = "id"
+    case title = "title"
+    case text = "description"
+    case user = "user"
+    case imageURLs = "images"
+    case imageWidth = "width"
+    case imageHeight = "height"
+    case isAnimatedImage = "animated"
+    case viewCount = "views_count"
+    case likeCount = "likes_count"
+    case commentCount = "comments_count"
+    case createdAt = "created_at"
+  }
+}
 
-    self.imageURLs = (
-      hidpi: try? map.value("images.hidpi", using: URLTransform()),
-      normal: try map.value("images.normal", using: URLTransform()),
-      teaser: try map.value("images.teaser", using: URLTransform())
-    )
-    self.imageWidth = try map.value("width")
-    self.imageHeight = try map.value("height")
-    self.isAnimatedImage = try map.value("animated")
+struct ShotImageURLs: Codable {
+  let hidpi: URL?
+  let normal: URL
+  let teaser: URL
 
-    self.viewCount = try map.value("views_count")
-    self.likeCount = try map.value("likes_count")
-    self.commentCount = try map.value("comments_count")
-
-    self.createdAt = try map.value("created_at", using: ISO8601DateTransform())
+  enum CodingKeys: String, CodingKey {
+    case hidpi = "hidpi"
+    case normal = "normal"
+    case teaser = "teaser"
   }
 }

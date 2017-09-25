@@ -16,12 +16,11 @@ target 'Drrrible' do
   pod 'WebLinking', :git => 'https://github.com/devxoul/WebLinking.swift', :branch => 'swift-4.0'
   pod 'Kingfisher'
 
-  # Model
-  pod 'ObjectMapper', :git => 'https://github.com/Hearst-DD/ObjectMapper.git', :branch => 'swift-4'
-
   # Rx
   pod 'RxSwift', '4.0.0-beta.0'
   pod 'RxCocoa', '4.0.0-beta.0'
+  pod 'RxCodable'
+  pod 'RxCodable/Moya'
   pod 'RxDataSources', :git => 'https://github.com/RxSwiftCommunity/RxDataSources.git', :branch => 'swift4.0'
   pod 'Differentiator', :git => 'https://github.com/RxSwiftCommunity/RxDataSources.git', :branch => 'swift4.0'
   pod 'RxOptional'

@@ -92,17 +92,17 @@ final class AuthService: AuthServiceType {
     return Single.create { observer in
       let request = Alamofire
         .request(urlString, method: .post, parameters: parameters)
-        .responseString { response in
+        .responseData { response in
           switch response.result {
-          case .success(let jsonString):
+          case let .success(jsonData):
             do {
-              let accessToken = try AccessToken(JSONString: jsonString)
+              let accessToken = try JSONDecoder().decode(AccessToken.self, from: jsonData)
               observer(.success(accessToken))
             } catch let error {
               observer(.error(error))
             }
 
-          case .failure(let error):
+          case let .failure(error):
             observer(.error(error))
           }
         }

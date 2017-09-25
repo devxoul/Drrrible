@@ -6,9 +6,8 @@
 //  Copyright © 2017 Suyeol Jeon. All rights reserved.
 //
 
-import ObjectMapper
 import Then
 
-protocol ModelType: ImmutableMappable, Then {
+protocol ModelType: Codable, Then {
   associatedtype Event
 }

@@ -6,10 +6,9 @@
 //  Copyright © 2017 Suyeol Jeon. All rights reserved.
 //
 
-import ObjectMapper
+import Foundation
 
 struct Comment: ModelType {
-
   enum Event {
   }
 
@@ -19,12 +18,11 @@ struct Comment: ModelType {
   var likeCount: Int
   var user: User
 
-  init(map: Map) throws {
-    self.id = try map.value("id")
-    self.body = try map.value("body")
-    self.createdAt = try map.value("created_at", using: ISO8601DateTransform())
-    self.likeCount = try map.value("likes_count")
-    self.user = try map.value("user")
+  enum CodingKeys: String, CodingKey {
+    case id = "id"
+    case body = "body"
+    case createdAt = "created_at"
+    case likeCount = "likes_count"
+    case user = "user"
   }
-
 }

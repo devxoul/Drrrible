@@ -7,11 +7,10 @@
 //
 
 import Foundation
-import ObjectMapper
 @testable import Drrrible
 
 struct CommentFixture {
-  static let comment1 = try! Comment(JSON: [
+  static let comment1: Comment = fixture([
     "id" : 1145736,
     "body" : "<p>Could he somehow make the shape of an \"S\" with his arms? I feel like i see potential for some hidden shapes in here...</p>\n\n<p>Looks fun!\n</p>",
     "likes_count" : 1,
@@ -53,7 +52,7 @@ struct CommentFixture {
       "updated_at" : "2014-02-22T17:10:33Z"
     ]
   ])
-  static let comment2 = try! Comment(JSON: [
+  static let comment2: Comment = fixture([
     "id" : 24400091,
     "body": "Hello, world!",
     "likes_count" : 1,

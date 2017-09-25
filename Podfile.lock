@@ -50,7 +50,6 @@ PODS:
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
   - Nimble (7.0.1)
-  - ObjectMapper (3.0.0)
   - Quick (1.1.0)
   - ReactorKit (0.6.0):
     - RxSwift (>= 3.0.0)
@@ -65,6 +64,13 @@ PODS:
     - RxSwift (>= 4.0.0-beta.0)
   - RxCocoa (4.0.0-beta.0):
     - RxSwift (~> 4.0.0-beta.0)
+  - RxCodable (0.1.0):
+    - RxCodable/Core (= 0.1.0)
+  - RxCodable/Core (0.1.0):
+    - RxSwift (>= 4.0.0-beta.0)
+  - RxCodable/Moya (0.1.0):
+    - Moya
+    - RxCodable/Core
   - RxDataSources (3.0.0-beta.0):
     - Differentiator (~> 3.0.0-beta.0)
     - RxCocoa (~> 4.0.0-beta.0)
@@ -120,11 +126,12 @@ DEPENDENCIES:
   - MoyaSugar (from `https://github.com/devxoul/MoyaSugar.git`, branch `master`)
   - MoyaSugar/RxSwift (from `https://github.com/devxoul/MoyaSugar.git`, branch `master`)
   - Nimble (from `https://github.com/Quick/Nimble.git`, branch `master`)
-  - ObjectMapper (from `https://github.com/Hearst-DD/ObjectMapper.git`, branch `swift-4`)
   - Quick (from `https://github.com/Quick/Quick.git`, branch `master`)
   - ReactorKit
   - ReusableKit
   - RxCocoa (= 4.0.0-beta.0)
+  - RxCodable
+  - RxCodable/Moya
   - RxDataSources (from `https://github.com/RxSwiftCommunity/RxDataSources.git`, branch `swift4.0`)
   - RxGesture (from `https://github.com/sidmani/RxGesture.git`, branch `swift-4`)
   - RxKeyboard
@@ -159,9 +166,6 @@ EXTERNAL SOURCES:
   Nimble:
     :branch: master
     :git: https://github.com/Quick/Nimble.git
-  ObjectMapper:
-    :branch: swift-4
-    :git: https://github.com/Hearst-DD/ObjectMapper.git
   Quick:
     :branch: master
     :git: https://github.com/Quick/Quick.git
@@ -194,9 +198,6 @@ CHECKOUT OPTIONS:
   Nimble:
     :commit: a63252b16eba6cdebec4e4936388c90552165a68
     :git: https://github.com/Quick/Nimble.git
-  ObjectMapper:
-    :commit: 18051553fc44e98ffb1b7e93fa94cd184283d993
-    :git: https://github.com/Hearst-DD/ObjectMapper.git
   Quick:
     :commit: 3665ae9570b682a562df847cccbb46811864676a
     :git: https://github.com/Quick/Quick.git
@@ -237,12 +238,12 @@ SPEC CHECKSUMS:
   MoyaSugar: 5c7e6e005b4c4df1ee71ebe86d57af49da88a7f7
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   Nimble: 1b6670c36e5750169b9e4cc2e9cfa82a7603c69e
-  ObjectMapper: 739e5530df22248823f6cc7ed9e016ebf2c26a27
   Quick: 4700beb8056662b579facd79eaca7f04fb3d48e6
   ReactorKit: d979377df0ff393cb0ed4df9c2b31b2edd8dca08
   Result: 128640a6347e8d2ae48b142556739a2d13f90ce6
   ReusableKit: 668daa3e98e614ec2e135db2028a958baa2abd6f
   RxCocoa: 8d809675f4e89c5c4c5a6900bbd11fe632ad5d86
+  RxCodable: d2712a0898fefe788ae2388201c52925fafe68c4
   RxDataSources: 2ec4fd48dd47a8c8f0886aa9fa25338fda930017
   RxGesture: 846e57fef9ddab441cdb76c8668bed1cb3d027b6
   RxKeyboard: d7b65fd85347c2ec214d21c95537dadc62d3b9af
@@ -263,6 +264,6 @@ SPEC CHECKSUMS:
   URLNavigator: d7be873d03072a926f7cc950695fa06987a27b67
   WebLinking: a2ffdedbc8741b6cc490a3a06b747f7b528d6b7b
 
-PODFILE CHECKSUM: a44176695ac1c4fdae88cea2ba46ae6ca231e351
+PODFILE CHECKSUM: f4df8c57f27093fa99a46b3979aa7ac84aa99793
 
 COCOAPODS: 1.3.1

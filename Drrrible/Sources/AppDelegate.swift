@@ -15,6 +15,7 @@ import Firebase
 import Immutable
 import Kingfisher
 import ManualLayout
+import RxCodable
 import RxGesture
 import RxOptional
 import RxViewController
