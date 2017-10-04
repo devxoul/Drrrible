@@ -1,6 +1,6 @@
 PODS:
   - Alamofire (4.5.1)
-  - Carte (2.1.0)
+  - Carte (2.1.3)
   - CGFloatLiteral (0.4.0)
   - CocoaLumberjack/Default (3.2.1)
   - CocoaLumberjack/Swift (3.2.1):
@@ -207,7 +207,7 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
-  Carte: 7b8d90c312cb5586aea71ed693c0f4f046af42db
+  Carte: 1f6e0a3afc4e1a960c9f7555e7c12241be3fc75f
   CGFloatLiteral: 2ab558b74124b584dd023a35b7e41795a61d8140
   CocoaLumberjack: 2800c03334042fe80589423c8d80e582dcaec482
   Crashlytics: 95d05f4e4c19a771250c4bd9ce344d996de32bbf
