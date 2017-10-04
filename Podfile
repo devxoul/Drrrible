@@ -61,8 +61,8 @@ target 'Drrrible' do
   target 'DrrribleTests' do
     inherit! :complete
     pod 'Stubber'
-    pod 'Quick', :git => 'https://github.com/Quick/Quick.git', :branch => 'master'
-    pod 'Nimble', :git => 'https://github.com/Quick/Nimble.git', :branch => 'master'
+    pod 'Quick'
+    pod 'Nimble'
   end
 
 end
