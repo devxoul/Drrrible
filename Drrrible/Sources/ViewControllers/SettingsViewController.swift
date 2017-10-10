@@ -28,7 +28,7 @@ final class SettingsViewController: BaseViewController, View {
   fileprivate let analytics: DrrribleAnalytics
   fileprivate let versionViewControllerFactory: () -> VersionViewController
   fileprivate let presentLoginScreen: () -> Void
-  fileprivate let dataSource = RxTableViewSectionedReloadDataSource<SettingsViewSection>()
+  fileprivate let dataSource: RxTableViewSectionedReloadDataSource<SettingsViewSection>
 
 
   // MARK: UI
@@ -50,6 +50,7 @@ final class SettingsViewController: BaseViewController, View {
     self.analytics = analytics
     self.versionViewControllerFactory = versionViewControllerFactory
     self.presentLoginScreen = presentLoginScreen
+    self.dataSource = type(of: self).dataSourceFactory()
     super.init()
     self.title = "settings".localized
     self.tabBarItem.image = UIImage(named: "tab-settings")
@@ -58,6 +59,31 @@ final class SettingsViewController: BaseViewController, View {
   
   required convenience init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
+  }
+
+  private static func dataSourceFactory() -> RxTableViewSectionedReloadDataSource<SettingsViewSection> {
+    return .init(
+      configureCell: { dataSource, tableView, indexPath, sectionItem in
+        let cell = tableView.dequeue(Reusable.cell, for: indexPath)
+        switch sectionItem {
+        case .version(let reactor):
+          cell.reactor = reactor
+
+        case .github(let reactor):
+          cell.reactor = reactor
+
+        case .icons(let reactor):
+          cell.reactor = reactor
+
+        case .openSource(let reactor):
+          cell.reactor = reactor
+
+        case .logout(let reactor):
+          cell.reactor = reactor
+        }
+        return cell
+      }
+    )
   }
 
 
@@ -78,27 +104,6 @@ final class SettingsViewController: BaseViewController, View {
   // MARK: Configuring
 
   func bind(reactor: SettingsViewReactor) {
-    self.dataSource.configureCell = { dataSource, tableView, indexPath, sectionItem in
-      let cell = tableView.dequeue(Reusable.cell, for: indexPath)
-      switch sectionItem {
-      case .version(let reactor):
-        cell.reactor = reactor
-
-      case .github(let reactor):
-        cell.reactor = reactor
-
-      case .icons(let reactor):
-        cell.reactor = reactor
-
-      case .openSource(let reactor):
-        cell.reactor = reactor
-
-      case .logout(let reactor):
-        cell.reactor = reactor
-      }
-      return cell
-    }
-
     // State
     reactor.state.map { $0.sections }
       .bind(to: self.tableView.rx.items(dataSource: self.dataSource))

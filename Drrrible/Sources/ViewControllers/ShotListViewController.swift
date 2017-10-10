@@ -35,8 +35,7 @@ final class ShotListViewController: BaseViewController, View {
   // MARK: Properties
 
   fileprivate let analytics: DrrribleAnalytics
-  fileprivate let shotTileCellDependency: ShotTileCell.Dependency
-  fileprivate let dataSource = RxCollectionViewSectionedReloadDataSource<ShotListViewSection>()
+  fileprivate let dataSource: RxCollectionViewSectionedReloadDataSource<ShotListViewSection>
 
 
   // MARK: UI
@@ -64,7 +63,7 @@ final class ShotListViewController: BaseViewController, View {
   ) {
     defer { self.reactor = reactor }
     self.analytics = analytics
-    self.shotTileCellDependency = shotTileCellDependency
+    self.dataSource = type(of: self).dataSourceFactory(shotTileCellDependency: shotTileCellDependency)
     super.init()
     self.title = "shots".localized
     self.tabBarItem.image = UIImage(named: "tab-shots")
@@ -73,6 +72,28 @@ final class ShotListViewController: BaseViewController, View {
   
   required convenience init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
+  }
+
+  private static func dataSourceFactory(
+    shotTileCellDependency: ShotTileCell.Dependency
+  ) -> RxCollectionViewSectionedReloadDataSource<ShotListViewSection> {
+    return .init(
+      configureCell: { dataSource, collectionView, indexPath, sectionItem in
+        switch sectionItem {
+        case .shotTile(let reactor):
+          let cell = collectionView.dequeue(Reusable.shotTileCell, for: indexPath)
+          cell.dependency = shotTileCellDependency
+          cell.reactor = reactor
+          return cell
+        }
+      },
+      configureSupplementaryView: { dataSource, collectionView, kind, indexPath in
+        if kind == UICollectionElementKindSectionFooter {
+          return collectionView.dequeue(Reusable.activityIndicatorView, kind: kind, for: indexPath)
+        }
+        return collectionView.dequeue(Reusable.emptyView, kind: "empty", for: indexPath)
+      }
+    )
   }
 
 
@@ -95,25 +116,6 @@ final class ShotListViewController: BaseViewController, View {
   // MARK: Configuring
 
   func bind(reactor: ShotListViewReactor) {
-    self.collectionView.rx.setDelegate(self).addDisposableTo(self.disposeBag)
-
-    self.dataSource.configureCell = { [weak self] dataSource, collectionView, indexPath, sectionItem in
-      switch sectionItem {
-      case .shotTile(let reactor):
-        let cell = collectionView.dequeue(Reusable.shotTileCell, for: indexPath)
-        guard let `self` = self else { return cell }
-        cell.dependency = self.shotTileCellDependency
-        cell.reactor = reactor
-        return cell
-      }
-    }
-    self.dataSource.supplementaryViewFactory = { dataSource, collectionView, kind, indexPath in
-      if kind == UICollectionElementKindSectionFooter {
-        return collectionView.dequeue(Reusable.activityIndicatorView, kind: kind, for: indexPath)
-      }
-      return collectionView.dequeue(Reusable.emptyView, kind: "empty", for: indexPath)
-    }
-
     // Action
     self.rx.viewDidLoad
       .map { Reactor.Action.refresh }
@@ -130,7 +132,7 @@ final class ShotListViewController: BaseViewController, View {
       .bind(to: reactor.action)
       .disposed(by: self.disposeBag)
 
-    // Output
+    // State
     reactor.state.map { $0.isRefreshing }
       .distinctUntilChanged()
       .bind(to: self.refreshControl.rx.isRefreshing)
@@ -138,6 +140,10 @@ final class ShotListViewController: BaseViewController, View {
 
     reactor.state.map { $0.sections }
       .bind(to: self.collectionView.rx.items(dataSource: self.dataSource))
+      .disposed(by: self.disposeBag)
+
+    // View
+    self.collectionView.rx.setDelegate(self)
       .disposed(by: self.disposeBag)
 
     // Analytics

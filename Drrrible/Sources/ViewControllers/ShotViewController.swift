@@ -33,8 +33,8 @@ final class ShotViewController: BaseViewController, View {
   // MARK: Properties
 
   fileprivate let analytics: DrrribleAnalytics
-  fileprivate let dataSource = RxCollectionViewSectionedReloadDataSource<ShotViewSection>()
   fileprivate let shotSectionDelegate: ShotSectionDelegate
+  fileprivate let dataSource: RxCollectionViewSectionedReloadDataSource<ShotViewSection>
 
 
   // MARK: UI
@@ -64,58 +64,61 @@ final class ShotViewController: BaseViewController, View {
     defer { self.reactor = reactor }
     self.analytics = analytics
     self.shotSectionDelegate = shotSectionDelegateFactory()
+    self.dataSource = type(of: self).dataSourceFactory(shotSectionDelegate: self.shotSectionDelegate)
     super.init()
     self.title = "shot".localized
-
     self.shotSectionDelegate.registerReusables(to: self.collectionView)
-
-    self.dataSource.configureCell = { [weak self] dataSource, collectionView, indexPath, sectionItem in
-      guard let `self` = self else { return collectionView.emptyCell(for: indexPath) }
-      switch sectionItem {
-      case let .shot(item):
-        return self.shotSectionDelegate.configureCell(collectionView, indexPath, item)
-
-      case let .comment(cellReactor):
-        let cell = collectionView.dequeue(Reusable.commentCell, for: indexPath)
-        cell.reactor = cellReactor
-        return cell
-
-      case .activityIndicator:
-        return collectionView.dequeue(Reusable.activityIndicatorCell, for: indexPath)
-      }
-    }
-
-    self.dataSource.supplementaryViewFactory = { [weak self] dataSource, collectionView, kind, indexPath in
-      guard let `self` = self else { return collectionView.emptyView(for: indexPath, kind: kind) }
-      switch dataSource[indexPath] {
-      case let .shot(item):
-        return self.shotSectionDelegate.background(
-          collectionView: collectionView,
-          kind: kind,
-          indexPath: indexPath,
-          sectionItem: item
-        )
-
-      case .comment:
-        switch kind {
-        case UICollectionElementKindSectionBackground:
-          let view = collectionView.dequeue(Reusable.sectionBackgroundView, kind: kind, for: indexPath)
-          view.backgroundColor = .white
-          view.borderedLayer?.borders = [.bottom]
-          return view
-
-        default:
-          return collectionView.emptyView(for: indexPath, kind: kind)
-        }
-
-      default:
-        return collectionView.emptyView(for: indexPath, kind: kind)
-      }
-    }
   }
   
   required convenience init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
+  }
+
+  private static func dataSourceFactory(
+    shotSectionDelegate: ShotSectionDelegate
+  ) -> RxCollectionViewSectionedReloadDataSource<ShotViewSection> {
+    return .init(
+      configureCell: { dataSource, collectionView, indexPath, sectionItem in
+        switch sectionItem {
+        case let .shot(item):
+          return shotSectionDelegate.configureCell(collectionView, indexPath, item)
+
+        case let .comment(cellReactor):
+          let cell = collectionView.dequeue(Reusable.commentCell, for: indexPath)
+          cell.reactor = cellReactor
+          return cell
+
+        case .activityIndicator:
+          return collectionView.dequeue(Reusable.activityIndicatorCell, for: indexPath)
+        }
+      },
+      configureSupplementaryView: { dataSource, collectionView, kind, indexPath in
+        switch dataSource[indexPath] {
+        case let .shot(item):
+          return shotSectionDelegate.background(
+            collectionView: collectionView,
+            kind: kind,
+            indexPath: indexPath,
+            sectionItem: item
+          )
+
+        case .comment:
+          switch kind {
+          case UICollectionElementKindSectionBackground:
+            let view = collectionView.dequeue(Reusable.sectionBackgroundView, kind: kind, for: indexPath)
+            view.backgroundColor = .white
+            view.borderedLayer?.borders = [.bottom]
+            return view
+
+          default:
+            return collectionView.emptyView(for: indexPath, kind: kind)
+          }
+
+        default:
+          return collectionView.emptyView(for: indexPath, kind: kind)
+        }
+      }
+    )
   }
 
 
@@ -165,7 +168,8 @@ final class ShotViewController: BaseViewController, View {
       .disposed(by: self.disposeBag)
 
     // View
-    self.collectionView.rx.setDelegate(self).addDisposableTo(self.disposeBag)
+    self.collectionView.rx.setDelegate(self)
+      .disposed(by: self.disposeBag)
 
     // Analytics
     self.rx.viewDidAppear
