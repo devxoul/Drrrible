@@ -30,13 +30,11 @@ final class ShotService: ShotServiceType {
     case .refresh: api = .shots
     case .next(let url): api = .url(url)
     }
-    return self.networking.request(api)
-      .map(List<Shot>.self, dateDecodingStrategy: .iso8601)
+    return self.networking.request(api).map(List<Shot>.self)
   }
 
   func shot(id: Int) -> Single<Shot> {
-    return self.networking.request(.shot(id: id))
-      .map(Shot.self, dateDecodingStrategy: .iso8601)
+    return self.networking.request(.shot(id: id)).map(Shot.self)
   }
 
   func isLiked(shotID: Int) -> Single<Bool> {
@@ -69,7 +67,6 @@ final class ShotService: ShotServiceType {
   }
 
   func comments(shotID: Int) -> Single<List<Comment>> {
-    return self.networking.request(.shotComments(shotID: shotID))
-      .map(List<Comment>.self, dateDecodingStrategy: .iso8601)
+    return self.networking.request(.shotComments(shotID: shotID)).map(List<Comment>.self)
   }
 }

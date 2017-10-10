@@ -24,7 +24,7 @@ final class UserService: UserServiceType {
   fileprivate let userSubject = ReplaySubject<User?>.create(bufferSize: 1)
   lazy var currentUser: Observable<User?> = self.userSubject.asObservable()
     .startWith(nil)
-    .shareReplay(1)
+    .share(replay: 1)
 
   func fetchMe() -> Single<Void> {
     return self.networking.request(.me)

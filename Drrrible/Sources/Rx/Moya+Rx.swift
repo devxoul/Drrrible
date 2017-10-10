@@ -10,25 +10,22 @@ import Moya
 import RxSwift
 
 extension PrimitiveSequence where TraitType == SingleTrait, Element == Moya.Response {
-  func map<T: Decodable>(
-    _ listType: List<T>.Type,
-    dataDecodingStrategy: JSONDecoder.DataDecodingStrategy = .base64,
-    dateDecodingStrategy: JSONDecoder.DateDecodingStrategy = .deferredToDate
-  ) -> PrimitiveSequence<TraitType, List<T>> {
+  func map<T: ModelType>(_ type: T.Type) -> PrimitiveSequence<TraitType, T> {
+    return self.map(T.self, using: T.decoder)
+  }
+
+  func map<T: ModelType>(_ listType: List<T>.Type) -> PrimitiveSequence<TraitType, List<T>> {
     return self
-      .map { response in
-        let decoder = JSONDecoder()
-        decoder.dataDecodingStrategy = dataDecodingStrategy
-        decoder.dateDecodingStrategy = dateDecodingStrategy
-        let items = try decoder.decode([T].self, from: response.data)
+      .map { response -> List<T> in
+        let items = try response.map([T].self, using: T.decoder)
         let nextURL = response.response?
           .findLink(relation: "next")
           .flatMap { URL(string: $0.uri) }
         return List<T>(items: items, nextURL: nextURL)
       }
       .do(onError: { error in
-        if error is DecodingError {
-          log.error(error)
+        if case let MoyaError.objectMapping(decodingError, _) = error {
+          log.error(decodingError)
         }
       })
   }
