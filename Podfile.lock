@@ -7,7 +7,7 @@ PODS:
     - CocoaLumberjack/Default
   - Crashlytics (3.8.6):
     - Fabric (~> 1.6.3)
-  - Differentiator (3.0.0-beta.0)
+  - Differentiator (3.0.0-rc.0)
   - Fabric (1.6.13)
   - Firebase/Core (4.2.0):
     - FirebaseAnalytics (= 4.0.3)
@@ -28,22 +28,22 @@ PODS:
   - KeychainAccess (3.1.0)
   - Kingfisher (4.0.1)
   - ManualLayout (1.3.0)
-  - Moya (9.0.0):
-    - Moya/Core (= 9.0.0)
-  - Moya/Core (9.0.0):
+  - Moya (10.0.0-beta.1):
+    - Moya/Core (= 10.0.0-beta.1)
+  - Moya/Core (10.0.0-beta.1):
     - Alamofire (~> 4.1)
     - Result (~> 3.0)
-  - Moya/RxSwift (9.0.0):
+  - Moya/RxSwift (10.0.0-beta.1):
     - Moya/Core
-    - RxSwift (= 4.0.0-beta.0)
+    - RxSwift (= 4.0.0-rc.0)
   - MoyaSugar (1.0.0-beta.1):
     - MoyaSugar/Core (= 1.0.0-beta.1)
   - MoyaSugar/Core (1.0.0-beta.1):
-    - Moya (>= 9.0.0)
+    - Moya (>= 10.0.0-beta.1)
   - MoyaSugar/RxSwift (1.0.0-beta.1):
-    - Moya/RxSwift (>= 9.0.0)
+    - Moya/RxSwift (>= 10.0.0-beta.1)
     - MoyaSugar/Core
-    - RxSwift (>= 4.0.0.beta.0)
+    - RxSwift (>= 4.0.0-rc.0)
   - nanopb (0.3.8):
     - nanopb/decode (= 0.3.8)
     - nanopb/encode (= 0.3.8)
@@ -53,7 +53,7 @@ PODS:
   - Quick (1.2.0)
   - ReactorKit (0.6.0):
     - RxSwift (>= 3.0.0)
-  - Result (3.2.3)
+  - Result (3.2.4)
   - ReusableKit (2.0.0):
     - ReusableKit/Core (= 2.0.0)
     - ReusableKit/RxSwift (= 2.0.0)
@@ -62,29 +62,26 @@ PODS:
     - ReusableKit/Core
     - RxCocoa (>= 4.0.0-beta.0)
     - RxSwift (>= 4.0.0-beta.0)
-  - RxCocoa (4.0.0-beta.0):
-    - RxSwift (~> 4.0.0-beta.0)
-  - RxCodable (0.1.0):
-    - RxCodable/Core (= 0.1.0)
-  - RxCodable/Core (0.1.0):
+  - RxCocoa (4.0.0-rc.0):
+    - RxSwift (~> 4.0.0-rc.0)
+  - RxCodable (0.3.0):
+    - RxCodable/Core (= 0.3.0)
+  - RxCodable/Core (0.3.0):
     - RxSwift (>= 4.0.0-beta.0)
-  - RxCodable/Moya (0.1.0):
-    - Moya
-    - RxCodable/Core
-  - RxDataSources (3.0.0-beta.0):
-    - Differentiator (~> 3.0.0-beta.0)
-    - RxCocoa (~> 4.0.0-beta.0)
-    - RxSwift (~> 4.0.0-beta.0)
+  - RxDataSources (3.0.0-rc.0):
+    - Differentiator (~> 3.0.0-rc.0)
+    - RxCocoa (~> 4.0.0-rc.0)
+    - RxSwift (~> 4.0.0-rc.0)
   - RxGesture (1.1.1):
-    - RxCocoa (~> 4.0.0-alpha.0)
-    - RxSwift (~> 4.0.0-alpha.0)
+    - RxCocoa (>= 4.0.0-beta.0)
+    - RxSwift (>= 4.0.0-beta.0)
   - RxKeyboard (0.7.0):
     - RxCocoa (>= 4.0.0-beta.0)
     - RxSwift (>= 4.0.0-beta.0)
   - RxOptional (3.2.0):
     - RxCocoa
     - RxSwift
-  - RxSwift (4.0.0-beta.0)
+  - RxSwift (4.0.0-rc.0)
   - RxViewController (0.2.0):
     - RxCocoa (>= 3.0.0)
     - RxSwift (>= 3.0.0)
@@ -105,7 +102,7 @@ PODS:
   - Umbrella/Core (0.6.0)
   - Umbrella/Firebase (0.6.0):
     - Umbrella/Core
-  - URLNavigator (1.2.5)
+  - URLNavigator (1.3.0)
   - WebLinking (2.0.0)
 
 DEPENDENCIES:
@@ -114,29 +111,28 @@ DEPENDENCIES:
   - CGFloatLiteral
   - CocoaLumberjack/Swift
   - Crashlytics
-  - Differentiator (from `https://github.com/RxSwiftCommunity/RxDataSources.git`, branch `swift4.0`)
+  - Differentiator (= 3.0.0-rc.0)
   - Fabric
   - Firebase/Core
   - Immutable
   - KeychainAccess
   - Kingfisher
   - ManualLayout
-  - Moya (from `https://github.com/Moya/Moya.git`, branch `10.0.0-dev`)
-  - Moya/RxSwift (from `https://github.com/Moya/Moya.git`, branch `10.0.0-dev`)
-  - MoyaSugar (from `https://github.com/devxoul/MoyaSugar.git`, branch `master`)
-  - MoyaSugar/RxSwift (from `https://github.com/devxoul/MoyaSugar.git`, branch `master`)
+  - Moya (= 10.0.0-beta.1)
+  - Moya/RxSwift (= 10.0.0-beta.1)
+  - MoyaSugar (= 1.0.0-beta.1)
+  - MoyaSugar/RxSwift (= 1.0.0-beta.1)
   - Nimble
   - Quick
   - ReactorKit
   - ReusableKit
-  - RxCocoa (= 4.0.0-beta.0)
-  - RxCodable
-  - RxCodable/Moya
-  - RxDataSources (from `https://github.com/RxSwiftCommunity/RxDataSources.git`, branch `swift4.0`)
-  - RxGesture (from `https://github.com/sidmani/RxGesture.git`, branch `swift-4`)
+  - RxCocoa (= 4.0.0-rc.0)
+  - RxCodable (= 0.3.0)
+  - RxDataSources (= 3.0.0-rc.0)
+  - RxGesture (from `https://github.com/devxoul/RxGesture.git`, branch `rxswift-rc`)
   - RxKeyboard
   - RxOptional
-  - RxSwift (= 4.0.0-beta.0)
+  - RxSwift (= 4.0.0-rc.0)
   - RxViewController
   - SectionReactor (from `https://github.com/devxoul/SectionReactor.git`, branch `swift-4.0`)
   - SnapKit
@@ -150,57 +146,27 @@ DEPENDENCIES:
   - UITextView+Placeholder
   - Umbrella
   - Umbrella/Firebase
-  - URLNavigator (from `https://github.com/devxoul/URLNavigator.git`, branch `master`)
+  - URLNavigator
   - WebLinking (from `https://github.com/devxoul/WebLinking.swift`, branch `swift-4.0`)
 
 EXTERNAL SOURCES:
-  Differentiator:
-    :branch: swift4.0
-    :git: https://github.com/RxSwiftCommunity/RxDataSources.git
-  Moya:
-    :branch: 10.0.0-dev
-    :git: https://github.com/Moya/Moya.git
-  MoyaSugar:
-    :branch: master
-    :git: https://github.com/devxoul/MoyaSugar.git
-  RxDataSources:
-    :branch: swift4.0
-    :git: https://github.com/RxSwiftCommunity/RxDataSources.git
   RxGesture:
-    :branch: swift-4
-    :git: https://github.com/sidmani/RxGesture.git
+    :branch: rxswift-rc
+    :git: https://github.com/devxoul/RxGesture.git
   SectionReactor:
     :branch: swift-4.0
     :git: https://github.com/devxoul/SectionReactor.git
-  URLNavigator:
-    :branch: master
-    :git: https://github.com/devxoul/URLNavigator.git
   WebLinking:
     :branch: swift-4.0
     :git: https://github.com/devxoul/WebLinking.swift
 
 CHECKOUT OPTIONS:
-  Differentiator:
-    :commit: 847b3ce429f5dab62ddc00d5d2d10131a650af11
-    :git: https://github.com/RxSwiftCommunity/RxDataSources.git
-  Moya:
-    :commit: 4382d73610cacc35f2330a0cdb91180d29e16b51
-    :git: https://github.com/Moya/Moya.git
-  MoyaSugar:
-    :commit: ffd3ee7ea5fc1c9d3fe904d43d56ce08e1f38a15
-    :git: https://github.com/devxoul/MoyaSugar.git
-  RxDataSources:
-    :commit: 847b3ce429f5dab62ddc00d5d2d10131a650af11
-    :git: https://github.com/RxSwiftCommunity/RxDataSources.git
   RxGesture:
-    :commit: cc397115485a69919859fdce3875d613786c8308
-    :git: https://github.com/sidmani/RxGesture.git
+    :commit: fe4aaff6470b7f50cf255af78c59599be8512658
+    :git: https://github.com/devxoul/RxGesture.git
   SectionReactor:
     :commit: 96aa587080bf5c278f554b85cdf37a36e9847a5a
     :git: https://github.com/devxoul/SectionReactor.git
-  URLNavigator:
-    :commit: fd39b074b6afe22847e789e6e0f20a711062335d
-    :git: https://github.com/devxoul/URLNavigator.git
   WebLinking:
     :commit: 9f425b2dc9d48647d62f234be2527f962831728c
     :git: https://github.com/devxoul/WebLinking.swift
@@ -211,7 +177,7 @@ SPEC CHECKSUMS:
   CGFloatLiteral: 2ab558b74124b584dd023a35b7e41795a61d8140
   CocoaLumberjack: 2800c03334042fe80589423c8d80e582dcaec482
   Crashlytics: 95d05f4e4c19a771250c4bd9ce344d996de32bbf
-  Differentiator: dc3c10813dbc68a761292f18f4039bc99ad73693
+  Differentiator: 1e7575c5613fc4e72659d9d2d0867ff5bc4dbac5
   Fabric: 2fb5676bc811af011a04513451f463dac6803206
   Firebase: 9548cae14d69718add12d75a5b312893f7ef89c7
   FirebaseAnalytics: 76f754d37ca5b04f36856729b6af3ca0152d1069
@@ -222,21 +188,21 @@ SPEC CHECKSUMS:
   KeychainAccess: 94c5540b32eabf7bc32bfb976a268e8ea05fd6da
   Kingfisher: b771785e9461ed4b8686d40e7145f9e58100cb24
   ManualLayout: 68ac8cfa6b5f656f7a9fadec3730208b95986880
-  Moya: 43aa124994d3f6eb663e15436a9e909b39cc62cb
-  MoyaSugar: 5c7e6e005b4c4df1ee71ebe86d57af49da88a7f7
+  Moya: 7fb3c51aa9b3fdf5ea7d9412e03b63edb9559fb3
+  MoyaSugar: 95b5c4c42d4ad455d48175cc0fd712c675c03e6b
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   Nimble: bfe1f814edabba69ff145cb1283e04ed636a67f2
   Quick: 58d203b1c5e27fff7229c4c1ae445ad7069a7a08
   ReactorKit: d979377df0ff393cb0ed4df9c2b31b2edd8dca08
-  Result: 128640a6347e8d2ae48b142556739a2d13f90ce6
+  Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
   ReusableKit: 668daa3e98e614ec2e135db2028a958baa2abd6f
-  RxCocoa: 8d809675f4e89c5c4c5a6900bbd11fe632ad5d86
-  RxCodable: d2712a0898fefe788ae2388201c52925fafe68c4
-  RxDataSources: 2ec4fd48dd47a8c8f0886aa9fa25338fda930017
-  RxGesture: 846e57fef9ddab441cdb76c8668bed1cb3d027b6
+  RxCocoa: 62457355be73369670fbdf053a79a491552b64ed
+  RxCodable: 12d41ab0ba58f455cfc83965fcc927ac4bad3e7f
+  RxDataSources: db58285ada7c9a6d97e93643acc16a8e0c4ff669
+  RxGesture: e7a7ef24f33ce7e14d53613fb6200baca7118bc1
   RxKeyboard: d7b65fd85347c2ec214d21c95537dadc62d3b9af
   RxOptional: d2d6a68064bc16b4801332c40663967f481b0234
-  RxSwift: e0899fae37065c16db976cc5e3c957e4e388869c
+  RxSwift: 1dd09ceb11531c39adff4efe23556b1484e16967
   RxViewController: 67cc7dde0f9e2ed941029eceec750c3ecb6ba74b
   SectionReactor: 1b8d29993ab415c621fb0610d35671f5a67dd7c3
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
@@ -249,9 +215,9 @@ SPEC CHECKSUMS:
   UICollectionViewFlexLayout: 81ebb940737f0689ce35efd8c7cfa7c7f68d2d18
   UITextView+Placeholder: 77680995fcdd07c3f52ec92fe1150874a2ac89ff
   Umbrella: a4b409f07d023748ce84959363341ca7068c82ef
-  URLNavigator: d7be873d03072a926f7cc950695fa06987a27b67
+  URLNavigator: 4a14714948dcb07461e4d6e64e9c9774c2f71b93
   WebLinking: a2ffdedbc8741b6cc490a3a06b747f7b528d6b7b
 
-PODFILE CHECKSUM: da10396ea031b55ee54237f8487bd8da47b025cd
+PODFILE CHECKSUM: da4cd5906802112a8c7903b89cbc81e2f24761e8
 
 COCOAPODS: 1.3.1

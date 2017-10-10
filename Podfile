@@ -9,23 +9,22 @@ target 'Drrrible' do
 
   # Networking
   pod 'Alamofire'
-  pod 'Moya', :git => 'https://github.com/Moya/Moya.git', :branch => '10.0.0-dev'
-  pod 'Moya/RxSwift', :git => 'https://github.com/Moya/Moya.git', :branch => '10.0.0-dev'
-  pod 'MoyaSugar', :git => 'https://github.com/devxoul/MoyaSugar.git', :branch => 'master'
-  pod 'MoyaSugar/RxSwift', :git => 'https://github.com/devxoul/MoyaSugar.git', :branch => 'master'
+  pod 'Moya', '10.0.0-beta.1'
+  pod 'Moya/RxSwift', '10.0.0-beta.1'
+  pod 'MoyaSugar', '1.0.0-beta.1'
+  pod 'MoyaSugar/RxSwift', '1.0.0-beta.1'
   pod 'WebLinking', :git => 'https://github.com/devxoul/WebLinking.swift', :branch => 'swift-4.0'
   pod 'Kingfisher'
 
   # Rx
-  pod 'RxSwift', '4.0.0-beta.0'
-  pod 'RxCocoa', '4.0.0-beta.0'
-  pod 'RxCodable'
-  pod 'RxCodable/Moya'
-  pod 'RxDataSources', :git => 'https://github.com/RxSwiftCommunity/RxDataSources.git', :branch => 'swift4.0'
-  pod 'Differentiator', :git => 'https://github.com/RxSwiftCommunity/RxDataSources.git', :branch => 'swift4.0'
+  pod 'RxSwift', '4.0.0-rc.0'
+  pod 'RxCocoa', '4.0.0-rc.0'
+  pod 'RxCodable', '0.3.0'
+  pod 'RxDataSources', '3.0.0-rc.0'
+  pod 'Differentiator', '3.0.0-rc.0'
   pod 'RxOptional'
   pod 'RxKeyboard'
-  pod 'RxGesture', :git => 'https://github.com/sidmani/RxGesture.git', :branch => 'swift-4'
+  pod 'RxGesture', :git => 'https://github.com/devxoul/RxGesture.git', :branch => 'rxswift-rc'
   pod 'RxViewController'
   pod 'SectionReactor', :git => 'https://github.com/devxoul/SectionReactor.git', :branch => 'swift-4.0'
 
