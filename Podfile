@@ -24,7 +24,7 @@ target 'Drrrible' do
   pod 'Differentiator', '3.0.0-rc.0'
   pod 'RxOptional'
   pod 'RxKeyboard'
-  pod 'RxGesture', :git => 'https://github.com/devxoul/RxGesture.git', :branch => 'rxswift-rc'
+  pod 'RxGesture', :git => 'https://github.com/RxSwiftCommunity/RxGesture.git', :branch => 'swift-4'
   pod 'RxViewController'
   pod 'SectionReactor', :git => 'https://github.com/devxoul/SectionReactor.git', :branch => 'swift-4.0'
 
