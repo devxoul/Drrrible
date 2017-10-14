@@ -42,6 +42,10 @@ struct AppDependency {
 final class CompositionRoot {
   /// Builds a dependency graph and returns an entry view controller.
   static func resolve() -> AppDependency {
+    let window = UIWindow(frame: UIScreen.main.bounds)
+    window.backgroundColor = .white
+    window.makeKeyAndVisible()
+
     let navigator = Navigator()
 
     let authService = AuthService(navigator: navigator)
@@ -125,11 +129,11 @@ final class CompositionRoot {
           presentLoginScreen: presentLoginScreen
         )
       )
-      AppDelegate.shared.window?.rootViewController = mainTabBarController
+      window.rootViewController = mainTabBarController
     }
     presentLoginScreen = {
       let reactor = LoginViewReactor(authService: authService, userService: userService)
-      AppDelegate.shared.window?.rootViewController = LoginViewController(
+      window.rootViewController = LoginViewController(
         reactor: reactor,
         analytics: analytics,
         presentMainScreen: presentMainScreen
@@ -142,11 +146,8 @@ final class CompositionRoot {
       presentLoginScreen: presentLoginScreen,
       presentMainScreen: presentMainScreen
     )
-
-    let window = UIWindow(frame: UIScreen.main.bounds)
-    window.backgroundColor = .white
     window.rootViewController = splashViewController
-    window.makeKeyAndVisible()
+
     return AppDependency(
       window: window,
       navigator: navigator,

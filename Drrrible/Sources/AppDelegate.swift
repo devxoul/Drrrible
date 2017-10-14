@@ -12,9 +12,6 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
 
   // MARK: Properties
 
-  class var shared: AppDelegate {
-    return UIApplication.shared.delegate as! AppDelegate
-  }
   var dependency: AppDependency!
 
 
