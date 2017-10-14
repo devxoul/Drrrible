@@ -47,7 +47,7 @@ target 'Drrrible' do
   pod 'SwiftyColor'
   pod 'SwiftyImage'
   pod 'UITextView+Placeholder'
-  pod 'URLNavigator', :git => 'https://github.com/devxoul/URLNavigator.git', :branch => 'master'
+  pod 'URLNavigator', :git => 'https://github.com/devxoul/URLNavigator.git', :branch => 'urlnavigator2'
   pod 'KeychainAccess'
   pod 'Immutable'
   pod 'Carte'

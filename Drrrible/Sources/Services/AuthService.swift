@@ -40,7 +40,10 @@ final class AuthService: AuthServiceType {
   fileprivate let keychain = Keychain(service: "com.drrrible.ios")
   private(set) var currentAccessToken: AccessToken?
 
-  init() {
+  private let navigator: NavigatorType
+
+  init(navigator: NavigatorType) {
+    self.navigator = navigator
     self.currentAccessToken = self.loadAccessToken()
     log.debug("currentAccessToken exists: \(self.currentAccessToken != nil)")
   }
@@ -59,7 +62,7 @@ final class AuthService: AuthServiceType {
     let safariViewController = SFSafariViewController(url: url)
     let navigationController = UINavigationController(rootViewController: safariViewController)
     navigationController.isNavigationBarHidden = true
-    Navigator.present(navigationController)
+    self.navigator.present(navigationController)
     self.currentViewController = navigationController
 
     return self.callbackSubject

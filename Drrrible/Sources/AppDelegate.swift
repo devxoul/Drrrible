@@ -8,27 +8,6 @@
 
 import UIKit
 
-import CGFloatLiteral
-import Crashlytics
-import Fabric
-import Firebase
-import Immutable
-import Kingfisher
-import ManualLayout
-import RxCodable
-import RxGesture
-import RxOptional
-import RxViewController
-import SnapKit
-import SwiftyColor
-import SwiftyImage
-import Then
-import TouchAreaInsets
-import UITextView_Placeholder
-import Umbrella
-import URLNavigator
-import WebLinking
-
 final class AppDelegate: UIResponder, UIApplicationDelegate {
 
   // MARK: Properties
@@ -36,6 +15,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
   class var shared: AppDelegate {
     return UIApplication.shared.delegate as! AppDelegate
   }
+  var dependency: AppDependency!
 
 
   // MARK: UI
@@ -49,57 +29,18 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     _ application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?
   ) -> Bool {
-    self.configureSDKs()
-    self.configureAppearance()
-
-    let window = UIWindow(frame: UIScreen.main.bounds)
-    window.backgroundColor = .white
-    window.rootViewController = CompositionRoot.rootViewController()
-    window.makeKeyAndVisible()
-
-    self.window = window
+    self.dependency = self.dependency ?? CompositionRoot.resolve()
+    self.dependency.configureSDKs()
+    self.dependency.configureAppearance()
+    self.window = self.dependency.window
     return true
   }
 
   func application(
     _ app: UIApplication,
     open url: URL,
-    options: [UIApplicationOpenURLOptionsKey : Any] = [:]
+    options: [UIApplicationOpenURLOptionsKey: Any] = [:]
   ) -> Bool {
-    if Navigator.open(url) {
-      return true
-    }
-    if Navigator.present(url, wrap: true) != nil {
-      return true
-    }
-    return false
-  }
-
-
-  // MARK: SDKs
-
-  private func configureSDKs() {
-    self.configureFabric()
-    self.configureFirebase()
-  }
-
-  private func configureFabric() {
-    Fabric.with([Crashlytics.self])
-  }
-
-  private func configureFirebase() {
-    FirebaseApp.configure()
-  }
-
-
-  // MARK: Appearance
-
-  private func configureAppearance() {
-    let navigationBarBackgroundImage = UIImage.resizable().color(.db_charcoal).image
-    UINavigationBar.appearance().setBackgroundImage(navigationBarBackgroundImage, for: .default)
-    UINavigationBar.appearance().shadowImage = UIImage()
-    UINavigationBar.appearance().barStyle = .black
-    UINavigationBar.appearance().tintColor = .db_slate
-    UITabBar.appearance().tintColor = .db_charcoal
+    return self.dependency.openURL(url, options)
   }
 }

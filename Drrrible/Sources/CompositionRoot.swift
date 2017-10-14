@@ -6,13 +6,45 @@
 //  Copyright © 2017 Suyeol Jeon. All rights reserved.
 //
 
+import UIKit
+
+import CGFloatLiteral
+import Crashlytics
+import Fabric
+import Firebase
+import Immutable
 import Kingfisher
+import ManualLayout
+import RxCodable
+import RxGesture
+import RxOptional
+import RxViewController
+import SnapKit
+import SwiftyColor
+import SwiftyImage
+import Then
+import TouchAreaInsets
+import UITextView_Placeholder
 import Umbrella
+import URLNavigator
+import WebLinking
+
+struct AppDependency {
+  typealias OpenURLHandler = (_ url: URL, _ options: [UIApplicationOpenURLOptionsKey: Any]) -> Bool
+
+  let window: UIWindow
+  let navigator: Navigator
+  let configureSDKs: () -> Void
+  let configureAppearance: () -> Void
+  let openURL: OpenURLHandler
+}
 
 final class CompositionRoot {
   /// Builds a dependency graph and returns an entry view controller.
-  static func rootViewController() -> SplashViewController {
-    let authService = AuthService()
+  static func resolve() -> AppDependency {
+    let navigator = Navigator()
+
+    let authService = AuthService(navigator: navigator)
     let networking = DrrribleNetworking(plugins: [AuthPlugin(authService: authService)])
     let appStoreService = AppStoreService()
     let userService = UserService(networking: networking)
@@ -21,7 +53,7 @@ final class CompositionRoot {
     let analytics = DrrribleAnalytics()
     analytics.register(provider: FirebaseProvider())
 
-    URLNavigationMap.initialize(authService: authService)
+    URLNavigationMap.initialize(navigator: navigator, authService: authService)
 
     let productionImageOptions: ImageOptions = []
 
@@ -55,6 +87,7 @@ final class CompositionRoot {
       }
       let shotTileCellDependency = ShotTileCell.Dependency(
         imageOptions: productionImageOptions,
+        navigator: navigator,
         shotViewControllerFactory: { id, shot in
           let reactor = ShotViewReactor(
             shotID: id,
@@ -109,6 +142,43 @@ final class CompositionRoot {
       presentLoginScreen: presentLoginScreen,
       presentMainScreen: presentMainScreen
     )
-    return splashViewController
+
+    let window = UIWindow(frame: UIScreen.main.bounds)
+    window.backgroundColor = .white
+    window.rootViewController = splashViewController
+    window.makeKeyAndVisible()
+    return AppDependency(
+      window: window,
+      navigator: navigator,
+      configureSDKs: self.configureSDKs,
+      configureAppearance: self.configureAppearance,
+      openURL: self.openURLFactory(navigator: navigator)
+    )
+  }
+
+  static func configureSDKs() {
+    Fabric.with([Crashlytics.self])
+    FirebaseApp.configure()
+  }
+
+  static func configureAppearance() {
+    let navigationBarBackgroundImage = UIImage.resizable().color(.db_charcoal).image
+    UINavigationBar.appearance().setBackgroundImage(navigationBarBackgroundImage, for: .default)
+    UINavigationBar.appearance().shadowImage = UIImage()
+    UINavigationBar.appearance().barStyle = .black
+    UINavigationBar.appearance().tintColor = .db_slate
+    UITabBar.appearance().tintColor = .db_charcoal
+  }
+
+  static func openURLFactory(navigator: NavigatorType) -> AppDependency.OpenURLHandler {
+    return { url, options -> Bool in
+      if navigator.open(url) {
+        return true
+      }
+      if navigator.present(url, wrap: UINavigationController.self) != nil {
+        return true
+      }
+      return false
+    }
   }
 }

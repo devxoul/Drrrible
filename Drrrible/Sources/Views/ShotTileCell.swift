@@ -17,6 +17,7 @@ final class ShotTileCell: BaseCollectionViewCell, View {
 
   struct Dependency {
     let imageOptions: ImageOptions
+    let navigator: NavigatorType
     let shotViewControllerFactory: (_ id: Int, _ shot: Shot?) -> ShotViewController
   }
 
@@ -98,7 +99,7 @@ final class ShotTileCell: BaseCollectionViewCell, View {
       .subscribe(onNext: { [weak reactor] _ in
         guard let reactor = reactor else { return }
         let viewController = dependency.shotViewControllerFactory(reactor.shot.id, reactor.shot)
-        Navigator.push(viewController)
+        dependency.navigator.push(viewController)
       })
       .disposed(by: self.disposeBag)
   }

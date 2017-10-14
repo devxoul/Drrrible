@@ -146,7 +146,7 @@ DEPENDENCIES:
   - UITextView+Placeholder
   - Umbrella
   - Umbrella/Firebase
-  - URLNavigator
+  - URLNavigator (from `https://github.com/devxoul/URLNavigator.git`, branch `urlnavigator2`)
   - WebLinking (from `https://github.com/devxoul/WebLinking.swift`, branch `swift-4.0`)
 
 EXTERNAL SOURCES:
@@ -156,6 +156,9 @@ EXTERNAL SOURCES:
   SectionReactor:
     :branch: swift-4.0
     :git: https://github.com/devxoul/SectionReactor.git
+  URLNavigator:
+    :branch: urlnavigator2
+    :git: https://github.com/devxoul/URLNavigator.git
   WebLinking:
     :branch: swift-4.0
     :git: https://github.com/devxoul/WebLinking.swift
@@ -167,6 +170,9 @@ CHECKOUT OPTIONS:
   SectionReactor:
     :commit: 96aa587080bf5c278f554b85cdf37a36e9847a5a
     :git: https://github.com/devxoul/SectionReactor.git
+  URLNavigator:
+    :commit: 3ac54a5018279478829a75be7495ff0c93fe9a60
+    :git: https://github.com/devxoul/URLNavigator.git
   WebLinking:
     :commit: 9f425b2dc9d48647d62f234be2527f962831728c
     :git: https://github.com/devxoul/WebLinking.swift
@@ -215,9 +221,9 @@ SPEC CHECKSUMS:
   UICollectionViewFlexLayout: 81ebb940737f0689ce35efd8c7cfa7c7f68d2d18
   UITextView+Placeholder: 77680995fcdd07c3f52ec92fe1150874a2ac89ff
   Umbrella: a4b409f07d023748ce84959363341ca7068c82ef
-  URLNavigator: 4a14714948dcb07461e4d6e64e9c9774c2f71b93
+  URLNavigator: 6d0462546e9f4b68d9aa379501e9d54218509310
   WebLinking: a2ffdedbc8741b6cc490a3a06b747f7b528d6b7b
 
-PODFILE CHECKSUM: da4cd5906802112a8c7903b89cbc81e2f24761e8
+PODFILE CHECKSUM: 5ab460c0407472e4fd07b5347e3f8d10937026c7
 
 COCOAPODS: 1.3.1

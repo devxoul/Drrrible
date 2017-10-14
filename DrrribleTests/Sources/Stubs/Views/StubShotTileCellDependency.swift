@@ -25,6 +25,7 @@ extension ShotTileCell.Dependency {
     }
     return .init(
       imageOptions: [.forceRefresh, .downloader(downloader)],
+      navigator: StubNavigator(),
       shotViewControllerFactory: shotViewControllerFactory
     )
   }
