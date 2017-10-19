@@ -11,6 +11,7 @@ import URLNavigator
 
 final class StubNavigator: NavigatorType {
   let matcher = URLMatcher()
+  weak var delegate: NavigatorDelegate?
 
   func register(_ pattern: URLPattern, _ factory: @escaping ViewControllerFactory) {
     // do nothing
