@@ -13,6 +13,13 @@ import RxCocoa
 import RxSwift
 
 final class MainTabBarController: UITabBarController, View {
+  
+  // MARK: Constants
+  
+  fileprivate struct Metric {
+    static let tabBarHeight = 44.f
+  }
+  
 
   // MARK: Properties
 
@@ -62,7 +69,11 @@ final class MainTabBarController: UITabBarController, View {
 
   override func viewDidLayoutSubviews() {
     super.viewDidLayoutSubviews()
-    self.tabBar.height = 44
+    if #available(iOS 11.0, *) {
+      self.tabBar.height = Metric.tabBarHeight + self.view.safeAreaInsets.bottom
+    } else {
+      self.tabBar.height = Metric.tabBarHeight
+    }
     self.tabBar.bottom = self.view.height
   }
 
@@ -80,3 +91,4 @@ final class MainTabBarController: UITabBarController, View {
   }
 
 }
+
