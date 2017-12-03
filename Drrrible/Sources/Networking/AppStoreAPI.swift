@@ -25,10 +25,10 @@ extension AppStoreAPI: SugarTargetType {
     }
   }
 
-  var task: Task {
+  var parameters: Parameters? {
     switch self {
     case let .lookup(bundleID):
-      return .requestParameters(parameters: ["bundleId": bundleID], encoding: URLEncoding())
+      return ["bundleId": bundleID]
     }
   }
 

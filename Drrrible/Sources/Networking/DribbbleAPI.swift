@@ -63,23 +63,13 @@ extension DribbbleAPI: SugarTargetType {
     }
   }
 
-  var params: Parameters? {
+  var parameters: Parameters? {
     switch self {
     case .shots:
       return ["per_page": 100]
 
     default:
       return nil
-    }
-  }
-
-  var task: Task {
-    switch self {
-    case .shots:
-      return .requestParameters(parameters: ["per_page": 100], encoding: URLEncoding())
-
-    default:
-      return .requestPlain
     }
   }
 
