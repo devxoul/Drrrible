@@ -16,29 +16,40 @@ fastlane_version "2.28.7"
 default_platform :ios
 
 platform :ios do
-  before_all do
-    # ENV["SLACK_URL"] = "https://hooks.slack.com/services/..."
-    cocoapods
-    
-  end
-
-  desc "Runs all the tests"
-  lane :test do
-    scan
-  end
-
-  desc "Submit a new Beta Build to Crashlytics"
-  desc "This will also make sure the profile is up to date"
   lane :beta do
-    gym(scheme: "Drrrible") # Build your app - more options available
-    pilot(skip_waiting_for_build_processing: true)
+    sync_code_signing(
+      git_url: "https://github.com/devxoul/certificates",
+      type: "appstore",
+    )
+    build_app(
+      scheme: "Drrrible",
+      export_xcargs: "-allowProvisioningUpdates",
+    )
+    upload_symbols_to_crashlytics(
+      dsym_path: "./Drrrible.app.dSYM.zip",
+      api_token: "60d029a7c4e10e88538e507f1afbdf24583030ac",
+      binary_path: "./Pods/Crashlytics/iOS/Crashlytics.framework/uploadDSYM",
+      platform: "ios"
+    )
+    upload_to_testflight(changelog: "Improvements and bug fixes")
   end
 
-  desc "Deploy a new version to the App Store"
-  lane :release do
-    deliver(force: true,
-            skip_binary_upload: true,
-            automatic_release: true)
+  lane :appstore do
+    upload_to_app_store(
+      force: true,
+      skip_binary_upload: true,
+      skip_screenshots: true,
+      automatic_release: true,
+      submit_for_review: true,
+      submission_information: {
+        add_id_info_uses_idfa: false,
+        add_id_info_serves_ads: false,
+        add_id_info_tracks_install: false,
+        add_id_info_tracks_action: false,
+        add_id_info_limits_tracking: false,
+        export_compliance_uses_encryption: false,
+      }
+    )
   end
 
   # You can define as many lanes as you want
