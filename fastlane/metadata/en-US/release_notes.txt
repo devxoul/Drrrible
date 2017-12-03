@@ -1,4 +1,1 @@
-* Add GitHub link on settings screen
-* Change tab bar appearance
-* Display GIF badge on animated shots
-* Tap tab bar to scroll to top
+* Add iPhone X support
