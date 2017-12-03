@@ -39,9 +39,7 @@ final class ShotViewController: BaseViewController, View {
 
   // MARK: UI
 
-  let refreshControl = UIRefreshControl().then {
-    $0.layer.zPosition = -999
-  }
+  let refreshControl = RefreshControl()
   let collectionView = UICollectionView(
     frame: .zero,
     collectionViewLayout: UICollectionViewFlexLayout()

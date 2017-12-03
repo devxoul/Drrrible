@@ -23,6 +23,7 @@
 		031F92861EA55FA00025D5FB /* TestMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031F92851EA55FA00025D5FB /* TestMain.swift */; };
 		03208D8D1F4B00920073B266 /* CollectionBorderedBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03208D8C1F4B00920073B266 /* CollectionBorderedBackgroundView.swift */; };
 		03208D901F4B03E40073B266 /* UICollectionViewFlexLayout+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03208D8F1F4B03E40073B266 /* UICollectionViewFlexLayout+Rx.swift */; };
+		032CA5EA1FD46A4E004D5329 /* RefreshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032CA5E91FD46A4E004D5329 /* RefreshControl.swift */; };
 		033594AB1F643F9B000DDC45 /* StubShotSectionReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033594AA1F643F9B000DDC45 /* StubShotSectionReactor.swift */; };
 		033594AD1F644591000DDC45 /* ShotSectionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033594AC1F644591000DDC45 /* ShotSectionDelegate.swift */; };
 		034195081F23A807003B5DEE /* ShotListViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034195071F23A807003B5DEE /* ShotListViewControllerSpec.swift */; };
@@ -163,6 +164,7 @@
 		031F92851EA55FA00025D5FB /* TestMain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestMain.swift; sourceTree = "<group>"; };
 		03208D8C1F4B00920073B266 /* CollectionBorderedBackgroundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionBorderedBackgroundView.swift; sourceTree = "<group>"; };
 		03208D8F1F4B03E40073B266 /* UICollectionViewFlexLayout+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UICollectionViewFlexLayout+Rx.swift"; sourceTree = "<group>"; };
+		032CA5E91FD46A4E004D5329 /* RefreshControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshControl.swift; sourceTree = "<group>"; };
 		033594AA1F643F9B000DDC45 /* StubShotSectionReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StubShotSectionReactor.swift; sourceTree = "<group>"; };
 		033594AC1F644591000DDC45 /* ShotSectionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShotSectionDelegate.swift; sourceTree = "<group>"; };
 		034195071F23A807003B5DEE /* ShotListViewControllerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShotListViewControllerSpec.swift; sourceTree = "<group>"; };
@@ -651,6 +653,7 @@
 				03D996D51E805392004773AE /* ShotViewCommentCellReactor.swift */,
 				038B69081E72A67F006B44F9 /* SettingItemCell.swift */,
 				038B690C1E72A752006B44F9 /* SettingItemCellReactor.swift */,
+				032CA5E91FD46A4E004D5329 /* RefreshControl.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1194,6 +1197,7 @@
 				03DF951F1E6EB7E200E31665 /* LoginViewReactor.swift in Sources */,
 				038B68F71E71ED90006B44F9 /* Paging.swift in Sources */,
 				0365BB8A1E747D22009BA3F8 /* ShotViewTextCell.swift in Sources */,
+				032CA5EA1FD46A4E004D5329 /* RefreshControl.swift in Sources */,
 				038B690D1E72A752006B44F9 /* SettingItemCellReactor.swift in Sources */,
 				039A70981F443DDE00891A31 /* CompositionRoot.swift in Sources */,
 				03A60A8C1EC1DAD10053FD0D /* UIView+Rx.swift in Sources */,
