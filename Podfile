@@ -13,7 +13,7 @@ target 'Drrrible' do
   pod 'Moya/RxSwift'
   pod 'MoyaSugar'
   pod 'MoyaSugar/RxSwift'
-  pod 'WebLinking', :git => 'https://github.com/devxoul/WebLinking.swift', :branch => 'swift-4.0'
+  pod 'WebLinking'
   pod 'Kingfisher'
 
   # Rx
