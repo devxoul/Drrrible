@@ -719,11 +719,8 @@
 				1894B33167F18D57B1D925CF /* [CP] Check Pods Manifest.lock */,
 				03D996DA1E811B97004773AE /* Sources */,
 				03D996DB1E811B97004773AE /* Frameworks */,
-				E62EED9B3D667B480F11A2F0 /* [Carte] Pre Script */,
 				03D996DC1E811B97004773AE /* Resources */,
-				6F09AC68488332B30709BADD /* [Carte] Post Script */,
 				B01C95CE2B14068F091C60D3 /* [CP] Embed Pods Frameworks */,
-				41DAC559FE040C6434456C87 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -746,7 +743,6 @@
 				03DF94C81E6EA54D00E31665 /* Resources */,
 				6F09AC68488332B30709BADD /* [Carte] Post Script */,
 				22D88F27EEA1488FE0A33A70 /* [CP] Embed Pods Frameworks */,
-				CAC506AC26A6FC4184CFBCC7 /* [CP] Copy Pods Resources */,
 				034D334A1EA66E98004498FB /* Fabric */,
 			);
 			buildRules = (
@@ -863,13 +859,13 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Drrrible/Pods-Drrrible-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-Drrrible/Pods-Drrrible-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/CGFloatLiteral/CGFloatLiteral.framework",
 				"${BUILT_PRODUCTS_DIR}/Carte/Carte.framework",
 				"${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework",
 				"${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/Immutable/Immutable.framework",
 				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
@@ -877,7 +873,6 @@
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
 				"${BUILT_PRODUCTS_DIR}/MoyaSugar/MoyaSugar.framework",
 				"${BUILT_PRODUCTS_DIR}/ReactorKit/ReactorKit.framework",
-				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/ReusableKit/ReusableKit.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCodable/RxCodable.framework",
@@ -885,6 +880,7 @@
 				"${BUILT_PRODUCTS_DIR}/RxGesture/RxGesture.framework",
 				"${BUILT_PRODUCTS_DIR}/RxKeyboard/RxKeyboard.framework",
 				"${BUILT_PRODUCTS_DIR}/RxOptional/RxOptional.framework",
+				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/RxViewController/RxViewController.framework",
 				"${BUILT_PRODUCTS_DIR}/SectionReactor/SectionReactor.framework",
@@ -908,7 +904,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Carte.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaLumberjack.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Differentiator.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Immutable.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
@@ -916,7 +912,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MoyaSugar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactorKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReusableKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCodable.framework",
@@ -924,6 +919,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxGesture.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxKeyboard.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxOptional.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxViewController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SectionReactor.framework",
@@ -942,22 +938,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Drrrible/Pods-Drrrible-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		41DAC559FE040C6434456C87 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Drrrible-DrrribleTests/Pods-Drrrible-DrrribleTests-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Drrrible/Pods-Drrrible-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		6F09AC68488332B30709BADD /* [Carte] Post Script */ = {
@@ -965,9 +946,13 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
+			inputFileListPaths = (
+			);
 			inputPaths = (
 			);
 			name = "[Carte] Post Script";
+			outputFileListPaths = (
+			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -981,13 +966,13 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Drrrible-DrrribleTests/Pods-Drrrible-DrrribleTests-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-Drrrible-DrrribleTests/Pods-Drrrible-DrrribleTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/CGFloatLiteral/CGFloatLiteral.framework",
 				"${BUILT_PRODUCTS_DIR}/Carte/Carte.framework",
 				"${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework",
 				"${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/Immutable/Immutable.framework",
 				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
@@ -995,7 +980,6 @@
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
 				"${BUILT_PRODUCTS_DIR}/MoyaSugar/MoyaSugar.framework",
 				"${BUILT_PRODUCTS_DIR}/ReactorKit/ReactorKit.framework",
-				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/ReusableKit/ReusableKit.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCodable/RxCodable.framework",
@@ -1003,6 +987,7 @@
 				"${BUILT_PRODUCTS_DIR}/RxGesture/RxGesture.framework",
 				"${BUILT_PRODUCTS_DIR}/RxKeyboard/RxKeyboard.framework",
 				"${BUILT_PRODUCTS_DIR}/RxOptional/RxOptional.framework",
+				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/RxViewController/RxViewController.framework",
 				"${BUILT_PRODUCTS_DIR}/SectionReactor/SectionReactor.framework",
@@ -1029,7 +1014,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Carte.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaLumberjack.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Differentiator.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Immutable.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
@@ -1037,7 +1022,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MoyaSugar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactorKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReusableKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCodable.framework",
@@ -1045,6 +1029,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxGesture.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxKeyboard.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxOptional.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxViewController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SectionReactor.framework",
@@ -1066,22 +1051,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Drrrible-DrrribleTests/Pods-Drrrible-DrrribleTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		CAC506AC26A6FC4184CFBCC7 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Drrrible/Pods-Drrrible-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Drrrible-DrrribleTests/Pods-Drrrible-DrrribleTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D7B696ECA7B72544DA711BD4 /* [CP] Check Pods Manifest.lock */ = {
@@ -1107,9 +1077,13 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
+			inputFileListPaths = (
+			);
 			inputPaths = (
 			);
 			name = "[Carte] Pre Script";
+			outputFileListPaths = (
+			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;

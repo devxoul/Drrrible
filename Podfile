@@ -9,7 +9,7 @@ target 'Drrrible' do
 
   # Networking
   pod 'Alamofire'
-  pod 'Moya'
+  pod 'Moya', '14.0.0-beta.2'
   pod 'Moya/RxSwift'
   pod 'MoyaSugar'
   pod 'MoyaSugar/RxSwift'
