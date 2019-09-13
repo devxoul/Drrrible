@@ -11,8 +11,12 @@ target 'Drrrible' do
   pod 'Alamofire'
   pod 'Moya', '14.0.0-beta.2'
   pod 'Moya/RxSwift'
-  pod 'MoyaSugar'
-  pod 'MoyaSugar/RxSwift'
+  pod 'MoyaSugar',
+    :git => 'https://github.com/devxoul/MoyaSugar.git',
+    :branch => 'master'
+  pod 'MoyaSugar/RxSwift',
+    :git => 'https://github.com/devxoul/MoyaSugar.git',
+    :branch => 'master'
   pod 'Kingfisher'
 
   # Rx

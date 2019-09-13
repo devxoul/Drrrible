@@ -157,8 +157,8 @@ DEPENDENCIES:
   - ManualLayout
   - Moya (= 14.0.0-beta.2)
   - Moya/RxSwift
-  - MoyaSugar
-  - MoyaSugar/RxSwift
+  - MoyaSugar (from `https://github.com/devxoul/MoyaSugar.git`, branch `master`)
+  - MoyaSugar/RxSwift (from `https://github.com/devxoul/MoyaSugar.git`, branch `master`)
   - Nimble
   - Quick
   - ReactorKit
@@ -209,7 +209,6 @@ SPEC REPOS:
     - Kingfisher
     - ManualLayout
     - Moya
-    - MoyaSugar
     - nanopb
     - Nimble
     - Quick
@@ -237,6 +236,16 @@ SPEC REPOS:
     - Umbrella
     - URLNavigator
 
+EXTERNAL SOURCES:
+  MoyaSugar:
+    :branch: master
+    :git: https://github.com/devxoul/MoyaSugar.git
+
+CHECKOUT OPTIONS:
+  MoyaSugar:
+    :commit: 87e61adbd0e10e16720699cec65ff0016fe0ca03
+    :git: https://github.com/devxoul/MoyaSugar.git
+
 SPEC CHECKSUMS:
   Alamofire: f9450d3c7f6bea2ad62e7a541c3e9b186c7991d6
   Carte: bca44c5112fac5866c2fa3da9fa018fa54eb8ba7
@@ -260,7 +269,7 @@ SPEC CHECKSUMS:
   Kingfisher: 176d377ad339113c99ad4980cbae687f807e20fe
   ManualLayout: 68ac8cfa6b5f656f7a9fadec3730208b95986880
   Moya: 788e592b92fadb10e30d350ed1a9f75c91eb1368
-  MoyaSugar: b64e677454f1a4b3745e1c5b16e1c9d1b109d04f
+  MoyaSugar: 422d6e56e3800bcce397b9678160649230ad76a2
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   Nimble: 18d5360282923225d62b09d781f63abc1a0111fc
   Quick: 4be43f6634acfa727dd106bdf3929ce125ffa79d
@@ -288,6 +297,6 @@ SPEC CHECKSUMS:
   Umbrella: d5b508a0efea3c50f4764ad96035d08eafee26bc
   URLNavigator: 0bffc3efdeb2d97f7b5eec7ac82d290f4a099431
 
-PODFILE CHECKSUM: ad6d493da1e80bbaddd05e25f972a95b592c0098
+PODFILE CHECKSUM: fd5b1bb543fad34e10b49b47a50a246c1f613d21
 
 COCOAPODS: 1.7.5
