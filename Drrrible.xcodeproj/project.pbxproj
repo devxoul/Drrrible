@@ -126,6 +126,7 @@
 		03E147691F2478860018D96D /* StubShotTileCellDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E147681F2478860018D96D /* StubShotTileCellDependency.swift */; };
 		03E1DC7D1F42E890003E9F7A /* UICollectionView+TestUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E1DC7C1F42E890003E9F7A /* UICollectionView+TestUtils.swift */; };
 		03E1DC7F1F42FACC003E9F7A /* Matchers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E1DC7E1F42FACC003E9F7A /* Matchers.swift */; };
+		03EC354E232BD076008202E6 /* Moya+RxSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03EC354D232BD076008202E6 /* Moya+RxSpec.swift */; };
 		03ED15691EEABA92006E1638 /* AnalyticsEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03ED15681EEABA92006E1638 /* AnalyticsEvent.swift */; };
 		03EE6F791F250B0600C2C6D8 /* UIGestureRecognizer+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03EE6F781F250B0600C2C6D8 /* UIGestureRecognizer+Test.swift */; };
 		03EF17891F9292130042C431 /* StubNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03EF17881F9292130042C431 /* StubNavigator.swift */; };
@@ -271,6 +272,7 @@
 		03E147681F2478860018D96D /* StubShotTileCellDependency.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StubShotTileCellDependency.swift; sourceTree = "<group>"; };
 		03E1DC7C1F42E890003E9F7A /* UICollectionView+TestUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UICollectionView+TestUtils.swift"; sourceTree = "<group>"; };
 		03E1DC7E1F42FACC003E9F7A /* Matchers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Matchers.swift; sourceTree = "<group>"; };
+		03EC354D232BD076008202E6 /* Moya+RxSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Moya+RxSpec.swift"; sourceTree = "<group>"; };
 		03ED15681EEABA92006E1638 /* AnalyticsEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsEvent.swift; sourceTree = "<group>"; };
 		03EE6F781F250B0600C2C6D8 /* UIGestureRecognizer+Test.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIGestureRecognizer+Test.swift"; sourceTree = "<group>"; };
 		03EF17881F9292130042C431 /* StubNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubNavigator.swift; sourceTree = "<group>"; };
@@ -395,6 +397,7 @@
 		03D996E81E811BAB004773AE /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				03EC354C232BD067008202E6 /* Rx */,
 				031F92851EA55FA00025D5FB /* TestMain.swift */,
 				034D335B1EA69C95004498FB /* TestConfiguration.swift */,
 				03D9971F1E817C13004773AE /* Fixtures */,
@@ -664,6 +667,14 @@
 				037142621F64F64E0055F0C1 /* StubShotViewTitleCellDependency.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		03EC354C232BD067008202E6 /* Rx */ = {
+			isa = PBXGroup;
+			children = (
+				03EC354D232BD076008202E6 /* Moya+RxSpec.swift */,
+			);
+			path = Rx;
 			sourceTree = "<group>";
 		};
 		03ED15671EEABA86006E1638 /* Analytics */ = {
@@ -1114,6 +1125,7 @@
 				036CDD751F235EB4006C91CC /* SplashViewControllerSpec.swift in Sources */,
 				03D997291E819012004773AE /* ShotListViewReactorSpec.swift in Sources */,
 				036CDD931F239A02006C91CC /* StubShotService.swift in Sources */,
+				03EC354E232BD076008202E6 /* Moya+RxSpec.swift in Sources */,
 				037142591F64F0010055F0C1 /* StubShotViewImageCellDependency.swift in Sources */,
 				034D832F1F246BD700975F2F /* StubImageDownloader.swift in Sources */,
 				0303CACC1F43267B00FF2E77 /* ShotViewControllerSpec.swift in Sources */,
