@@ -22,7 +22,6 @@ install:
 
 before_script:
   - set -o pipefail
-  - ruby ./scripts/wmo.rb
 
 script:
   - xcodebuild clean build test
