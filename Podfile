@@ -13,7 +13,6 @@ target 'Drrrible' do
   pod 'Moya/RxSwift'
   pod 'MoyaSugar'
   pod 'MoyaSugar/RxSwift'
-  pod 'WebLinking'
   pod 'Kingfisher'
 
   # Rx

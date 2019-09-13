@@ -141,7 +141,6 @@ PODS:
   - Umbrella/Firebase (0.9.0):
     - Umbrella/Core
   - URLNavigator (2.2.0)
-  - WebLinking (2.0.0)
 
 DEPENDENCIES:
   - Alamofire
@@ -185,7 +184,6 @@ DEPENDENCIES:
   - Umbrella
   - Umbrella/Firebase
   - URLNavigator
-  - WebLinking
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -238,7 +236,6 @@ SPEC REPOS:
     - "UITextView+Placeholder"
     - Umbrella
     - URLNavigator
-    - WebLinking
 
 SPEC CHECKSUMS:
   Alamofire: f9450d3c7f6bea2ad62e7a541c3e9b186c7991d6
@@ -290,8 +287,7 @@ SPEC CHECKSUMS:
   "UITextView+Placeholder": f23df8592290d8d06078072ae1a663e11ee07ff4
   Umbrella: d5b508a0efea3c50f4764ad96035d08eafee26bc
   URLNavigator: 0bffc3efdeb2d97f7b5eec7ac82d290f4a099431
-  WebLinking: b476999d59f78bd6649e6754d60693a7d147b00c
 
-PODFILE CHECKSUM: 864dd944920ce9d0fd778ebead5247326027aa69
+PODFILE CHECKSUM: ad6d493da1e80bbaddd05e25f972a95b592c0098
 
 COCOAPODS: 1.7.5
