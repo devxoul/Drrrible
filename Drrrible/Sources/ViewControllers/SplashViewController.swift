@@ -23,7 +23,7 @@ final class SplashViewController: BaseViewController, View {
 
   // MARK: UI
 
-  fileprivate let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+  fileprivate let activityIndicatorView = UIActivityIndicatorView(style: .gray)
 
 
   // MARK: View Life Cycle

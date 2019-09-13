@@ -9,7 +9,7 @@
 import UIKit
 
 extension UIGestureRecognizer {
-  func sendAction(withState state: UIGestureRecognizerState? = nil) {
+  func sendAction(withState state: UIGestureRecognizer.State? = nil) {
     if let state = state, self.state != state {
       self.setValue(state.rawValue, forKey: "state")
     }

@@ -40,12 +40,12 @@ final class ShotViewCommentCell: BaseCollectionViewCell, View {
   fileprivate let messageLabel = TTTAttributedLabel(frame: .zero).then {
     $0.numberOfLines = 0
     $0.linkAttributes = [
-      NSAttributedStringKey.foregroundColor: UIColor.db_linkBlue,
-      NSAttributedStringKey.underlineStyle: NSUnderlineStyle.styleNone.rawValue,
+      NSAttributedString.Key.foregroundColor: UIColor.db_linkBlue,
+      NSAttributedString.Key.underlineStyle: ([] as NSUnderlineStyle).rawValue,
     ]
     $0.activeLinkAttributes = [
-      NSAttributedStringKey.foregroundColor: UIColor.db_darkLinkBlue,
-      NSAttributedStringKey.underlineStyle: NSUnderlineStyle.styleNone.rawValue,
+      NSAttributedString.Key.foregroundColor: UIColor.db_darkLinkBlue,
+      NSAttributedString.Key.underlineStyle: ([] as NSUnderlineStyle).rawValue,
     ]
   }
 

@@ -63,7 +63,7 @@ final class LoginViewController: BaseViewController, View {
       for: .highlighted
     )
   }
-  let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+  let activityIndicatorView = UIActivityIndicatorView(style: .gray)
 
 
   // MARK: Initializing
