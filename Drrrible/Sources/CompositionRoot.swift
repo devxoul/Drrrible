@@ -27,10 +27,9 @@ import TouchAreaInsets
 import UITextView_Placeholder
 import Umbrella
 import URLNavigator
-import WebLinking
 
 struct AppDependency {
-  typealias OpenURLHandler = (_ url: URL, _ options: [UIApplicationOpenURLOptionsKey: Any]) -> Bool
+  typealias OpenURLHandler = (_ url: URL, _ options: [UIApplication.OpenURLOptionsKey: Any]) -> Bool
 
   let window: UIWindow
   let navigator: Navigator

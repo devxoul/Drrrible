@@ -47,7 +47,7 @@ final class ShotListViewController: BaseViewController, View {
   ).then {
     $0.backgroundColor = .clear
     $0.register(Reusable.shotTileCell)
-    $0.register(Reusable.activityIndicatorView, kind: UICollectionElementKindSectionFooter)
+    $0.register(Reusable.activityIndicatorView, kind: UICollectionView.elementKindSectionFooter)
     $0.register(Reusable.emptyView, kind: "empty")
   }
 
@@ -86,7 +86,7 @@ final class ShotListViewController: BaseViewController, View {
         }
       },
       configureSupplementaryView: { dataSource, collectionView, kind, indexPath in
-        if kind == UICollectionElementKindSectionFooter {
+        if kind == UICollectionView.elementKindSectionFooter {
           return collectionView.dequeue(Reusable.activityIndicatorView, kind: kind, for: indexPath)
         }
         return collectionView.dequeue(Reusable.emptyView, kind: "empty", for: indexPath)

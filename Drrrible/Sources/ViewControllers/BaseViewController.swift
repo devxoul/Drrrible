@@ -72,7 +72,7 @@ class BaseViewController: UIViewController {
     if #available(iOS 11, *) {
       if let scrollView = self.view.subviews.first as? UIScrollView,
         let rawValue = self.scrollViewOriginalContentInsetAdjustmentBehaviorRawValue,
-        let behavior = UIScrollViewContentInsetAdjustmentBehavior(rawValue: rawValue) {
+        let behavior = UIScrollView.ContentInsetAdjustmentBehavior(rawValue: rawValue) {
         scrollView.contentInsetAdjustmentBehavior = behavior
       }
     }

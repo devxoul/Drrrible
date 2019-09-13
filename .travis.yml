@@ -1,5 +1,5 @@
 language: objective-c
-osx_image: xcode9
+osx_image: xcode11
 sudo: false
 
 cache:
@@ -10,9 +10,9 @@ env:
   global:
     - WORKSPACE="Drrrible.xcworkspace"
     - SCHEME="Drrrible"
-    - IOS_SDK="iphonesimulator11.0"
+    - IOS_SDK="iphonesimulator13.0"
   matrix:
-    - SDK="$IOS_SDK"  DESTINATION="platform=iOS Simulator,name=iPhone 8,OS=11.0"
+    - SDK="$IOS_SDK"  DESTINATION="platform=iOS Simulator,name=iPhone 8,OS=13.0"
 
 install:
   - bundle install --deployment
@@ -22,7 +22,6 @@ install:
 
 before_script:
   - set -o pipefail
-  - ruby ./scripts/wmo.rb
 
 script:
   - xcodebuild clean build test

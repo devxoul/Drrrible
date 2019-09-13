@@ -18,8 +18,8 @@ final class ShotViewControllerSpec: QuickSpec {
 
     beforeEach {
       reactor = .stub(shotID: ShotFixture.shot1.id)
-      reactor.stub.isEnabled = true
-      reactor.stub.state.value.shotSectionReactor.stub.isEnabled = true
+      reactor.isStubEnabled = true
+      reactor.stub.state.value.shotSectionReactor.isStubEnabled = true
       analytics = StubAnalytics()
       viewController = ShotViewController(
         reactor: reactor,

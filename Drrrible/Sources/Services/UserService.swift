@@ -29,7 +29,7 @@ final class UserService: UserServiceType {
   func fetchMe() -> Single<Void> {
     return self.networking.request(.me)
       .map(User.self)
-      .do(onNext: { [weak self] user in
+      .do(onSuccess: { [weak self] user in
         self?.userSubject.onNext(user)
       })
       .map { _ in }

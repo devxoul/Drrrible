@@ -9,7 +9,7 @@
 import UIKit
 
 final class CollectionActivityIndicatorView: UICollectionReusableView {
-  fileprivate let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+  fileprivate let activityIndicatorView = UIActivityIndicatorView(style: .gray)
 
   override init(frame: CGRect) {
     super.init(frame: frame)

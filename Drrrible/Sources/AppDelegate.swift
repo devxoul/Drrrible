@@ -24,7 +24,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
 
   func application(
     _ application: UIApplication,
-    didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?
+    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
   ) -> Bool {
     self.dependency = self.dependency ?? CompositionRoot.resolve()
     self.dependency.configureSDKs()
@@ -36,7 +36,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
   func application(
     _ app: UIApplication,
     open url: URL,
-    options: [UIApplicationOpenURLOptionsKey: Any] = [:]
+    options: [UIApplication.OpenURLOptionsKey: Any] = [:]
   ) -> Bool {
     return self.dependency.openURL(url, options)
   }

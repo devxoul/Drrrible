@@ -14,13 +14,10 @@ typealias DrrribleNetworking = Networking<DribbbleAPI>
 
 final class Networking<Target: SugarTargetType>: MoyaSugarProvider<Target> {
   init(plugins: [PluginType] = []) {
-    let configuration = URLSessionConfiguration.default
-    configuration.httpAdditionalHeaders = Manager.defaultHTTPHeaders
-    configuration.timeoutIntervalForRequest = 10
+    let session = MoyaProvider<Target>.defaultAlamofireSession()
+    session.sessionConfiguration.timeoutIntervalForRequest = 10
 
-    let manager = Manager(configuration: configuration)
-    manager.startRequestsImmediately = false
-    super.init(manager: manager, plugins: plugins)
+    super.init(session: session, plugins: plugins)
   }
 
   func request(
@@ -29,11 +26,11 @@ final class Networking<Target: SugarTargetType>: MoyaSugarProvider<Target> {
     function: StaticString = #function,
     line: UInt = #line
   ) -> Single<Response> {
-    let requestString = "\(target.method) \(target.path)"
+    let requestString = "\(target.method.rawValue) \(target.path)"
     return self.rx.request(target)
       .filterSuccessfulStatusCodes()
       .do(
-        onNext: { value in
+        onSuccess: { value in
           let message = "SUCCESS: \(requestString) (\(value.statusCode))"
           log.debug(message, file: file, function: function, line: line)
         },

@@ -78,7 +78,7 @@ final class SettingsViewReactor: Reactor {
     var state = state
     switch mutation {
     case let .updateLogoutSection(newSection):
-      guard let index = state.sections.index(where: { section in
+      guard let index = state.sections.firstIndex(where: { section in
         if case (.logout, .logout) = (section, newSection) {
           return true
         } else {

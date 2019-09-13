@@ -1,4 +1,4 @@
-platform :ios, '9.0'
+platform :ios, '12.0'
 inhibit_all_warnings!
 
 target 'Drrrible' do
@@ -9,11 +9,14 @@ target 'Drrrible' do
 
   # Networking
   pod 'Alamofire'
-  pod 'Moya'
+  pod 'Moya', '14.0.0-beta.2'
   pod 'Moya/RxSwift'
-  pod 'MoyaSugar'
-  pod 'MoyaSugar/RxSwift'
-  pod 'WebLinking'
+  pod 'MoyaSugar',
+    :git => 'https://github.com/devxoul/MoyaSugar.git',
+    :branch => 'master'
+  pod 'MoyaSugar/RxSwift',
+    :git => 'https://github.com/devxoul/MoyaSugar.git',
+    :branch => 'master'
   pod 'Kingfisher'
 
   # Rx

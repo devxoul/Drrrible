@@ -1,41 +1,82 @@
 PODS:
-  - Alamofire (4.5.1)
-  - Carte (2.1.4)
-  - CGFloatLiteral (0.4.0)
-  - CocoaLumberjack/Default (3.2.1)
-  - CocoaLumberjack/Swift (3.2.1):
-    - CocoaLumberjack/Default
-  - Crashlytics (3.8.6):
-    - Fabric (~> 1.6.3)
-  - Differentiator (3.0.2)
-  - Fabric (1.6.13)
-  - Firebase/Core (4.2.0):
-    - FirebaseAnalytics (= 4.0.3)
-    - FirebaseCore (= 4.0.7)
-  - FirebaseAnalytics (4.0.3):
-    - FirebaseCore (~> 4.0)
-    - FirebaseInstanceID (~> 2.0)
-    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
+  - Alamofire (5.0.0-rc.2)
+  - Carte (2.2.0)
+  - CGFloatLiteral (0.5.0)
+  - CocoaLumberjack/Core (3.5.3)
+  - CocoaLumberjack/Swift (3.5.3):
+    - CocoaLumberjack/Core
+  - Crashlytics (3.14.0):
+    - Fabric (~> 1.10.2)
+  - Differentiator (4.0.1)
+  - Fabric (1.10.2)
+  - Firebase/Core (6.8.1):
+    - Firebase/CoreOnly
+    - FirebaseAnalytics (= 6.1.1)
+  - Firebase/CoreOnly (6.8.1):
+    - FirebaseCore (= 6.2.3)
+  - FirebaseAnalytics (6.1.1):
+    - FirebaseCore (~> 6.2)
+    - FirebaseInstanceID (~> 4.2)
+    - GoogleAppMeasurement (= 6.1.1)
+    - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
+    - GoogleUtilities/MethodSwizzler (~> 6.0)
+    - GoogleUtilities/Network (~> 6.0)
+    - "GoogleUtilities/NSData+zlib (~> 6.0)"
     - nanopb (~> 0.3)
-  - FirebaseCore (4.0.7):
-    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
+  - FirebaseCore (6.2.3):
+    - FirebaseCoreDiagnostics (~> 1.0)
+    - FirebaseCoreDiagnosticsInterop (~> 1.0)
+    - GoogleUtilities/Environment (~> 6.2)
+    - GoogleUtilities/Logger (~> 6.2)
+  - FirebaseCoreDiagnostics (1.0.1):
+    - FirebaseCoreDiagnosticsInterop (~> 1.0)
+    - GoogleDataTransportCCTSupport (~> 1.0)
+    - GoogleUtilities/Environment (~> 6.2)
+    - GoogleUtilities/Logger (~> 6.2)
+  - FirebaseCoreDiagnosticsInterop (1.0.0)
+  - FirebaseInstanceID (4.2.5):
+    - FirebaseCore (~> 6.0)
+    - GoogleUtilities/Environment (~> 6.0)
+    - GoogleUtilities/UserDefaults (~> 6.0)
+  - GoogleAppMeasurement (6.1.1):
+    - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
+    - GoogleUtilities/MethodSwizzler (~> 6.0)
+    - GoogleUtilities/Network (~> 6.0)
+    - "GoogleUtilities/NSData+zlib (~> 6.0)"
     - nanopb (~> 0.3)
-  - FirebaseInstanceID (2.0.3)
-  - GoogleToolboxForMac/Defines (2.1.1)
-  - GoogleToolboxForMac/NSData+zlib (2.1.1):
-    - GoogleToolboxForMac/Defines (= 2.1.1)
-  - Immutable (0.5.0)
-  - KeychainAccess (3.1.0)
-  - Kingfisher (4.0.1)
+  - GoogleDataTransport (1.2.0)
+  - GoogleDataTransportCCTSupport (1.0.4):
+    - GoogleDataTransport (~> 1.2)
+    - nanopb
+  - GoogleUtilities/AppDelegateSwizzler (6.2.5):
+    - GoogleUtilities/Environment
+    - GoogleUtilities/Logger
+    - GoogleUtilities/Network
+  - GoogleUtilities/Environment (6.2.5)
+  - GoogleUtilities/Logger (6.2.5):
+    - GoogleUtilities/Environment
+  - GoogleUtilities/MethodSwizzler (6.2.5):
+    - GoogleUtilities/Logger
+  - GoogleUtilities/Network (6.2.5):
+    - GoogleUtilities/Logger
+    - "GoogleUtilities/NSData+zlib"
+    - GoogleUtilities/Reachability
+  - "GoogleUtilities/NSData+zlib (6.2.5)"
+  - GoogleUtilities/Reachability (6.2.5):
+    - GoogleUtilities/Logger
+  - GoogleUtilities/UserDefaults (6.2.5):
+    - GoogleUtilities/Logger
+  - Immutable (0.6.0)
+  - KeychainAccess (3.2.0)
+  - Kingfisher (5.7.1)
   - ManualLayout (1.3.0)
-  - Moya (10.0.1):
-    - Moya/Core (= 10.0.1)
-  - Moya/Core (10.0.1):
-    - Alamofire (~> 4.1)
-    - Result (~> 3.0)
-  - Moya/RxSwift (10.0.1):
+  - Moya (14.0.0-beta.2):
+    - Moya/Core (= 14.0.0-beta.2)
+  - Moya/Core (14.0.0-beta.2):
+    - Alamofire (= 5.0.0-rc.2)
+  - Moya/RxSwift (14.0.0-beta.2):
     - Moya/Core
-    - RxSwift (~> 4.0)
+    - RxSwift (~> 5.0)
   - MoyaSugar (1.1.0):
     - MoyaSugar/Core (= 1.1.0)
   - MoyaSugar/Core (1.1.0):
@@ -44,66 +85,62 @@ PODS:
     - Moya/RxSwift (>= 10.0.0)
     - MoyaSugar/Core
     - RxSwift (>= 4.0.0)
-  - nanopb (0.3.8):
-    - nanopb/decode (= 0.3.8)
-    - nanopb/encode (= 0.3.8)
-  - nanopb/decode (0.3.8)
-  - nanopb/encode (0.3.8)
-  - Nimble (7.0.2)
-  - Quick (1.2.0)
-  - ReactorKit (1.1.0):
-    - RxSwift (>= 4.0.0)
-  - Result (3.2.4)
-  - ReusableKit (2.0.0):
-    - ReusableKit/Core (= 2.0.0)
-    - ReusableKit/RxSwift (= 2.0.0)
-  - ReusableKit/Core (2.0.0)
-  - ReusableKit/RxSwift (2.0.0):
-    - ReusableKit/Core
-    - RxCocoa (>= 4.0.0-beta.0)
-    - RxSwift (>= 4.0.0-beta.0)
-  - RxCocoa (4.0.0):
-    - RxSwift (~> 4.0)
-  - RxCodable (0.3.0):
-    - RxCodable/Core (= 0.3.0)
-  - RxCodable/Core (0.3.0):
-    - RxSwift (>= 4.0.0-beta.0)
-  - RxDataSources (3.0.2):
-    - Differentiator (~> 3.0)
-    - RxCocoa (~> 4.0)
-    - RxSwift (~> 4.0)
-  - RxGesture (1.2.1):
-    - RxCocoa (~> 4.0)
-    - RxSwift (~> 4.0)
-  - RxKeyboard (0.7.0):
-    - RxCocoa (>= 4.0.0-beta.0)
-    - RxSwift (>= 4.0.0-beta.0)
-  - RxOptional (3.2.0):
-    - RxCocoa
-    - RxSwift
-  - RxSwift (4.0.0)
-  - RxViewController (0.2.0):
-    - RxCocoa (>= 3.0.0)
-    - RxSwift (>= 3.0.0)
-  - SectionReactor (0.4.0):
-    - ReactorKit
-    - RxDataSources
-  - SnapKit (4.0.0)
-  - Stubber (1.0.0)
-  - SwiftyColor (1.0.0)
-  - SwiftyImage (1.2.0)
-  - Then (2.2.0)
+  - nanopb (0.3.901):
+    - nanopb/decode (= 0.3.901)
+    - nanopb/encode (= 0.3.901)
+  - nanopb/decode (0.3.901)
+  - nanopb/encode (0.3.901)
+  - Nimble (8.0.4)
+  - Quick (2.1.0)
+  - ReactorKit (2.0.1):
+    - RxSwift (~> 5.0)
+  - ReusableKit (3.0.0):
+    - ReusableKit/Core (= 3.0.0)
+  - ReusableKit/Core (3.0.0)
+  - RxCocoa (5.0.0):
+    - RxRelay (~> 5)
+    - RxSwift (~> 5)
+  - RxCodable (1.0.0):
+    - RxCodable/Core (= 1.0.0)
+  - RxCodable/Core (1.0.0):
+    - RxSwift (~> 5.0)
+  - RxDataSources (4.0.1):
+    - Differentiator (~> 4.0)
+    - RxCocoa (~> 5.0)
+    - RxSwift (~> 5.0)
+  - RxGesture (3.0.0):
+    - RxCocoa (~> 5.0)
+    - RxSwift (~> 5.0)
+  - RxKeyboard (1.0.0):
+    - RxCocoa (~> 5.0)
+    - RxSwift (~> 5.0)
+  - RxOptional (4.0.0):
+    - RxCocoa (~> 5)
+    - RxSwift (~> 5)
+  - RxRelay (5.0.0):
+    - RxSwift (~> 5)
+  - RxSwift (5.0.0)
+  - RxViewController (1.0.0):
+    - RxCocoa (~> 5.0)
+    - RxSwift (~> 5.0)
+  - SectionReactor (1.0.0):
+    - ReactorKit (>= 2.0.0)
+    - RxDataSources (>= 4.0.0)
+  - SnapKit (5.0.1)
+  - Stubber (1.4.0)
+  - SwiftyColor (1.2.0)
+  - SwiftyImage (1.5.1)
+  - Then (2.6.0)
   - TouchAreaInsets (1.1.0)
   - TTTAttributedLabel (2.0.0)
-  - UICollectionViewFlexLayout (0.3.1)
-  - UITextView+Placeholder (1.2.0)
-  - Umbrella (0.6.0):
-    - Umbrella/Core (= 0.6.0)
-  - Umbrella/Core (0.6.0)
-  - Umbrella/Firebase (0.6.0):
+  - UICollectionViewFlexLayout (1.2.0)
+  - "UITextView+Placeholder (1.3.1)"
+  - Umbrella (0.9.0):
+    - Umbrella/Core (= 0.9.0)
+  - Umbrella/Core (0.9.0)
+  - Umbrella/Firebase (0.9.0):
     - Umbrella/Core
-  - URLNavigator (2.0.0)
-  - WebLinking (2.0.0)
+  - URLNavigator (2.2.0)
 
 DEPENDENCIES:
   - Alamofire
@@ -118,10 +155,10 @@ DEPENDENCIES:
   - KeychainAccess
   - Kingfisher
   - ManualLayout
-  - Moya
+  - Moya (= 14.0.0-beta.2)
   - Moya/RxSwift
-  - MoyaSugar
-  - MoyaSugar/RxSwift
+  - MoyaSugar (from `https://github.com/devxoul/MoyaSugar.git`, branch `master`)
+  - MoyaSugar/RxSwift (from `https://github.com/devxoul/MoyaSugar.git`, branch `master`)
   - Nimble
   - Quick
   - ReactorKit
@@ -143,59 +180,123 @@ DEPENDENCIES:
   - TouchAreaInsets
   - TTTAttributedLabel
   - UICollectionViewFlexLayout
-  - UITextView+Placeholder
+  - "UITextView+Placeholder"
   - Umbrella
   - Umbrella/Firebase
   - URLNavigator
-  - WebLinking
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - Carte
+    - CGFloatLiteral
+    - CocoaLumberjack
+    - Crashlytics
+    - Differentiator
+    - Fabric
+    - Firebase
+    - FirebaseAnalytics
+    - FirebaseCore
+    - FirebaseCoreDiagnostics
+    - FirebaseCoreDiagnosticsInterop
+    - FirebaseInstanceID
+    - GoogleAppMeasurement
+    - GoogleDataTransport
+    - GoogleDataTransportCCTSupport
+    - GoogleUtilities
+    - Immutable
+    - KeychainAccess
+    - Kingfisher
+    - ManualLayout
+    - Moya
+    - nanopb
+    - Nimble
+    - Quick
+    - ReactorKit
+    - ReusableKit
+    - RxCocoa
+    - RxCodable
+    - RxDataSources
+    - RxGesture
+    - RxKeyboard
+    - RxOptional
+    - RxRelay
+    - RxSwift
+    - RxViewController
+    - SectionReactor
+    - SnapKit
+    - Stubber
+    - SwiftyColor
+    - SwiftyImage
+    - Then
+    - TouchAreaInsets
+    - TTTAttributedLabel
+    - UICollectionViewFlexLayout
+    - "UITextView+Placeholder"
+    - Umbrella
+    - URLNavigator
+
+EXTERNAL SOURCES:
+  MoyaSugar:
+    :branch: master
+    :git: https://github.com/devxoul/MoyaSugar.git
+
+CHECKOUT OPTIONS:
+  MoyaSugar:
+    :commit: 87e61adbd0e10e16720699cec65ff0016fe0ca03
+    :git: https://github.com/devxoul/MoyaSugar.git
 
 SPEC CHECKSUMS:
-  Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
-  Carte: a19a62db8478426c406f40048d0c67e98a021c39
-  CGFloatLiteral: 2ab558b74124b584dd023a35b7e41795a61d8140
-  CocoaLumberjack: 2800c03334042fe80589423c8d80e582dcaec482
-  Crashlytics: 95d05f4e4c19a771250c4bd9ce344d996de32bbf
-  Differentiator: a87be69eba49ec4ab460c7671143ee3a9eececfd
-  Fabric: 2fb5676bc811af011a04513451f463dac6803206
-  Firebase: 9548cae14d69718add12d75a5b312893f7ef89c7
-  FirebaseAnalytics: 76f754d37ca5b04f36856729b6af3ca0152d1069
-  FirebaseCore: 9a6cc1e3eaf75905390f9220596ad4fd8f92faee
-  FirebaseInstanceID: a4fc702b5a026f7322964376047f1a3f1f7cc6ff
-  GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
-  Immutable: a77b96749daf0f74d2471bca7dc08703b92fd6d8
-  KeychainAccess: 94c5540b32eabf7bc32bfb976a268e8ea05fd6da
-  Kingfisher: b771785e9461ed4b8686d40e7145f9e58100cb24
+  Alamofire: f9450d3c7f6bea2ad62e7a541c3e9b186c7991d6
+  Carte: bca44c5112fac5866c2fa3da9fa018fa54eb8ba7
+  CGFloatLiteral: 0328648f666e3cb2263d5ee3972df9d320786d25
+  CocoaLumberjack: 2f44e60eb91c176d471fdba43b9e3eae6a721947
+  Crashlytics: 540b7e5f5da5a042647227a5e3ac51d85eed06df
+  Differentiator: 886080237d9f87f322641dedbc5be257061b0602
+  Fabric: 706c8b8098fff96c33c0db69cbf81f9c551d0d74
+  Firebase: 9cbe4e5b5eaafa05dc932be58b7c8c3820d71e88
+  FirebaseAnalytics: 843c7f64a8f9c79f0d03281197ebe7bb1d58d477
+  FirebaseCore: e9d9bd1dae61c1e82bc1e0e617a9d832392086a0
+  FirebaseCoreDiagnostics: 4c04ae09d0ab027c30179828c6bb47764df1bd13
+  FirebaseCoreDiagnosticsInterop: 6829da2b8d1fc795ff1bd99df751d3788035d2cb
+  FirebaseInstanceID: 550df9be1f99f751d8fcde3ac342a1e21a0e6c42
+  GoogleAppMeasurement: 86a82f0e1f20b8eedf8e20326530138fd71409de
+  GoogleDataTransport: 8f9897b8e073687f24ca8d3c3a8013dec7d2d1cc
+  GoogleDataTransportCCTSupport: 7455d07b98851aa63e4c05a34dad356ca588479e
+  GoogleUtilities: e7dc37039b19df7fe543479d3e4a02ac8d11bb69
+  Immutable: 793dcfd5979883638401c468dfeb08651436f44f
+  KeychainAccess: 3b1bf8a77eb4c6ea1ce9404c292e48f948954c6b
+  Kingfisher: 176d377ad339113c99ad4980cbae687f807e20fe
   ManualLayout: 68ac8cfa6b5f656f7a9fadec3730208b95986880
-  Moya: 9e621707ff754eeb51ff3ec51a3d54e517c0733a
-  MoyaSugar: b64e677454f1a4b3745e1c5b16e1c9d1b109d04f
-  nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
-  Nimble: bfe1f814edabba69ff145cb1283e04ed636a67f2
-  Quick: 58d203b1c5e27fff7229c4c1ae445ad7069a7a08
-  ReactorKit: 26470a9eff5094fae909a30af0be7cd0cf8a182d
-  Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
-  ReusableKit: 668daa3e98e614ec2e135db2028a958baa2abd6f
-  RxCocoa: d62846ca96495d862fa4c59ea7d87e5031d7340e
-  RxCodable: 12d41ab0ba58f455cfc83965fcc927ac4bad3e7f
-  RxDataSources: cb7c31e652a87ebb919da45f716bbb87b3765f6b
-  RxGesture: c278eb05b187abd47e11e65464ae4de53ab71d95
-  RxKeyboard: d7b65fd85347c2ec214d21c95537dadc62d3b9af
-  RxOptional: d2d6a68064bc16b4801332c40663967f481b0234
-  RxSwift: fd680d75283beb5e2559486f3c0ff852f0d35334
-  RxViewController: 67cc7dde0f9e2ed941029eceec750c3ecb6ba74b
-  SectionReactor: 9ef5f0344c0709ec7a2dcc313ff4f2162fcf83eb
-  SnapKit: a42d492c16e80209130a3379f73596c3454b7694
-  Stubber: 0d3759dc6979d0a6163d77d971927f01aa5b5258
-  SwiftyColor: 7fa09db14051bc5d7f539e1c4576665975225992
-  SwiftyImage: ebaa7c7b6163cd4ad102f3bb05a8fb276d35b4f3
-  Then: 823f9813e1d4d0a814a5ba15e9c9d33ec7aca631
+  Moya: 788e592b92fadb10e30d350ed1a9f75c91eb1368
+  MoyaSugar: 422d6e56e3800bcce397b9678160649230ad76a2
+  nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
+  Nimble: 18d5360282923225d62b09d781f63abc1a0111fc
+  Quick: 4be43f6634acfa727dd106bdf3929ce125ffa79d
+  ReactorKit: a63c5e11e0fd32d59d672e54178b0ed2876b764b
+  ReusableKit: e5f853ad4652e411f96b6119b2488afa12929be6
+  RxCocoa: fcf32050ac00d801f34a7f71d5e8e7f23026dcd8
+  RxCodable: 468b37793b66d804a5b1be16e817d7aab408b52b
+  RxDataSources: efee07fa4de48477eca0a4611e6d11e2da9c1114
+  RxGesture: 0cd8e37ff9a266e1c31f46bcaed6de1c536bc81e
+  RxKeyboard: 6683c4344304a00f943c158bd8a43ce5469c82a7
+  RxOptional: 9904e2219d59260c3c171273d475b2126de187e8
+  RxRelay: 4f7409406a51a55cd88483f21ed898c234d60f18
+  RxSwift: 8b0671caa829a763bbce7271095859121cbd895f
+  RxViewController: 7330a46e5c31cd680db169da4c9fc8676e975a81
+  SectionReactor: 88cf2b79bdf33632c98583a574a17181a277fc33
+  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
+  Stubber: 241303d241ad91f70d6d6d20cdaeae5255c82b57
+  SwiftyColor: ac23e6c0b561838c1ef0f554ff170cceba14546b
+  SwiftyImage: 88a8c90ee3963a498de728c4ccdb079b4820cef0
+  Then: 90cd104fd951cec1980a03f57704ad8f784d4d79
   TouchAreaInsets: eb1ad705965a142a30a9c6a3405bec5e46d8613b
   TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
-  UICollectionViewFlexLayout: 81ebb940737f0689ce35efd8c7cfa7c7f68d2d18
-  UITextView+Placeholder: 77680995fcdd07c3f52ec92fe1150874a2ac89ff
-  Umbrella: a4b409f07d023748ce84959363341ca7068c82ef
-  URLNavigator: 88f6b347723c1fef87c50f08ee08a1d58fceef79
-  WebLinking: b476999d59f78bd6649e6754d60693a7d147b00c
+  UICollectionViewFlexLayout: 89273f710c5b97ed22041ad0d43ab3853978b1d0
+  "UITextView+Placeholder": f23df8592290d8d06078072ae1a663e11ee07ff4
+  Umbrella: d5b508a0efea3c50f4764ad96035d08eafee26bc
+  URLNavigator: 0bffc3efdeb2d97f7b5eec7ac82d290f4a099431
 
-PODFILE CHECKSUM: 23baa09601f662fb2056d4e2f165f45100e40ce1
+PODFILE CHECKSUM: fd5b1bb543fad34e10b49b47a50a246c1f613d21
 
-COCOAPODS: 1.3.1
+COCOAPODS: 1.7.5

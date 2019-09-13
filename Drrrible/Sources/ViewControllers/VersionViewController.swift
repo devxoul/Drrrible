@@ -32,7 +32,7 @@ final class VersionViewController: BaseViewController, View {
     $0.layer.borderColor = UIColor.db_border.cgColor
     $0.layer.borderWidth = 1
     $0.layer.cornerRadius = Metric.iconViewSize * 13.5 / 60
-    $0.layer.minificationFilter = kCAFilterTrilinear
+    $0.layer.minificationFilter = CALayerContentsFilter.trilinear
     $0.clipsToBounds = true
   }
   fileprivate let tableView = UITableView(frame: .zero, style: .grouped).then {
@@ -119,7 +119,7 @@ extension VersionViewController: UITableViewDataSource {
 }
 
 private final class VersionCell: UITableViewCell {
-  fileprivate let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+  fileprivate let activityIndicatorView = UIActivityIndicatorView(style: .gray)
 
   override var accessoryView: UIView? {
     didSet {
@@ -136,7 +136,7 @@ private final class VersionCell: UITableViewCell {
     set { self.accessoryView = newValue ? self.activityIndicatorView : nil }
   }
 
-  override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+  override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: .value1, reuseIdentifier: reuseIdentifier)
     self.selectionStyle = .none
   }

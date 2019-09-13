@@ -16,7 +16,7 @@ final class SplashViewControllerSpec: QuickSpec {
       context("when did appear") {
         it("sends a `.checkIfAuthenticated` action to the reactor") {
           let reactor = SplashViewReactor(userService: StubUserService())
-          reactor.stub.isEnabled = true
+          reactor.isStubEnabled = true
           let viewController = SplashViewController(
             reactor: reactor,
             presentLoginScreen: {},
@@ -43,7 +43,7 @@ final class SplashViewControllerSpec: QuickSpec {
       beforeEach {
         isExecuted = (false, false)
         reactor = SplashViewReactor(userService: StubUserService())
-        reactor.stub.isEnabled = true
+        reactor.isStubEnabled = true
         viewController = SplashViewController(
           reactor: reactor,
           presentLoginScreen: { isExecuted.presentLoginScreen = true },
