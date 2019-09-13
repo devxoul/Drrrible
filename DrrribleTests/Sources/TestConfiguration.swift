@@ -14,7 +14,7 @@ class TestConfiguration: QuickConfiguration {
   override class func configure(_ configuration: Configuration) {
     configuration.beforeEach {
       Stubber.clear()
-      UIApplication.shared.delegate = StubAppDelegate()
+      UIApplication.shared.delegate = nil
     }
 
     configuration.afterEach {

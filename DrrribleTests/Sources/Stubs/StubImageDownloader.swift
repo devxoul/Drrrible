@@ -9,21 +9,8 @@
 import Kingfisher
 
 final class StubImageDownloader: ImageDownloader {
-  private(set) var url: URL? = nil
-
   init() {
     super.init(name: "StubImageDownloader")
-  }
-
-  override func downloadImage(
-    with url: URL,
-    retrieveImageTask: RetrieveImageTask? = nil,
-    options: KingfisherOptionsInfo? = nil,
-    progressBlock: ImageDownloaderProgressBlock? = nil,
-    completionHandler: ImageDownloaderCompletionHandler? = nil
-  ) -> RetrieveImageDownloadTask? {
-    self.url = url
-    return nil
   }
 }
 

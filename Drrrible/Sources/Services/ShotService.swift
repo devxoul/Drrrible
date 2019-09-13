@@ -41,7 +41,7 @@ final class ShotService: ShotServiceType {
     return self.networking.request(.isLikedShot(id: shotID))
       .map { _ in true }
       .catchError { _ in .just(false) }
-      .do(onNext: { isLiked in
+      .do(onSuccess: { isLiked in
         Shot.event.onNext(.updateLiked(id: shotID, isLiked: isLiked))
       })
   }

@@ -13,7 +13,7 @@ private func appDelegateClassName() -> String {
   return isTesting ? "DrrribleTests.StubAppDelegate" : NSStringFromClass(AppDelegate.self)
 }
 
-UIApplicationMain(
+_ = UIApplicationMain(
   CommandLine.argc,
   UnsafeMutableRawPointer(CommandLine.unsafeArgv).bindMemory(
     to: UnsafeMutablePointer<Int8>.self,

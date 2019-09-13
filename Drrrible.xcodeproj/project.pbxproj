@@ -75,7 +75,6 @@
 		0377C55D1E74680700EE4576 /* BorderedLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0377C55C1E74680700EE4576 /* BorderedLayer.swift */; };
 		0377C55F1E746ADE00EE4576 /* ShotViewTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0377C55E1E746ADE00EE4576 /* ShotViewTitleCell.swift */; };
 		0377C5611E746B5C00EE4576 /* ShotViewTitleCellReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0377C5601E746B5C00EE4576 /* ShotViewTitleCellReactor.swift */; };
-		0377C5631E746E5300EE4576 /* UIEdgeInsets+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0377C5621E746E5200EE4576 /* UIEdgeInsets+Init.swift */; };
 		0388F5AF1EB7692200E92AFF /* UIImageView+Kingfisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0388F5AE1EB7692200E92AFF /* UIImageView+Kingfisher.swift */; };
 		038B68F71E71ED90006B44F9 /* Paging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038B68F61E71ED90006B44F9 /* Paging.swift */; };
 		038B68F91E71F338006B44F9 /* CollectionActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038B68F81E71F338006B44F9 /* CollectionActivityIndicatorView.swift */; };
@@ -216,7 +215,6 @@
 		0377C55C1E74680700EE4576 /* BorderedLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BorderedLayer.swift; sourceTree = "<group>"; };
 		0377C55E1E746ADE00EE4576 /* ShotViewTitleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShotViewTitleCell.swift; sourceTree = "<group>"; };
 		0377C5601E746B5C00EE4576 /* ShotViewTitleCellReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShotViewTitleCellReactor.swift; sourceTree = "<group>"; };
-		0377C5621E746E5200EE4576 /* UIEdgeInsets+Init.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIEdgeInsets+Init.swift"; sourceTree = "<group>"; };
 		0388F5AE1EB7692200E92AFF /* UIImageView+Kingfisher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Kingfisher.swift"; sourceTree = "<group>"; };
 		038B68F61E71ED90006B44F9 /* Paging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Paging.swift; sourceTree = "<group>"; };
 		038B68F81E71F338006B44F9 /* CollectionActivityIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionActivityIndicatorView.swift; sourceTree = "<group>"; };
@@ -596,7 +594,6 @@
 				03DF95101E6EAB8E00E31665 /* UIScrollView+ScrollToBottom.swift */,
 				031EB0581E6FED65004D6349 /* URLNavigationMap.swift */,
 				038B68FA1E71F5D8006B44F9 /* UIColor+Dribbble.swift */,
-				0377C5621E746E5200EE4576 /* UIEdgeInsets+Init.swift */,
 				0365BB951E754424009BA3F8 /* ExclusiveGestureRecognizerDelegate.swift */,
 				034D33551EA687BA004498FB /* Bundle.swift */,
 				0388F5AE1EB7692200E92AFF /* UIImageView+Kingfisher.swift */,
@@ -1201,7 +1198,6 @@
 				038B68FF1E72A399006B44F9 /* MainTabBarController.swift in Sources */,
 				03D996D61E805392004773AE /* ShotViewCommentCellReactor.swift in Sources */,
 				0377C55D1E74680700EE4576 /* BorderedLayer.swift in Sources */,
-				0377C5631E746E5300EE4576 /* UIEdgeInsets+Init.swift in Sources */,
 				038B69031E72A466006B44F9 /* SettingsViewController.swift in Sources */,
 				0365BB8E1E748246009BA3F8 /* NSAttributedString+HTMLString.swift in Sources */,
 				038B69011E72A3BC006B44F9 /* MainTabBarViewReactor.swift in Sources */,

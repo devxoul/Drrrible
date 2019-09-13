@@ -9,12 +9,12 @@
 import Moya
 import RxSwift
 
-extension PrimitiveSequence where TraitType == SingleTrait, Element == Moya.Response {
-  func map<T: ModelType>(_ type: T.Type) -> PrimitiveSequence<TraitType, T> {
+extension PrimitiveSequence where Trait == SingleTrait, Element == Moya.Response {
+  func map<T: ModelType>(_ type: T.Type) -> PrimitiveSequence<Trait, T> {
     return self.map(T.self, using: T.decoder)
   }
 
-  func map<T: ModelType>(_ listType: List<T>.Type) -> PrimitiveSequence<TraitType, List<T>> {
+  func map<T: ModelType>(_ listType: List<T>.Type) -> PrimitiveSequence<Trait, List<T>> {
     return self
       .map { response -> List<T> in
         let items = try response.map([T].self, using: T.decoder)

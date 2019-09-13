@@ -20,7 +20,7 @@ final class ShotListViewControllerSpec: QuickSpec {
         shotService: StubShotService(),
         shotCellReactorFactory: ShotCellReactor.init
       )
-      reactor.stub.isEnabled = true
+      reactor.isStubEnabled = true
       viewController = ShotListViewController(
         reactor: reactor,
         analytics: .stub(),

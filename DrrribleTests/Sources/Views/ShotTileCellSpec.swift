@@ -17,7 +17,7 @@ final class ShotTileCellSpec: QuickSpec {
 
     beforeEach {
       reactor = ShotCellReactor(shot: ShotFixture.shot1)
-      reactor.stub.isEnabled = true
+      reactor.isStubEnabled = true
       cell = ShotTileCell()
     }
 
@@ -26,16 +26,6 @@ final class ShotTileCellSpec: QuickSpec {
       expect(cell.cardView.superview) === cell.contentView
       expect(cell.imageView.superview) === cell.cardView
       expect(cell.gifLabel.superview) === cell.imageView
-    }
-
-    describe("an image view") {
-      it("sets an url") {
-        let imageDownloader = StubImageDownloader()
-        cell.dependency = .stub(downloader: imageDownloader)
-        cell.reactor = reactor
-        reactor.stub.state.value.imageURL = URL(string: "https://www.example.com")!
-        expect(cell.imageView.kf.webURL) == URL(string: "https://www.example.com")
-      }
     }
 
     describe("a gif label") {
@@ -67,7 +57,7 @@ final class ShotTileCellSpec: QuickSpec {
             shotViewControllerFactory: { id, shot in
               isShotViewControllerFactoryExecuted = true
               let reactor = ShotViewReactor.stub(shotID: id)
-              reactor.stub.isEnabled = true
+              reactor.isStubEnabled = true
               return ShotViewController(
                 reactor: reactor,
                 analytics: .stub(),
@@ -76,7 +66,7 @@ final class ShotTileCellSpec: QuickSpec {
             }
           )
           cell.reactor = reactor
-          let gestureRecognizer = cell.cardView.gestureRecognizers?.lazy.flatMap { $0 as? UITapGestureRecognizer }.first
+          let gestureRecognizer = cell.cardView.gestureRecognizers?.lazy.compactMap { $0 as? UITapGestureRecognizer }.first
           gestureRecognizer?.sendAction(withState: .ended)
           expect(isShotViewControllerFactoryExecuted) == true
         }

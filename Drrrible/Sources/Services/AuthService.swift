@@ -93,7 +93,7 @@ final class AuthService: AuthServiceType {
       "code": code,
     ]
     return Single.create { observer in
-      let request = Alamofire
+      let request = AF
         .request(urlString, method: .post, parameters: parameters)
         .responseData { response in
           switch response.result {
