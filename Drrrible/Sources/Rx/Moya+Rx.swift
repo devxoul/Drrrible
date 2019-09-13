@@ -30,3 +30,15 @@ extension PrimitiveSequence where TraitType == SingleTrait, Element == Moya.Resp
       })
   }
 }
+
+// TODO: Temporary implementation
+
+private extension HTTPURLResponse {
+  func findLink(relation: String) -> Link? {
+    return nil
+  }
+}
+
+private struct Link {
+  var uri: String
+}
